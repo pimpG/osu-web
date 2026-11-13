@@ -29,7 +29,7 @@ use App\Libraries\Elasticsearch\Indexable;
  */
 class ArtistTrack extends Model implements Indexable
 {
-    use Elasticsearch\ArtistTrackTrait;
+    use Traits\Es\ArtistTrackSearch;
 
     protected $casts = [
         'exclusive' => 'boolean',
@@ -56,6 +56,6 @@ class ArtistTrack extends Model implements Indexable
 
     public function isNew()
     {
-        return $this->created_at->isAfter(now()->subMonth(1));
+        return $this->created_at->isAfter(now()->subMonths(1));
     }
 }

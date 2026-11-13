@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute negatif olamaz.',
     'required' => ':attribute gereklidir.',
     'too_long' => ':attribute azami uzunluğu aştı - sadece :limit karakter olabilir.',
+    'url' => 'Lütfen geçerli bir URL girin.',
     'wrong_confirmation' => 'Doğrulama eşleşmiyor.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Şimdilik kullanıcı başına yalnızca bir adet API anahtarı verilir.',
+
+        'attributes' => [
+            'api_key' => 'api anahtarı',
+            'app_name' => 'uygulama adı',
+            'app_url' => 'uygulama url\'si',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'İzin verilen azami OAuth uygulama sayısı aşıldı.',
@@ -117,6 +128,20 @@ return [
                 'name' => 'Uygulama Adı',
                 'redirect' => 'Uygulama Geri Çağırma URL\'si',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => ':attribute geçersiz karakterler içeriyor.',
+        'used' => ':attribute seçeneği zaten kullanılıyor.',
+        'word_not_allowed' => ':attribute seçimine izin verilmiyor.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Varsayılan kural seti',
+            'is_open' => 'Takım başvurusu',
+            'name' => 'İsim',
+            'short_name' => 'Kısa isim',
+            'url' => 'URL',
         ],
     ],
 
@@ -164,6 +189,8 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Dereceli beatmapler bildirilemez',
+        'not_in_channel' => 'Bu kanalda değilsiniz.',
+        'in_team' => 'Takımın bir parçasısın.',
         'reason_not_valid' => ':reason sebebi bu rapor türü için geçerli değil.',
         'self' => "Kendinizi raporlayamazsınız!",
     ],

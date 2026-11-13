@@ -7,6 +7,7 @@ return [
     'cancel' => 'إلغاء',
 
     'authorise' => [
+        'app_owner' => 'تطبيق من :owner',
         'request' => 'يطلب الإذن بالوصول إلى حسابك.',
         'scopes_title' => 'هذا التطبيق سوف يكون قادر على:',
         'title' => 'طلب الأذن',
@@ -56,6 +57,12 @@ return [
         'revoked' => [
             'false' => 'حذف',
             'true' => 'محذوف',
+        ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
         ],
     ],
 ];

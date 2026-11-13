@@ -10,7 +10,7 @@ use App\Transformers\TransformerAbstract;
 
 class LegacyMatchTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'events',
     ];
 
@@ -18,8 +18,8 @@ class LegacyMatchTransformer extends TransformerAbstract
     {
         return [
             'id' => $match->match_id,
-            'start_time' => json_time($match->start_time),
-            'end_time' => json_time($match->end_time),
+            'start_time' => $match->getJsonTime('start_time'),
+            'end_time' => $match->getJsonTime('end_time'),
             'name' => $match->name,
         ];
     }

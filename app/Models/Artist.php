@@ -9,6 +9,7 @@ use App\Traits\Memoizes;
 
 /**
  * @property \Illuminate\Database\Eloquent\Collection $albums ArtistAlbum
+ * @property string|null $alternative_name
  * @property string|null $bandcamp
  * @property \Illuminate\Database\Eloquent\Collection $beatmapsets Beatmapset
  * @property string|null $cover_url
@@ -26,7 +27,9 @@ use App\Traits\Memoizes;
  * @property \Illuminate\Database\Eloquent\Collection $tracks ArtistTrack
  * @property string|null $twitter
  * @property \Carbon\Carbon|null $updated_at
+ * @property bool $use_for_linking
  * @property int|null $user_id
+ * @property string|null $video_url
  * @property int $visible
  * @property string|null $website
  * @property string|null $youtube
@@ -36,6 +39,7 @@ class Artist extends Model
     use Memoizes;
 
     protected $casts = [
+        'use_for_linking' => 'boolean',
         'visible' => 'boolean',
     ];
 
@@ -59,6 +63,40 @@ class Artist extends Model
         return $this->hasMany(ArtistTrack::class);
     }
 
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'alternative_name',
+            'bandcamp',
+            'cover_url',
+            'description',
+            'facebook',
+            'header_url',
+            'id',
+            'label_id',
+            'name',
+            'patreon',
+            'soundcloud',
+            'spotify',
+            'twitter',
+            'user_id',
+            'video_url',
+            'website',
+            'youtube' => $this->getRawAttribute($key),
+
+            'created_at',
+            'updated_at' => $this->getTimeFast($key),
+
+            'use_for_linking',
+            'visible' => (bool) $this->getRawAttribute($key),
+
+            'albums',
+            'beatmapsets',
+            'label',
+            'tracks' => $this->getRelationValue($key),
+        };
+    }
+
     /**
      * This requires querying the model with `->withMax('tracks', 'created_at')`.
      */
@@ -66,7 +104,7 @@ class Artist extends Model
     {
         $date = parse_time_to_carbon($this->attributes['tracks_max_created_at']);
 
-        return $date !== null && $date->addMonth(1)->isFuture();
+        return $date !== null && $date->addMonths(1)->isFuture();
     }
 
     public function url()

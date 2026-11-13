@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => '',
+
     'authorizations' => [
         'update' => [
             'null_user' => '',
@@ -16,6 +18,16 @@ return [
         'empty' => '',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '',
         'none_found' => '',
@@ -26,6 +38,7 @@ return [
             'deleted' => '',
             'mode' => '',
             'only_unresolved' => '',
+            'show_review_embeds' => '',
             'types' => '',
             'username' => '',
 
@@ -63,6 +76,13 @@ return [
         'reset_confirm' => '',
         'user' => '',
         'version' => '',
+    ],
+
+    'refresh' => [
+        'checking' => '',
+        'has_updates' => '',
+        'no_updates' => '',
+        'updating' => '',
     ],
 
     'reply' => [
@@ -103,5 +123,6 @@ return [
     'user_filter' => [
         'everyone' => '',
         'label' => '',
+        'multiple' => '',
     ],
 ];

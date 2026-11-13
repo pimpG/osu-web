@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld',
+        'title' => 'Vil du anmelde :username\'s beatmap?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -20,13 +20,23 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Anmeld',
+        'title' => 'Vil du anmelde :username\'s opslag?',
+    ],
+
+    'message' => [
+        'button' => 'Anmeld besked',
+        'title' => 'Anmeld :usernames besked?',
     ],
 
     'scores' => [
         'button' => 'Anmeld Score',
         'title' => 'Vil du anmelde :username\'s score?',
+    ],
+
+    'team' => [
+        'button' => 'Anmeld Hold',
+        'title' => 'Vil du anmelde :username\'s hold?',
     ],
 
     'user' => [

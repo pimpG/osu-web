@@ -4,19 +4,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '',
+    'empty' => [
+        'active' => '',
+        'ended' => '',
+        'playlists' => 'λίστες αναπαραγωγής',
+        'ranked-play' => '',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'φιλοξενείται από :user',
+        'invalid_password' => 'Μη έγκυρος κωδικός δωματίου',
+        'map_count' => ':count_delimited χάρτες:count_delimited',
+        'player_count' => ':count_delimited παίκτης|:count_delimited παίκτες',
+        'time_left' => 'απέμειναν :time',
+        'view_history' => 'Προβολή Ιστορικού',
+        'view_summary' => 'Προβολή Σύνοψης',
+
+        'errors' => [
+            'duration_too_long' => 'Η διάρκεια είναι πολύ μεγάλη.',
+            'name_too_long' => 'Το όνομα δωματίου είναι πολύ μεγάλο.',
+            'too_many_playlist_items' => '',
+        ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'ενεργό',
+            'ended' => 'έληξε',
+            'soon' => 'λήγει σύντομα',
         ],
     ],
 ];

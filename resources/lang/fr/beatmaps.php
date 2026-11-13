@@ -4,9 +4,15 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => 'Le mode de jeu spécifié est invalide.',
+
+    'change_owner' => [
+        'too_many' => 'Vous avez ajouté trop de participants à cette beatmap.',
+    ],
+
     'discussion-votes' => [
         'update' => [
-            'error' => 'Échec pendant l\'actualisation du vote',
+            'error' => 'Impossible de modifier le vote',
         ],
     ],
 
@@ -17,20 +23,24 @@ return [
         'deleted' => 'Supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
-        'edited' => 'Dernière modification par :editor il y a :update_time.',
-        'guest' => 'Difficulté de l\'invité par :user',
+        'edited' => 'Dernière modification par :editor :update_time',
+        'guest' => 'Guest difficulty par :user',
         'kudosu_denied' => 'Le kudosu a été refusé pour ce post.',
+        'include_replies' => 'Inclure les réponses',
         'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, il n\'est plus possible d\'en discuter.',
         'message_placeholder_locked' => 'La discussion pour cette beatmap a été désactivée.',
-        'message_placeholder_silenced' => "Impossible de publier la discussion en étant réduit au silence.",
+        'message_placeholder_silenced' => "Impossible de publier en étant réduit au silence.",
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
+        'reply_resolve_notice' => 'Appuyez sur Entrée pour répondre. Appuyez sur Ctrl+Entrée pour répondre et résoudre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
         'require-login' => 'Veuillez vous connecter pour poster ou répondre',
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'show_deleted' => 'Afficher le contenu supprimé',
+        'show_other_replies' => 'Afficher les autres réponses',
         'title' => 'Discussions',
+        'unresolved_count' => ':count_delimited problème non résolu|:count_delimited problèmes non résolus',
 
         'collapse' => [
             'all-collapse' => 'Tout réduire',
@@ -38,7 +48,7 @@ return [
         ],
 
         'empty' => [
-            'empty' => 'Pas de discussion !',
+            'empty' => 'Aucune discussion pour le moment !',
             'hidden' => 'Aucune discussion ne correspond à vos critères.',
         ],
 
@@ -55,15 +65,15 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Ce post sera déplacé vers la discussion générale du beatmapset. Pour modder cette beatmap, indiquez le timestamp (ex. 00:12:345).',
+            'in_general' => 'Ce post sera déplacé vers la discussion générale de la beatmap. Pour modder cette beatmap, veuillez indiquer un horodatage (par exemple 00:12:345).',
             'in_timeline' => 'Pour modder plusieurs sections de cette beatmap, faites plusieurs posts (un post pour chaque section).',
         ],
 
         'message_placeholder' => [
             'general' => 'Écrivez ici pour poster dans Général (:version)',
             'generalAll' => 'Écrivez ici pour poster dans Général (Toutes les difficultés)',
-            'review' => 'Tapez ici pour poster un commentaire',
-            'timeline' => 'Écrivez ici pour poster dans la Chronologie (:version)',
+            'review' => 'Écrivez ici pour poster un avis',
+            'timeline' => 'Écrivez ici pour poster dans Timeline (:version)',
         ],
 
         'message_type' => [
@@ -73,15 +83,28 @@ return [
             'nomination_reset' => 'Réinitialiser la nomination',
             'praise' => 'Compliments',
             'problem' => 'Problème',
-            'review' => 'Review',
+            'problem_warning' => 'Signaler un problème',
+            'review' => 'Avis',
             'suggestion' => 'Suggestion',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => 'Poster une disqualification',
+            'hype' => 'Poster un hype',
+            'mapper_note' => 'Poster une note',
+            'nomination_reset' => 'Supprimer toutes les nominations',
+            'praise' => 'Poster des compliments',
+            'problem' => 'Poster un problème',
+            'problem_warning' => 'Poster un problème',
+            'review' => 'Poster un avis',
+            'suggestion' => 'Poster une suggestion',
         ],
 
         'mode' => [
             'events' => 'Historique',
             'general' => 'Général :scope',
-            'reviews' => 'Reviews',
-            'timeline' => 'Chronologie',
+            'reviews' => 'Avis',
+            'timeline' => 'Timeline',
             'scopes' => [
                 'general' => 'Cette difficulté',
                 'generalAll' => 'Toutes les difficultés',
@@ -90,25 +113,26 @@ return [
 
         'new' => [
             'pin' => 'Épingler',
-            'timestamp' => 'Timestamp',
-            'timestamp_missing' => 'ctrl + c en mode édition et collez votre message pour ajouter un timestamp !',
+            'timestamp' => 'Horodatage',
+            'timestamp_missing' => 'Utilisez la combinaison de touches Ctrl + C en mode édition et collez dans votre message pour ajouter un horodatage !',
             'title' => 'Nouvelle Discussion',
             'unpin' => 'Désépingler',
         ],
 
         'review' => [
-            'new' => 'Nouveau commentaire',
+            'new' => 'Nouvel avis',
             'embed' => [
                 'delete' => 'Supprimer',
                 'missing' => '[DISCUSSION SUPPRIMÉE]',
                 'unlink' => 'Dissocier',
                 'unsaved' => 'Non sauvegardé',
                 'timestamp' => [
-                    'all-diff' => 'Les messages sur "Toutes les difficultés" ne peuvent pas être horodatés.',
-                    'diff' => 'Si :type commence par un horodatage, il sera affiché sous la chronologie.',
+                    'all-diff' => 'Les posts sur "Toutes les difficultés" ne peuvent pas être horodatés.',
+                    'diff' => 'Si :type commence par un horodatage, il sera affiché sous la timeline.',
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => 'insérer une note',
                 'paragraph' => 'insérer un paragraphe',
                 'praise' => 'insérer un compliment',
                 'problem' => 'insérer un problème',
@@ -117,12 +141,12 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mappé par :mapper',
+            'title' => ':title mappée par :mapper',
         ],
 
         'sort' => [
             'created_at' => 'Date de création',
-            'timeline' => 'Chronologie',
+            'timeline' => 'Timeline',
             'updated_at' => 'Dernière mise à jour',
         ],
 
@@ -131,17 +155,17 @@ return [
             'mapper_notes' => 'Notes',
             'mine' => 'Moi',
             'pending' => 'En attente',
-            'praises' => 'Hommages',
+            'praises' => 'Compliments',
             'resolved' => 'Résolu',
             'total' => 'Tout',
         ],
 
         'status-messages' => [
             'approved' => 'Cette beatmap a été approuvée le :date !',
-            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonnée par son créateur...",
-            'loved' => 'Cette beatmap a été ajouté à loved le :date !',
+            'graveyard' => "Cette beatmap n'a pas été modifiée depuis le :date et a donc été placée au cimetière...",
+            'loved' => 'Cette beatmap a été ajoutée à la catégorie Loved le :date !',
             'ranked' => 'Cette beatmap a été classée le :date !',
-            'wip' => 'Note: Cette beatmap a été marquée comme en cours de travail par son créateur.',
+            'wip' => 'Remarque : Cette beatmap a été marquée comme étant en work-in-progress par son créateur.',
         ],
 
         'votes' => [
@@ -157,14 +181,14 @@ return [
     ],
 
     'hype' => [
-        'button' => 'Hyper la Beatmap !',
-        'button_done' => 'Déjà Hypée !',
+        'button' => 'Hyper la beatmap !',
+        'button_done' => 'Déjà hypée !',
         'confirm' => "Êtes-vous sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
         'explanation' => 'Hyper cette beatmap permet de la rendre plus visible pour sa nomination et son classement !',
         'explanation_guest' => 'Connectez-vous et hypez cette beatmap afin de la rendre plus visible pour sa nomination et son classement !',
-        'new_time' => "Vous obtiendrez un point de hype dans :new_time.",
-        'remaining' => 'Vous avez :remaining hypes restants.',
-        'required_text' => 'Hype: :current/:required',
+        'new_time' => "Vous obtiendrez un hype supplémentaire dans :new_time.",
+        'remaining' => 'Il vous reste :remaining hypes.',
+        'required_text' => 'Hype : :current/:required',
         'section_title' => 'Train de la hype',
         'title' => 'Hype',
     ],
@@ -174,42 +198,48 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => 'Vous avez déjà nominé cette beatmap.',
+        'cannot_nominate' => 'Vous ne pouvez pas nominer les beatmaps de ce mode de jeu.',
         'delete' => 'Supprimer',
-        'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimé et vous serez redirigé vers votre profil.',
+        'delete_own_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers votre profil.',
         'delete_other_confirm' => 'Êtes-vous sûr ? La beatmap sera supprimée et vous serez redirigé vers le profil de l\'utilisateur.',
         'disqualification_prompt' => 'Raison de la disqualification ?',
-        'disqualified_at' => 'disqualifiée :time_ago (:reason).',
+        'disqualified_at' => 'Disqualifiée :time_ago (:reason).',
         'disqualified_no_reason' => 'aucune raison spécifiée',
-        'disqualify' => 'Disqualifiée',
-        'incorrect_state' => 'Erreur lors de l\'action, merci de réessayer.',
-        'love' => 'Aimer',
-        'love_choose' => 'Choisissez la difficulté pour loved',
-        'love_confirm' => 'Vous aimez cette beatmap ?',
+        'disqualify' => 'Disqualifier',
+        'incorrect_state' => 'Une erreur s\'est produite, essayez de rafraîchir la page.',
+        'love' => 'Ajouter aux loved',
+        'love_choose' => 'Choisissez la difficulté que vous souhaitez ajouter aux loved',
+        'love_confirm' => 'Voulez-vous promouvoir cette beatmap à la catégorie Loved ?',
         'nominate' => 'Nominer',
-        'nominate_confirm' => 'Nominer cette beatmap?',
+        'nominate_confirm' => 'Nominer cette beatmap ?',
         'nominated_by' => 'nominée par :users',
         'not_enough_hype' => "Il n'y a pas assez de hype.",
-        'remove_from_loved' => 'Retirer de Loved',
-        'remove_from_loved_prompt' => 'Raison pour laquelle il a été retiré de Loved :',
-        'required_text' => 'Nominations: :current/:required',
+        'remove_from_loved' => 'Retirer de la catégorie Loved',
+        'remove_from_loved_prompt' => 'Raison pour laquelle cette beatmap a été retirée de la catégorie Loved :',
+        'required_text' => 'Nominations : :current/:required',
         'reset_message_deleted' => 'supprimée',
-        'title' => 'Statut de la nomination',
-        'unresolved_issues' => 'Il y a encore des questions non résolues qui doivent être traitées en priorité.',
+        'title' => 'État de la nomination',
+        'unresolved_issues' => 'Il y a encore des problèmes non résolus qui doivent être traités en priorité.',
 
         'rank_estimate' => [
-            '_' => 'Cette map est estimée à être classée le :date si aucun problème n\'a été trouvé. Elle est #:position dans la :queue.',
+            '_' => 'Cette beatmap devrait être classée le :date si aucun problème n\'est trouvé. Elle est #:position dans la :queue.',
+            'unresolved_problems' => 'Cette beatmap ne peut actuellement pas être classée car :problems ne sont pas résolus.',
+            'problems' => 'ces problèmes',
+            'on' => 'le :date',
             'queue' => 'file d\'attente de classement',
             'soon' => 'bientôt',
         ],
 
         'reset_at' => [
             'nomination_reset' => 'Le processus de nomination a été réinitialisé :time_ago par :user avec le nouveau problème :discussion (:message).',
-            'disqualify' => 'Disqualifiée le :time_ago par :user avec le nouveau problème :discussion (:message).',
+            'disqualify' => 'Disqualifiée :time_ago par :user avec le nouveau problème :discussion (:message).',
         ],
 
         'reset_confirm' => [
+            'disqualify' => 'Êtes-vous sûr ? Cela va disqualifier la beatmap et réinitialiser le processus de nomination.',
             'nomination_reset' => 'Êtes-vous sûr ? Poster un nouveau problème va réinitialiser le processus de nomination.',
-            'disqualify' => 'Êtes-vous sûr? Cela va supprimer la beatmap de la qualification et réinitialiser le processus de nomination.',
+            'problem_warning' => 'Êtes-vous sûr de vouloir signaler un problème sur cette beatmap ? Ceci alertera les Beatmap Nominators.',
         ],
     ],
 
@@ -218,6 +248,7 @@ return [
             'prompt' => 'tapez des mots-clés...',
             'login_required' => 'Connectez-vous pour rechercher.',
             'options' => 'Plus de critères de recherche',
+            'rank_filter_note' => 'Les meilleurs rangs sur votre profil ainsi que les résultats affichés sur cette page sont basés sur vos scores « standardisés »  les plus hauts (alias « lazer ») sur les beatmaps.',
             'supporter_filter' => 'Le filtrage par :filters requiert un tag osu!supporter actif',
             'not-found' => 'aucun résultat',
             'not-found-quote' => '... non, rien trouvé.',
@@ -229,7 +260,7 @@ return [
                 'mode' => 'Mode',
                 'nsfw' => 'Contenu explicite',
                 'played' => 'Jouée',
-                'rank' => 'Rang Atteint',
+                'rank' => 'Rang Obtenu',
                 'status' => 'Catégories',
             ],
             'sorting' => [
@@ -248,13 +279,18 @@ return [
                 '_' => 'Le filtrage par :filters requiert un :link actif',
                 'link_text' => 'tag osu!supporter',
             ],
+            'tag_picker' => [
+                'tooltip' => 'parcourir les tags des joueurs',
+                'prompt' => 'tapez pour rechercher',
+            ],
         ],
     ],
     'general' => [
         'converts' => 'Inclure les beatmaps converties',
-        'featured_artists' => 'Artistes plébiscités',
-        'follows' => 'Mappeurs abonnés',
+        'featured_artists' => 'Featured Artists',
+        'follows' => 'Mappeurs suivis',
         'recommended' => 'Difficulté recommandée',
+        'spotlights' => 'Beatmaps spotlights',
     ],
     'mode' => [
         'all' => 'Tous',
@@ -263,16 +299,18 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => 'non défini',
     ],
     'status' => [
-        'any' => 'Tous',
+        'any' => 'Toutes',
         'approved' => 'Approuvée',
         'favourites' => 'Favoris',
         'graveyard' => 'Cimetière',
         'leaderboard' => 'Avec un classement',
         'loved' => 'Loved',
         'mine' => 'Mes maps',
-        'pending' => 'En attente & WIP',
+        'pending' => 'En attente',
+        'wip' => 'WIP',
         'qualified' => 'Qualifiée',
         'ranked' => 'Classée',
     ],
@@ -286,40 +324,14 @@ return [
         'other' => 'Autre',
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electronique',
+        'electronic' => 'Électronique',
         'metal' => 'Métal',
         'classical' => 'Classique',
         'folk' => 'Folk',
         'jazz' => 'Jazz',
     ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
-    ],
     'language' => [
-        'any' => 'Tous',
+        'any' => 'Toutes',
         'english' => 'Anglais',
         'chinese' => 'Chinois',
         'french' => 'Français',
@@ -333,7 +345,7 @@ return [
         'polish' => 'Polonais',
         'instrumental' => 'Instrumentale',
         'other' => 'Autre',
-        'unspecified' => 'Non spécifié',
+        'unspecified' => 'Non spécifiée',
     ],
 
     'nsfw' => [
@@ -342,19 +354,19 @@ return [
     ],
 
     'played' => [
-        'any' => 'Tous',
+        'any' => 'Toutes',
         'played' => 'Jouée',
         'unplayed' => 'Non jouée',
     ],
     'extra' => [
-        'video' => 'Possède une vidéo',
-        'storyboard' => 'Possède un storyboard',
+        'video' => 'Avec vidéo',
+        'storyboard' => 'Avec storyboard',
     ],
     'rank' => [
         'any' => 'Tous',
-        'XH' => 'SS argenté',
+        'XH' => 'SS d\'argent',
         'X' => '',
-        'SH' => 'S argenté',
+        'SH' => 'S d\'argent',
         'S' => '',
         'A' => '',
         'B' => '',
@@ -362,7 +374,7 @@ return [
         'D' => '',
     ],
     'panel' => [
-        'playcount' => 'Nombre de joueurs : :count',
+        'playcount' => 'Nombre de parties : :count',
         'favourites' => 'Favorites : :count',
     ],
     'variant' => [

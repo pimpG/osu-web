@@ -13,19 +13,31 @@ return [
     'see_channel' => 'sohbete git',
     'verifying' => 'Bildirimleri görüntülemek için lütfen oturumunuzu doğrulayın',
 
-    'filters' => [
+    'action_type' => [
         '_' => 'hepsi',
-        'user' => 'profil',
-        'beatmapset' => 'beatmapler',
-        'forum_topic' => 'forum',
-        'news_post' => 'gelişmeler',
+        'beatmapset' => 'haritalar',
         'build' => 'sürümler',
         'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'haberler',
+        'team' => 'takım',
+        'user' => 'profil',
+    ],
+
+    'filters' => [
+        '_' => 'hepsi',
+        'beatmapset' => 'haritalar',
+        'build' => 'sürümler',
+        'channel' => 'sohbet',
+        'forum_topic' => 'forum',
+        'news_post' => 'gelişmeler',
+        'team' => 'takım',
+        'user' => 'profil',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => 'Beatmap',
+            '_' => 'Harita',
 
             'beatmap_owner_change' => [
                 '_' => 'Konuk zorluk',
@@ -45,6 +57,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => ':username tarafından yeni inceleme, :problems sorun, :suggestions öneri, :praises övgü içeriyor',
                 'beatmapset_discussion_unlock' => '":title" setinin tartışmasının kilidi kaldırıldı',
                 'beatmapset_discussion_unlock_compact' => 'Tartışmanın kilidi kaldırılmış',
+
+                'review_count' => [
+                    'praises' => ':count_delimited övgü|:count_delimited övgü',
+                    'problems' => ':count_delimited sorun|:count_delimited sorun',
+                    'suggestions' => ':count_delimited öneri|:count_delimited öneri',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -86,12 +104,43 @@ return [
         'channel' => [
             '_' => 'Sohbet',
 
+            'announcement' => [
+                '_' => 'Yeni duyuru',
+
+                'announce' => [
+                    'channel_announcement' => ':username ":title" diyor',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username tarafından duyuru',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Yeni mesaj',
+
                 'pm' => [
                     'channel_message' => ':username ":title" diyor',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => ':username tarafından',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => 'Sohbet etiketlenmesi',
+
+                'public' => [
+                    'channel_mention' => ':username şurda senden bahsetti :name ":title"',
+                    'channel_mention_compact' => ':username ":title" ',
+                    'channel_mention_group' => 'şurda bahsedildi :name',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => 'Yeni takım mesajı',
+
+                'team' => [
+                    'channel_team' => ':username ":title" diyor',
+                    'channel_team_compact' => ':username ":title" diyor',
+                    'channel_team_group' => ':username ":title" diyor',
                 ],
             ],
         ],
@@ -120,6 +169,13 @@ return [
                 'comment_reply' => ':username ":title" üzerinde ":content" yanıtını verdi',
                 'comment_reply_compact' => ':username ":content" yanıtını verdi',
             ],
+
+            'news_post' => [
+                '_' => 'Haberler (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
+            ],
         ],
 
         'forum_topic' => [
@@ -132,12 +188,19 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Legacy Forum PM',
+        'team' => [
+            'team_application' => [
+                '_' => 'Takım katılım isteği',
 
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited okunmamış mesaj.|:count_delimited okunmamış mesaj',
+                'team_application_accept' => "Artık :title takımının bir üyesisin",
+                'team_application_accept_compact' => "Artık :title takımının bir üyesisin",
+
+                'team_application_group' => 'Takıma katılma isteği güncellemeleri',
+
+                'team_application_reject' => ':title takıma giriş isteğin reddedildi',
+                'team_application_reject_compact' => ':title takımına giriş isteğiniz reddedildi',
+                'team_application_store' => ':title takımına katılmak için istek gönderdi',
+                'team_application_store_compact' => ':title takımına katılmak için istek gönderdi',
             ],
         ],
 
@@ -148,6 +211,9 @@ return [
                 'user_beatmapset_new' => ':username tarafından yeni beatmap ":title"',
                 'user_beatmapset_new_compact' => 'Yeni beatmap ":title"',
                 'user_beatmapset_new_group' => ' :username tarafından yapılmış yeni beatmapler',
+
+                'user_beatmapset_revive' => '":title" adlı beatmap :username tarafından hayata geri döndürüldü',
+                'user_beatmapset_revive_compact' => '":title" adlı beatmap hayata geri döndürüldü',
             ],
         ],
 
@@ -164,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Haberler',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Artık ":title" beatmapinin bir konuğusunuz',
@@ -195,8 +263,18 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'channel_announcement' => '":name"da yeni bir duyuru var',
+            ],
             'channel' => [
-                'pm' => ':username kullanıcısından yeni bir mesaj geldi',
+                'channel_message' => ':username\'dan yeni bir mesaj aldın',
+            ],
+            'channel_mention' => [
+                'channel_mention' => ':username şurda senden bahsetti :name ":title"',
+            ],
+
+            'channel_team' => [
+                'channel_team' => '":name" takımından yeni bir mesaj var',
             ],
         ],
 
@@ -218,14 +296,18 @@ return [
             ],
         ],
 
-        'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username yeni bir madalya açtı, ":title"!',
-                'user_achievement_unlock_self' => 'Yeni bir madalya açtınız, ":title"!',
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Artık :title takımının bir üyesisin",
+                'team_application_reject' => ':title takımına giriş isteğiniz reddedildi',
+                'team_application_store' => ':title takımına katılmak için istek gönderdi',
             ],
+        ],
 
+        'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username yeni beatmapler yaptı',
+                'user_beatmapset_revive' => ':username beatmap\'leri hayata geri döndürdü',
             ],
         ],
     ],

@@ -11,7 +11,8 @@ return [
     'edited' => 'редактирано :timeago от :user',
     'pinned' => 'закачено',
     'empty' => 'Все още няма коментари.',
-    'load_replies' => 'зареди отговори',
+    'empty_other' => 'Все още няма коментари.',
+    'load_replies' => 'зареждане на отговори',
     'replies_count' => ':count_delimited отговор|:count_delimited отговора',
     'title' => 'Коментари',
 
@@ -25,9 +26,9 @@ return [
     'editor' => [
         'textarea_hint' => [
             '_' => 'Натисни Enter за :action. Използвай Shift + Enter за нов ред.',
-            'edit' => 'запази',
-            'new' => 'публикувай',
-            'reply' => 'отговори',
+            'edit' => 'запазване',
+            'new' => 'публикуване',
+            'reply' => 'отговор',
         ],
     ],
 
@@ -38,8 +39,12 @@ return [
 
     'index' => [
         'nav_comments' => 'коментари',
-        'nav_title' => 'списък',
+        'nav_title' => 'последни коментари',
         'no_comments' => 'не са намерени коментари...',
+    ],
+
+    'ogp' => [
+        'title' => 'коментар от :user',
     ],
 
     'placeholder' => [

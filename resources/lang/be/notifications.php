@@ -13,14 +13,26 @@ return [
     'see_channel' => 'схадзіць у чат',
     'verifying' => 'Калі ласка, пацвердзіце сеанс для прагляду апавяшчэнняў',
 
-    'filters' => [
-        '_' => 'усе',
-        'user' => 'профіль',
+    'action_type' => [
+        '_' => 'усё',
         'beatmapset' => 'бітмапы',
-        'forum_topic' => 'форум',
-        'news_post' => 'навіны',
         'build' => 'зборкі',
         'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'навіны',
+        'team' => 'каманда',
+        'user' => 'профіль',
+    ],
+
+    'filters' => [
+        '_' => 'усе',
+        'beatmapset' => 'бітмапы',
+        'build' => 'зборкі',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'навіны',
+        'team' => 'каманда',
+        'user' => 'профіль',
     ],
 
     'item' => [
@@ -45,6 +57,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Новы водгук ад :username, які змяшчае праблемы: :problems, прапановы: :suggestions, хвалы: :praises',
                 'beatmapset_discussion_unlock' => 'Бітмапа ":title" разблакава для абмеркавання.',
                 'beatmapset_discussion_unlock_compact' => 'Абмеркаванне было адкрыта',
+
+                'review_count' => [
+                    'praises' => ':count_delimited пахвала|:count_delimited пахвалы',
+                    'problems' => ':count_delimited праблема|:count_delimited праблемы',
+                    'suggestions' => ':count_delimited прапанова|:count_delimited прапановы',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -86,18 +104,49 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Новая аб\'ява',
+
+                'announce' => [
+                    'channel_announcement' => ':username сказаў ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Аб\'ява ад :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Новае паведамленне',
+
                 'pm' => [
                     'channel_message' => ':username сказаў ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'ад :username',
                 ],
             ],
+
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => 'Новае паведамленне ад каманды',
+
+                'team' => [
+                    'channel_team' => ':username напісаў ":title"',
+                    'channel_team_compact' => ':username напісаў ":title"',
+                    'channel_team_group' => ':username напісаў ":title"',
+                ],
+            ],
         ],
 
         'build' => [
-            '_' => 'Спic змен',
+            '_' => 'Гісторыя змен',
 
             'comment' => [
                 '_' => 'Новы каментарый',
@@ -120,6 +169,13 @@ return [
                 'comment_reply' => ':username адказаў ":content" ў ":title"',
                 'comment_reply_compact' => ':username адказаў ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -132,12 +188,19 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Правілы Forum PM',
+        'team' => [
+            'team_application' => [
+                '_' => 'Запыт на ўступленне ў каманду',
 
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited непрачытанае паведамленне.|:count_delimited ннепрачытанныя паведамленні.',
+                'team_application_accept' => "Вы сталі ўдзельнікам каманды :title",
+                'team_application_accept_compact' => "Вы сталі ўдзельнікам каманды :title",
+
+                'team_application_group' => 'Абнаўлення па запытах на ўступленне ў каманду',
+
+                'team_application_reject' => 'Ваш запыт на ўступленне ў каманду :title адхілены',
+                'team_application_reject_compact' => 'Ваш запыт на ўступленне ў каманду :title адхілены',
+                'team_application_store' => ':title падаў запыт на ўступленне ў вашу каманду',
+                'team_application_store_compact' => ':title падаў запыт на ўступленне ў вашу каманду',
             ],
         ],
 
@@ -148,6 +211,9 @@ return [
                 'user_beatmapset_new' => 'Новая бітмапа ":title" ад :username',
                 'user_beatmapset_new_compact' => 'Новая бітмапа ":title"',
                 'user_beatmapset_new_group' => 'Новая бітмапа ад :username',
+
+                'user_beatmapset_revive' => 'Бітмапа ":title" адноўлена :username',
+                'user_beatmapset_revive_compact' => 'Бітмапа ":title" адноўлена',
             ],
         ],
 
@@ -164,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Цяпер вы госць бітмапы ":title"',
@@ -195,14 +263,24 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'channel_announcement' => 'Новая аб\'ява ў канале ":name"',
+            ],
             'channel' => [
-                'pm' => 'Вы атрымалі новае паведамленне ад :username',
+                'channel_message' => 'Вы атрымалі новае паведамленне ад :username',
+            ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
+            'channel_team' => [
+                'channel_team' => 'Новае паведамленне ў чаце каманды ":name"',
             ],
         ],
 
         'build' => [
             'comment' => [
-                'comment_new' => 'Журнал зменаў ":title" мае новыя каментарыі',
+                'comment_new' => 'Гісторыя зменаў ":title" мае новыя каментарыі',
             ],
         ],
 
@@ -218,14 +296,18 @@ return [
             ],
         ],
 
-        'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username разблакаваў нову медаль, ":title"!',
-                'user_achievement_unlock_self' => 'Вы разблакавалі нову медаль, ":title"!',
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Вы сталі ўдзельнікам каманды :title",
+                'team_application_reject' => 'Ваш запыт на ўступленне ў каманду :title адхілены',
+                'team_application_store' => ':title падаў запыт на ўступленне ў вашу каманду',
             ],
+        ],
 
+        'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username стварыў новыя бітмапы',
+                'user_beatmapset_revive' => ':username абнавіў карты',
             ],
         ],
     ],

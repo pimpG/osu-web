@@ -8,6 +8,7 @@ return [
     'not_negative' => '',
     'required' => '',
     'too_long' => '',
+    'url' => '',
     'wrong_confirmation' => '',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => '',
+
+        'attributes' => [
+            'api_key' => '',
+            'app_name' => '',
+            'app_url' => '',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => '',
@@ -117,6 +128,20 @@ return [
                 'name' => '',
                 'redirect' => '',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => '',
+        'used' => '',
+        'word_not_allowed' => '',
+
+        'attributes' => [
+            'default_ruleset_id' => '',
+            'is_open' => '',
+            'name' => '',
+            'short_name' => '',
+            'url' => '',
         ],
     ],
 
@@ -164,6 +189,8 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => '',
+        'not_in_channel' => '',
+        'in_team' => '',
         'reason_not_valid' => '',
         'self' => "",
     ],

@@ -7,6 +7,7 @@ return [
     'cancel' => 'Отмени',
 
     'authorise' => [
+        'app_owner' => 'приложение от :owner',
         'request' => 'иска разрешение за достъп до вашия акаунт.',
         'scopes_title' => 'Това приложение ще може да:',
         'title' => 'Искане за оторизация',
@@ -56,6 +57,12 @@ return [
         'revoked' => [
             'false' => 'Изтриване',
             'true' => 'Изтрито',
+        ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
         ],
     ],
 ];

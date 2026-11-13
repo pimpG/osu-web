@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => ':count_delimited 댓글은 숨겨져 있어요.|:count_delimited 댓글들은 숨겨져 있어요.',
+
     'authorizations' => [
         'update' => [
             'null_user' => '로그인하셔야 수정하실 수 있습니다.',
@@ -16,6 +18,16 @@ return [
         'empty' => '아무 일도 일어나지 않았네요... 아직은요.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '삭제됨',
         'none_found' => '해당 검색 기준과 일치하는 토론을 찾을 수 없습니다.',
@@ -26,8 +38,9 @@ return [
             'deleted' => '삭제된 토론 포함',
             'mode' => '비트맵 모드',
             'only_unresolved' => '미해결 토론만 보기',
+            'show_review_embeds' => '리뷰 글 표시',
             'types' => '메시지 종류',
-            'username' => '사용자 이름',
+            'username' => '아이디',
 
             'beatmapset_status' => [
                 '_' => '비트맵 상태',
@@ -65,6 +78,13 @@ return [
         'version' => '난이도',
     ],
 
+    'refresh' => [
+        'checking' => '업데이트 확인 중...',
+        'has_updates' => '토론에 새로운 소식이 있으니, 여기를 눌러 새로고침해 주세요.',
+        'no_updates' => '업데이트가 없어요.',
+        'updating' => '업데이트 중...',
+    ],
+
     'reply' => [
         'open' => [
             'guest' => '답글을 달려면 로그인하세요',
@@ -74,7 +94,7 @@ return [
 
     'review' => [
         'block_count' => ':used / :max 블록 사용됨',
-        'go_to_parent' => '평가 글 보기',
+        'go_to_parent' => '리뷰 글 보기',
         'go_to_child' => '토론 글 보기',
         'validation' => [
             'block_too_large' => '각 문단은 최대 :limit자까지 입력할 수 있습니다.',
@@ -90,7 +110,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => ':user 님이 해결함으로 표시함.',
+            'true' => ':user님이 토론을 끝마쳤습니다',
             'false' => ':user님이 토론을 재개했습니다',
         ],
     ],
@@ -103,5 +123,6 @@ return [
     'user_filter' => [
         'everyone' => '모두',
         'label' => '사용자순 필터링',
+        'multiple' => ':count_delimited개의 유저 선택 됨|:count_delimited개의 유저 선택 됨',
     ],
 ];

@@ -31,6 +31,7 @@ return [
         '_' => 'Şarkılar',
         'count' => ':count_delimited şarkı|:count_delimited şarkı',
         'original' => 'osu! orijinal',
+        'original_badge' => 'ORJİNAL',
     ],
 
     'tracklist' => [
@@ -38,5 +39,30 @@ return [
         'length' => 'uzunluk',
         'bpm' => 'bpm',
         'genre' => 'tür',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'parça arama',
+
+            'exclusive_only' => [
+                'all' => 'Hepsi',
+                'exclusive_only' => 'osu! orijinal',
+            ],
+
+            'form' => [
+                'advanced' => 'Gelişmiş Arama',
+                'album' => 'Albüm',
+                'artist' => 'Sanatçı',
+                'bpm_gte' => 'Minimum BPM',
+                'bpm_lte' => 'Maksimum BPM',
+                'empty' => 'Arama kriterine uyan parça bulunamadı.',
+                'exclusive_only' => 'Tip',
+                'genre' => 'Tür',
+                'genre_all' => 'Tümü',
+                'length_gte' => 'Minimum Uzunluk',
+                'length_lte' => 'Maksimum Uzunluk',
+            ],
+        ],
     ],
 ];

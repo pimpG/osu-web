@@ -20,6 +20,8 @@ class StartParser implements BlockStartParserInterface
             return BlockStart::none();
         }
 
+        // TODO: what happens to characters at the end of an opening block isn't well defined in the spec (e.g. markdown-it seems to behave differently),
+        // which can conflict with inline custom containers.
         $className = mb_strtolower(str_replace(' ', '-', trim($currentLine, ' :')));
 
         if (!present($className)) {
@@ -28,6 +30,6 @@ class StartParser implements BlockStartParserInterface
 
         $cursor->advanceToEnd();
 
-        return BlockStart::of(new Parser($className, $currentLine[0]))->at($cursor);
+        return BlockStart::of(new Parser($className))->at($cursor);
     }
 }

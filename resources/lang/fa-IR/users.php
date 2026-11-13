@@ -7,8 +7,8 @@ return [
     'deleted' => '"کاربر حذف شده"',
 
     'beatmapset_activities' => [
-        'title' => "",
-        'title_compact' => '',
+        'title' => "سایقه بازخورد ارائه دادن :user",
+        'title_compact' => 'بازخورد ارائه دادن',
 
         'discussions' => [
             'title_recent' => 'گفت و گو های اخیرا آغاز شده',
@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'شما این کاربر را مسدود کرده اید.',
+        'comment_text' => 'این نظر پنهان است.',
         'blocked_count' => 'کاربران مسدود شده (:count)',
         'hide_profile' => 'مخفی کردن پروفایل',
+        'hide_comment' => 'پنهان کردن',
+        'forum_post_text' => '',
         'not_blocked' => 'آن کاربر مسدود نشده است.',
         'show_profile' => 'نمایش نمایه',
+        'show_comment' => 'نمایش دادن',
         'too_many' => 'به حد نهایی محدودیت مسدودیت ها رسیدید.',
         'button' => [
             'block' => 'مسدود کردن',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => 'در حال بارگیری...',
         'send_message' => 'ارسال پیام',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -71,11 +92,12 @@ return [
     ],
 
     'filtering' => [
-        'by_game_mode' => '',
+        'by_game_mode' => 'اعضا بر اساس حالت بازی',
     ],
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "حساب کاربری شما مدت هاست استفاده نشده است.",
         ],
     ],
@@ -86,11 +108,11 @@ return [
         'button_posting' => 'در حال ورود...',
         'email_login_disabled' => 'ورود با ایمیل هم اکنون غیر فعال است. لطفا بجای آن از نام کاربری استفاده کنید.',
         'failed' => 'اطلاعات اشتباه',
-        'forgot' => 'رمز خود را فراموش کرده اید؟',
+        'forgot' => 'کلمه عبور خود را فراموش کرده اید؟',
         'info' => 'لطفا برای ادامه وارد شوید',
         'invalid_captcha' => 'خیلی برای ورود تلاش کردید. لطفا کپچا را کامل کنید و دوباره تلاش کنید (در صورتی که کپچا قابل مشاهده نیست صفحه را مجدد بارگذاری کنید)',
         'locked_ip' => 'آدرس آی پی شما مسدود شده است. لطفا چند دقیقه منتظر بمانید.',
-        'password' => 'رمز عبور',
+        'password' => 'کلمه عبور',
         'register' => "حساب osu! ندارید؟ یکی بسازید",
         'remember' => 'این کامپیوتر را به خاطر بسپار',
         'title' => 'لطفا برای ادامه وارد شوید',
@@ -99,6 +121,24 @@ return [
         'beta' => [
             'main' => 'دسترسی بتا در حال حاضر به کاربران خاص محدود شده است.',
             'small' => '(حمایت کننده های osu! به زودی وارد خواهند شد)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -126,22 +166,33 @@ return [
             'cancel' => 'لغو',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'تقلب',
-            'multiple_accounts' => 'استفاده از چند حساب کاربری',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => 'توهین به من یا دیگران',
-            'spam' => 'اسپم کردن (هرز نویسی)',
-            'unwanted_content' => 'لینک کردن به محتوای نامناسب',
+            'multiple_accounts' => 'استفاده از چند حساب کاربری',
             'nonsense' => 'خارج از منطق',
             'other' => 'موارد دیگر (پایین بنویسید)',
+            'spam' => 'اسپم کردن (هرز نویسی)',
+            'unwanted_content' => 'لینک کردن به محتوای نامناسب',
         ],
     ],
     'restricted_banner' => [
         'title' => 'حساب شما محدود شده است!',
         'message' => 'هنگامی که حساب شما محدود شده است، نمیتوانید با بازیکنان دیگر تعامل داشته باشید و امتیاز های شما فقط برای خودتان قابل مشاهده خواهد بود. این معمولا حاصل یک فرایند خودکار است و معمولا در عرض کمتر از 24 ساعت برداشته میشود. اگر درخواست تجدید نظر در محدودیت حسابتان دارید، <a href="mailto:accounts@ppy.sh"> با پشتیبانی تماس بگیرید </a>.',
+        'message_link' => '',
     ],
     'show' => [
-        'age' => '',
+        'age' => ':age سال',
         'change_avatar' => 'آواتار خود را عوض کنید!',
         'first_members' => 'از آغاز اینحاست',
         'is_developer' => 'توسعه دهنده osu!',
@@ -153,16 +204,50 @@ return [
         'origin_country' => 'از :country',
         'previous_usernames' => 'شناخته شده به',
         'plays_with' => 'با :devices بازی می کند',
-        'title' => "نمایه ی :username",
+
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
 
         'comments_count' => [
             '_' => 'پست کرده :link',
             'count' => ':count_delimited نظر|:count_delimited نظرات',
         ],
+        'cover' => [
+            'to_0' => 'مخفی کردن پوشش',
+            'to_1' => 'نمایش دادن پوشش',
+        ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'تغییر عکس نمایه',
                 'defaults_info' => 'تنظیمات عکس بیشتری در آینده در دسترس خواهند بود',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => 'پردازش عکس ناموفق. عکس بارگذاری شده را بررسی کنید و مجدد امتحان کنید.',
                     'button' => 'بارگذاری تصویر',
@@ -183,6 +268,16 @@ return [
                 'is_default_tooltip' => 'حالت بازی پیشفرض',
                 'set' => 'تعیین :mode بعنوان حالت عادی بازی در پروفایل',
             ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
+            ],
         ],
 
         'extra' => [
@@ -196,7 +291,7 @@ return [
             ],
             'beatmaps' => [
                 'by_artist' => 'بر اساس :artist',
-                'title' => 'بیتمپ ها',
+                'title' => 'بیت مپ ها',
 
                 'favourite' => [
                     'title' => 'بیت مپ های مورد علاقه',
@@ -204,14 +299,20 @@ return [
                 'graveyard' => [
                     'title' => 'بیت مپ های فراموش شده',
                 ],
+                'guest' => [
+                    'title' => 'بیت مپ های با مشارکت مهمان',
+                ],
                 'loved' => [
-                    'title' => 'بیتمپ های محبوب',
+                    'title' => 'بیت مپ های "دوست داشته شده"',
+                ],
+                'nominated' => [
+                    'title' => '',
                 ],
                 'pending' => [
-                    'title' => 'بیتمپ های در انتظار',
+                    'title' => 'بیت مپ های در انتظار',
                 ],
                 'ranked' => [
-                    'title' => 'بیتمپ های رتبه بندی شده',
+                    'title' => 'بیت مپ های "رتبه بندی شده"',
                 ],
             ],
             'discussions' => [
@@ -233,7 +334,7 @@ return [
                 ],
                 'most_played' => [
                     'count' => 'بار بازی شده',
-                    'title' => 'بیشترین بازی بیتمپ ها',
+                    'title' => 'بیت مپ های بیشتر بازی شده',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'دقت : :percentage',
@@ -242,6 +343,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'سابقه تماشای بازپخش ها',
                     'count_label' => 'بازپخش های تماشا شده',
+                ],
+                'score_replay_stats' => [
+                    'title' => '',
                 ],
             ],
             'kudosu' => [
@@ -255,42 +359,42 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '',
+                            'give' => ':amount دریافت شد بابت عدم لغو بازبینی پست :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '',
+                            'reset' => 'حذف :amount بخاطر بازبینی کردن پست :post',
                         ],
 
                         'delete' => [
-                            'reset' => '',
+                            'reset' => ':amount از دست رفت بخاطر حذف کردن بازبینی پست :post',
                         ],
 
                         'restore' => [
-                            'give' => '',
+                            'give' => ':amount دریافت شد بخاطر بازگرداندن بازبینی پست :post',
                         ],
 
                         'vote' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => ':amount دریافت شد بخاطر کسب آراء در بازبینی پست :post',
+                            'reset' => ':amount کم شد بخاطر از دست دادن آراء در بازبینی پست :post',
                         ],
 
                         'recalculate' => [
-                            'give' => '',
-                            'reset' => '',
+                            'give' => ':amount دریافت شد بخاطر محاسبه مجدد آراء در بازبینی پست :post',
+                            'reset' => ':amount کم شد بخاطر محاسبه مجدد آراء در بازبینی پست :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '',
-                        'reset' => '',
-                        'revoke' => '',
+                        'give' => ':amount دریافت شد از :giver برای یک پست در :post',
+                        'reset' => 'میزان کودوسو مجدداً تنظیم شد توسط :giver برای پست :post',
+                        'revoke' => 'کودوسو رد شد توسط :giver برای پست :post',
                     ],
                 ],
 
                 'total_info' => [
-                    '_' => '',
-                    'link' => '',
+                    '_' => 'بر اساس میزان مشارکت ایجاد شده توسط کاربر برای بازبینی بیت مپ است. برای اطلاعات بیشتر به :link سر بزنید.',
+                    'link' => 'این صفحه',
                 ],
             ],
             'me' => [
@@ -301,20 +405,26 @@ return [
                 'recent' => 'آخرین',
                 'title' => 'مدال ها',
             ],
-            'multiplayer' => [
-                'title' => 'بازی های چندنفره',
+            'playlists' => [
+                'title' => 'بازی های لیست پخش',
             ],
             'posts' => [
                 'title' => 'پست ها',
                 'title_longer' => 'پست های اخیر',
                 'show_more' => 'دیدن پست های بیشتر',
             ],
+            'ranked-play' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'اخیر',
             ],
+            'realtime' => [
+                'title' => 'بازی های چندنفره',
+            ],
             'top_ranks' => [
                 'download_replay' => 'دانلود بازپخش',
-                'not_ranked' => 'فقط به بیتمپ های رتبه بندی شده pp تعلق میگیرد',
+                'not_ranked' => 'فقط به بیت مپ های "رتبه بندی شده" pp تعلق میگیرد',
                 'pp_weight' => ':percentage وزن شده',
                 'view_details' => 'نمایش جزئیات',
                 'title' => 'رتبه ها',
@@ -325,31 +435,41 @@ return [
                 'first' => [
                     'title' => 'مقام های اول',
                 ],
+                'pin' => [
+                    'to_0' => 'برداشتن سنجاق',
+                    'to_0_done' => 'سنجاق امتیاز برداشته شد',
+                    'to_1' => 'سنجاق کردن',
+                    'to_1_done' => 'امتیاز سنجاق شد',
+                ],
+                'pinned' => [
+                    'title' => 'امتیاز ها سنجاق شد',
+                ],
             ],
             'votes' => [
                 'given' => 'رای داده (3 ماه اخیر)',
                 'received' => 'رای دریافت کرده (3 ماه اخیر)',
                 'title' => 'رأی ها',
                 'title_longer' => 'رای های اخیر',
-                'vote_count' => '',
+                'vote_count' => ':count_delimited رأی|:count_delimited آراء',
             ],
             'account_standing' => [
-                'title' => '',
+                'title' => 'وضعیت حساب',
                 'bad_standing' => "حساب کاربری <strong>:username</strong> وضعیت خوبی نداره :(",
                 'remaining_silence' => '<strong>:username</strong> میتونه دوباره در :duration حرف بزنه.',
 
                 'recent_infringements' => [
-                    'title' => '',
-                    'date' => '',
-                    'action' => '',
-                    'length' => '',
-                    'length_permanent' => '',
-                    'description' => '',
-                    'actor' => '',
+                    'title' => 'تخلفات اخیر',
+                    'date' => 'تاریخ',
+                    'action' => 'اقدام انجام شده',
+                    'length' => 'مدت',
+                    'length_indefinite' => '',
+                    'description' => 'توضیحات',
+                    'actor' => 'توسط :username',
 
                     'actions' => [
                         'restriction' => 'مسدود',
                         'silence' => 'ساکت کردن',
+                        'tournament_ban' => 'ممنوعیت در مسابقات',
                         'note' => 'یادداشت',
                     ],
                 ],
@@ -364,6 +484,19 @@ return [
             'twitter' => '',
             'website' => 'وبسایت',
         ],
+
+        'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'recent_history_provisional' => '',
+            'tier' => '',
+            'title' => '',
+            'wins' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'ممکن است نام کابری خود را عوض کرده باشد.',
             'reason_2' => 'حساب ممکن است موقتا بخاطر مشکلات امنیتی یا سو استفاده غیرقابل دسترس باشد.',
@@ -391,9 +524,26 @@ return [
             'country_simple' => 'رتبه کشوری',
             'global' => 'رتبه جهانی برای :mode',
             'global_simple' => 'رتبه جهانی',
+            'highest' => '',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'label' => '',
+            'total_score' => '',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'دقت ضربات',
+            'hits_per_play' => '',
             'level' => 'سطح :level',
             'level_progress' => 'پیشروی تا سطح بعدی',
             'maximum_combo' => 'بیشترین کمبو',
@@ -402,14 +552,16 @@ return [
             'play_time' => 'مجموع زمان بازی ها',
             'ranked_score' => 'امتیاز رتبه بندی شده',
             'replays_watched_by_others' => 'بازپخش های تماشا شده توسط بقیه',
-            'score_ranks' => '',
+            'score_ranks' => 'رتبه های امتیاز',
             'total_hits' => 'مجموع ضربه ها',
             'total_score' => 'مجموع امتیاز ها',
             // modding stats
             'graveyard_beatmapset_count' => 'بیت مپ های فراموش شده',
-            'loved_beatmapset_count' => 'بیتمپ های محبوب',
-            'pending_beatmapset_count' => 'بیتمپ های در انتظار',
-            'ranked_beatmapset_count' => 'بیتمپ های رتبه بندی شده',
+            'guest_beatmapset_count' => '',
+            'loved_beatmapset_count' => 'بیت مپ های "دوست داشته شده"',
+            'nominated_beatmapset_count' => '',
+            'pending_beatmapset_count' => 'بیت مپ های در انتظار',
+            'ranked_beatmapset_count' => 'بیت مپ های رتبه بندی شده',
         ],
     ],
 
@@ -423,7 +575,15 @@ return [
         'online' => 'آنلاین',
         'offline' => 'آفلاین',
     ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
+    ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => 'کاربر ایجاد شده',
     ],
     'verify' => [

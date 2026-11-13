@@ -24,9 +24,19 @@ return [
         'title' => 'Report :username\'s post?',
     ],
 
+    'message' => [
+        'button' => 'Report Message',
+        'title' => 'Report :username\'s message?',
+    ],
+
     'scores' => [
         'button' => 'Report Score',
         'title' => 'Report :username\'s score?',
+    ],
+
+    'team' => [
+        'button' => 'Report Team',
+        'title' => 'Report :username\'s team?',
     ],
 
     'user' => [

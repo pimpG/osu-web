@@ -4,36 +4,37 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'invalid' => '',
+    'invalid' => 'Virheellinen :attribute määritelty.',
     'not_negative' => ':attribute ei voi olla negatiivinen.',
     'required' => ':attribute on pakollinen.',
     'too_long' => ':attribute ylittää maksimipituuden - voi olla enintään :limit merkkiä.',
+    'url' => 'Syötä kelvollinen URL-osoite.',
     'wrong_confirmation' => 'Tarkistus ei täsmää.',
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Aikaleima on määritelty, mutta beatmap puuttuu.',
-        'beatmapset_no_hype' => "Beatmappia ei voi hurrata.",
-        'hype_requires_null_beatmap' => 'Hurraus täytyy tehdä Yleiset -osiossa (kaikki vaikeusasteet).',
+        'beatmap_missing' => 'Aikaleima on määritelty, mutta rytmikartta puuttuu.',
+        'beatmapset_no_hype' => "Rytmikarttaa ei voida hurrata.",
+        'hype_requires_null_beatmap' => 'Hurraus täytyy tehdä Yleiset (kaikki vaikeustasot) -osiossa.',
         'invalid_beatmap_id' => 'Määritelly vaikeustaso on virheellinen.',
-        'invalid_beatmapset_id' => 'Määritelty beatmap on virheellinen.',
+        'invalid_beatmapset_id' => 'Epäkelpo rytmikartta määritelty.',
         'locked' => 'Keskustelu on lukittu.',
 
         'attributes' => [
-            'message_type' => '',
-            'timestamp' => '',
+            'message_type' => 'Viestin tyyppi',
+            'timestamp' => 'Aikaleima',
         ],
 
         'hype' => [
-            'discussion_locked' => "",
+            'discussion_locked' => "Tämän rytmikartan keskustelu on lukittu eikä sitä voi hurrata",
             'guest' => 'Sinun on kirjauduttava sisään hurrataksesi.',
-            'hyped' => 'Hurrasit jo tätä beatmappia.',
+            'hyped' => 'Hurrasit jo tätä rytmikarttaa.',
             'limit_exceeded' => 'Olet käyttänyt kaikki hurrauksesi.',
-            'not_hypeable' => 'Tätä beatmappia ei voi hurrata',
-            'owner' => 'Ei omien beatmappien hurraamista.',
+            'not_hypeable' => 'Tätä rytmikarttaa ei voi hurrata',
+            'owner' => 'Ei omien rytmikarttojen hurraamista.',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Määritelty aikaleima on beatmapin pituuden ulkopuolella.',
+            'exceeds_beatmapset_length' => 'Määritelty aikaleima on rytmikartan pituuden ulkopuolella.',
             'negative' => "Aikaleima ei voi olla negatiivinen.",
         ],
     ],
@@ -43,21 +44,21 @@ return [
         'first_post' => 'Aloitusviestiä ei voida poistaa.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Viesti',
         ],
     ],
 
     'comment' => [
         'deleted_parent' => 'Poistettuun kommenttiin ei voida vastata.',
-        'top_only' => '',
+        'top_only' => 'Kommentin vastauksen kiinnitys ei ole sallittu.',
 
         'attributes' => [
-            'message' => '',
+            'message' => 'Viesti',
         ],
     ],
 
     'follow' => [
-        'invalid' => '',
+        'invalid' => 'Virheellinen :attribute määritelty.',
     ],
 
     'forum' => [
@@ -71,14 +72,14 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Beatmapin metatietoviestiä ei voida poistaa.',
-            'beatmapset_post_no_edit' => 'Beatmapin metatietoviestiä ei voida muokata.',
+            'beatmapset_post_no_delete' => 'Rytmikartan kuvailutietoviestin poistaminen ei ole sallittua.',
+            'beatmapset_post_no_edit' => 'Rytmikartan kuvailutietoviesin muokkaaminen ei ole sallittua.',
             'first_post_no_delete' => 'Aloitusviestiä ei voi poistaa',
             'missing_topic' => 'Viestissä puuttuu aihe',
             'only_quote' => 'Sinun vastauksesi sisältää ainoastaan lainauksen.',
 
             'attributes' => [
-                'post_text' => '',
+                'post_text' => 'Varsinainen teksti',
             ],
         ],
 
@@ -108,15 +109,39 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Käyttäjää kohti annetaan tällä hetkellä vain yksi rajapinnan avain.',
+
+        'attributes' => [
+            'api_key' => 'rajapinnan avain',
+            'app_name' => 'sovelluksen nimi',
+            'app_url' => 'sovelluksen url',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
-            'too_many' => '',
+            'too_many' => 'Sallittujen OAuth-sovellusten maksimimäärä ylittyi.',
             'url' => 'Syötä kelvollinen URL-osoite.',
 
             'attributes' => [
                 'name' => 'Sovelluksen Nimi',
                 'redirect' => 'Sovelluksen Vastakutsun URL',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => 'Tämä :attribute sisältää virheellisiä merkkejä.',
+        'used' => 'Tämä :attribute valinta on jo käytössä.',
+        'word_not_allowed' => 'Tämä :attribute valinta ei ole sallittu.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Oletussäännöt',
+            'is_open' => 'Tiimihakemus',
+            'name' => 'Nimi',
+            'short_name' => 'Lyhytnimi',
+            'url' => 'URL',
         ],
     ],
 
@@ -163,7 +188,9 @@ return [
     ],
 
     'user_report' => [
-        'no_ranked_beatmapset' => '',
+        'no_ranked_beatmapset' => 'Rankattuja rytmikarttoja ei voi ilmiantaa',
+        'not_in_channel' => 'Et ole tällä kanavalla.',
+        'in_team' => 'Olet osa tiimiä.',
         'reason_not_valid' => ':reason ei kelpaa tälle ilmoitustyypille.',
         'self' => "Et voi ilmiantaa itseäsi!",
     ],

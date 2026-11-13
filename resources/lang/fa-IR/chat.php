@@ -4,32 +4,67 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
+    'loading_users' => '',
+    'searching_users' => '',
+    'talking_in' => 'در حال گفت و گو در کانال :channel',
+    'talking_with' => 'در حال گفت و گو با :name',
+    'title_compact' => 'چت',
+    'unread_messages' => '',
 
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
-        'reasons' => [
-            'blocked' => '',
-            'channel_moderated' => '',
-            'friends_only' => '',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => '',
-            'silenced' => '',
-            'target_restricted' => '',
+        'channel' => 'شما در حال حاضر نمی توانید در این چنل پیام بدهید.',
+        'user' => 'شما در حال حاضر نمی توانید به این کاربر پیام بدهید.',
+    ],
+
+    'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+        'join' => '',
+        'none' => '',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+                'TEAM' => '',
+            ],
         ],
     ],
-    'input' => [
-        'disabled' => '',
-        'placeholder' => '',
-        'send' => '',
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'message' => '',
+            'name' => '',
+            'users' => '',
+        ],
     ],
-    'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
+
+    'not_found' => [
+        'message' => '',
         'title' => '',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
+    'input' => [
+        'create' => '',
+        'disabled' => 'امکان ارسال پیام وجود ندارد...',
+        'disconnected' => 'اتصال قطع شد',
+        'placeholder' => 'پیامی بنویسید...',
+        'send' => 'ارسال',
+    ],
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

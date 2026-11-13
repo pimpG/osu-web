@@ -4,10 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'months' => '',
+    'months' => 'mjeseci',
 
     'user_search' => [
-        'searching' => '',
-        'not_found' => "",
+        'searching' => 'pretraživanje...',
+        'not_found' => "Ovaj korisnik ne postoji",
     ],
 ];

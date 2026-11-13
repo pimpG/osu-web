@@ -8,14 +8,8 @@
     @if ($userCanModerate)
         @include('forum.topics._moderate_pin', compact('topic'))
         @include('forum.topics._moderate_move', compact('topic'))
-
-        @if ($topic->isIssue())
-            @foreach ($topic::ISSUE_TAGS as $type)
-                @include("forum.topics._issue_tag_{$type}")
-            @endforeach
-        @endif
-
         @include('forum.topics._moderate_toggle_deleted')
+        @include('forum.topics._moderate_logs', compact('topic'))
     @endif
 @endsection
 
@@ -28,14 +22,12 @@
         <div class="
             forum-topic-nav__seek-bar
             forum-topic-nav__seek-bar--all
-            u-forum--bg-link
         "></div>
 
         <div
             class="
                 js-forum__posts-progress
                 forum-topic-nav__seek-bar
-                u-forum--bg-link
             "
         >
         </div>
@@ -48,6 +40,9 @@
 
         @if ($userCanModerate)
             <div class="forum-topic-nav__mobile-float forum-topic-nav__mobile-float--right">
+                @if ($topic->isIssue())
+                    @include('forum.topics._edit_tags', ['topic' => $topic])
+                @endif
                 <div
                     class="btn-circle btn-circle--topic-nav js-menu"
                     data-menu-target="topic-moderation-mobile"
@@ -70,6 +65,9 @@
 
         <div class="forum-topic-nav__group forum-topic-nav__group--desktop">
             @yield('forum-topic-moderation-menu')
+            @if ($userCanModerate && $topic->isIssue())
+                @include('forum.topics._edit_tags', ['topic' => $topic])
+            @endif
             @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
         </div>
 
@@ -165,7 +163,7 @@
             </button>
 
             <a
-                href="{{ route('forum.topics.show', ['topic' => $topic, 'end' => $topic->topic_last_post_id]) }}#forum-post-{{ $topic->topic_last_post_id }}"
+                href="{{ route('forum.posts.show', ['post' => $topic->topic_last_post_id]) }}"
                 class="js-forum-posts-seek--jump btn-circle btn-circle--topic-nav"
                 data-jump-target="last"
                 data-tooltip-float="fixed"

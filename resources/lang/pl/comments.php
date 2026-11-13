@@ -11,6 +11,7 @@ return [
     'edited' => 'ostatnio edytowane :timeago przez :user',
     'pinned' => 'przypięty',
     'empty' => 'Brak komentarzy.',
+    'empty_other' => 'Brak komentarzy.',
     'load_replies' => 'wczytaj odpowiedzi',
     'replies_count' => ':count_delimited odpowiedź|:count_delimited odpowiedzi|:count_delimited odpowiedzi',
     'title' => 'Komentarze',
@@ -18,7 +19,7 @@ return [
     'commentable_name' => [
         'beatmapset' => 'Beatmapa',
         'build' => 'Zmiany',
-        'news_post' => 'Wiadomość',
+        'news_post' => 'Aktualności',
         '_deleted' => 'Źródło usunięte',
     ],
 
@@ -40,6 +41,10 @@ return [
         'nav_comments' => 'komentarze',
         'nav_title' => 'lista',
         'no_comments' => 'Brak komentarzy.',
+    ],
+
+    'ogp' => [
+        'title' => 'komentarz użytkownika :user',
     ],
 
     'placeholder' => [

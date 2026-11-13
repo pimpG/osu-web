@@ -11,8 +11,13 @@ return [
         'rule_violation' => '',
     ],
 
+    'cover' => [
+        'deleted' => '',
+    ],
+
     'download' => [
         'limit_exceeded' => '',
+        'no_mirrors' => '',
     ],
 
     'featured_artist_badge' => [
@@ -24,6 +29,11 @@ return [
         'guest_title' => '',
     ],
 
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
+    ],
+
     'panel' => [
         'empty' => '',
 
@@ -32,19 +42,26 @@ return [
             'video' => '',
             'no_video' => '',
             'direct' => '',
+            'lazer' => '',
         ],
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
         'hybrid_requires_modes' => '',
         'incorrect_mode' => '',
-        'full_bn_required' => '',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
         'too_many' => '',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
             'confirmation' => '',
+            'different_nominator_warning' => '',
             'header' => '',
             'hybrid_warning' => '',
+            'current_main_ruleset' => '',
             'which_modes' => '',
         ],
     ],
@@ -53,8 +70,22 @@ return [
         'label' => '',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => '',
+
+        'admin' => [
+            'full_size_cover' => '',
+            'page' => '',
+        ],
+
+        'deleted_banner' => [
+            'title' => '',
+            'message' => '',
+        ],
 
         'details' => [
             'by_artist' => '',
@@ -62,12 +93,14 @@ return [
             'favourite_login' => '',
             'logged-out' => '',
             'mapped_by' => '',
+            'mapped_by_guest' => '',
             'unfavourite' => '',
             'updated_timeago' => '',
 
             'download' => [
                 '_' => '',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => '',
                 'video' => '',
             ],
@@ -119,14 +152,29 @@ return [
             'description' => '',
             'genre' => '',
             'language' => '',
+            'mapper_tags' => '',
             'no_scores' => '',
+            'nominators' => '',
             'nsfw' => '',
+            'offset' => '',
+            'pack_tags' => '',
             'points-of-failure' => '',
             'source' => '',
             'storyboard' => '',
             'success-rate' => '',
-            'tags' => '',
+            'success_rate_plays' => '',
+            'user_tags' => '',
             'video' => '',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -143,10 +191,12 @@ return [
         'scoreboard' => [
             'achieved' => '',
             'country' => '',
+            'error' => 'بارگزاری رتبه بندی ها شکست خورد',
             'friend' => '',
             'global' => '',
             'supporter-link' => '',
             'supporter-only' => '',
+            'team' => '',
             'title' => '',
 
             'headers' => [
@@ -154,11 +204,12 @@ return [
                 'combo' => '',
                 'miss' => '',
                 'mods' => '',
+                'pin' => '',
                 'player' => '',
                 'pp' => '',
                 'rank' => '',
-                'score_total' => '',
                 'score' => '',
+                'score_total' => '',
                 'time' => '',
             ],
 
@@ -167,11 +218,16 @@ return [
                 'friend' => '',
                 'global' => '',
                 'loading' => '',
+                'team' => '',
                 'unranked' => '',
             ],
             'score' => [
                 'first' => '',
                 'own' => '',
+            ],
+            'supporter_link' => [
+                '_' => '',
+                'here' => '',
             ],
         ],
 
@@ -186,10 +242,13 @@ return [
             'bpm' => '',
             'count_circles' => '',
             'count_sliders' => '',
+            'offset' => '',
             'user-rating' => '',
             'rating-spread' => '',
             'nominations' => '',
             'playcount' => '',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [
@@ -201,5 +260,9 @@ return [
             'pending' => '',
             'graveyard' => '',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => '',
     ],
 ];

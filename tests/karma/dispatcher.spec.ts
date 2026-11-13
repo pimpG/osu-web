@@ -1,20 +1,20 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
-/* eslint-disable max-classes-per-file */
+/* eslint max-classes-per-file: "off" */
 import DispatcherAction from 'actions/dispatcher-action';
 import DispatchListener from 'dispatch-listener';
 import Dispatcher from 'dispatcher';
 
 class ClassA implements DispatchListener {
   count = 0;
-  handleDispatchAction(action: DispatcherAction) {
+  handleDispatchAction(_action: DispatcherAction) {
     this.count++;
   }
 }
 
 class ClassB implements DispatchListener {
-  handleDispatchAction(action: DispatcherAction) {
+  handleDispatchAction(_action: DispatcherAction) {
     // nothing
   }
 }

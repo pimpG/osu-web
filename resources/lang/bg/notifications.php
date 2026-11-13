@@ -10,17 +10,29 @@ return [
     'mark_read' => 'Изчисти :type',
     'none' => 'Няма известия',
     'see_all' => 'виж всички известия',
-    'see_channel' => 'иди в чат',
+    'see_channel' => 'към чат',
     'verifying' => 'Моля, потвърдете сесията, за преглед на известия',
+
+    'action_type' => [
+        '_' => 'всички',
+        'beatmapset' => 'бийтмапове',
+        'build' => 'промени',
+        'channel' => 'чат',
+        'forum_topic' => 'форум',
+        'news_post' => 'новини',
+        'team' => 'отбор',
+        'user' => 'профил',
+    ],
 
     'filters' => [
         '_' => 'всички',
-        'user' => 'профил',
         'beatmapset' => 'бийтмапове',
+        'build' => 'промени',
+        'channel' => 'чат',
         'forum_topic' => 'форум',
         'news_post' => 'новини',
-        'build' => 'версии',
-        'channel' => 'чат',
+        'team' => 'отбор',
+        'user' => 'профил',
     ],
 
     'item' => [
@@ -45,6 +57,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => 'Ново ревю от :username, съдържащи проблеми: :problems, предложения: :suggestions, похвали: :praises',
                 'beatmapset_discussion_unlock' => 'Дискусията е отключена за ":title"',
                 'beatmapset_discussion_unlock_compact' => 'Дискусията е отключена',
+
+                'review_count' => [
+                    'praises' => ':count_delimited похвала|:count_delimited похвали',
+                    'problems' => ':count_delimited проблем|:count_delimited проблема',
+                    'suggestions' => ':count_delimited предложение|:count_delimited предложения',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -86,12 +104,43 @@ return [
         'channel' => [
             '_' => 'Чат',
 
+            'announcement' => [
+                '_' => 'Ново съобщение',
+
+                'announce' => [
+                    'channel_announcement' => ':username написа ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Съобщение от :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Ново съобщение',
+
                 'pm' => [
                     'channel_message' => ':username каза ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'от :username',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => 'Ново отборно съобщение',
+
+                'team' => [
+                    'channel_team' => ':username каза ":title"',
+                    'channel_team_compact' => ':username каза ":title"',
+                    'channel_team_group' => ':username каза ":title"',
                 ],
             ],
         ],
@@ -120,6 +169,13 @@ return [
                 'comment_reply' => ':username отговори ":content" в ":title"',
                 'comment_reply_compact' => ':username отговори ":content"',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -132,12 +188,19 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Стар форум за ЛС',
+        'team' => [
+            'team_application' => [
+                '_' => 'Заявка за влизане в отбор',
 
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited непрочетено съобщение|:count_delimited непрочетени съобщения',
+                'team_application_accept' => "Вече сте член на :title",
+                'team_application_accept_compact' => "Вече сте член на :title",
+
+                'team_application_group' => 'Обновявания на заявките за присъединяване към екип',
+
+                'team_application_reject' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_reject_compact' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_store' => ':title заяви да влезе в отбора Ви',
+                'team_application_store_compact' => ':title заяви да влезе в отбора Ви',
             ],
         ],
 
@@ -148,6 +211,9 @@ return [
                 'user_beatmapset_new' => 'Нов бийтмап ":title" от :username',
                 'user_beatmapset_new_compact' => 'Нов бийтмап ":title"',
                 'user_beatmapset_new_group' => 'Нов бийтмап от :username',
+
+                'user_beatmapset_revive' => 'Бийтмапът ":title" е съживен от :username',
+                'user_beatmapset_revive_compact' => 'Бийтмапът ":title" е съживен',
             ],
         ],
 
@@ -164,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Вече притежавате бийтмапа ":title"',
@@ -195,8 +263,18 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'channel_announcement' => 'Има ново съобщение в ":name"',
+            ],
             'channel' => [
-                'pm' => 'Получи ново съобщение от :username',
+                'channel_message' => 'Получихте съобщение от :username',
+            ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
+            'channel_team' => [
+                'channel_team' => 'Имате ново съобщение от отбора \':name\'',
             ],
         ],
 
@@ -218,14 +296,18 @@ return [
             ],
         ],
 
-        'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username отключи нов медал, ":title"!',
-                'user_achievement_unlock_self' => 'Отключихте нов медал, ":title"!',
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Вече сте член на :title",
+                'team_application_reject' => 'Заявлението Ви за отбора :title беше отказано',
+                'team_application_store' => ':title заяви да влезе в отбора Ви',
             ],
+        ],
 
+        'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username създаде нов бийтмап',
+                'user_beatmapset_revive' => ':username съживи бийтмап',
             ],
         ],
     ],

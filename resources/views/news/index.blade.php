@@ -6,11 +6,11 @@
 
 @section('content')
     <div
-        class="js-react--news-index osu-layout osu-layout--full"
+        class="js-react u-contents" data-react="news-index"
         data-props="{{ json_encode(['data' => $postsJson]) }}"
     ></div>
 
     <div class="js-news-sidebar-record"></div>
 
-    @include('layout._react_js', ['src' => 'js/react/news-index.js'])
+    @include('layout._react_js', ['src' => 'js/news-index.js'])
 @endsection

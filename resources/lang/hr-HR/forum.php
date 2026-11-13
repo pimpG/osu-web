@@ -5,9 +5,9 @@
 
 return [
     'pinned_topics' => '',
-    'slogan' => "",
+    'slogan' => "opasno je igrati sam.",
     'subforums' => '',
-    'title' => '',
+    'title' => 'Forumi',
 
     'covers' => [
         'edit' => '',
@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => '',
         'latest_post' => '',
 
         'index' => [
@@ -47,18 +48,18 @@ return [
         'confirm_restore' => '',
         'edited' => '',
         'posted_at' => '',
-        'posted_by' => '',
+        'posted_by_in' => '',
 
         'actions' => [
-            'destroy' => '',
-            'edit' => '',
-            'report' => '',
-            'restore' => '',
+            'destroy' => 'Obrisi objavu',
+            'edit' => 'Izmeni objavu',
+            'report' => 'Prijavi objavu',
+            'restore' => 'Povrati objavu',
         ],
 
         'create' => [
             'title' => [
-                'reply' => '',
+                'reply' => 'Novi odgovor',
             ],
         ],
 
@@ -79,16 +80,17 @@ return [
         'confirm_restore' => '',
         'deleted' => '',
         'go_to_latest' => '',
+        'go_to_unread' => '',
         'has_replied' => '',
         'in_forum' => '',
         'latest_post' => '',
         'latest_reply_by' => '',
         'new_topic' => '',
         'new_topic_login' => '',
-        'post_reply' => '',
+        'post_reply' => 'Objava',
         'reply_box_placeholder' => '',
-        'reply_title_prefix' => '',
-        'started_by' => '',
+        'reply_title_prefix' => 'Re',
+        'started_by' => 'od :user',
         'started_by_verbose' => '',
 
         'actions' => [
@@ -97,11 +99,11 @@ return [
         ],
 
         'create' => [
-            'close' => '',
-            'preview' => '',
+            'close' => 'Zatvori',
+            'preview' => 'Pretpregled',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => '',
+            'preview_hide' => 'Izmjeni',
             'submit' => '',
 
             'necropost' => [
@@ -127,9 +129,58 @@ return [
             'previous' => '',
         ],
 
+        'logs' => [
+            '_' => '',
+            'button' => '',
+
+            'columns' => [
+                'action' => '',
+                'date' => 'Datum',
+                'user' => 'Korisnik',
+            ],
+
+            'data' => [
+                'add_tag' => '',
+                'announcement' => '',
+                'edit_topic' => '',
+                'fork' => '',
+                'pin' => '',
+                'post_operation' => '',
+                'remove_tag' => '',
+                'source_forum_operation' => '',
+                'unpin' => '',
+            ],
+
+            'no_results' => '',
+
+            'operations' => [
+                'delete_post' => '',
+                'delete_topic' => '',
+                'edit_topic' => '',
+                'edit_poll' => '',
+                'fork' => '',
+                'issue_tag' => '',
+                'lock' => '',
+                'merge' => '',
+                'move' => '',
+                'pin' => '',
+                'post_edited' => '',
+                'restore_post' => '',
+                'restore_topic' => '',
+                'split_destination' => '',
+                'split_source' => 'Podijeli objave',
+                'topic_type' => '',
+                'topic_type_changed' => '',
+                'unlock' => '',
+                'unpin' => '',
+                'user_lock' => '',
+                'user_unlock' => '',
+            ],
+        ],
+
         'post_edit' => [
-            'cancel' => '',
-            'post' => '',
+            'cancel' => 'Poništi',
+            'post' => 'Spremi',
         ],
     ],
 
@@ -160,10 +211,10 @@ return [
         '_' => '',
 
         'actions' => [
-            'login_reply' => '',
-            'reply' => '',
+            'login_reply' => 'Prijavi se da odgovoriš',
+            'reply' => 'Odgovori',
             'reply_with_quote' => '',
-            'search' => '',
+            'search' => 'Pretraži',
         ],
 
         'create' => [
@@ -172,7 +223,7 @@ return [
             'preview' => '',
 
             'create_poll_button' => [
-                'add' => '',
+                'add' => 'Napravi anketu',
                 'remove' => '',
             ],
 
@@ -180,68 +231,26 @@ return [
                 'hide_results' => '',
                 'hide_results_info' => '',
                 'length' => '',
-                'length_days_suffix' => '',
+                'length_days_suffix' => 'dana',
                 'length_info' => '',
                 'max_options' => '',
                 'max_options_info' => '',
-                'options' => '',
+                'options' => 'Opcije',
                 'options_info' => '',
-                'title' => '',
+                'title' => 'Pitanje',
                 'vote_change' => '',
                 'vote_change_info' => '',
             ],
         ],
 
         'edit_title' => [
-            'start' => '',
+            'start' => 'Uredi naslov',
         ],
 
         'index' => [
-            'feature_votes' => '',
-            'replies' => '',
+            'feature_votes' => 'prioritet zvijezda',
+            'replies' => 'odgovori',
             'views' => '',
-        ],
-
-        'issue_tag_added' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => '',
-            'to_0_done' => '',
-            'to_1' => '',
-            'to_1_done' => '',
         ],
 
         'lock' => [
@@ -278,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => '',
             'total_posts' => '',
+            'total_watches' => '',
 
             'feature_vote' => [
                 'current' => '',
@@ -299,13 +309,13 @@ return [
             'poll' => [
                 'edit' => '',
                 'edit_warning' => '',
-                'vote' => '',
+                'vote' => 'Glasaj',
 
                 'button' => [
                     'change_vote' => '',
                     'edit' => '',
                     'view_results' => '',
-                    'vote' => '',
+                    'vote' => 'Glasaj',
                 ],
 
                 'detail' => [

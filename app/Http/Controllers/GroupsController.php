@@ -5,24 +5,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Transformers\GroupTransformer;
 use App\Transformers\UserCompactTransformer;
 
 class GroupsController extends Controller
 {
     public function show($id)
     {
-        $group = app('groups')->byId(get_int($id));
-        abort_if($group === null || !$group->hasListing(), 404);
+        $group = app('groups')->byIdOrFail($id);
+        abort_unless($group->hasListing(), 404);
 
         $currentMode = default_mode();
         $users = $group->users()
-            ->with('statistics'.studly_case($currentMode))
-            ->eagerloadForListing()
+            ->with(UserCompactTransformer::listIncludesPreload($currentMode))
             ->default()
             ->orderBy('username', 'asc')
             ->get();
 
-        $groupJson = json_item($group, 'Group', ['description']);
+        $groupJson = json_item($group, new GroupTransformer(), ['description']);
         $usersJson = json_collection(
             $users,
             (new UserCompactTransformer())->setMode($currentMode),

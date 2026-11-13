@@ -10,7 +10,7 @@ use App\Models\GithubUser;
 
 class ChangelogEntryTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'github_user',
         'message',
         'message_html',
@@ -28,7 +28,7 @@ class ChangelogEntryTransformer extends TransformerAbstract
             'category' => $entry->category,
             'title' => $entry->title,
             'major' => $entry->major,
-            'created_at' => json_time($entry->created_at),
+            'created_at' => $entry->getJsonTime('created_at'),
         ];
     }
 
@@ -39,11 +39,11 @@ class ChangelogEntryTransformer extends TransformerAbstract
 
     public function includeMessage(ChangelogEntry $entry)
     {
-        return $this->primitive($entry->publicMessage());
+        return $this->primitive($entry->message);
     }
 
     public function includeMessageHtml(ChangelogEntry $entry)
     {
-        return $this->primitive($entry->publicMessageHtml());
+        return $this->primitive($entry->messageHtml());
     }
 }

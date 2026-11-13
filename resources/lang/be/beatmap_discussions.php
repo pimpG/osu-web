@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => ':count_delimited адказ схаваны.|:count_delimited адказы схаваныя.',
+
     'authorizations' => [
         'update' => [
             'null_user' => 'Вы мусіце ўвайсці для рэдагавання.',
@@ -16,23 +18,34 @@ return [
         'empty' => 'Нічога не адбылося... яшчэ.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'выдалена',
         'none_found' => 'Не знойдзена абмеркаванняў, супадаючых з гэтымі крытэрыямі пошука.',
-        'title' => 'Абмеркаванне бітмап',
+        'title' => 'Абмеркаванне карт',
 
         'form' => [
             '_' => 'Пошук',
             'deleted' => 'Уключаючы выдаленыя абмеркаванні',
-            'mode' => 'Рэжым бітмапы',
+            'mode' => 'Рэжым карт',
             'only_unresolved' => 'Паказаць толькі нявырашаныя абмеркаванні',
+            'show_review_embeds' => 'Паказаць рэцэнзіі публікацыі',
             'types' => 'Тыпы памедамленняў',
             'username' => 'Імя карыстальніка',
 
             'beatmapset_status' => [
-                '_' => 'Статус бітмапы',
+                '_' => 'Статус карты',
                 'all' => 'Усе',
-                'disqualified' => 'Дыскваліфікаваны',
+                'disqualified' => 'Дыскваліфікавана',
                 'never_qualified' => 'Ніколі ні кваліфікавана',
                 'qualified' => 'Кваліфікавана',
                 'ranked' => 'Ранкавана',
@@ -63,6 +76,13 @@ return [
         'reset_confirm' => 'Скінуць уладальніка з-за гэтай складанасці?',
         'user' => 'Уладальнік',
         'version' => 'Цяжкасть',
+    ],
+
+    'refresh' => [
+        'checking' => 'Праверка абнаўленняў...',
+        'has_updates' => 'З\'явіліся новыя адказы. Націсніце для абнаўлення.',
+        'no_updates' => 'Няма абнаўленняў.',
+        'updating' => 'Абнаўленне...',
     ],
 
     'reply' => [
@@ -103,5 +123,6 @@ return [
     'user_filter' => [
         'everyone' => 'Усе',
         'label' => 'Фільтр па карыстальнікам',
+        'multiple' => '',
     ],
 ];

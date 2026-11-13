@@ -10,26 +10,42 @@ return [
 
         'avatar' => [
             'title' => 'اکس پرفایل',
+            'reset' => 'بازنشانی',
             'rules' => 'لطفا مطمئن شوید که تصویر نمایه شما به :link پایبند است.<br/>این بدین معنیست که باید <strong>برای تمامی سنین مناسب باشد</strong> یعنی بدون برهنگی ، فحاشی یا محتوای وسوسه انگیز.',
             'rules_link' => 'قانون ها',
         ],
 
         'email' => [
-            'current' => 'ایمیل فعلی',
             'new' => 'ایمیل جدید',
             'new_confirmation' => 'تایید ایمیل',
             'title' => 'ایمیل',
+            'locked' => [
+                '_' => 'اگر میخواهید ایمیل خود را بروز کنید، لطفا با :accounts صحبت کنید.',
+                'accounts' => 'تیم پشتیبانی حساب های کاربری',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'واسط برنامه‌نویسی نرم‌افزار',
+            'irc' => '',
+            'title' => 'واسط برنامه‌نویسی نرم‌افزار قدیمی',
         ],
 
         'password' => [
             'current' => 'پسورد فعلی',
             'new' => 'پسورد جدید',
-            'new_confirmation' => 'تایید رمز عبور',
+            'new_confirmation' => 'تایید کلمه عبور',
             'title' => 'پسورد',
         ],
 
         'profile' => [
+            'country' => 'کشور',
             'title' => 'نمایه',
+
+            'country_change' => [
+                '_' => "بنظر میرسد که کشور ثبت شده حساب شما با کشور اقامت شما تطابق ندارد. :update_link.",
+                'update_link' => 'بروز رسانی به :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,47 +63,79 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "اگر در مخازن منبع باز osu مشارکت می کنید، با پیوند دادن حساب GitHub خود به اینجا، لاگ تغییرات شما به نمایه osu شما متصل می شود. نمایه حساب‌های GitHub که سابقه مشارکت در osu! ندارند را نمی توان پیوند داد.",
+        'link' => 'پیوند دادن حساب GitHub',
+        'title' => 'گیت‌هاب',
+        'unlink' => 'لغو پیوند حساب GitHub',
+
+        'error' => [
+            'already_linked' => 'این حساب گیت‌هاب به نمایه شخص دیگری متصل شده است.',
+            'no_contribution' => 'نمی توان حساب گیت‌هابی که سابقه کمک به مخازن osu! نداشته را متصل کرد.',
+            'unverified_email' => 'لطفا اول ایمیل گیت‌هاب خود را وریفای کنید، بعد اکانتتان را لینک کنید.',
+        ],
+    ],
+
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیتمپ های واجد شرایط در نوع های زیر',
-        'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیتمپ های نوع زیر، رد صلاحیت میشوند',
+        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_qualified_problem' => 'دریافت اعلانات مشکلات جدید در بیت مپ های واجد شرایط در نوع های زیر',
+        'beatmapset_disqualify' => 'دریافت اعلانات برای وقتی که بیت مپ های نوع زیر، رد صلاحیت میشوند',
         'comment_reply' => 'دریافت اعلانات برای پاسخ ها به کامنت شما',
+        'news_post' => '',
         'title' => 'علامت',
         'topic_auto_subscribe' => 'فعالسازی خودکار اعلانات برای موضوعات جدید انجمن که شما میسازید',
 
         'options' => [
             '_' => 'تنظیمات ارسال',
-            'beatmap_owner_change' => '',
-            'beatmapset:modding' => 'مادینگ بیتمپ',
+            'beatmap_owner_change' => 'درجه سختی میهمان',
+            'beatmapset:modding' => 'مودینگ بیت مپ',
+            'channel_mention' => '',
             'channel_message' => 'پیام های خصوصی چت',
+            'channel_team' => '',
             'comment_new' => 'نظرات جدید',
             'forum_topic_reply' => 'پاسخ موضوع',
             'mail' => 'ایمیل',
-            'mapping' => 'مپر بیتمپ',
-            'push' => '',
-            'user_achievement_unlock' => 'مدال کاربر باز شد',
+            'mapping' => 'سازنده بیت مپ',
+            'news_post' => '',
+            'push' => 'اعلان push',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
     'oauth' => [
         'authorized_clients' => 'کلاینت های تایید هویت شده',
         'own_clients' => 'کلاینت های شما',
-        'title' => '',
+        'title' => 'OAuth',
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیتمپ ها',
-        'beatmapset_title_show_original' => 'نمایش متادیتای بیتمپ ها در زبان اصلی',
+        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_nsfw' => 'مخفی کردن هشدار ها برای محتوای نامناسب در بیت مپ ها',
+        'beatmapset_title_show_original' => 'نمایش متادیتای بیت مپ ها در زبان اصلی',
         'title' => 'گزینه ها',
 
         'beatmapset_download' => [
-            '_' => 'نوع پیشفرض دانلود بیتمپ ها',
+            '_' => 'نوع پیشفرض دانلود بیت مپ ها',
             'all' => 'همراه با ویدیو اگر موجود باشد',
             'direct' => 'با osu!direct باز کن',
+            'lazer' => '',
             'no_video' => 'بدون فیلم',
         ],
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'صفحه کلید',
         'mouse' => 'ماوس',
         'tablet' => 'تبلت',
@@ -97,7 +145,9 @@ return [
 
     'privacy' => [
         'friends_only' => 'مسدود کردن پیام های خصوصی از کسانی که در لیست دوستان شما نیستند',
+        'friends_only_info' => '',
         'hide_online' => 'مخفی کردن وضعیت آنلاین شما',
+        'hide_online_info' => '',
         'title' => 'حریم خصوصی',
     ],
 
@@ -116,6 +166,21 @@ return [
 
     'update_password' => [
         'update' => 'بروزرسانی',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => 'پاک کردن',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => 'وضعیت',
+            'not_set' => '',
+            'set' => 'پیکربندی شده',
+        ],
     ],
 
     'verification_completed' => [

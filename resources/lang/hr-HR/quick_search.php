@@ -5,17 +5,29 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'artist_track' => '',
+        'beatmapset' => 'Beatmapa',
+        'forum_post' => 'Forum',
+        'other' => 'Ostalo',
+        'team' => '',
+        'user' => 'Igrač',
+        'wiki_page' => 'Wiki',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'more' => 'Više :mode rezultata',
+        'title' => ':mode rezultati pretraživanja',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

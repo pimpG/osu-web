@@ -9,6 +9,10 @@ use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaymentSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
+use App\Models\Store\Payment;
+use Mockery\MockInterface;
+use Sentry;
+use Sentry\ClientInterface;
 use Tests\Libraries\Payments\TestPaymentProcessor as PaymentProcessor;
 use Tests\TestCase;
 
@@ -19,8 +23,14 @@ class PaymentProcessorTest extends TestCase
 
     public function testCancelWithoutPayment()
     {
-        $this->expectsEvents('store.payments.error.test');
-        $this->doesntExpectEvents('store.payments.cancelled.test');
+        $sentry = $this->mock(ClientInterface::class, function (MockInterface $mock) {
+            $mock->shouldReceive('captureMessage')
+                ->withArgs(function (string $message) {
+                    return $message === PaymentProcessor::WARN_CANCEL_MISSING_PAYMENT;
+                })
+                ->once();
+        });
+        Sentry::bindClient($sentry);
 
         $this->subject->run();
 
@@ -31,14 +41,11 @@ class PaymentProcessorTest extends TestCase
 
     public function testCancelWithPayment()
     {
-        $this->doesntExpectEvents('store.payments.error.test');
-        $this->expectsEvents('store.payments.cancelled.test');
-
         $payment = $this->order->payments()->create([
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
         ]);
 
         $this->order->paid($payment);
@@ -51,21 +58,33 @@ class PaymentProcessorTest extends TestCase
         $this->assertTrue($this->order->payments()->where('cancelled', true)->exists());
     }
 
-
     public function testCancelWithCancelledPayment()
     {
-        $this->expectsEvents('store.payments.error.test');
-        $this->doesntExpectEvents('store.payments.cancelled.test');
-
-        $payment = $this->order->payments()->create([
-            'cancelled' => true,
+        $params = [
             'country_code' => 'CC',
             'paid_at' => now(),
             'provider' => 'test',
-            'transaction_id' => $this->order->getProviderReference(),
+            'transaction_id' => $this->order->getTransactionId(),
+        ];
+
+        $this->order->paid(new Payment($params));
+
+        $this->order->payments()->create([
+            ...$params,
+            'cancelled' => true,
         ]);
 
-        $this->order->paid($payment);
+        $this->order->refresh();
+
+        $sentry = $this->mock(ClientInterface::class, function (MockInterface $mock) {
+            $mock->shouldIgnoreMissing()
+                ->shouldReceive('captureMessage')
+                ->withArgs(function (string $message) {
+                    return $message === PaymentProcessor::WARN_PAYMENT_ALREADY_CANCELLED;
+                })
+                ->once();
+        });
+        Sentry::bindClient($sentry);
 
         $this->subject->run();
 
@@ -79,12 +98,12 @@ class PaymentProcessorTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('store.order.prefix', 'test');
+        config_set('store.order.prefix', 'test');
 
-        $this->order = factory(Order::class)->states('checkout')->create([
+        $this->order = Order::factory()->paymentApproved()->create([
             'transaction_id' => 'test-123',
         ]);
-        factory(OrderItem::class)->states('supporter_tag')->create(['order_id' => $this->order->getKey()]);
+        OrderItem::factory()->supporterTag()->create(['order_id' => $this->order]);
 
         $this->subject = new PaymentProcessor([
             'countryCode' => 'CC',
@@ -98,9 +117,8 @@ class PaymentProcessorTest extends TestCase
     private function validSignature()
     {
         return new class implements PaymentSignature {
-            public function isValid()
+            public function assertValid(): void
             {
-                return true;
             }
         };
     }

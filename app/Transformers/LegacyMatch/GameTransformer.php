@@ -12,7 +12,7 @@ use App\Transformers\TransformerAbstract;
 
 class GameTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'beatmap',
         'scores',
     ];
@@ -20,9 +20,11 @@ class GameTransformer extends TransformerAbstract
     public function transform(Game $game)
     {
         return [
+            'beatmap_id' => $game->beatmap_id,
             'id' => $game->game_id,
-            'start_time' => json_time($game->start_time),
-            'end_time' => json_time($game->end_time),
+            'start_time' => $game->getJsonTime('start_time'),
+            'end_time' => $game->getJsonTime('end_time'),
+            'match_id' => $game->match_id,
             'mode' => $game->mode,
             'mode_int' => $game->play_mode,
             'scoring_type' => $game->scoring_type,
@@ -33,8 +35,10 @@ class GameTransformer extends TransformerAbstract
 
     public function includeBeatmap(Game $game)
     {
-        if ($game->beatmap) {
-            return $this->item($game->beatmap, new BeatmapCompactTransformer());
+        $beatmap = $game->beatmap;
+
+        if ($beatmap !== null) {
+            return $this->item($beatmap, new BeatmapCompactTransformer());
         }
     }
 

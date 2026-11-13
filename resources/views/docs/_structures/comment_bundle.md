@@ -13,7 +13,7 @@
     {
       "commentable_id": 407,
       "commentable_type": "news_post",
-      "created_at": "2019-09-05T06:31:20+00:00",
+      "created_at": "2019-09-05T06:31:20Z",
       "deleted_at": null,
       "edited_at": null,
       "edited_by_id": null,
@@ -23,14 +23,14 @@
       "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">yes</p>\n</div>",
       "parent_id": null,
       "replies_count": 0,
-      "updated_at": "2019-09-05T06:31:20+00:00",
+      "updated_at": "2019-09-05T06:31:20Z",
       "user_id": 1,
       "votes_count": 1337
     },
     {
       "commentable_id": 407,
       "commentable_type": "news_post",
-      "created_at": "2019-09-05T07:31:20+00:00",
+      "created_at": "2019-09-05T07:31:20Z",
       "deleted_at": null,
       "edited_at": null,
       "edited_by_id": null,
@@ -40,7 +40,7 @@
       "message_html": "<div class='osu-md-default'><p class=\"osu-md-default__paragraph\">absolutely</p>\n</div>",
       "parent_id": null,
       "replies_count": 0,
-      "updated_at": "2019-09-05T07:31:20+00:00",
+      "updated_at": "2019-09-05T07:31:20Z",
       "user_id": 2,
       "votes_count": 1337
     }
@@ -62,7 +62,7 @@
       "is_bot": false,
       "is_online": true,
       "is_supporter": true,
-      "last_visit": "2025-09-05T08:35:00+00:00",
+      "last_visit": "2025-09-05T08:35:00Z",
       "pm_friends_only": false,
       "profile_colour": null,
       "username": "pippi"
@@ -76,7 +76,7 @@
       "is_bot": false,
       "is_online": false,
       "is_supporter": true,
-      "last_visit": "2025-09-04T09:28:00+00:00",
+      "last_visit": "2025-09-04T09:28:00Z",
       "pm_friends_only": false,
       "profile_colour": null,
       "username": "yuzu"
@@ -93,12 +93,12 @@ commentable_meta  | [CommentableMeta](#commentablemeta)[] | ID of the object the
 comments          | [Comment](#comment)[]                 | Array of comments ordered according to `sort`;
 cursor            | [Cursor](#cursor)                     |
 has_more          | boolean                               | If there are more comments or replies available
-has_more_id       | number?                               |
+has_more_id       | integer?                              |
 included_comments | [Comment](#comment)[]                 | Related comments; e.g. parent comments and nested replies
 pinned_comments   | [Comment](#comment)[]?                | Pinned comments
 sort              | string                                | one of the [CommentSort](#commentsort) types
-top_level_count   | number?                               | Number of comments at the top level. Not returned for replies.
-total             | number?                               | Total number of comments. Not retuned for replies.
+top_level_count   | integer?                              | Number of comments at the top level. Not returned for replies.
+total             | integer?                              | Total number of comments. Not retuned for replies.
 user_follow       | boolean                               | is the current user watching the comment thread?
-user_votes        | number[]                              | IDs of the comments in the bundle the current user has upvoted
-users             | [UserCompact](#usercompact)[]         | array of users related to the comments
+user_votes        | integer[]                             | IDs of the comments in the bundle the current user has upvoted
+users             | [User](#user)[]                       | array of users related to the comments

@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '管理員',
     ],
-    'admin_forum' => [
-        '_' => '管理',
-    ],
-    'admin_store' => [
-        '_' => '管理員',
-    ],
     'error' => [
         'error' => [
             '400' => '請求無效',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => '論壇',
-        'topic_watches_controller' => [
-            'index' => '主頁',
+        'topic_logs_controller' => [
+            'index' => '主題日誌',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '主頁',
             'verify_link' => '帳戶驗證',
         ],
         'artists_controller' => [
@@ -56,13 +49,11 @@ return [
         'beatmapset_events_controller' => [
             '_' => '圖譜歷史',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '主頁',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '圖譜討論',
-            'index' => '圖譜列表',
+            'index' => '圖譜清單',
             'show' => '圖譜資訊',
+            'versions' => '圖譜版本歷史',
         ],
         'changelog_controller' => [
             '_' => '更新日誌',
@@ -73,33 +64,34 @@ return [
         'comments_controller' => [
             '_' => '評論',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '競賽評分結果',
+        ],
         'contests_controller' => [
             '_' => '評選',
+            'judge' => '競賽評分',
         ],
-        'follows_controller' => [
-            'index' => '看板',
-        ],
-        'friends_controller' => [
-            'index' => '主頁',
+        'group_history_controller' => [
+            '_' => '群組歷史',
         ],
         'groups_controller' => [
             'show' => '群組',
         ],
         'home_controller' => [
             'get_download' => '下載',
-            'index' => '主頁',
+            'index' => '儀表板',
             'search' => '搜尋',
             'support_the_game' => '贊助 osu!',
             'testflight' => 'testflight 測試',
+        ],
+        'legacy_matches_controller' => [
+            '_' => '對戰',
         ],
         'legal_controller' => [
             '_' => '資訊',
         ],
         'livestreams_controller' => [
             '_' => '直播',
-        ],
-        'matches_controller' => [
-            '_' => '對戰',
         ],
         'news_controller' => [
             '_' => '新聞',
@@ -108,7 +100,7 @@ return [
             '_' => '歷史通知紀錄',
         ],
         'password_reset_controller' => [
-            '_' => '重置密碼',
+            '_' => '重設密碼',
         ],
         'ranking_controller' => [
             '_' => '排行榜',
@@ -116,14 +108,28 @@ return [
         'scores_controller' => [
             '_' => '成績',
         ],
-        'store_controller' => [
-            '_' => '商店',
+        'seasons_controller' => [
+            '_' => '排行榜',
+        ],
+        'teams_controller' => [
+            '_' => '隊伍',
+            'create' => '建立隊伍',
+            'edit' => '團隊設定',
+            'leaderboard' => '團隊排行榜',
+            'show' => '隊伍資訊',
         ],
         'tournaments_controller' => [
             '_' => '官方比賽',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '使用者封面預設',
+        ],
+        'user_totp_controller' => [
+            '_' => '驗證應用程式',
+        ],
         'users_controller' => [
             '_' => '玩家資訊',
+            'create' => '註冊帳號',
             'disabled' => '通知',
         ],
         'wiki_controller' => [
@@ -132,16 +138,21 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '排名',
+            'events' => '房間歷史記錄',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => '授權應用程式',
         ],
     ],
     'store' => [
         '_' => '商店',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '團隊成員',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

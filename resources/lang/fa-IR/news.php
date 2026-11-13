@@ -5,44 +5,63 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'اخبار osu!',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'پست های جدید تر',
+            'older' => 'پست های قدیمی تر',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'اخبار',
+            'info' => 'صفحه اصلی',
         ],
     ],
 
+    'series' => [
+        'beatmap_spotlights' => '',
+        'community_contests' => '',
+        'community_tournaments' => '',
+        'fanart_contests' => '',
+        'featured_artists' => '',
+        'game_updates' => '',
+        'mappers_guild' => '',
+        'monthly_beatmapping_contest' => '',
+        'merch_runs' => '',
+        'miscellaneous' => '',
+        'official_contests' => '',
+        'offline_events' => '',
+        'online_events' => '',
+        'project_loved' => '',
+        'ranking_system_updates' => '',
+        'world_cups' => '',
+    ],
+
     'show' => [
-        'by' => '',
+        'by' => 'توسط :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'پست جدید تر',
+            'older' => 'پست قدیمی تر',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'اخبار',
+            'info' => 'پست',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'آرشیو اخبار',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'بروزرسانی',
+        'ok' => 'فهرست بروز شد.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'بروزرسانی',
+        'ok' => 'پست به روز رسانی شد.',
     ],
 ];

@@ -24,13 +24,23 @@ return [
         'title' => 'Jelented :username hozzászólását?',
     ],
 
+    'message' => [
+        'button' => 'Üzenet Jelentése',
+        'title' => 'Jelented :username üzenetét?',
+    ],
+
     'scores' => [
         'button' => 'Eredmény Jelentése',
         'title' => 'Jelented :username eredményét?',
     ],
 
+    'team' => [
+        'button' => 'Csapat Jelentése',
+        'title' => 'Jelented :username Csapatát?',
+    ],
+
     'user' => [
         'button' => 'Jelentés',
-        'title' => ':username jelentése?',
+        'title' => ':username Jelentése?',
     ],
 ];

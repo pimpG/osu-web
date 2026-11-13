@@ -2,6 +2,14 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Models\Store\Product;
+    use App\Models\SupporterTag;
+
+    static $getDurationText = fn (string $duration): string =>
+        SupporterTag::getDurationText($duration, null, osu_trans('common.array_and.two_words_connector'));
+@endphp
+
 @extends('master')
 
 @section('content')
@@ -15,12 +23,12 @@
                 @if (!empty($supporterStatus))
                     <!-- supporter status  -->
                     <div class="supporter-status__flex-container">
-                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}" title="{{ osu_trans('community.support.convinced.support') }}">
+                        <a class="supporter-eyecatch__link" href="{{ route('store.products.show', Product::SUPPORTER_TAG_NAME) }}" title="{{ osu_trans('community.support.convinced.support') }}">
                             <div class="supporter-heart{{ $supporterStatus['current'] ? ' supporter-heart--active' : '' }}"></div>
                         </a>
                         <div class="supporter-status__flex-container-inner">
                             <div class="supporter-status__progress-bar supporter-status__progress-bar--active">
-                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
+                                <div class="supporter-status__progress-bar-fill supporter-status__progress-bar-fill--active" style="width: {{ $supporterStatus['remainingPercent'] ?? '0' }}%;"></div>
                             </div>
                             @if ($supporterStatus['expiration'] !== null)
                             <div class="supporter-status__text supporter-status__text--first">
@@ -33,19 +41,29 @@
                                 {!! osu_trans('community.support.supporter_status.not_yet') !!}
                             </div>
                             @endif
-                            @if ($supporterStatus['tags'] > 0)
+                            @if ($supporterStatus['duration'] > 0)
                             <div class="supporter-status__text">
-                                {!! osu_trans('community.support.supporter_status.contribution', [
+                                {!! osu_trans('community.support.supporter_status.contribution_with_duration', [
                                     'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
-                                    'tags' => "<strong>{$supporterStatus['tags']}</strong>"
+                                    'duration' => tag(
+                                        'strong',
+                                        content: e($getDurationText($supporterStatus['duration'])),
+                                    ),
                                 ]) !!}
                             </div>
                             @endif
-                            @if ($supporterStatus['giftedTags'] > 0)
+                            @if ($supporterStatus['giftedDuration'] > 0)
                             <div class="supporter-status__text">
-                                {!! osu_trans('community.support.supporter_status.gifted', [
-                                    'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
-                                    'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
+                                {!! osu_trans('community.support.supporter_status.gifted._', [
+                                    'dollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
+                                    'duration' => tag(
+                                        'strong',
+                                        content: e($getDurationText($supporterStatus['giftedDuration'])),
+                                    ),
+                                    'users' => tag(
+                                        'strong',
+                                        content: e(osu_trans_choice('community.support.supporter_status.gifted.users', $supporterStatus['giftedUsers'])),
+                                    ),
                                 ]) !!}
                             </div>
                             @endif
@@ -94,7 +112,7 @@
             </h3>
             <div class="supporter-eyecatch">
                 <div class="supporter-eyecatch__box">
-                    <a class="supporter-eyecatch__link" href="{{ route('store.products.show', 'supporter-tag') }}">
+                    <a class="supporter-eyecatch__link" href="{{ route('store.products.show', Product::SUPPORTER_TAG_NAME) }}">
                         <div class="supporter-heart supporter-heart--larger supporter-heart--active"></div>
                     </a>
                     <div class="supporter-eyecatch__text supporter-eyecatch__text--main">

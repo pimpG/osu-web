@@ -5,7 +5,6 @@
 @extends('master', [
     'titlePrepend' => $topic->topic_title,
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
-    'pageDescription' => $topic->toMetaDescription(),
 ])
 
 @php
@@ -29,7 +28,7 @@
         'background' => $headerCover,
     ])
 
-    <div class="js-react--forum-post-report hidden"></div>
+    <div class="js-react hidden" data-react="forum-post-report"></div>
     <div
         class="hidden js-forum--topic-meta"
         data-user-can-moderate="{{ $userCanModerate }}"
@@ -67,6 +66,7 @@
 
                 <div class="forum-topic-title__item forum-topic-title__item--counters">
                     <div class="grid-items">
+                        @include('forum.topics._header_watch_counter')
                         @include('forum.topics._header_total_counter', ['newTopic' => false])
 
                         @if ($userCanModerate)
@@ -133,8 +133,8 @@
             'arrow' => 'up',
             'attributes' => ['data-mode' => 'previous'],
             'hidden' => $posts->first()->post_id === $topic->topic_first_post_id,
-            'modifiers' => ['forum-topic'],
-            'url' => route('forum.topics.show', ['topic' => $topic, 'end' => ($posts->first()->post_id - 1), 'with_deleted' => $showDeleted ? '1' : '0']),
+            'modifiers' => 'forum-topic',
+            'url' => $navUrls['previous'],
         ])
 
         @include('forum.topics._posts')
@@ -143,8 +143,8 @@
             'additionalClasses' => 'js-forum-posts-show-more js-forum__posts-show-more--next',
             'attributes' => ['data-mode' => 'next'],
             'hidden' => $firstPostPosition + sizeof($posts) - 1 >= $topic->postCount(),
-            'modifiers' => ['forum-topic'],
-            'url' => route('forum.topics.show', ['topic' => $topic, 'start' => $posts->last()->post_id + 1, 'with_deleted' => $showDeleted ? '1' : '0']),
+            'modifiers' => 'forum-topic',
+            'url' => $navUrls['next'],
         ])
     </div>
 

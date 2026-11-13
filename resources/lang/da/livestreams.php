@@ -5,8 +5,8 @@
 
 return [
     'promote' => [
-        'pin' => '',
-        'unpin' => "",
+        'pin' => 'Er du sikker på, at du vil fremme denne livestream på hjemmesiden?',
+        'unpin' => "Er du sikker på, at du vil fjerne denne livestream kampagne fra hjemmesiden?",
     ],
 
     'top-headers' => [

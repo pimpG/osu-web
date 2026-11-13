@@ -7,15 +7,16 @@
 @endphp
 <li
     class="
-        forum-topic-entry
-        {{ $topic->trashed() ? 'forum-topic-entry--deleted' : '' }}
+        {{ class_with_modifiers('forum-topic-entry', [
+            'deleted' => $topic->trashed(),
+            'old' => $topic->isOld(),
+        ]) }}
         clickable-row
         js-forum-topic-entry
-        t-forum-{{ $topic->forum->categorySlug() }}
     "
     data-topic-id="{{ $topic->topic_id }}"
 >
-    <div class="forum-item-stripe u-forum--before-bg"><span class="u-relative fas fa-angle-right"></span></div>
+    <div class="forum-item-stripe"><div class="forum-item-stripe__arrow"></div></div>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--icon">
         @if (isset($topicReplyStatus[$topic->getKey()]))
@@ -23,12 +24,12 @@
         @endif
 
         <a
-            class="
-                forum-topic-entry__icon
-                {{ $isRead ? '' : 'forum-topic-entry__icon--unread' }}
-                {{ $topic->isLocked() ? 'forum-topic-entry__icon--small' : '' }}
-            "
-            href="{{ route("forum.topics.show", $topic->topic_id) }}"
+            class="{{ class_with_modifiers('forum-topic-entry__icon', [
+                'unread' => !$isRead,
+                'small' => $topic->isLocked(),
+            ]) }}"
+            href="{{ post_url($topic->getKey(), $isRead ? 'latest' : 'unread', false) }}"
+            title="{{ osu_trans($isRead ? 'forum.topic.go_to_latest' : 'forum.topic.go_to_unread') }}"
         >
             <span>
                 <i class="
@@ -73,15 +74,12 @@
 
                 <span class="forum-topic-entry__detail">
                     {!! osu_trans('forum.topic.started_by', [
-                        'user' => tag('span', [
-                            'class' => 'forum-topic-entry__user-icon',
-                            'style' => user_color_style($topic->topic_first_poster_colour, 'background-color'),
-                        ]).' '.link_to_user(
+                        'user' => forum_user_link(
                             $topic->topic_poster,
                             $topic->topic_first_poster_name,
-                            null,
-                            []
-                        )
+                            $topic->topic_first_poster_colour,
+                            $currentUserId,
+                        ),
                     ]) !!}
                 </span>
             </div>
@@ -91,9 +89,9 @@
             @foreach ($topic->issueTags() as $tag)
                 <div
                     title="{{ $tag }}"
-                    class="forum-issue-icon forum-issue-icon--{{ $tag }}"
+                    class="forum-issue-icon forum-issue-icon--{{ str_slug($tag) }}"
                 >
-                    <i class="{{ issue_icon($tag) }}"></i>
+                    {!! issue_icon($tag) !!}
                 </div>
             @endforeach
         </div>
@@ -134,12 +132,14 @@
             <div class="u-ellipsis-overflow">
                 {!! osu_trans(
                     $topic->topic_replies === 0 ? 'forum.topic.started_by_verbose' : 'forum.topic.latest_reply_by',
-                    ['user' => link_to_user(
-                        $topic->topic_last_poster_id,
-                        $topic->topic_last_poster_name,
-                        null,
-                        []
-                    )]
+                    [
+                        'user' => forum_user_link(
+                            $topic->topic_last_poster_id,
+                            $topic->topic_last_poster_name,
+                            $topic->topic_last_poster_colour,
+                            $currentUserId,
+                        ),
+                    ]
                 ) !!}
             </div>
 
@@ -151,7 +151,7 @@
 
     <a
         class="forum-topic-entry__col forum-topic-entry__col--last-link"
-        href="{{ post_url($topic->topic_id, "unread", false) }}"
+        href="{{ post_url($topic->getKey(), 'latest', false) }}"
         title="{{ osu_trans("forum.topic.go_to_latest") }}"
     >
         <i class="fas fa-chevron-right"></i>

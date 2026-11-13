@@ -7,7 +7,7 @@ return [
     'support' => [
         'convinced' => [
             'title' => 'Jag är övertygad! :D',
-            'support' => 'stödja osu!',
+            'support' => 'stötta osu!',
             'gift' => 'eller ge supporter till en annan spelare i present',
             'instructions' => 'klicka på hjärtat för att gå till osu!store',
         ],
@@ -37,7 +37,7 @@ return [
                 'link_text' => 'Utforska turneringar &raquo;',
             ],
             'bounty-program' => [
-                'title' => 'Program för öppen källkod',
+                'title' => 'Bounty-program för öppen källkod',
                 'description' => 'Stöd de bidragsgivare som har gett sin tid och ansträngning för att hjälpa till att göra osu! bättre.',
                 'link_text' => 'Läs mer &raquo;',
             ],
@@ -61,7 +61,7 @@ return [
 
             'mod_filtering' => [
                 'title' => 'Filtrera efter mods',
-                'description' => 'Associera bara med människor som spelar HDHR? Inga problem!',
+                'description' => 'Associerar du dig bara med människor som spelar HDHR? Inga problem!',
             ],
 
             'auto_downloads' => [
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'Tack för ditt stöd! Än så länge har du bidragit med :dollars spritt över :tags tag-köp!',
-            'gifted' => ":giftedTags av dina tag-köp har getts bort som gåvor (till värdet av :giftedDollars), så generöst!",
+            'contribution_with_duration' => 'Tack för ditt pågående stöd! Hittills har du bidragit med totalt :dollars, vilket ger dig taggen "Supporter" i :duration.',
             'not_yet' => "Du har inte en supporter-tag än :(",
             'valid_until' => 'Din nuvarande supporter-tag är giltig tills :date!',
             'was_valid_until' => 'Din supporter-tag var giltig till :date.',
+
+            'gifted' => [
+                '_' => 'Av dina totala bidrag har du gett :dollars taggar till :users som täcker :duration. Det är otroligt generöst!',
+                'users' => ':count_delimited övrig användare!|:count_delimited övriga användare',
+            ],
         ],
     ],
 ];

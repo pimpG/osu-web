@@ -33,13 +33,22 @@ class UserChannelList
         return json_collection($filteredChannels, $transformer, ChannelTransformer::LISTING_INCLUDES);
     }
 
+    public function getChannels(): Collection
+    {
+        if (!isset($this->channels)) {
+            $this->loadChannels();
+        }
+
+        return $this->channels;
+    }
+
     private function loadChannels()
     {
         $userChannels = UserChannel::where('user_id', $this->user->getKey())
             ->where('hidden', false)
             ->whereHas('channel')
             ->with('channel')
-            ->limit(config('osu.chat.channel_limit'))
+            ->limit($GLOBALS['cfg']['osu']['chat']['channel_limit'])
             ->get();
 
         foreach ($userChannels as $userChannel) {
@@ -54,10 +63,9 @@ class UserChannelList
     {
         // Getting user list; Limited to PM channels due to large size of public channels.
         $userIds = new Set();
-        foreach ($this->channels as $channel) {
-            if ($channel->isPM()) {
-                $userIds->add(...$channel->userIds());
-            }
+        $pmChannels = $this->channels->filter(fn ($channel) => $channel->isPM());
+        foreach ($pmChannels as $channel) {
+            $userIds->add(...$channel->userIds());
         }
 
         $users = User::default()
@@ -70,7 +78,7 @@ class UserChannelList
             ->get();
 
         // If any channel users are blocked, preload the user groups of those users for the isModerator check.
-        $blockedIds = $users->pluck('user_id')->intersect($this->user->blocks->pluck('user_id'));
+        $blockedIds = $users->pluck('user_id')->intersect($this->user->blocks->pluck('zebra_id'));
         if ($blockedIds->isNotEmpty()) {
             // Yes, the sql will look stupid.
             $users->load(['userGroups' => fn ($query) => $query->whereIn('user_id', $blockedIds)]);
@@ -81,6 +89,8 @@ class UserChannelList
             $usersMap->put($user->getKey(), $user);
         }
 
-        request()->attributes->set(Channel::PRELOADED_USERS_KEY, $usersMap);
+        foreach ($pmChannels as $channel) {
+            $channel->setPmUsers(array_map(fn ($id) => $usersMap->get($id, null), $channel->userIds()));
+        }
     }
 }

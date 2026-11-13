@@ -6,14 +6,14 @@
 namespace App\Models;
 
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\Commentable;
+use App\Interfaces\CommentableInterface;
 use App\Libraries\Markdown\OsuMarkdown;
 use App\Libraries\OsuWiki;
-use App\Traits\CommentableDefaults;
 use App\Traits\Memoizes;
-use App\Traits\WithDbCursorHelper;
 use Carbon\Carbon;
+use Ds\Set;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property string $commentable_identifier
@@ -28,15 +28,42 @@ use Exception;
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $version
  */
-class NewsPost extends Model implements Commentable, Wiki\WikiObject
+class NewsPost extends Model implements CommentableInterface, Wiki\WikiObject
 {
-    use CommentableDefaults, Memoizes, WithDbCursorHelper;
+    use Memoizes;
+    use Traits\CommentableDefaults;
+    use Traits\WithDbCursorHelper;
 
     // in minutes
     const CACHE_DURATION = 86400;
-    const VERSION = 3;
+    const VERSION = 4;
+    // should be higher than landing limit
     const DASHBOARD_LIMIT = 8;
+    // also for number of large posts in user dashboard
     const LANDING_LIMIT = 4;
+
+    // Ordered according to how they'll display in notification settings.
+    const SERIES = [
+        'game_updates',
+        'ranking_system_updates',
+        'featured_artists',
+        'world_cups',
+        'community_tournaments',
+        'official_contests',
+        'community_contests',
+        'monthly_beatmapping_contest',
+        'fanart_contests',
+        'offline_events',
+        'online_events',
+        'project_loved',
+        'beatmap_spotlights',
+        'mappers_guild',
+        'merch_runs',
+        self::SERIES_NONE,
+    ];
+
+    // const for unset or mismatched series.
+    const SERIES_NONE = 'miscellaneous';
 
     const SORTS = [
         'published_asc' => [
@@ -53,10 +80,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     protected $casts = [
         'page' => 'array',
-    ];
-
-    protected $dates = [
-        'published_at',
+        'published_at' => 'datetime',
     ];
 
     public static function lookup($slug)
@@ -73,10 +97,10 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
     {
         $query = static::published();
 
-        $limit = clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
+        $limit = \Number::clamp(get_int($params['limit'] ?? null) ?? 20, 1, 21);
 
         $cursorHelper = static::makeDbCursorHelper();
-        $cursor = get_arr($params['cursor'] ?? null);
+        $cursor = cursor_from_params($params);
         $query->cursorSort($cursorHelper, $cursor);
 
         $year = get_int($params['year'] ?? null);
@@ -97,13 +121,22 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
     public static function syncAll()
     {
-        $entries = OsuWiki::fetch('news');
+        $baseEntries = OsuWiki::getTree(null, false)['tree'];
+        foreach ($baseEntries as $entry) {
+            if ($entry['path'] === 'news') {
+                $rootHash = $entry['sha'];
+                break;
+            }
+        }
+        // Something is terribly wrong if $rootHash is unset.
+        $entries = OsuWiki::getTree($rootHash)['tree'];
 
         $latestSlugs = [];
 
         foreach ($entries as $entry) {
-            if (($entry['type'] ?? null) === 'file' && ends_with($entry['name'], '.md')) {
-                $slug = substr($entry['name'], 0, -3);
+            if (($entry['type'] ?? null) === 'blob' && substr($entry['path'], -3) === '.md') {
+                $trimStartPos = strpos($entry['path'], '/');
+                $slug = substr($entry['path'], $trimStartPos === false ? 0 : $trimStartPos + 1, -3);
                 $hash = $entry['sha'];
 
                 $latestSlugs[$slug] = $hash;
@@ -112,7 +145,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         foreach (static::all() as $post) {
             if (array_key_exists($post->slug, $latestSlugs)) {
-                if ($latestSlugs[$post->slug] !== $post->hash) {
+                if ($post->published_at === null || $latestSlugs[$post->slug] !== $post->hash) {
                     $post->sync(true);
                 }
 
@@ -139,18 +172,18 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         }
     }
 
-    public function scopeDefault($query)
+    public function scopeDefault(Builder $query): void
     {
-        return $query->published()->orderBy('published_at', 'DESC');
+        $query->published()->orderBy('published_at', 'DESC');
     }
 
-    public function scopePublished($query)
+    public function scopePublished(Builder $query): void
     {
-        return $query->whereNotNull('published_at')
+        $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now());
     }
 
-    public function scopeYear($query, $year)
+    public function scopeYear(Builder $query, ?int $year): void
     {
         if ($year === null) {
             return;
@@ -166,7 +199,7 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $end = Carbon::create($year + 1);
 
-        return $query
+        $query
             ->where('published_at', '>=', $start ?? $baseStart)
             ->where('published_at', '<', $end);
     }
@@ -194,14 +227,24 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return $this->page['author'];
     }
 
+    public function commentLocked(): bool
+    {
+        return false;
+    }
+
     public function commentableTitle()
     {
         return $this->title();
     }
 
-    public function filename()
+    public function filename($perYearDirectory = true)
     {
-        return "{$this->slug}.md";
+        $slug = $this->slug;
+        $prefix = $perYearDirectory
+            ? substr($slug, 0, 4).'/'
+            : '';
+
+        return "{$prefix}{$slug}.md";
     }
 
     public function isVisible()
@@ -239,9 +282,9 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             return;
         }
 
-        if ($absolute && !starts_with($url, ['https://', 'http://'])) {
+        if ($absolute && !is_http($url)) {
             if ($url[0] === '/') {
-                $url = config('app.url').$url;
+                $url = $GLOBALS['cfg']['app']['url'].$url;
             } else {
                 $url = "{$this->url()}/{$url}";
             }
@@ -250,18 +293,46 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
         return $url;
     }
 
+    public function firstImageWith2x(): array
+    {
+        $url = presence($this->firstImage());
+
+        if ($url !== null) {
+            $origUrl = proxy_media_original_url($url);
+            $url2x = proxy_media(retinaify($origUrl));
+        }
+
+        return [
+            '1x' => $url,
+            '2x' => $url2x ?? null,
+        ];
+    }
+
+    public function markdown(): string
+    {
+        return $this->page['markdown'];
+    }
+
     public function newer()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return static::cursorSort('published_asc', $this)->first();
+            return static::default()->cursorSort('published_asc', $this)->first();
         });
     }
 
     public function older()
     {
         return $this->memoize(__FUNCTION__, function () {
-            return static::cursorSort('published_desc', $this)->first();
+            return static::default()->cursorSort('published_desc', $this)->first();
         });
+    }
+
+    public function series(): string
+    {
+        static $allSeries = new Set(static::SERIES);
+
+        $series = snake_case($this->page['header']['series'] ?? static::SERIES_NONE);
+        return $allSeries->contains($series) ? $series : static::SERIES_NONE;
     }
 
     public function sync($force = false)
@@ -270,20 +341,23 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
             return $this;
         }
 
-        $path = "news/{$this->filename()}";
-        $pathMissingKey = "osu_wiki:not_found:{$path}";
+        $postMissingKey = "osu_wiki:not_found:{$this->slug}";
 
-        if (!$force && cache()->get($pathMissingKey) !== null) {
+        if (!$force && cache()->get($postMissingKey) !== null) {
             return $this;
         }
 
         try {
-            $file = new OsuWiki($path);
+            try {
+                $file = new OsuWiki("news/{$this->filename()}");
+            } catch (GitHubNotFoundException $e) {
+                $file = new OsuWiki("news/{$this->filename(false)}");
+            }
         } catch (GitHubNotFoundException $e) {
             if ($this->exists) {
                 $this->update(['published_at' => null]);
             } else {
-                cache()->put($pathMissingKey, 1, 300);
+                cache()->put($postMissingKey, 1, 300);
             }
 
             return $this;
@@ -295,11 +369,14 @@ class NewsPost extends Model implements Commentable, Wiki\WikiObject
 
         $rawPage = $file->content();
 
-        $this->page = (new OsuMarkdown(
+        $page = (new OsuMarkdown(
             'news',
             osuExtensionConfig: ['relative_url_root' => route('news.show', $this->slug)]
         ))->load($rawPage)->toArray();
 
+        $page['markdown'] = $rawPage;
+
+        $this->page = $page;
         $this->version = static::pageVersion();
         $this->published_at = $this->pagePublishedAt();
         $this->tumblr_id = $this->pageTumblrId();

@@ -5,150 +5,161 @@
 
 return [
     'admin' => [
-        '_' => '',
-    ],
-    'admin_forum' => [
-        '_' => '',
-    ],
-    'admin_store' => [
-        '_' => '',
+        '_' => 'admin',
     ],
     'error' => [
         'error' => [
-            '400' => '',
-            '404' => '',
-            '403' => '',
-            '401' => '',
-            '401-verification' => '',
-            '405' => '',
-            '422' => '',
-            '429' => '',
-            '500' => '',
-            '503' => '',
+            '400' => 'nevažeći zahtjev',
+            '404' => 'nedostaje',
+            '403' => 'zabranjeno',
+            '401' => 'neovlašteno',
+            '401-verification' => 'potvrda računa',
+            '405' => 'nedostaje',
+            '422' => 'nevažeći zahtjev',
+            '429' => 'previše zahtjeva',
+            '500' => 'nešto je puklo',
+            '503' => 'održavanje',
         ],
     ],
     'forum' => [
-        '_' => '',
-        'topic_watches_controller' => [
-            'index' => '',
+        '_' => 'forum',
+        'topic_logs_controller' => [
+            'index' => 'zapisnici tema',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
-            'verify_link' => '',
+            'verify_link' => 'potvrda računa',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'istaknuti umjetnici',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'objave rasprave o beatmapama',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'rasprave o beatmapama',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'paketi beatmapa',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'glasovi za raspravu beatmapa',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => '',
+            '_' => 'povijest beatmape',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
-            'index' => '',
-            'show' => '',
+            'discussion' => 'rasprava o beatmapama',
+            'index' => 'popis beatmapa',
+            'show' => 'beatmap info',
+            'versions' => '',
         ],
         'changelog_controller' => [
-            '_' => '',
+            '_' => 'popis promjena',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'razgovor',
         ],
         'comments_controller' => [
-            '_' => '',
+            '_' => 'komentari',
+        ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
         ],
         'contests_controller' => [
+            '_' => 'natjecanja',
+            'judge' => '',
+        ],
+        'group_history_controller' => [
             '_' => '',
-        ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => '',
         ],
         'groups_controller' => [
-            'show' => '',
+            'show' => 'grupe',
         ],
         'home_controller' => [
-            'get_download' => '',
-            'index' => '',
-            'search' => '',
-            'support_the_game' => '',
-            'testflight' => '',
+            'get_download' => 'preuzmi',
+            'index' => 'kontrolna ploča',
+            'search' => 'pretraži',
+            'support_the_game' => 'podrži igricu',
+            'testflight' => 'testflight',
+        ],
+        'legacy_matches_controller' => [
+            '_' => '',
         ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'informacije',
         ],
         'livestreams_controller' => [
-            '_' => '',
-        ],
-        'matches_controller' => [
-            '_' => '',
+            '_' => 'strujanja Uživo',
         ],
         'news_controller' => [
-            '_' => '',
+            '_' => 'vijesti',
         ],
         'notifications_controller' => [
-            '_' => '',
+            '_' => 'povijest obavijesti',
         ],
         'password_reset_controller' => [
-            '_' => '',
+            '_' => 'resetiranje lozinke',
         ],
         'ranking_controller' => [
-            '_' => '',
+            '_' => 'ljestvice',
         ],
         'scores_controller' => [
+            '_' => 'izvedba',
+        ],
+        'seasons_controller' => [
             '_' => '',
         ],
-        'store_controller' => [
+        'teams_controller' => [
             '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
         ],
         'tournaments_controller' => [
+            '_' => 'turniri',
+        ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
             '_' => '',
         ],
         'users_controller' => [
-            '_' => '',
-            'disabled' => '',
+            '_' => 'informacije o igraču',
+            'create' => '',
+            'disabled' => 'napomena',
         ],
         'wiki_controller' => [
-            '_' => '',
+            '_' => 'wiki',
         ],
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            'events' => '',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autoriziraj aplikaciju',
         ],
     ],
     'store' => [
-        '_' => '',
+        '_' => 'trgovina',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'informacije o modifikatoru',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'povijest multiplayera',
         ],
     ],
 ];

@@ -5,25 +5,30 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'Přehrát další skladbu automaticky',
     ],
 
     'defaults' => [
-        'page_description' => 'osu! - Rytmus je jen o klkání! Spolu s Ouendan/EBA, Taikem, originálními herními módy a plně funkčním level editorem.',
+        'page_description' => 'osu! - Rytmus je na dosah jen jednoho *kliknutí*! Spolu s Ouendan/EBA, Taikem, originálními herními módy a také plně funkčním level editorem.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'beatmapset',
+            'beatmapset_covers' => 'překrytí beatmapsetu',
             'contest' => 'soutěž',
             'contests' => 'soutěže',
             'root' => 'konzole',
-            'store_orders' => '',
         ],
 
         'artists' => [
-            'index' => '',
+            'index' => 'seznam',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskuze',
+            'versions' => 'historie verzí',
         ],
 
         'changelog' => [
@@ -32,7 +37,7 @@ return [
 
         'help' => [
             'index' => 'index',
-            'sitemap' => '',
+            'sitemap' => 'Mapa stránek',
         ],
 
         'store' => [
@@ -42,22 +47,24 @@ return [
         ],
 
         'tournaments' => [
-            'index' => '',
+            'index' => 'seznam',
         ],
 
         'users' => [
             'modding' => 'módování',
-            'multiplayer' => '',
+            'playlists' => 'playlisty',
+            'ranked-play' => 'hodnocená hra',
+            'realtime' => 'multiplayer',
             'show' => 'informace',
         ],
     ],
 
     'gallery' => [
         'close' => 'Zavřít (Esc)',
-        'fullscreen' => '',
+        'fullscreen' => 'Přepnout režim celé obrazovky',
         'zoom' => 'Přiblížit/Oddálit',
-        'previous' => '',
-        'next' => '',
+        'previous' => 'Předchozí (šipka vlevo)',
+        'next' => 'Další (šipka vpravo)',
     ],
 
     'menu' => [
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'žebříček',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'obchod',
@@ -98,16 +104,18 @@ return [
         ],
         'help' => [
             '_' => 'Nápověda & Komunita',
-            'faq' => 'Často kladené dotazy',
+            'faq' => 'Často kladené otázky',
             'forum' => 'Komunitní fóra',
             'livestreams' => 'Živá vysílání',
             'report' => 'Náhlasit chybu',
-            'wiki' => '',
+            'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Právní záležitosti & Stav serveru',
             'copyright' => 'Autorské právo (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Soukromí',
+            'rules' => 'Pravidla',
             'server_status' => 'Stav serveru',
             'source_code' => 'Zdrojový kód',
             'terms' => 'Podmínky',
@@ -116,12 +124,12 @@ return [
 
     'errors' => [
         '400' => [
-            'error' => '',
+            'error' => 'Neplatný parametr požadavku',
             'description' => '',
         ],
         '404' => [
             'error' => 'Stránka chybí',
-            'description' => "Omlouvám se, ale požadovaná stránka není nalezena!",
+            'description' => "Omlouváme se, ale požadovaná stránka nebyla nalezena!",
         ],
         '403' => [
             'error' => "Tady nesmíš být.",
@@ -133,23 +141,23 @@ return [
         ],
         '405' => [
             'error' => 'Stránka chybí',
-            'description' => "Omlouvám se, ale požadovaná stránka není nalezena!",
+            'description' => "Omlouváme se, ale požadovaná stránka nebyla nalezena!",
         ],
         '422' => [
-            'error' => '',
+            'error' => 'Neplatný parametr požadavku',
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Překročen limit',
             'description' => '',
         ],
         '500' => [
-            'error' => 'Ale ne, něco je rozbité!',
-            'description' => "Jsme automaticky oznámeni o každé chybě.",
+            'error' => 'Ale ne! Něco se pokazilo! ;_;',
+            'description' => "Jsme automaticky upozorněni na každou chybu.",
         ],
         'fatal' => [
             'error' => 'Ale né! Něco se pokazilo (Fatálně)! ;_;',
-            'description' => "Jsme automaticky oznámeni o každé chybě.",
+            'description' => "Jsme automaticky upozorněni na každou chybu.",
         ],
         '503' => [
             'error' => 'Vypnuté kvůli údržbě!',
@@ -164,12 +172,12 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'přihlásit se / vytvořit účet',
 
         'login' => [
             'forgot' => "Zapomněl jsem své údaje",
             'password' => 'heslo',
-            'title' => 'Pro pokračování se přihlašte',
+            'title' => 'Pro pokračování se přihlaste',
             'username' => 'uživatelské jméno',
 
             'error' => [
@@ -180,7 +188,7 @@ return [
 
         'register' => [
             'download' => 'Stáhnout',
-            'info' => 'Potřebujete účet, pane. Proč již jeden nemáte?',
+            'info' => 'Stáhněte si osu! pro vytvoření vlastního účtu!',
             'title' => "Nemáte účet?",
         ],
     ],
@@ -188,15 +196,21 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Nastavení',
-            'follows' => '',
+            'create_team' => 'Vytvořit tým',
+            'follows' => 'Sledované položky',
             'friends' => 'Přátelé',
+            'legacy_score_only_toggle' => 'Lazer režim',
+            'legacy_score_only_toggle_tooltip' => 'Lazer režim zobrazuje skóre zahraná na lazeru s novým skórovacím algoritmem',
             'logout' => 'Odhlásit se',
             'profile' => 'Můj profil',
+            'scoring_mode_toggle' => 'Klasické skórování',
+            'scoring_mode_toggle_tooltip' => 'Upravit hodnoty skóre tak, aby se více podobaly klasickému neomezenému skórování',
+            'team' => 'Můj tým',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Zadejte hledaný výraz!',
+        'initial' => 'Zadej hledaný výraz!',
         'retry' => 'Hledání se nezdařilo. Klepněte na tlačítko Opakovat.',
     ],
 ];

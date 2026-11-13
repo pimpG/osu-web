@@ -17,15 +17,22 @@ return [
         'identify' => '',
 
         'chat' => [
+            'read' => '',
             'write' => '',
+            'write_manage' => '',
         ],
 
         'forum' => [
             'write' => '',
+            'write_manage' => '',
         ],
 
         'friends' => [
             'read' => '',
+        ],
+
+        'multiplayer' => [
+            'write_manage' => '',
         ],
 
         'public' => '',

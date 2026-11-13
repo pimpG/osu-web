@@ -8,17 +8,18 @@ namespace Tests\Models;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\KudosuHistory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class BeatmapDiscussionTest extends TestCase
 {
     /**
      * Valid beatmapset status always maps to a scope method sanity test.
-     *
-     * @dataProvider validBeatmapsetStatuses
      */
+    #[DataProvider('validBeatmapsetStatuses')]
     public function testBeatmapsetScopesExist($scope)
     {
         $this->assertInstanceOf(Builder::class, Beatmapset::$scope());
@@ -26,9 +27,8 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testMapperPost()
     {
-        $mapper = factory(User::class)->create();
+        $mapper = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
@@ -59,13 +59,12 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testModderPost()
     {
-        $mapper = factory(User::class)->create();
+        $mapper = User::factory()->create();
         $beatmapset = Beatmapset::factory()->create([
-            'discussion_enabled' => true,
             'user_id' => $mapper,
         ]);
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $modder = factory(User::class)->create();
+        $modder = User::factory()->create();
 
         $discussion = $this->newDiscussion($beatmapset);
         $discussion->fill([
@@ -98,7 +97,7 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testIsValid()
     {
-        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
+        $beatmapset = Beatmapset::factory()->create();
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
 
         $otherBeatmapset = Beatmapset::factory()->create();
@@ -152,9 +151,9 @@ class BeatmapDiscussionTest extends TestCase
 
     public function testSoftDeleteOrExplode()
     {
-        $beatmapset = Beatmapset::factory()->create(['discussion_enabled' => true]);
+        $beatmapset = Beatmapset::factory()->create();
         $beatmap = $beatmapset->beatmaps()->save(Beatmap::factory()->make());
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $discussion = BeatmapDiscussion::create([
             'beatmapset_id' => $beatmapset->getKey(),
             'beatmap_id' => $beatmap->getKey(),
@@ -186,7 +185,28 @@ class BeatmapDiscussionTest extends TestCase
         $this->assertFalse($discussion->trashed());
     }
 
-    public function validBeatmapsetStatuses()
+    public function testRefreshKudosu(): void
+    {
+        $discussion = BeatmapDiscussion::factory()->problem()->create([
+            'beatmapset_id' => Beatmapset::factory()->create(),
+            'timestamp' => null,
+            'user_id' => User::factory()->create(),
+        ]);
+        $discussion->beatmapDiscussionVotes()->create([
+            'score' => 1,
+            'user_id' => User::factory()->create()->getKey(),
+        ]);
+        $discussion->beatmapDiscussionVotes()->create([
+            'score' => -1,
+            'user_id' => User::factory()->create()->getKey(),
+        ]);
+
+        $this->expectCountChange(fn () => KudosuHistory::count(), 1);
+        $this->expectCountChange(fn () => $discussion->user->fresh()->osu_kudostotal, 1);
+        $discussion->fresh()->refreshKudosu('recalculate');
+    }
+
+    public static function validBeatmapsetStatuses()
     {
         return array_map(function ($status) {
             return [camel_case($status)];

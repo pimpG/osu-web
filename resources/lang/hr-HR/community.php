@@ -6,7 +6,7 @@
 return [
     'support' => [
         'convinced' => [
-            'title' => '',
+            'title' => 'Ubjedjen/a sam! :D',
             'support' => '',
             'gift' => '',
             'instructions' => '',
@@ -23,9 +23,9 @@ return [
                 'description' => '',
             ],
             'featured-artists' => [
-                'title' => '',
-                'description' => '',
-                'link_text' => '',
+                'title' => 'Istaknuti Umjetnici',
+                'description' => 'Uz tvoju podršku, možemo pristupiti još sjajnijim umjetnicima i licencirati više sjajne glazbe za korištenje u osu!',
+                'link_text' => 'Pogledaj trenutni popis &raquo;',
             ],
             'ads' => [
                 'title' => '',
@@ -45,7 +45,7 @@ return [
         'perks' => [
             'title' => '',
             'osu_direct' => [
-                'title' => '',
+                'title' => 'osu!direct',
                 'description' => '',
             ],
 
@@ -60,12 +60,12 @@ return [
             ],
 
             'mod_filtering' => [
-                'title' => '',
+                'title' => 'Filtriraj prema Modovima',
                 'description' => '',
             ],
 
             'auto_downloads' => [
-                'title' => '',
+                'title' => 'Automatska Preuzimanja',
                 'description' => '',
             ],
 
@@ -95,12 +95,12 @@ return [
             ],
 
             'speedy_downloads' => [
-                'title' => '',
+                'title' => 'Brza preuzimanja',
                 'description' => '',
             ],
 
             'change_username' => [
-                'title' => '',
+                'title' => 'Promjeni korisnicko ime',
                 'description' => '',
             ],
 
@@ -124,7 +124,7 @@ return [
                 'description' => '',
             ],
             'more_friends' => [
-                'title' => '',
+                'title' => 'Vise prijatelja',
                 'description' => '',
             ],
             'more_beatmaps' => [
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '',
-            'gifted' => "",
+            'contribution_with_duration' => '',
             'not_yet' => "",
             'valid_until' => '',
             'was_valid_until' => '',
+
+            'gifted' => [
+                '_' => '',
+                'users' => '',
+            ],
         ],
     ],
 ];

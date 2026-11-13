@@ -5,10 +5,9 @@
 
 namespace App\Libraries\Markdown;
 
+use App\Libraries\Markdown\CustomContainerInline\Extension as CustomContainerInlineExtension;
 use App\Traits\Memoizes;
 use League\CommonMark\Environment\Environment;
-use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -18,6 +17,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 use League\CommonMark\Extension\Footnote\FootnoteExtension;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\Extension\Table\TableCell;
 use League\CommonMark\Extension\Table\TableExtension;
@@ -30,7 +30,7 @@ class OsuMarkdown
 {
     use Memoizes;
 
-    const VERSION = 14;
+    const VERSION = 15;
 
     const DEFAULT_COMMONMARK_CONFIG = [
         'allow_unsafe_links' => false,
@@ -41,6 +41,7 @@ class OsuMarkdown
 
     const DEFAULT_OSU_EXTENSION_CONFIG = [
         'block_name' => 'osu-md',
+        'custom_container_inline' => false,
         'fix_wiki_url' => false,
         'generate_toc' => false,
         'record_first_image' => false,
@@ -54,8 +55,8 @@ class OsuMarkdown
     // this config is only used in this class
     const DEFAULT_OSU_MARKDOWN_CONFIG = [
         'block_modifiers' => [],
+        'enable_autolink' => false,
         'enable_footnote' => false,
-        'parse_attribute_id' => false,
         'parse_yaml_header' => true,
     ];
 
@@ -71,6 +72,7 @@ class OsuMarkdown
         'comment' => [
             'osu_markdown' => [
                 'block_modifiers' => ['comment'],
+                'enable_autolink' => true,
             ],
         ],
         'contest' => [
@@ -89,9 +91,19 @@ class OsuMarkdown
                 'html_input' => 'allow',
             ],
             'osu_extension' => [
+                'attributes_allowed' => ['id'],
+                'custom_container_attributes_allowed' => ['flag', 'user'],
+                'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
                 'record_first_image' => true,
+                'style_block_allowed_classes' => [
+                    'alert-caution',
+                    'alert-note',
+                    'alert-notice',
+                    'alert-tip',
+                    'alert-warning',
+                ],
             ],
             'osu_markdown' => [
                 'block_modifiers' => ['news'],
@@ -117,16 +129,25 @@ class OsuMarkdown
         ],
         'wiki' => [
             'osu_extension' => [
+                'attributes_allowed' => ['id'],
+                'custom_container_attributes_allowed' => ['flag', 'user'],
+                'custom_container_inline' => true,
                 'fix_wiki_url' => true,
                 'generate_toc' => true,
-                'style_block_allowed_classes' => ['infobox'],
+                'style_block_allowed_classes' => [
+                    'alert-caution',
+                    'alert-note',
+                    'alert-notice',
+                    'alert-tip',
+                    'alert-warning',
+                    'infobox',
+                ],
                 'title_from_document' => true,
                 'with_gallery' => true,
             ],
             'osu_markdown' => [
                 'block_modifiers' => ['wiki'],
                 'enable_footnote' => true,
-                'parse_attribute_id' => true,
             ],
         ],
     ];
@@ -151,16 +172,20 @@ class OsuMarkdown
             try {
                 $header = Yaml::parse($matches['header']);
             } catch (YamlParseException $_e) {
-                $header = [];
+                // ignores error
+            }
+
+            if (!is_array($header ?? null)) {
+                $header = null;
             }
 
             $document = $matches['document'];
-        } else {
-            $header = [];
-            $document = $input;
         }
 
-        return compact('header', 'document');
+        return [
+            'document' => $document ?? $input,
+            'header' => $header ?? [],
+        ];
     }
 
     public function __construct(
@@ -199,7 +224,7 @@ class OsuMarkdown
                 $this->osuExtensionConfig['block_name'],
                 $this->osuMarkdownConfig['block_modifiers'],
             );
-            $converted = $converter->convertToHtml($this->document)->getContent();
+            $converted = $converter->convert($this->document)->getContent();
             $processor = $osuExtension->processor;
 
             if ($this->osuExtensionConfig['title_from_document']) {
@@ -248,7 +273,7 @@ class OsuMarkdown
     public function toIndexable(): string
     {
         return $this->memoize(__FUNCTION__, function () {
-            return $this->getIndexableConverter()->convertToHtml($this->document)->getContent();
+            return $this->getIndexableConverter()->convert($this->document)->getContent();
         });
     }
 
@@ -282,7 +307,7 @@ class OsuMarkdown
     private function getIndexableConverter(): MarkdownConverter
     {
         if ($this->indexableConverter === null) {
-            $environment = $this->createEnvironment();
+            $environment = $this->createEnvironment(['osu_extension' => $this->osuExtensionConfig]);
             $environment->addExtension(new Indexing\Extension());
 
             $this->indexableConverter = new MarkdownConverter($environment);
@@ -297,12 +322,11 @@ class OsuMarkdown
 
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension());
-        $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new TableExtension());
+        $environment->addExtension(new StrikethroughExtension());
 
-        if ($this->osuMarkdownConfig['parse_attribute_id']) {
-            $environment->addEventListener(DocumentParsedEvent::class, new Attributes\AttributesOnlyIdListener());
-            $environment->addExtension(new AttributesExtension());
+        if ($this->osuExtensionConfig['custom_container_inline']) {
+            $environment->addExtension(new CustomContainerInlineExtension());
         }
 
         if ($this->osuExtensionConfig['style_block_allowed_classes'] !== null) {
@@ -311,6 +335,10 @@ class OsuMarkdown
 
         if ($this->osuMarkdownConfig['enable_footnote']) {
             $environment->addExtension(new FootnoteExtension());
+        }
+
+        if ($this->osuMarkdownConfig['enable_autolink']) {
+            $environment->addExtension(new AutolinkExtension());
         }
 
         return $environment;
@@ -331,7 +359,10 @@ class OsuMarkdown
                 'class' => "{$blockClass}__image",
             ],
             Link::class => [
-                'class' => "{$blockClass}__link",
+                'class' => static fn (Link $node) => class_with_modifiers(
+                    "{$blockClass}__link",
+                    ['mailto' => starts_with($node->getUrl(), 'mailto:')],
+                ),
             ],
             ListBlock::class => [
                 'class' => static fn (ListBlock $node) => class_with_modifiers(
@@ -353,7 +384,19 @@ class OsuMarkdown
                 'class' => "{$blockClass}__paragraph",
             ],
             StyleBlock\Element::class => [
-                'class' => static fn (StyleBlock\Element $node) => "{$blockClass}__{$node->getClassName()}",
+                'class' => static function (StyleBlock\Element $node) use ($blockClass) {
+                    $className = $node->getClassName();
+
+                    if (str_starts_with($className, 'alert-')) {
+                        $type = explode('-', $className, 2)[1] ?? null;
+
+                        if ($type !== null) {
+                            return class_with_modifiers("{$blockClass}__alert", $type);
+                        }
+                    }
+
+                    return "{$blockClass}__{$className}";
+                },
             ],
             Table::class => [
                 'class' => "{$blockClass}__table",

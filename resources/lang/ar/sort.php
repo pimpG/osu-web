@@ -15,14 +15,33 @@ return [
     'top' => 'الأحدث',
     'username' => 'اسم المُستخدم',
 
+    'artist_tracks' => [
+        'album' => 'ألبوم',
+        'artist' => 'الفنان',
+        'bpm' => 'BPM',
+        'genre' => 'الصنف',
+        'length' => 'المدة',
+        'relevance' => 'الصِلة',
+        'title' => 'العنوان',
+        'update' => 'تحديث',
+    ],
+
     'forum_posts' => [
         'created' => 'توقيت النشر',
         'relevance' => 'الأهمية',
     ],
 
     'forum_topics' => [
+        'created' => 'تم الإنشاء',
         'feature_votes' => 'تفضيل النجمة',
         'new' => 'الرد الأخير',
+    ],
+
+    'teams' => [
+        'created' => '',
+        'relevance' => 'الصِلة',
+        'name' => 'الاسم',
+        'short-name' => '',
     ],
 
     'users' => [

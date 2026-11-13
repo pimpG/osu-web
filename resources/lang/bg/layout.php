@@ -5,7 +5,7 @@
 
 return [
     'audio' => [
-        'autoplay' => 'Пусни следващата песен автоматично',
+        'autoplay' => 'Автоматично изпълняване на следващата песен',
     ],
 
     'defaults' => [
@@ -19,11 +19,16 @@ return [
             'contest' => 'конкурс',
             'contests' => 'конкурси',
             'root' => 'конзола',
-            'store_orders' => 'админ на магазина',
         ],
 
         'artists' => [
             'index' => 'автори',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'инфо',
+            'discussions' => 'дискусия',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -31,7 +36,7 @@ return [
         ],
 
         'help' => [
-            'index' => 'osu!wiki',
+            'index' => 'osu! wiki',
             'sitemap' => 'Карта на сайта',
         ],
 
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'редакции',
-            'multiplayer' => 'мултиплейър',
+            'playlists' => 'плейлисти',
+            'ranked-play' => '',
+            'realtime' => 'мултиплейър',
             'show' => 'инфо',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'класации',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'магазин',
@@ -98,16 +104,18 @@ return [
         ],
         'help' => [
             '_' => 'Помощ & Общност',
-            'faq' => 'Често Задавани Въпроси',
-            'forum' => 'Форум на Общност',
-            'livestreams' => 'Игри На Живо',
-            'report' => 'Докладване за Проблем',
-            'wiki' => 'osu!wiki',
+            'faq' => 'Често задавани въпроси',
+            'forum' => 'Форуми на общност',
+            'livestreams' => 'Игри на живо',
+            'report' => 'Докладване за проблем',
+            'wiki' => 'osu! wiki',
         ],
         'legal' => [
-            '_' => 'Правила и Състояние',
+            '_' => 'Правила & Състояние',
             'copyright' => 'Авторски права (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Поверителност',
+            'rules' => 'Правила',
             'server_status' => 'Състояние на сървърите',
             'source_code' => 'Програмен код',
             'terms' => 'Условия за ползване',
@@ -181,17 +189,23 @@ return [
         'register' => [
             'download' => 'Изтегли',
             'info' => 'Изтеглете osu! за да си създадете един!',
-            'title' => "Нямате акаунт?",
+            'title' => "Нямате профил?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Настройки',
+            'create_team' => '',
             'follows' => 'Следвани',
             'friends' => 'Приятели',
+            'legacy_score_only_toggle' => 'Lazer стил',
+            'legacy_score_only_toggle_tooltip' => 'Lazer стилът показва резултатите от lazer по нов точков алгоритъм',
             'logout' => 'Изход',
-            'profile' => 'Моят Профил',
+            'profile' => 'Моят профил',
+            'scoring_mode_toggle' => 'Класически резултати',
+            'scoring_mode_toggle_tooltip' => 'Коригира стойността на резултатите да се усеща като традиционното неограничено точкуване',
+            'team' => 'Моят отбор',
         ],
     ],
 

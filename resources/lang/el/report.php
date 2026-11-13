@@ -5,13 +5,13 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά του beatmap από τον :username;',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά ανάρτησης :username;',
     ],
 
     'comment' => [
@@ -20,8 +20,13 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά ανάρτησης :username;',
+    ],
+
+    'message' => [
+        'button' => 'Αναφορά Μηνύματος',
+        'title' => 'Αναφορά μηνύματος του :username;',
     ],
 
     'scores' => [
@@ -29,8 +34,13 @@ return [
         'title' => 'Αναφορά βαθμολογίας του :username;',
     ],
 
+    'team' => [
+        'button' => 'Αναφορά Ομάδας',
+        'title' => 'Αναφορά ομάδας του :username?',
+    ],
+
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Αναφορά',
+        'title' => 'Αναφορά :username;',
     ],
 ];

@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute kan inte vara negativt.',
     'required' => ':attribute behövs.',
     'too_long' => ':attribute överskred maximal längd - kan endast vara upp till :limit tecken.',
+    'url' => 'Var vänlig och skriv in en giltig URL.',
     'wrong_confirmation' => 'Bekräftelsen matchar inte.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Endast en API-nyckel tillhandahålls per användare för tillfället.',
+
+        'attributes' => [
+            'api_key' => 'api-nyckel',
+            'app_name' => 'applikationsnamn',
+            'app_url' => 'applikationsurl',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Överskred maximalt antal tillåtna OAuth-program.',
@@ -117,6 +128,20 @@ return [
                 'name' => 'Applikationsnamn',
                 'redirect' => 'URL för appens uppringning',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => 'Denna :attribute innehåller ogiltiga karaktärer.',
+        'used' => 'Detta :attribute-val används redan.',
+        'word_not_allowed' => 'Detta :attribute val är inte tillåtet.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Standard regelset',
+            'is_open' => 'Lagapplikation',
+            'name' => 'Namn',
+            'short_name' => 'Kort namn',
+            'url' => 'URL',
         ],
     ],
 
@@ -164,6 +189,8 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rankade beatmaps kan inte rapporteras',
+        'not_in_channel' => 'Du är inte i den här kanalen.',
+        'in_team' => 'Du är en del av laget.',
         'reason_not_valid' => ':reason är inte giltigt för denna anmälningstyp.',
         'self' => "Du kan inte anmäla dig själv!",
     ],

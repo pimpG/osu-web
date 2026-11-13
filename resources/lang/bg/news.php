@@ -13,9 +13,28 @@ return [
         ],
 
         'title' => [
-            '_' => 'Новини',
-            'info' => 'Главна страница',
+            '_' => 'новини',
+            'info' => 'главна страница',
         ],
+    ],
+
+    'series' => [
+        'beatmap_spotlights' => '',
+        'community_contests' => '',
+        'community_tournaments' => '',
+        'fanart_contests' => '',
+        'featured_artists' => '',
+        'game_updates' => '',
+        'mappers_guild' => '',
+        'monthly_beatmapping_contest' => '',
+        'merch_runs' => '',
+        'miscellaneous' => '',
+        'official_contests' => '',
+        'offline_events' => '',
+        'online_events' => '',
+        'project_loved' => '',
+        'ranking_system_updates' => '',
+        'world_cups' => '',
     ],
 
     'show' => [
@@ -27,8 +46,9 @@ return [
         ],
 
         'title' => [
-            '_' => 'Новини',
-            'info' => 'Публикувай',
+            '_' => 'новини',
+            'info' => '
+публикуване',
         ],
     ],
 

@@ -4,7 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '',
+    'empty' => [
+        'active' => '',
+        'ended' => '',
+        'playlists' => '',
+        'ranked-play' => '',
+        'realtime' => '',
+    ],
 
     'room' => [
         'hosted_by' => '',
@@ -12,6 +18,14 @@ return [
         'map_count' => '',
         'player_count' => '',
         'time_left' => '',
+        'view_history' => '',
+        'view_summary' => '',
+
+        'errors' => [
+            'duration_too_long' => '',
+            'name_too_long' => '',
+            'too_many_playlist_items' => '',
+        ],
 
         'status' => [
             'active' => '',

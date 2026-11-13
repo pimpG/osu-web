@@ -4,14 +4,28 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Nog geen osu!(lazer) multiplayerspellen gespeeld!',
+    'empty' => [
+        'active' => '',
+        'ended' => '',
+        'playlists' => 'afspeellijst',
+        'ranked-play' => '',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
         'hosted_by' => 'gehost door :user',
         'invalid_password' => 'Wachtwoord ongeldig',
-        'map_count' => ':count_delimited map:count_delimited mappen',
-        'player_count' => ':count_delimited speler:count_delimited spelers',
+        'map_count' => ':count_delimited map|:count_delimited maps',
+        'player_count' => ':count_delimited speler|:count_delimited spelers',
         'time_left' => ':time resterend',
+        'view_history' => '',
+        'view_summary' => '',
+
+        'errors' => [
+            'duration_too_long' => 'Tijdsduur te lang.',
+            'name_too_long' => '',
+            'too_many_playlist_items' => '',
+        ],
 
         'status' => [
             'active' => 'actief',

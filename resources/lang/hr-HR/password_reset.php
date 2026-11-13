@@ -5,41 +5,45 @@
 
 return [
     'button' => [
-        'cancel' => '',
-        'resend' => '',
-        'set' => '',
-        'start' => '',
+        'resend' => 'Ponovno pošalji email potvrdu',
+        'set' => 'Postavi lozinku',
+        'start' => 'Započni',
     ],
 
     'error' => [
-        'contact_support' => '',
-        'expired' => '',
-        'invalid' => '',
-        'is_privileged' => '',
-        'missing_key' => '',
-        'too_many_tries' => '',
-        'user_not_found' => '',
-        'wrong_key' => '',
+        'contact_support' => 'Molimo kontaktirajte podršku za povrat računa.',
+        'expired' => 'Potvrdni kod je istekao.',
+        'invalid' => 'Neočekivana pogreška u kodu za potvrdu.',
+        'is_privileged' => 'Za oporavak računa kontaktiraj administratora više razine.',
+        'missing_key' => 'Obavezno.',
+        'too_many_requests' => '',
+        'too_many_tries' => 'Previše neuspješnih pokušaja.',
+        'user_not_found' => 'Zatraženi korisnik ne postoji.',
+        'wait_resend' => '',
+        'wrong_key' => 'Netočan kod.',
     ],
 
     'notice' => [
-        'sent' => '',
-        'saved' => '',
+        'sent' => 'Provjerite vašu e-poštu za kôd za provjeru.',
+        'saved' => 'Nova lozinka je spremljena!',
     ],
 
     'started' => [
-        'password' => '',
-        'password_confirmation' => '',
-        'title' => '',
-        'verification_key' => '',
+        'password' => 'Nova lozinka',
+        'password_confirmation' => 'Potvrda lozinke',
+        'title' => 'Resetiranje lozinke za račun <strong>:username</strong>.',
+        'verification_key' => 'Kôd za provjeru',
     ],
 
     'starting' => [
-        'username' => '',
+        'username' => 'Unesi svoju adresu e-pošte ili korisničko ime',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
-            '_' => '',
-            'button' => '',
+            '_' => 'Trebaš dodatnu pomoć? Kontaktiraj nas putem naše :button.',
+            'button' => 'sistema za podršku',
         ],
     ],
 ];

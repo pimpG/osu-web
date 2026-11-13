@@ -81,7 +81,7 @@ return [
 
             'customisation' => [
                 'title' => 'カスタマイズ',
-                'description' => "自分のユーザーページに自由に編集できる領域が追加されます。",
+                'description' => "プロフィール内でカスタムカバー画像をアップロードしたり、完全にカスタマイズ可能な「me!」セクションを作成したり、お好みの色に変更したりして、目立つ存在になりましょう。",
             ],
 
             'beatmap_filters' => [
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => 'osu!をサポートしてくれてありがとうございます！今までに:dollarsで:tags個のタグを購入しました！',
-            'gifted' => "今まで購入したサポータータグのうち:giftedTags個がギフト（ギフト合計金額：:giftedDollars）として送られました。あなたの寛大さに拍手！",
+            'contribution_with_duration' => 'いつもご支援いただきありがとうございます！ これまでに合計 :dollars をご支援いただいたことで、:durationの「サポーター」タグを獲得しました。',
             'not_yet' => "osu!サポータータグをまだ持っていません :(",
             'valid_until' => 'あなたのosu!サポータータグは:dateまで有効です！',
             'was_valid_until' => 'あなたのosu!サポータータグは:dateに期限切れになりました。',
+
+            'gifted' => [
+                '_' => 'あなたの総額のうち :dollars 分のタグを :users に贈っています、これは :duration の期間を支えていることになります。信じられないほど寛大です！',
+                'users' => ':count_delimited人の他のユーザー|:count_delimited人の他のユーザー',
+            ],
         ],
     ],
 ];

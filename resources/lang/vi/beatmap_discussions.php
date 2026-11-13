@@ -4,9 +4,11 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => ':count_delimited câu trả lời đã bị ẩn.|:count_delimited câu trả lời đã bị ẩn.',
+
     'authorizations' => [
         'update' => [
-            'null_user' => 'Bạn cần phải đăng nhập để chỉnh sửa nó',
+            'null_user' => 'Cần phải đăng nhập để chỉnh sửa.',
             'system_generated' => 'Không thể chỉnh sửa bài đăng được tạo bởi hệ thống.',
             'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
@@ -14,6 +16,16 @@ return [
 
     'events' => [
         'empty' => 'Chưa có gì xảy ra cả.',
+    ],
+
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
     ],
 
     'index' => [
@@ -26,15 +38,16 @@ return [
             'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
             'mode' => 'Chế độ Beatmap',
             'only_unresolved' => 'Chỉ hiện các cuộc thảo luận chưa được giải quyết',
+            'show_review_embeds' => 'Hiển thị các bài đăng đánh giá',
             'types' => 'Kiểu tin nhắn',
             'username' => 'Tên người dùng',
 
             'beatmapset_status' => [
                 '_' => 'Tình trạng Beatmap',
                 'all' => 'Tất cả',
-                'disqualified' => 'Bị Loại',
-                'never_qualified' => 'Chưa bao giờ Đủ Điều Kiện',
-                'qualified' => 'Đủ Điều Kiện',
+                'disqualified' => 'Disqualified ',
+                'never_qualified' => 'Chưa từng đủ điều kiện',
+                'qualified' => 'Đủ điều kiện',
                 'ranked' => 'Xếp Hạng',
             ],
 
@@ -61,9 +74,16 @@ return [
 
     'owner_editor' => [
         'button' => 'Chủ Sở Hữu Độ Khó',
-        'reset_confirm' => 'Đặt lại chủ sở hữu cho khó khăn này?',
-        'user' => 'Chủ Sở hữu',
-        'version' => 'Khó Khăn',
+        'reset_confirm' => 'Đặt lại chủ sở hữu cho độ khó này?',
+        'user' => 'Chủ sở hữu',
+        'version' => 'Độ khó',
+    ],
+
+    'refresh' => [
+        'checking' => 'Đang kiểm tra cập nhật...',
+        'has_updates' => 'Cuộc thảo luận có cập nhật, nhấn để làm mới.',
+        'no_updates' => 'Không có cập nhật mới.',
+        'updating' => 'Đang cập nhật...',
     ],
 
     'reply' => [
@@ -75,12 +95,12 @@ return [
 
     'review' => [
         'block_count' => ':used / :max khối được sử dụng',
-        'go_to_parent' => 'Xem Bài viết Đánh giá',
+        'go_to_parent' => 'Xem Bài đăng Đánh giá',
         'go_to_child' => 'Xem cuộc thảo luận',
         'validation' => [
             'block_too_large' => 'mỗi khối chỉ có thể chứa tối đa :limit giới hạn kí tự',
             'external_references' => 'bài đánh giá có chứa tham chiếu đến các vấn đề không thuộc bài đánh giá này',
-            'invalid_block_type' => 'Loại khối không hợp lệ',
+            'invalid_block_type' => 'loại khối không hợp lệ',
             'invalid_document' => 'đánh giá không phù hợp',
             'invalid_discussion_type' => 'loại thảo luận không hợp lệ',
             'minimum_issues' => 'đánh giá phải chứa tối thiểu :count vấn_đề|đánh_giá phải chứa tối thiểu :count vấn đề',
@@ -97,12 +117,13 @@ return [
     ],
 
     'timestamp_display' => [
-        'general' => 'Chung',
-        'general_all' => 'Chung (tất cả)',
+        'general' => 'chung',
+        'general_all' => 'chung (tất cả)',
     ],
 
     'user_filter' => [
         'everyone' => 'Mọi người',
         'label' => 'Lọc theo người dùng',
+        'multiple' => ':count_delimited người dùng được chọn|:count_delimited người dùng được chọn',
     ],
 ];

@@ -4,14 +4,14 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => '确定？',
-    'confirmation_unsaved' => '未保存的更改将会丢失，是否确定？',
+    'confirmation' => '你确定吗？',
+    'confirmation_unsaved' => '未保存的更改将丢失。您确定吗？',
     'saved' => '已保存',
 
     'array_and' => [
         'words_connector' => '，',
-        'two_words_connector' => '和',
-        'last_word_connector' => '和',
+        'two_words_connector' => ' 和 ',
+        'last_word_connector' => ' 和 ',
     ],
 
     'badges' => [
@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '管理员',
         'authorise' => '授权',
         'authorising' => '授权中……',
+        'back' => '返回',
         'back_to_previous' => '返回上一位置',
         'back_to_top' => '回到顶部',
         'cancel' => '取消',
@@ -35,15 +35,17 @@ return [
         'edit' => '编辑',
         'expand' => '展开',
         'hide' => '隐藏',
-        'permalink' => '静态链接',
+        'permalink' => '永久链接',
         'pin' => '置顶',
         'post' => '发表',
         'read_more' => '阅读更多',
+        'refresh' => '刷新',
         'reply' => '回复',
-        'reply_reopen' => '回复并重新打开',
+        'reply_reopen' => '回复并要求重审',
         'reply_resolve' => '回复并标记为已解决',
         'reset' => '重置',
         'restore' => '恢复',
+        'retry' => '重试',
         'save' => '保存',
         'saving' => '保存中……',
         'search' => '搜索',
@@ -70,10 +72,11 @@ return [
         'hour_short_unit' => '小时',
         'hours' => ':count_delimited 小时',
         'item' => ':count_delimited 个',
-        'minute_short_unit' => '分钟',
+        'minute_short_unit' => '分钟|分钟',
         'minutes' => ':count_delimited 分钟',
         'months' => ':count_delimited 个月',
         'notifications' => ':count_delimited 个通知',
+        'player' => ':count_delimited 位玩家',
         'plus_others' => '还有 :count_delimited 人！',
         'post' => ':count_delimited 篇帖子',
         'second_short_unit' => '秒',
@@ -85,12 +88,18 @@ return [
 
     'countdown' => [
         'days' => '天',
-        'hours' => '小时',
-        'minutes' => '分钟',
+        'hours' => '时',
+        'minutes' => '分',
         'seconds' => '秒',
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '月',
+        ],
+        'year' => [
+            'php' => '年',
+        ],
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
             'php' => 'y年 MMMM',
@@ -108,7 +117,7 @@ return [
     ],
 
     'dropzone' => [
-        'target' => '拖动到此处以上传',
+        'target' => '拖到此处上传',
     ],
 
     'input' => [
@@ -134,20 +143,20 @@ return [
         'dd' => '%d 天前',
         'h' => '%d 小时前',
         'hh' => '%d 小时前',
-        'm' => '%d 分钟前',
-        'mm' => '%d 分钟前',
+        'm' => '刚刚',
+        'mm' => '刚刚',
         'month' => '%d 月前',
         'months' => '%d 月前',
         'past' => '',
-        's' => '%d 秒前',
+        's' => '刚刚',
         'y' => '%d 年前',
         'yy' => '%d 年前',
     ],
 
     'time' => [
-        'days_ago' => ':count 天前',
+        'days_ago' => ':count_delimited 天前',
         'hours_ago' => ':count_delimited 小时前',
-        'now' => '现在',
+        'now' => '刚刚',
         'remaining' => '剩余时间',
     ],
 

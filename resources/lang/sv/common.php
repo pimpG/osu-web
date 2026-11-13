@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Auktorisera',
         'authorising' => 'Auktoriserar...',
+        'back' => 'Tillbaka',
         'back_to_previous' => 'Återgå till tidigare position',
         'back_to_top' => 'Tillbaka till toppen',
         'cancel' => 'Avbryt',
@@ -39,11 +39,13 @@ return [
         'pin' => 'fäst',
         'post' => 'Lägg upp',
         'read_more' => 'läs mer',
+        'refresh' => 'Ladda om',
         'reply' => 'Svara',
         'reply_reopen' => 'Svara och öppna igen',
         'reply_resolve' => 'Svara och lös',
         'reset' => 'Återställ',
         'restore' => 'Återställ',
+        'retry' => 'Försök igen',
         'save' => 'Spara',
         'saving' => 'Sparar...',
         'search' => 'Sök',
@@ -54,7 +56,7 @@ return [
         'show_more' => 'visa mer',
         'show_more_options' => 'visa fler alternativ',
         'submit' => 'Skicka',
-        'unpin' => 'ofäst ',
+        'unpin' => 'lossa',
         'update' => 'Uppdatera',
         'upload_image' => 'ladda upp bild',
 
@@ -74,6 +76,7 @@ return [
         'minutes' => ':count_delimited minut|:count_delimited minuter',
         'months' => ':count_delimited månad|:count_delimited månader',
         'notifications' => ':count_delimited avisering|:count_delimited aviseringar  ',
+        'player' => ':count_delimited spelare|:count_delimited spelare',
         'plus_others' => '+ :count_delimited övrig!|+ :count_delimited övriga!',
         'post' => ':count_delimited inlägg|:count_delimited inlägg',
         'second_short_unit' => 's|s',
@@ -91,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'å',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

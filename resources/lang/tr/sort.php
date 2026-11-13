@@ -15,14 +15,33 @@ return [
     'top' => 'En çok oy',
     'username' => 'Kullanıcı adı',
 
+    'artist_tracks' => [
+        'album' => 'Albüm',
+        'artist' => 'Sanatçı',
+        'bpm' => 'BPM',
+        'genre' => 'Tür',
+        'length' => 'Uzunluk',
+        'relevance' => 'Alaka Düzeyi',
+        'title' => 'Başlık',
+        'update' => 'Güncelle',
+    ],
+
     'forum_posts' => [
         'created' => 'Gönderi tarihi',
         'relevance' => 'Alaka',
     ],
 
     'forum_topics' => [
+        'created' => 'Yaratılışa Göre',
         'feature_votes' => 'Yıldız önceliği',
         'new' => 'Son yanıt',
+    ],
+
+    'teams' => [
+        'created' => 'Yaratılışa Göre',
+        'relevance' => 'Alaka düzeyi',
+        'name' => 'İsim',
+        'short-name' => 'Kısa İsim',
     ],
 
     'users' => [

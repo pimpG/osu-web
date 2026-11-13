@@ -5,44 +5,63 @@
 
 return [
     'index' => [
-        'title_page' => '',
+        'title_page' => 'osu!vijesti',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Novije objave',
+            'older' => 'Starije objave',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'vijesti',
+            'info' => 'naslovna stranica',
         ],
     ],
 
+    'series' => [
+        'beatmap_spotlights' => '',
+        'community_contests' => '',
+        'community_tournaments' => '',
+        'fanart_contests' => '',
+        'featured_artists' => '',
+        'game_updates' => '',
+        'mappers_guild' => '',
+        'monthly_beatmapping_contest' => '',
+        'merch_runs' => '',
+        'miscellaneous' => '',
+        'official_contests' => '',
+        'offline_events' => '',
+        'online_events' => '',
+        'project_loved' => '',
+        'ranking_system_updates' => '',
+        'world_cups' => '',
+    ],
+
     'show' => [
-        'by' => '',
+        'by' => 'od :user',
 
         'nav' => [
-            'newer' => '',
-            'older' => '',
+            'newer' => 'Novija objava',
+            'older' => 'Starija objava',
         ],
 
         'title' => [
-            '_' => '',
-            'info' => '',
+            '_' => 'vijesti',
+            'info' => 'objava',
         ],
     ],
 
     'sidebar' => [
-        'archive' => '',
+        'archive' => 'Arhiva vijesti',
     ],
 
     'store' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Ažuriraj',
+        'ok' => 'Popis ažuriran.',
     ],
 
     'update' => [
-        'button' => '',
-        'ok' => '',
+        'button' => 'Ažuriraj',
+        'ok' => 'Objava ažurirana.',
     ],
 ];

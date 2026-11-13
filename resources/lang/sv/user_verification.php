@@ -20,11 +20,28 @@ return [
         ],
     ],
 
+    'box_totp' => [
+        'heading' => 'Ange koden från din autentiseringsapp.',
+
+        'info' => [
+            'logout' => [
+                '_' => 'Du kan också :link.',
+                'link' => 'logga ut',
+            ],
+            'mail_fallback' => [
+                '_' => 'Om du inte har åtkomst till din app, :link.',
+                'link' => 'du kan verifiera med e-post istället',
+            ],
+        ],
+    ],
+
     'errors' => [
         'expired' => 'Verifieringskoden har löpt ut, ett nytt bekräftelsemejl har skickats.',
         'incorrect_key' => 'Felaktig bekräftelsekod.',
         'retries_exceeded' => 'Felaktig bekräftelsekod. Försöksgränsen har uppnåtts, ett nytt bekräftelsemejl har skickats.',
         'reissued' => 'Verifieringskod återutfärdad, ett nytt bekräftelsemail har skickats.',
+        'totp_used_key' => 'Verifikationskoden har redan använts. Vänta och använd en ny.',
+        'totp_gone' => 'Autentiseringstoken har tagits bort, växlar till e-postverifiering. Verifieringsmejl har skickats.',
         'unknown' => 'Ett okänt problem uppstod, ett nytt bekräftelsemejl har skickats.',
     ],
 ];

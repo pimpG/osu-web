@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'ylläpitäjä',
     ],
-    'admin_forum' => [
-        '_' => 'ylläpitäjä',
-    ],
-    'admin_store' => [
-        '_' => 'ylläpitäjä',
-    ],
     'error' => [
         'error' => [
             '400' => 'virheellinen pyyntö',
@@ -20,7 +14,7 @@ return [
             '403' => 'kielletty',
             '401' => 'luvaton',
             '401-verification' => 'tilin vahvistaminen',
-            '405' => '',
+            '405' => 'puuttuu',
             '422' => 'virheellinen pyyntö',
             '429' => 'liian monta pyyntöä',
             '500' => 'jotain hajosi',
@@ -29,40 +23,37 @@ return [
     ],
     'forum' => [
         '_' => 'foorumi',
-        'topic_watches_controller' => [
-            'index' => 'yleiskatsaus',
+        'topic_logs_controller' => [
+            'index' => 'aiheen lokit',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'yleiskatsaus',
             'verify_link' => 'tilin vahvistaminen',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'esitellyt artistit',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => 'viestit beatmap-keskustelussa',
+            '_' => 'viestit rytmikarttojen keskusteluissa',
         ],
         'beatmap_discussions_controller' => [
-            '_' => 'beatmap-keskustelut',
+            '_' => 'rytmikarttojen keskustelut',
         ],
         'beatmap_packs_controller' => [
-            '_' => '',
+            '_' => 'rytmikarttapaketit',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'äänet rytmikarttojen keskusteluissa',
         ],
         'beatmapset_events_controller' => [
-            '_' => 'beatmap-historiikki',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'yleiskatsaus',
+            '_' => 'rytmikarttahistoria',
         ],
         'beatmapsets_controller' => [
-            'discussion' => 'beatmap-keskustelu',
-            'index' => 'beatmap-listaus',
-            'show' => 'beatmap-tiedot',
+            'discussion' => 'rytmikartan keskustelu',
+            'index' => 'rytmikarttojen listaus',
+            'show' => 'rytmikartan tiedot',
+            'versions' => 'rytmikartan versiohistoria',
         ],
         'changelog_controller' => [
             '_' => 'muutosloki',
@@ -73,14 +64,15 @@ return [
         'comments_controller' => [
             '_' => 'kommentit',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'kilpailun tuomaroinnin tulokset',
+        ],
         'contests_controller' => [
             '_' => 'kilpailut',
+            'judge' => 'kilpailun tuomarointi',
         ],
-        'follows_controller' => [
-            'index' => 'yleiskatsaus',
-        ],
-        'friends_controller' => [
-            'index' => 'yleiskatsaus',
+        'group_history_controller' => [
+            '_' => 'ryhmän historia',
         ],
         'groups_controller' => [
             'show' => 'ryhmät',
@@ -92,14 +84,14 @@ return [
             'support_the_game' => 'tue peliä',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'ottelut',
+        ],
         'legal_controller' => [
-            '_' => '',
+            '_' => 'tiedot',
         ],
         'livestreams_controller' => [
-            '_' => 'suoralähetykset',
-        ],
-        'matches_controller' => [
-            '_' => 'ottelut',
+            '_' => 'suorat lähetykset',
         ],
         'news_controller' => [
             '_' => 'uutiset',
@@ -116,15 +108,29 @@ return [
         'scores_controller' => [
             '_' => 'suorituskyky',
         ],
-        'store_controller' => [
-            '_' => 'kauppa',
+        'seasons_controller' => [
+            '_' => 'tilastot',
+        ],
+        'teams_controller' => [
+            '_' => 'tiimit',
+            'create' => 'luo tiimi',
+            'edit' => 'tiimin asetukset',
+            'leaderboard' => 'tiimin tulostaulukko',
+            'show' => 'tiimin tiedot',
         ],
         'tournaments_controller' => [
             '_' => 'turnaukset',
         ],
+        'user_cover_presets_controller' => [
+            '_' => 'käyttäjän kansikuvan esiasetukset',
+        ],
+        'user_totp_controller' => [
+            '_' => 'todennussovellus',
+        ],
         'users_controller' => [
-            '_' => 'pelaajatiedot',
-            'disabled' => 'ilmoitus',
+            '_' => 'pelaajan tiedot',
+            'create' => 'luo tili',
+            'disabled' => 'huomautus',
         ],
         'wiki_controller' => [
             '_' => 'wiki',
@@ -132,23 +138,28 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'sijoitukset',
+            'events' => 'huoneen historia',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'valtuuta sovellus',
         ],
     ],
     'store' => [
         '_' => 'kauppa',
     ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'tiimin jäsenet',
+        ],
+    ],
     'users' => [
         'modding_history_controller' => [
-            '_' => 'modaajatiedot',
+            '_' => 'modaajan tiedot',
         ],
         'multiplayer_controller' => [
-            '_' => 'moninpelihistoriikki',
+            '_' => 'moninpelihistoria',
         ],
     ],
 ];

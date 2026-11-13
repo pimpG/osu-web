@@ -19,11 +19,16 @@ return [
             'contest' => 'verseny',
             'contests' => 'versenyek',
             'root' => 'konzol',
-            'store_orders' => 'admin bolt',
         ],
 
         'artists' => [
             'index' => 'listázás',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'információ',
+            'discussions' => 'beszélgetés',
+            'versions' => 'verzió előzmény',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'modolás',
-            'multiplayer' => 'többjátékos',
+            'playlists' => 'játéklisták',
+            'ranked-play' => 'ranked',
+            'realtime' => 'többjátékos',
             'show' => 'információ',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rangsor',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'áruház',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => 'Jogok és Állapot',
             'copyright' => 'Szerzői jog (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Adatvédelem',
+            'rules' => 'Szabályok',
             'server_status' => 'Szerver Állapot',
             'source_code' => 'Forráskód',
             'terms' => 'Felhasználási Feltételek',
@@ -140,7 +148,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => 'Ráta korlát túllépve',
+            'error' => 'Kéréskorlát túllépve',
             'description' => '',
         ],
         '500' => [
@@ -180,7 +188,7 @@ return [
 
         'register' => [
             'download' => 'Letöltés',
-            'info' => 'Önnek szüksége van egy fiókra uram. Miért nem rendelkezik még egyel?',
+            'info' => 'Töltsd le az osu!-t, hogy csinálj egy fiókot!',
             'title' => "Nincs még fiókod?",
         ],
     ],
@@ -188,15 +196,21 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Beállítások',
+            'create_team' => 'Csapat Létrehozása',
             'follows' => 'Figyelőlisták',
             'friends' => 'Barátok',
+            'legacy_score_only_toggle' => 'Lazer mód',
+            'legacy_score_only_toggle_tooltip' => 'A Lazer mód a Lazer kliensen elért eredményeket mutatja, egy új pontozási algoritmussal',
             'logout' => 'Kijelentkezés',
             'profile' => 'Profilom',
+            'scoring_mode_toggle' => 'Klasszikus pontozás',
+            'scoring_mode_toggle_tooltip' => 'Módosítja a pontszámértékeket úgy, hogy közelebb álljon a klasszikus korlátlan pontozáshoz',
+            'team' => 'Csapatom',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Keresendő szöveg!',
-        'retry' => 'A keresés eredménytelen. Kattintson az ismételt próbálkozáshoz.',
+        'initial' => 'Írj a kereséshez!',
+        'retry' => 'A keresés eredménytelen. Kattints az újrapróbáláshoz.',
     ],
 ];

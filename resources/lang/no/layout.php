@@ -19,11 +19,16 @@ return [
             'contest' => 'konkurranse',
             'contests' => 'konkurranser',
             'root' => 'konsoll',
-            'store_orders' => 'butikk admin',
         ],
 
         'artists' => [
             'index' => 'liste',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskusjon',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'playlists' => 'spillelister',
+            'ranked-play' => '',
+            'realtime' => 'flerspiller',
             'show' => 'info',
         ],
     ],
@@ -70,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'hjelp',
-            'getAbuse' => '',
+            'getAbuse' => 'rapporter misbruk',
             'getFaq' => 'faq',
             'getRules' => 'regler',
             'getSupport' => 'nei, virkelig, jeg trenger hjelp!',
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rangering',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'butikk',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => 'Juridisk & Status',
             'copyright' => 'Opphavsrett (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Personvern',
+            'rules' => '',
             'server_status' => 'Serverstatus',
             'source_code' => 'Kildekode',
             'terms' => 'Vilkår for bruk',
@@ -140,7 +148,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Frekvensgrensen overskredet',
             'description' => '',
         ],
         '500' => [
@@ -164,7 +172,7 @@ return [
     ],
 
     'popup_login' => [
-        'button' => '',
+        'button' => 'logg inn / registrer',
 
         'login' => [
             'forgot' => "Jeg har glemt kontoinformasjonen min",
@@ -188,10 +196,16 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Innstillinger',
-            'follows' => '',
+            'create_team' => '',
+            'follows' => 'Overvåkningslister',
             'friends' => 'Venner',
+            'legacy_score_only_toggle' => 'Lazer modus',
+            'legacy_score_only_toggle_tooltip' => 'Lazer modus viser scorer satt fra lazer med en ny scoringsalgoritme',
             'logout' => 'Logg Ut',
             'profile' => 'Min Profil',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

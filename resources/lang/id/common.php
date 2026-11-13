@@ -4,8 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'confirmation' => 'Apakah Anda yakin?',
-    'confirmation_unsaved' => 'Perubahan yang tidak disimpan akan hilang. Apa Anda yakin?',
+    'confirmation' => 'Apakah kamu yakin?',
+    'confirmation_unsaved' => 'Segala perubahan yang belum disimpan akan hilang. Apakah kamu yakin?',
     'saved' => 'Tersimpan',
 
     'array_and' => [
@@ -19,37 +19,39 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Izinkan',
         'authorising' => 'Mengotorisir...',
+        'back' => 'Kembali',
         'back_to_previous' => 'Kembali ke posisi sebelumnya',
         'back_to_top' => 'Kembali ke atas',
         'cancel' => 'Batal',
         'change' => 'ubah',
         'clear' => 'Hapus',
-        'click_to_copy' => 'klik untuk menyalin',
+        'click_to_copy' => 'klik untuk menyalin ke papan klip',
         'click_to_copy_copied' => 'tersalin!',
         'close' => 'Tutup',
         'collapse' => 'tutup',
         'delete' => 'Hapus',
         'edit' => 'Sunting',
-        'expand' => 'perluas',
+        'expand' => 'lebarkan',
         'hide' => 'sembunyikan',
         'permalink' => 'tautan',
         'pin' => 'sematkan',
         'post' => 'Kirim',
         'read_more' => 'baca selengkapnya',
+        'refresh' => 'Muat ulang',
         'reply' => 'Balas',
         'reply_reopen' => 'Balas dan Buka Kembali',
         'reply_resolve' => 'Balas dan Tutup',
-        'reset' => 'Atur Ulang',
+        'reset' => 'Atur ulang',
         'restore' => 'Pulihkan',
+        'retry' => 'Coba lagi',
         'save' => 'Simpan',
         'saving' => 'Menyimpan...',
         'search' => 'Cari',
-        'see_more' => 'perlihatkan lebih banyak',
+        'see_more' => 'tampilkan lebih banyak',
         'show' => 'tampilkan',
-        'show_deleted' => 'Tampilkan yang telah dihapus',
+        'show_deleted' => 'Tampilkan yang sudah dihapus',
         'show_less' => 'tampilkan lebih sedikit',
         'show_more' => 'tampilkan lebih banyak',
         'show_more_options' => 'tampilkan pilihan lainnya',
@@ -59,8 +61,8 @@ return [
         'upload_image' => 'unggah gambar',
 
         'watch' => [
-            'to_0' => 'Batalkan Pantauan',
-            'to_1' => 'Pantau',
+            'to_0' => 'Berhenti Ikuti',
+            'to_1' => 'Ikuti',
         ],
     ],
 
@@ -68,12 +70,13 @@ return [
         'badges' => ':count_delimited lencana|:count_delimited lencana',
         'days' => ':count_delimited hari|:count_delimited hari',
         'hour_short_unit' => 'jam|jam',
-        'hours' => ':count_delimited jam',
+        'hours' => ':count_delimited jam|:count_delimited jam',
         'item' => ':count_delimited unit|:count_delimited unit',
         'minute_short_unit' => 'menit|menit',
         'minutes' => ':count_delimited menit|:count_delimited menit',
         'months' => ':count_delimited bulan|:count_delimited bulan',
         'notifications' => ':count_delimited notifikasi|:count_delimited notifikasi',
+        'player' => ':count_delimited pemain|:count_delimited pemain',
         'plus_others' => '+ :count_delimited lainnya!|+ :count_delimited lainnya!',
         'post' => ':count_delimited kiriman|:count_delimited kiriman',
         'second_short_unit' => 'detik|detik',
@@ -91,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'bln',
+        ],
+        'year' => [
+            'php' => 'thn',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -156,7 +165,7 @@ return [
     ],
 
     'wrong_user' => [
-        '_' => 'Anda terdaftar masuk sebagai :user. :logout_link.',
+        '_' => 'Kamu terhubung masuk sebagai :user. :logout_link.',
         'logout_link' => 'Klik di sini untuk masuk sebagai pengguna lain',
     ],
 ];

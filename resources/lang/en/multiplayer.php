@@ -4,7 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'No osu!(lazer) multiplayer games played yet!',
+    'empty' => [
+        'active' => 'Not currently in any in-progress osu!(lazer) :type_group games!',
+        'ended' => 'Not in any completed osu!(lazer) :type_group games yet!',
+        'playlists' => 'playlist',
+        'ranked-play' => 'ranked play',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
         'hosted_by' => 'hosted by :user',
@@ -12,6 +18,14 @@ return [
         'map_count' => ':count_delimited map|:count_delimited maps',
         'player_count' => ':count_delimited player|:count_delimited players',
         'time_left' => ':time left',
+        'view_history' => 'View History',
+        'view_summary' => 'View Summary',
+
+        'errors' => [
+            'duration_too_long' => 'Duration is too long.',
+            'name_too_long' => 'Room name is too long.',
+            'too_many_playlist_items' => 'Too many playlist items.',
+        ],
 
         'status' => [
             'active' => 'active',

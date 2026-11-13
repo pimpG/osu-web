@@ -5,201 +5,264 @@
 
 return [
     'availability' => [
-        'disabled' => '',
-        'parts-removed' => '',
-        'more-info' => '',
-        'rule_violation' => '',
+        'disabled' => 'Ova beatmapa trenutno nije dostupna za preuzimanje.',
+        'parts-removed' => 'Dijelovi ove beatmape su uklonjeni na zahtjev vlasnika ili nositelja prava treće strane.',
+        'more-info' => 'Klikni ovdje za više informacija.',
+        'rule_violation' => 'Neka sredstva sadržana u ovoj mapi su uklonjena nakon što su ocijenjena kao neprikladna za korištenje u osu!.',
+    ],
+
+    'cover' => [
+        'deleted' => 'Izbrisana beatmapa,',
     ],
 
     'download' => [
-        'limit_exceeded' => '',
+        'limit_exceeded' => 'Uspori, igraj više.',
+        'no_mirrors' => 'Nema dostupnih servera za preuzimanje.',
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'Istaknuti Izvođač',
     ],
 
     'index' => [
-        'title' => '',
-        'guest_title' => '',
+        'title' => 'Popis beatmapa',
+        'guest_title' => 'Beatmape',
+    ],
+
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
     ],
 
     'panel' => [
-        'empty' => '',
+        'empty' => 'nema beatmapa',
 
         'download' => [
-            'all' => '',
-            'video' => '',
-            'no_video' => '',
-            'direct' => '',
+            'all' => 'preuzmi',
+            'video' => 'preuzmi uz video',
+            'no_video' => 'preuzmi bez videa',
+            'direct' => 'otvori u osu!direct',
+            'lazer' => '',
         ],
     ],
 
     'nominate' => [
-        'hybrid_requires_modes' => '',
-        'incorrect_mode' => '',
-        'full_bn_required' => '',
-        'too_many' => '',
+        'bng_limited_too_many_rulesets' => '',
+        'full_nomination_required' => '',
+        'hybrid_requires_modes' => 'Hibridne beatmape zahtijevaju da odabereš barem jedan način igranja za nominaciju.',
+        'incorrect_mode' => 'Nemaš dopuštenje da nominiraš za mod: :mode',
+        'invalid_limited_nomination' => '',
+        'invalid_ruleset' => '',
+        'too_many' => 'Uvjet za nominaciju je već ispunjen.',
+        'too_many_non_main_ruleset' => '',
 
         'dialog' => [
-            'confirmation' => '',
-            'header' => '',
-            'hybrid_warning' => '',
-            'which_modes' => '',
+            'confirmation' => 'Jesi li siguran/na da želiš nominirati ovu beatmapu?',
+            'different_nominator_warning' => '',
+            'header' => 'Nominiraj beatmapu',
+            'hybrid_warning' => 'napomena: možetš nominirati samo jednom, stoga te molimo da budeš siguran/na da nominiraš za sve načine igre koje namjeravaš',
+            'current_main_ruleset' => '',
+            'which_modes' => 'Nominiraj za koje modove?',
         ],
     ],
 
     'nsfw_badge' => [
-        'label' => '',
+        'label' => 'Eksplicitno',
+    ],
+
+    'rate' => [
+        'invalid' => '',
     ],
 
     'show' => [
-        'discussion' => '',
+        'discussion' => 'Rasprava',
+
+        'admin' => [
+            'full_size_cover' => '',
+            'page' => '',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'Ovaj beatmap je obrisan.',
+            'message' => '(samo moderatori mogu ovo da vide)',
+        ],
 
         'details' => [
-            'by_artist' => '',
-            'favourite' => '',
-            'favourite_login' => '',
-            'logged-out' => '',
-            'mapped_by' => '',
-            'unfavourite' => '',
-            'updated_timeago' => '',
+            'by_artist' => 'od :artist',
+            'favourite' => 'Označi beatmapu kao omiljenu',
+            'favourite_login' => 'Prijavi se kako bi označio/la ovu beatmapu kao omiljenu',
+            'logged-out' => 'Moraš se prijaviti prije preuzimanja beatmapa!',
+            'mapped_by' => 'mapirano od :mapper',
+            'mapped_by_guest' => '',
+            'unfavourite' => 'Ukloni beatmapu sa oznake omiljeno',
+            'updated_timeago' => 'zadnje ažurirano :timeago',
 
             'download' => [
-                '_' => '',
+                '_' => 'Preuzmi',
                 'direct' => '',
-                'no-video' => '',
-                'video' => '',
+                'lazer' => '',
+                'no-video' => 'bez videa',
+                'video' => 'sa videom',
             ],
 
             'login_required' => [
-                'bottom' => '',
-                'top' => '',
+                'bottom' => 'za pristup više značajki',
+                'top' => 'Prijavi se',
             ],
         ],
 
         'details_date' => [
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'ranked' => '',
-            'submitted' => '',
-            'updated' => '',
+            'approved' => 'odobreno :timeago',
+            'loved' => 'voljeno :timeago',
+            'qualified' => 'kvalificirano :timeago',
+            'ranked' => 'rangirano :timeago',
+            'submitted' => 'podnešeno :timeago',
+            'updated' => 'zadnje ažurirano :timeago',
         ],
 
         'favourites' => [
-            'limit_reached' => '',
+            'limit_reached' => 'Imaš previše omiljenih beatmapa! Molimo ukloni neke od njih prije ponovnog pokušaja.',
         ],
 
         'hype' => [
-            'action' => '',
+            'action' => 'Hypeaj ovu beatmapu ako is uživao/la igrajući je i da joj pomogneš da postane <strong>Rangirana</strong>.',
 
             'current' => [
-                '_' => '',
+                '_' => 'Ova mapa je trenutno :status.',
 
                 'status' => [
-                    'pending' => '',
-                    'qualified' => '',
-                    'wip' => '',
+                    'pending' => 'na čekanju',
+                    'qualified' => 'kvalificiran/a',
+                    'wip' => 'rad u tijeku',
                 ],
             ],
 
             'disqualify' => [
-                '_' => '',
+                '_' => 'Ako pronađeš problem s ovom beatmapom, diskvalificiraj je :link.',
             ],
 
             'report' => [
-                '_' => '',
-                'button' => '',
-                'link' => '',
+                '_' => 'Ako pronađeš problem s ovom beatmapom, prijavi ga :link kako bi upozorio/la tim.',
+                'button' => 'Prijavi problem',
+                'link' => 'ovdje',
             ],
         ],
 
         'info' => [
+            'description' => 'Opis',
+            'genre' => 'Žanr',
+            'language' => 'Jezik',
+            'mapper_tags' => 'Maperske Oznake',
+            'no_scores' => 'Podaci se još kalkuliraju...',
+            'nominators' => 'Nominatori',
+            'nsfw' => 'Eksplicitni sadržaj',
+            'offset' => 'Online razmak',
+            'pack_tags' => '',
+            'points-of-failure' => 'Točke neuspjeha',
+            'source' => 'Izvor',
+            'storyboard' => 'Ova beatmapa sadrži storyboard',
+            'success-rate' => 'Stopa uspjeha',
+            'success_rate_plays' => '',
+            'user_tags' => 'Korisničke Oznake',
+            'video' => 'Ova beatmapa sadrži video',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
             'description' => '',
-            'genre' => '',
-            'language' => '',
-            'no_scores' => '',
-            'nsfw' => '',
-            'points-of-failure' => '',
-            'source' => '',
-            'storyboard' => '',
-            'success-rate' => '',
-            'tags' => '',
-            'video' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
-            'details' => '',
-            'title' => '',
+            'details' => 'Ova beatmapa sadrži eksplicitan, uvredljiv ili uznemirujući sadržaj. Želiš li ga ipak pogledati?',
+            'title' => 'Eksplicitni sadržaj',
 
             'buttons' => [
-                'disable' => '',
-                'listing' => '',
-                'show' => '',
+                'disable' => 'Onemogući upozorenje',
+                'listing' => 'Popis beatmapa',
+                'show' => 'Prikaži',
             ],
         ],
 
         'scoreboard' => [
-            'achieved' => '',
-            'country' => '',
-            'friend' => '',
-            'global' => '',
-            'supporter-link' => '',
-            'supporter-only' => '',
-            'title' => '',
+            'achieved' => 'arhivirano :when',
+            'country' => 'Rang u državi',
+            'error' => 'Neuspješno učitavanje poretka',
+            'friend' => 'Rang prijatelja',
+            'global' => 'Globalni rang',
+            'supporter-link' => 'Klikni <a href=":link">ovdje</a> da vidiš sve otmjene značajke koje dobivaš!',
+            'supporter-only' => 'Moraš biti osu!supporter da bi pristupio/la ljestvicama specifičnim za prijatelje, državu ili mod!',
+            'team' => 'Timski Rang',
+            'title' => 'Scoreboard',
 
             'headers' => [
-                'accuracy' => '',
-                'combo' => '',
-                'miss' => '',
-                'mods' => '',
-                'player' => '',
+                'accuracy' => 'Preciznost',
+                'combo' => 'Najveći combo',
+                'miss' => 'Promašaj',
+                'mods' => 'Modovi',
+                'pin' => 'Prikvači',
+                'player' => 'Igrač',
                 'pp' => '',
-                'rank' => '',
-                'score_total' => '',
-                'score' => '',
-                'time' => '',
+                'rank' => 'Rang',
+                'score' => 'Bodovi',
+                'score_total' => 'Ukupni Bodovi',
+                'time' => 'Vrijeme',
             ],
 
             'no_scores' => [
-                'country' => '',
-                'friend' => '',
-                'global' => '',
-                'loading' => '',
-                'unranked' => '',
+                'country' => 'Nitko iz tvoje zemlje još nije postavio rezultat na ovoj mapi!',
+                'friend' => 'Nitko od tvojih prijatelja još nije postavio rezultat na ovoj mapi!',
+                'global' => 'Još nema rezultata. Možda bi trebao/la pokušati postaviti jednog?',
+                'loading' => 'Učitavanje rezultata...',
+                'team' => 'Nitko iz tvog tima još nije postavio rezultat na ovoj mapi!',
+                'unranked' => 'Nerangirane beatmape.',
             ],
             'score' => [
-                'first' => '',
-                'own' => '',
+                'first' => 'U vodstvu',
+                'own' => 'Tvoj rekord',
+            ],
+            'supporter_link' => [
+                '_' => 'Klikni :here da vidiš sve otmjene značajke koje dobivaš!',
+                'here' => 'ovdje',
             ],
         ],
 
         'stats' => [
-            'cs' => '',
-            'cs-mania' => '',
-            'drain' => '',
-            'accuracy' => '',
-            'ar' => '',
-            'stars' => '',
-            'total_length' => '',
-            'bpm' => '',
-            'count_circles' => '',
-            'count_sliders' => '',
-            'user-rating' => '',
-            'rating-spread' => '',
-            'nominations' => '',
-            'playcount' => '',
+            'cs' => 'Veličina krugova',
+            'cs-mania' => 'Broj tipki',
+            'drain' => 'HP trošak',
+            'accuracy' => 'Preciznost',
+            'ar' => 'Stopa približavanja',
+            'stars' => 'Ocjena zvjezdicama',
+            'total_length' => 'Duljina (duljina troška: :hit_length)',
+            'bpm' => 'BPM',
+            'count_circles' => 'Broj krugova',
+            'count_sliders' => 'Broj slidera',
+            'offset' => 'Online razmak :offset',
+            'user-rating' => 'Korisnička ocijena',
+            'rating-spread' => 'Širenje ocjena',
+            'nominations' => 'Nominacije ',
+            'playcount' => 'Broj igranja',
+            'favourites' => '',
+            'no_favourites' => '',
         ],
 
         'status' => [
-            'ranked' => '',
-            'approved' => '',
-            'loved' => '',
-            'qualified' => '',
-            'wip' => '',
-            'pending' => '',
-            'graveyard' => '',
+            'ranked' => 'Rangirano',
+            'approved' => 'Odobreno',
+            'loved' => 'Voljeno',
+            'qualified' => 'Kvalificiran/a',
+            'wip' => 'Rad u tijeku',
+            'pending' => 'Na čekanju',
+            'graveyard' => 'Groblje',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'Istaknuto',
     ],
 ];

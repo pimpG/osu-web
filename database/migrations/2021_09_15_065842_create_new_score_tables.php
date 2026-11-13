@@ -3,6 +3,8 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
 // See the LICENCE file in the repository root for full licence text.
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -49,6 +51,6 @@ class CreateNewScoreTables extends Migration
     {
         Schema::dropIfExists('solo_scores_process_history');
         Schema::dropIfExists('solo_scores');
-        (new CreateSoloScores())->up();
+        migration('2021_03_24_130818_create_solo_scores')->up();
     }
 }

@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '不正なURLまたは不正なリクエストメソッドです。',
+    'load_failed' => 'データの読み込みに失敗しました。',
+    'missing_route' => '不正なURLまたは不正なリクエストです。',
     'no_restricted_access' => 'アカウントが制限されている状態では実行できません。',
+    'param_too_large' => ':nameパラメータは最大:count_delimited個の項目を持つことができます|:nameパラメータは最大:count_delimited個の項目を持つことができます',
     'supporter_only' => 'osu!サポーター限定の機能です。',
     'unknown' => '不明のエラーが発生しました。',
 
@@ -20,15 +22,18 @@ return [
             'generic' => 'エラーが発生しました。ページの更新をすると直る可能性があります。',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => '無効なモードが選択されました。',
-        'standard_converts_only' => 'このビートマップの難易度には要求されたモードのスコアはありません。',
-    ],
     'checkout' => [
         'generic' => '支払い準備中にエラーが発生しました。',
     ],
+    'scores' => [
+        'invalid_id' => '無効なスコアID。',
+    ],
     'search' => [
         'default' => '結果の取得に失敗しました。もう一度お試しください。',
+        'invalid_cursor_exception' => '無効なカーソルパラメータが指定されました。',
         'operation_timeout_exception' => '検索機能が平時より混み合っています。もう一度お試しください。',
+    ],
+    'user_report' => [
+        'recently_reported' => "あなたはすでに報告済みです。",
     ],
 ];

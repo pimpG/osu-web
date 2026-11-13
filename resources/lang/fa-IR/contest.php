@@ -13,7 +13,35 @@ return [
         'nav_title' => '',
     ],
 
+    'judge' => [
+        'comments' => '',
+        'hide_judged' => '',
+        'nav_title' => '',
+        'no_current_vote' => '',
+        'update' => '',
+        'unsaved_changes' => '',
+        'validation' => [
+            'missing_score' => '',
+            'contest_vote_judged' => '',
+        ],
+        'voted' => '',
+    ],
+
+    'judge_results' => [
+        '_' => '',
+        'creator' => '',
+        'hosts_only' => '',
+        'provisional' => '',
+        'score' => '',
+        'score_std' => '',
+        'total_score' => '',
+        'total_score_std' => '',
+    ],
+
     'voting' => [
+        'host_link' => '',
+        'judge_link' => '',
+        'judged_notice' => '',
         'login_required' => '',
         'over' => '',
         'show_voted_only' => '',
@@ -31,29 +59,40 @@ return [
         'progress' => [
             '_' => '',
         ],
+
+        'requirement' => [
+            'playlist_beatmapsets' => [
+                'incomplete_play' => '',
+            ],
+        ],
     ],
+
     'entry' => [
         '_' => '',
         'login_required' => '',
         'silenced_or_restricted' => '',
         'preparation' => '',
         'drop_here' => '',
+        'allowed_extensions' => '',
+        'max_size' => '',
+        'required_dimensions' => '',
         'download' => '',
-        'wrong_type' => [
-            'art' => '',
-            'beatmap' => '',
-            'music' => '',
-        ],
+        'wrong_file_type' => '',
+        'wrong_dimensions' => '',
         'too_big' => '',
     ],
+
     'beatmaps' => [
         'download' => '',
     ],
+
     'vote' => [
         'list' => '',
         'count' => '',
         'points' => '',
+        'points_float' => '',
     ],
+
     'dates' => [
         'ended' => '',
         'ended_no_date' => '',
@@ -63,9 +102,16 @@ return [
             'soon' => '',
         ],
     ],
+
     'states' => [
         'entry' => '',
         'voting' => '',
         'results' => '',
+    ],
+
+    'show' => [
+        'admin' => [
+            'page' => '',
+        ],
     ],
 ];

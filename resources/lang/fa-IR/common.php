@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => '',
         'authorise' => '',
         'authorising' => '',
+        'back' => '',
         'back_to_previous' => '',
         'back_to_top' => '',
         'cancel' => '',
@@ -39,11 +39,13 @@ return [
         'pin' => '',
         'post' => '',
         'read_more' => '',
+        'refresh' => '',
         'reply' => '',
         'reply_reopen' => '',
         'reply_resolve' => '',
         'reset' => '',
         'restore' => '',
+        'retry' => 'تلاش دوباره',
         'save' => '',
         'saving' => '',
         'search' => '',
@@ -74,6 +76,7 @@ return [
         'minutes' => '',
         'months' => '',
         'notifications' => '',
+        'player' => '',
         'plus_others' => '',
         'post' => '',
         'second_short_unit' => '',
@@ -91,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => '',
+        ],
+        'year' => [
+            'php' => '',
+        ],
         'year_month' => [
             'moment' => '',
             'php' => '',

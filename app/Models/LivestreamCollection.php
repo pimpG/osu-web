@@ -12,13 +12,21 @@ use GuzzleHttp\Client;
 class LivestreamCollection
 {
     const FEATURED_CACHE_KEY = 'featuredStream:arr:v2';
+    const FEATURED_DATA_CACHE_KEY = 'featuredStream:data';
 
     private $streams;
     private $token;
 
     public static function promote($id)
     {
+        if (empty($id)) {
+            Cache::forget(static::FEATURED_CACHE_KEY);
+            Cache::forget(static::FEATURED_DATA_CACHE_KEY);
+            return;
+        }
+
         Cache::forever(static::FEATURED_CACHE_KEY, (string) $id);
+        Cache::forget(static::FEATURED_DATA_CACHE_KEY);
     }
 
     public function all()
@@ -41,8 +49,12 @@ class LivestreamCollection
 
     public function download($api)
     {
-        $token = $this->token();
+        $clientId = $GLOBALS['cfg']['osu']['twitch_client_id'];
+        if ($clientId === null) {
+            return;
+        }
 
+        $token = $this->token();
         if (empty($token)) {
             log_error(new Exception('failed getting token'));
 
@@ -52,7 +64,7 @@ class LivestreamCollection
         try {
             $response = (new Client(['base_uri' => 'https://api.twitch.tv/helix/']))
                 ->request('GET', $api, ['headers' => [
-                    'Client-Id' => config('osu.twitch_client_id'),
+                    'Client-Id' => $clientId,
                     'Authorization' => "Bearer {$token['access_token']}",
                 ]])
                 ->getBody()
@@ -68,15 +80,27 @@ class LivestreamCollection
 
     public function featured()
     {
-        $featuredStreamId = presence((string) Cache::get(static::FEATURED_CACHE_KEY));
+        $cacheValues = Cache::many([static::FEATURED_DATA_CACHE_KEY, static::FEATURED_CACHE_KEY]);
+        $cachedStream = $cacheValues[static::FEATURED_DATA_CACHE_KEY];
+        $featuredStreamId = presence((string) $cacheValues[static::FEATURED_CACHE_KEY]);
 
-        if ($featuredStreamId !== null) {
-            foreach ($this->all() as $stream) {
-                if ($stream->data['id'] === $featuredStreamId) {
-                    return $stream;
-                }
+        if ($cachedStream !== null) {
+            return $cachedStream;
+        }
+
+        if ($featuredStreamId === null) {
+            return null;
+        }
+
+        foreach ($this->all() as $stream) {
+            if ($stream->data['id'] === $featuredStreamId) {
+                Cache::put(static::FEATURED_DATA_CACHE_KEY, $stream, 300);
+                return $stream;
             }
         }
+
+        Cache::forget(static::FEATURED_CACHE_KEY);
+        return null;
     }
 
     public function token()
@@ -85,8 +109,8 @@ class LivestreamCollection
             try {
                 $response = (new Client(['base_uri' => 'https://id.twitch.tv']))
                     ->request('POST', '/oauth2/token', ['query' => [
-                        'client_id' => config('osu.twitch_client_id'),
-                        'client_secret' => config('osu.twitch_client_secret'),
+                        'client_id' => $GLOBALS['cfg']['osu']['twitch_client_id'],
+                        'client_secret' => $GLOBALS['cfg']['osu']['twitch_client_secret'],
                         'grant_type' => 'client_credentials',
                     ]])
                     ->getBody()

@@ -5,44 +5,43 @@
 
 return [
     'index' => [
-        'description' => '',
-        'nav_title' => '',
-        'title' => 'پک بیتمپ ها',
+        'description' => 'مجموعه بیتمپ های از پیش بسته بندی شده در مورد یک سبک/ژانر محبوب.',
+        'empty' => 'بزودی!',
+        'nav_title' => 'فهرست',
+        'title' => 'بسته بیت مپ ها',
 
         'blurb' => [
             'important' => '***قبل از دانلود این را بخوانید***',
-            'instruction' => [
-                '_' => "",
-                'scary' => '',
-            ],
-            'note' => [
-                '_' => '',
-                'scary' => '',
-            ],
+            'install_instruction' => 'نصب: هر گاه یک پک دانلود شد، محتویات آن را به پوشه songs در osu! بازگشایی کنید و بقیه کار را به osu! بسپارید.',
         ],
     ],
 
     'show' => [
-        'download' => '',
+        'created_by' => '',
+        'download' => 'دانلود',
+        'no_diff_reduction_badge' => '',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'پاک شده',
+            'not_cleared' => 'پاک نشده',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => 'ممکن است :link برای پاکسازی این پک استفاده نشود.',
+            'link' => 'ماد های کاهش سختی',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
-        'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'artist' => 'آلبوم/هنرمند',
+        'chart' => 'برجسته ها',
+        'featured' => 'آرتیست ویژه',
+        'loved' => 'پروژهٔ Loved',
+        'standard' => 'استاندارد',
+        'theme' => 'تم',
+        'tournament' => 'تورنومنت',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'شما باید :link تا بتوانید دانلود کنید',
+        'link_text' => 'وارد شده باشید',
     ],
 ];

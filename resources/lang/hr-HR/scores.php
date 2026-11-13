@@ -5,25 +5,31 @@
 
 return [
     'show' => [
-        'title' => '',
+        'non_preserved' => '',
+        'title' => ':username na :title [:version]',
 
         'beatmap' => [
-            'by' => '',
+            'by' => 'od :artist',
         ],
 
         'player' => [
-            'by' => '',
-            'submitted_on' => '',
+            'by' => 'Odigrao',
+            'played_on' => '',
+            'submitted_on' => 'Podneseno na',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
-                'country' => '',
-                'global' => '',
+                'country' => 'Rang u državi',
+                'global' => 'Globalni rang',
             ],
         ],
     ],
 
     'status' => [
-        'non_best' => '',
-        'processing' => '',
+        'non_best' => 'Samo najbolji osobni rezultati nagrađuju pp',
+        'no_pp' => '',
+        'processing' => 'Ovaj rezultat se još uvijek izračunava i uskoro će biti prikazan',
+        'no_rank' => '',
     ],
 ];

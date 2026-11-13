@@ -26,6 +26,9 @@ return [
         'placeholder' => 'skriv för att söka',
         'title' => 'sök',
 
+        'artist_track' => [
+            'more_simple' => 'Se fler sökresultat av utvalda artistlåtar',
+        ],
         'beatmapset' => [
             'login_required' => 'Logga in för att söka efter beatmaps',
             'more' => ':count fler sökresultat på beatmaps',
@@ -43,6 +46,7 @@ return [
             'label' => [
                 'forum' => 'sök i forumen',
                 'forum_children' => 'inkludera subforum',
+                'include_deleted' => 'inkludera raderade inlägg',
                 'topic_id' => 'ämne #',
                 'username' => 'författare',
             ],
@@ -50,10 +54,17 @@ return [
 
         'mode' => [
             'all' => 'alla',
+            'artist_track' => 'utvalda artistlåtar',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
+            'team' => 'lag',
             'user' => 'spelare',
             'wiki_page' => 'wiki',
+        ],
+
+        'team' => [
+            'login_required' => '',
+            'more_simple' => 'Se fler lag sökresultat',
         ],
 
         'user' => [
@@ -72,8 +83,19 @@ return [
     ],
 
     'download' => [
-        'tagline' => "låt oss<br>få dig igång!",
-        'action' => 'Ladda ner osu!',
+        'action_lazer_info' => 'se denna sida för mer information',
+        'download' => 'Hämta',
+        'for_os' => 'för :os',
+        'macos-fallback' => 'macOS-användare',
+        'mirror' => 'mirror',
+        'or' => 'eller',
+        'os_version_or_later' => ':os_version eller senare',
+        'other_os' => 'andra plattformar',
+        'quick_start_guide' => 'snabbstartsguide',
+        'stable_text' => 'om du letar efter den äldre',
+        'tagline_1' => 'låt oss få dig',
+        'tagline_2' => 'startad!',
+        'video-guide' => 'videoguide',
 
         'help' => [
             '_' => 'om du har problem med att starta spelet eller registrera ett konto, :help_forum_link eller :support_button.',
@@ -86,8 +108,6 @@ return [
             'macos' => 'för macOS',
             'linux' => 'för Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS-användare',
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
@@ -105,7 +125,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => 'videoguide',
     ],
 
     'user' => [
@@ -122,25 +141,24 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => 'Daglig utmaning Beatmap',
             'new' => 'Nya rankade beatmaps',
             'popular' => 'Populära beatmaps',
             'by_user' => 'av :user',
+            'resets' => 'återställer :ends',
         ],
         'buttons' => [
             'download' => 'Ladda ner osu!',
             'support' => 'Stötta osu!',
             'store' => 'osu!store',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'Det ser ut som att du har kul! :D',
-        'body' => [
-            'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som stöttar utvecklingen och kostnader för underhåll?',
-            'part-2' => 'Visste du också att när du stöttar osu! så får du en hel drös användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller är i flerspelarläge?',
+        'livestream' => [
+            'title' => '',
         ],
-        'find-out-more' => 'Klicka här för att ta reda på mer!',
-        'download-starting' => "Åh, och oroa dig inte - din nedladdning har redan startats åt dig ;)",
+        'show' => [
+            'admin' => [
+                'page' => 'Öppna administratörskonsol',
+            ],
+        ],
     ],
 ];

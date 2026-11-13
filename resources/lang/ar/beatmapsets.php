@@ -11,17 +11,27 @@ return [
         'rule_violation' => 'تمت إزالة بعض المحتويات من هذه الخريطة بعد معرفة آنها غير ملائمة لـosu!.',
     ],
 
+    'cover' => [
+        'deleted' => 'خريطة محذوفة',
+    ],
+
     'download' => [
         'limit_exceeded' => 'تَمهل, ألعب أكثر.',
+        'no_mirrors' => 'لا يوجد خوادم تحميل متاحة.',
     ],
 
     'featured_artist_badge' => [
-        'label' => '',
+        'label' => 'الفنانين المميزين',
     ],
 
     'index' => [
         'title' => 'قائمة الخرائط',
         'guest_title' => 'الخرائط',
+    ],
+
+    'ogp' => [
+        'favourites' => '',
+        'playcount' => '',
     ],
 
     'panel' => [
@@ -32,19 +42,26 @@ return [
             'video' => 'تنزيل مع الفيديو',
             'no_video' => 'تنزيل بدون فيديو',
             'direct' => 'فتح في osu!direct',
+            'lazer' => '',
         ],
     ],
 
     'nominate' => [
+        'bng_limited_too_many_rulesets' => 'لا يمكن للمرشِّح تحت فترة التجربة ترشيح عدة قواعد.',
+        'full_nomination_required' => 'عليك أن تكون مرشِّحاً مكتملاً من أجل الترشيح النهائي لقاعدة.',
         'hybrid_requires_modes' => 'تحتاج الخرائط الهجينة إلى تحديد وضع تشغيل واحد على الأقل لِتَرشيحِها.',
-        'incorrect_mode' => 'ليس لديك الصلاحيّات الكافية للترشيح للوضوع: :mode',
-        'full_bn_required' => 'يجب أن تكون مرشحا كاملا لأداء هذا الترشيح المؤهل.',
-        'too_many' => 'تم بالفعل استيفاء شرط الترشيح.',
+        'incorrect_mode' => 'ليس لديك الصلاحيّات للترشيح للوضع: :mode',
+        'invalid_limited_nomination' => 'لخريطة الإيقاع هذه ترشيحات لاغية تمنع تأهيلها حالياً.',
+        'invalid_ruleset' => 'يشمل هذا الترشيح أنماط لاغية.',
+        'too_many' => 'تم استيفاء متطلبات الترشيح بالفعل.',
+        'too_many_non_main_ruleset' => 'تم استيفاء متطلبات الترشيح الخاصة بنمط اللعب غير الأساسي بالفعل.',
 
         'dialog' => [
             'confirmation' => 'هل أنت متأكد من أنك تريد ترشيح هذه الخريطة؟',
+            'different_nominator_warning' => 'تأهيل هذه الخريطة بواسطة مرشحين مختلفين سيؤدي إلى إعادة تعيين موقعها في قائمة الانتظار للتأهيل.',
             'header' => 'ترشيح خريطة',
             'hybrid_warning' => 'ملاحظة: يمكنك أن ترشح مرة واحدة فقط، لذا يرجى التأكد من أنك ترشح لجميع أنماط اللعبة التي تنويها',
+            'current_main_ruleset' => 'النمط الرئيسي حالياً: :ruleset',
             'which_modes' => 'ترشيح لأي وضع؟',
         ],
     ],
@@ -53,8 +70,22 @@ return [
         'label' => 'حَساس',
     ],
 
+    'rate' => [
+        'invalid' => '',
+    ],
+
     'show' => [
         'discussion' => 'مناقشة',
+
+        'admin' => [
+            'full_size_cover' => 'عرض صورة الغلاف بحجمها الكامل',
+            'page' => 'عرض صفحة الإدارة',
+        ],
+
+        'deleted_banner' => [
+            'title' => 'تم حذف هذه الخريطة.',
+            'message' => '(يمكن للمشرفين فقط رؤية هذا)',
+        ],
 
         'details' => [
             'by_artist' => 'بواسطة :artist',
@@ -62,12 +93,14 @@ return [
             'favourite_login' => 'قم بتسجيل الدخول لتفضيل هذه الخريطة',
             'logged-out' => 'تحتاج إلى تسجيل الدخول قبل تنزيل أي خريطة!',
             'mapped_by' => 'نشأت بواسطة :mapper',
+            'mapped_by_guest' => 'صعوبة إضافية بواسطة :mapper',
             'unfavourite' => 'إلغاء تفضيل هذه الخريطة',
             'updated_timeago' => 'آخر تحديث :timeago',
 
             'download' => [
                 '_' => 'تنزيل',
                 'direct' => '',
+                'lazer' => '',
                 'no-video' => 'دون الفيديو',
                 'video' => 'مع الفيديو',
             ],
@@ -80,9 +113,9 @@ return [
 
         'details_date' => [
             'approved' => 'مقبولة :timeago',
-            'loved' => 'محبوب timeago:',
+            'loved' => 'loved :timeago',
             'qualified' => 'مؤهل timeago:',
-            'ranked' => 'مصفوفة :timeago',
+            'ranked' => 'ranked :timeago',
             'submitted' => 'مُقدَمَة :timeago',
             'updated' => 'آخر تحديث :timeago',
         ],
@@ -92,7 +125,7 @@ return [
         ],
 
         'hype' => [
-            'action' => 'اَشِد هذه الخريطة ان احببت لعبها لمساعدتها لاِحتلال حالة <strong>التصفيف</strong>.',
+            'action' => 'إذا أعجبتك خريطة الإيقاع هذه أثناء اللعب، قم بدعمها (Hype) للمساعدة في وصولها إلى حالة <strong>Ranked</strong>.',
 
             'current' => [
                 '_' => 'هذه الخريطة حاليا :status.',
@@ -119,14 +152,29 @@ return [
             'description' => 'الوصف',
             'genre' => 'النوع',
             'language' => 'اللغة',
+            'mapper_tags' => 'وسوم صانع الخريطة',
             'no_scores' => 'لا تزال البيانات تُحسب...',
+            'nominators' => 'المُرَشِحون',
             'nsfw' => 'محتوى حساس',
+            'offset' => 'الإزاحة عبر الإنترنت',
+            'pack_tags' => 'حزم الخرائط',
             'points-of-failure' => 'نقاط الفشل',
             'source' => 'المصدر',
             'storyboard' => 'تحتوي هذه الخريطة على لوحة قصصية',
             'success-rate' => 'معدل النجاح',
-            'tags' => 'العلامات',
+            'success_rate_plays' => '',
+            'user_tags' => 'وسوم المستخدم',
             'video' => 'تحتوي هذه الخريطة على فيديو',
+        ],
+
+        'lazer_only' => [
+            'title' => '',
+            'description' => '',
+
+            'scoreboard_switch_mode' => [
+                '_' => '',
+                'enable_link' => '',
+            ],
         ],
 
         'nsfw_warning' => [
@@ -143,22 +191,25 @@ return [
         'scoreboard' => [
             'achieved' => 'احتُلت عند :when',
             'country' => 'ترتيب الدولة',
+            'error' => 'فشل تحميل الترتيب',
             'friend' => 'ترتيب الأصدقاء',
             'global' => 'الترتيب العالمي',
             'supporter-link' => 'اضغط <a href=":link">هنا</a> لمشاهدة كل الميزات الرائعة التي تحصل عليها!',
             'supporter-only' => 'تحتاج ان تكون osu!supporter للوصول الى ترتيب الدولة والأصدقاء!',
+            'team' => 'ترتيب الفريق',
             'title' => 'لوح النتائج',
 
             'headers' => [
                 'accuracy' => 'الدقة',
-                'combo' => 'اقصى مجموع',
+                'combo' => 'اقصى كومبو',
                 'miss' => 'اِخفاق',
                 'mods' => 'المودات',
+                'pin' => 'ثبّت',
                 'player' => 'اللاعب',
                 'pp' => '',
                 'rank' => 'المرتبه',
-                'score_total' => 'مجموع النقاط',
                 'score' => 'المجموع',
+                'score_total' => 'مجموع النقاط',
                 'time' => 'الوقت',
             ],
 
@@ -167,11 +218,16 @@ return [
                 'friend' => 'لا احد من اصدقائك حصل على نتيجة بهذه الخريطة بعد!',
                 'global' => 'لا نتيجة بعد. ربما عليك الحصول على واحدة؟',
                 'loading' => 'جارِ تحميل النتائج...',
-                'unranked' => 'خريطة غير مصنفة.',
+                'team' => 'لم يسجل أي أحد من فريقك نتيجة على هذه الخريطة بعد!',
+                'unranked' => 'خريطة ليست مصنّفة.',
             ],
             'score' => [
                 'first' => 'في المقدمة',
                 'own' => 'أفضل ما لديك',
+            ],
+            'supporter_link' => [
+                '_' => 'انقر :here لرؤية جميع الميزات الرائعة التي ستحصل عليها!',
+                'here' => 'هنا',
             ],
         ],
 
@@ -183,23 +239,30 @@ return [
             'ar' => 'معدل الوصول',
             'stars' => 'نجوم الصعوبة',
             'total_length' => 'الطول',
-            'bpm' => 'نبضات في الدقيقة',
+            'bpm' => 'BPM',
             'count_circles' => 'عدد الدوائر',
             'count_sliders' => 'عدد المنزلقات',
+            'offset' => 'الإزاحة على الإنترنت: :offset',
             'user-rating' => 'تصنيف المستخدم',
             'rating-spread' => 'انتشار التصنيف',
             'nominations' => 'الترشيحات',
             'playcount' => 'مرات اللعب',
+            'favourites' => 'المفضلات',
+            'no_favourites' => 'لا توجد مفضلات بعد',
         ],
 
         'status' => [
-            'ranked' => 'مقيّمة',
+            'ranked' => 'Ranked',
             'approved' => 'مقبولة',
-            'loved' => 'محبوبة',
+            'loved' => 'Loved',
             'qualified' => 'مؤهلة',
             'wip' => 'جارية',
             'pending' => 'معلقة',
             'graveyard' => 'مقبورة',
         ],
+    ],
+
+    'spotlight_badge' => [
+        'label' => 'تسليط الضوء',
     ],
 ];

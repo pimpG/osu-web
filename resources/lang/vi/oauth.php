@@ -7,6 +7,7 @@ return [
     'cancel' => 'Hủy',
 
     'authorise' => [
+        'app_owner' => 'một ứng dụng bởi :owner',
         'request' => 'yêu cầu quyền truy cập vào tài khoản của bạn.',
         'scopes_title' => 'Ứng dụng này sẽ được:',
         'title' => 'Yêu Cầu Ủy Quyền',
@@ -56,6 +57,12 @@ return [
         'revoked' => [
             'false' => 'Xóa',
             'true' => 'Đã xóa',
+        ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
         ],
     ],
 ];

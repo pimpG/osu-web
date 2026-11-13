@@ -5,9 +5,20 @@
 
 return [
     'countries' => [
-        'all' => 'Svi
+        'all' => 'Sve
 ',
-        'title' => 'Zemlje',
+        'title' => 'Država',
+    ],
+
+    'daily_challenge' => [
+        'beatmap' => '',
+        'theme' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
     ],
 
     'filter' => [
@@ -15,16 +26,64 @@ return [
 ',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Varijanta',
         ],
     ],
 
-    'type' => [
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
         'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
+    'type' => [
         'country' => 'države',
-        'multiplayer' => 'multiplayer',
-        'performance' => 'izvedba',
-        'score' => 'bodovi',
+        'daily_challenge' => '',
+        'global' => '',
+        'kudosu' => '',
+        'matchmaking' => '',
+        'playlists' => '',
+        'team' => '',
+        'top_plays' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'summary' => '',
+        'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -37,7 +96,9 @@ return [
     'stat' => [
         'accuracy' => 'Preciznost',
         'active_users' => 'Aktivni Korisnici',
-        'country' => 'Zemlje',
+        'country' => 'Države',
+        'division' => '',
+        'members' => '',
         'play_count' => 'Broj Igranja',
         'performance' => 'Izvedba',
         'total_score' => 'Ukupni Bodovi',

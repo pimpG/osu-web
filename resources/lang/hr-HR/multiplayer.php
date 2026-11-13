@@ -4,19 +4,33 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '',
+    'empty' => [
+        'active' => '',
+        'ended' => '',
+        'playlists' => 'popis za reprodukciju',
+        'ranked-play' => '',
+        'realtime' => 'multiplayer',
+    ],
 
     'room' => [
-        'hosted_by' => '',
-        'invalid_password' => '',
-        'map_count' => '',
-        'player_count' => '',
-        'time_left' => '',
+        'hosted_by' => 'hostano od :user',
+        'invalid_password' => 'Nevažeća lozinka sobe',
+        'map_count' => ':count_delimited mapa|:count_delimited mape',
+        'player_count' => ':count_delimited igrač|:count_delimited igrača',
+        'time_left' => 'preostalo :time',
+        'view_history' => '',
+        'view_summary' => '',
+
+        'errors' => [
+            'duration_too_long' => 'Trajanje je predugo.',
+            'name_too_long' => '',
+            'too_many_playlist_items' => '',
+        ],
 
         'status' => [
-            'active' => '',
-            'ended' => '',
-            'soon' => '',
+            'active' => 'aktivno',
+            'ended' => 'završeno',
+            'soon' => 'uskoro završava',
         ],
     ],
 ];

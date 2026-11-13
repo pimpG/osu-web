@@ -10,7 +10,7 @@ namespace App\Models;
  * @property int $beatmapset_id
  * @property \Carbon\Carbon|null $created_at
  * @property int $id
- * @property array $modes
+ * @property ?array $modes
  * @property bool $reset
  * @property \Carbon\Carbon|null $reset_at
  * @property User|null $reset_by
@@ -23,6 +23,7 @@ class BeatmapsetNomination extends Model
 {
     protected $casts = [
         'modes' => 'array',
+        'reset' => 'bool',
     ];
 
     public function beatmapset()
@@ -30,9 +31,9 @@ class BeatmapsetNomination extends Model
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
-    public function scopeCurrent($query)
+    public function scopeCurrent($query, bool $current = true)
     {
-        return $query->where('reset', false);
+        return $query->where('reset', !$current);
     }
 
     public function resetBy()
@@ -43,5 +44,17 @@ class BeatmapsetNomination extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getModesAttribute(): ?array
+    {
+        $json = $this->getArray('modes');
+        return $json === null || array_is_list($json) ? $json : array_keys($json);
+    }
+
+    public function getNominationLevel(): ?array
+    {
+        $json = $this->getArray('modes');
+        return $json === null || array_is_list($json) ? null : $json;
     }
 }

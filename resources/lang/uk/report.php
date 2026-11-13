@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Поскаржитись',
+        'title' => 'Поскаржитись на мапу :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -24,9 +24,19 @@ return [
         'title' => 'Поскаржитись на пост :username?',
     ],
 
+    'message' => [
+        'button' => 'Поскаржитись на повідомлення',
+        'title' => 'Поскаржитись на повідомлення користувача :username?',
+    ],
+
     'scores' => [
         'button' => 'Поскаржитись на гру',
         'title' => 'Поскаржитись на гру :username?',
+    ],
+
+    'team' => [
+        'button' => 'Поскаржитись на команду',
+        'title' => 'Поскаржитись на команду користувача :username?',
     ],
 
     'user' => [

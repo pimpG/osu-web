@@ -10,15 +10,25 @@ return [
 
         'avatar' => [
             'title' => 'الصورة الشخصية',
-            'rules' => 'يرجى التأكد من ان صورتك تلتزم بـ:link<br/>هذا يعني انه يجب ان تكون <strong>مناسبة لجميع الأعمار</strong>. أي بلا تعري أو الفاظ نابية أو محتوى عنيف.',
-            'rules_link' => 'قوانين المجتمع',
+            'reset' => 'إعادة تعيين',
+            'rules' => 'يرجى التأكد من ان صورتك تلتزم بـ:link<br/>هذا يعني انه يجب ان تكون <strong>مناسبة لجميع الأعمار</strong>. أي لا يسمح بالعري، أو المحتوى المسيء أو الإيحائي.',
+            'rules_link' => 'قوانين المحتوى المرئي',
         ],
 
         'email' => [
-            'current' => 'البريد الإلكتروني الحالي',
             'new' => 'بريد إلكتروني جديد',
             'new_confirmation' => 'تأكيد البريد الإلكتروني',
             'title' => 'البريد الإلكتروني',
+            'locked' => [
+                '_' => 'الرجاء التواصل مع :accounts إذا احتجت إلى تحديث بريدك الإلكتروني.',
+                'accounts' => 'فريق دعم الحسابات',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'واجهة برمجة التطبيقات',
+            'irc' => 'بروتوكول الدردشة',
+            'title' => 'واجهة برمجة التطبيقات القديمة',
         ],
 
         'password' => [
@@ -29,7 +39,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'الدولة',
             'title' => 'الملف الشخصي',
+
+            'country_change' => [
+                '_' => "يبدو أن بلد حسابك لا يتطابق مع بلد إقامتك. :update_link.",
+                'update_link' => 'التحديث إلى :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,24 +63,53 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "إذا كنت من مساهمي مستودعات osu! مفتوحة المصدر، فإن ربط حساب GitHub الخاص بك هنا سيربط إدخالات سجل التغييرات مع ملفك الشخصي على osu! لا يمكن ربط حسابات GitHub التي لم تساهم قبلًا في osu!.",
+        'link' => 'ربط حساب GitHub',
+        'title' => 'GitHub',
+        'unlink' => 'إلغاء ربط حساب GitHub',
+
+        'error' => [
+            'already_linked' => 'حساب GitHub هذا مرتبط بالفعل بمستخدم مختلف.',
+            'no_contribution' => 'لا يمكن ربط حساب GitHub بلا أي مساهمات مسبقة في مستودعات osu!.',
+            'unverified_email' => 'الرجاء تأكيد بريدك الإلكتروني الأساسي على GitHub، ثم محاولة ربط حسابك مرة أخرى.',
+        ],
+    ],
+
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => 'تلقي إشعارات عن مشاكل جديدة في الخرائط المؤهلة على الأنماط التالية',
         'beatmapset_disqualify' => 'تلقي إشعارات عندما تكون الخرائط للأنماط التالية غير مؤهلة',
         'comment_reply' => 'تلقي إشعارات الردود على تعليقاتك',
+        'news_post' => 'تلقي إشعارات عند نشر الأخبار',
         'title' => 'الإشعارات',
         'topic_auto_subscribe' => 'تمكين الإشعارات تلقائياً حول مواضيع المنتدى الجديدة التي تنشئها',
 
         'options' => [
             '_' => 'خيارات التوصيل',
-            'beatmap_owner_change' => 'صعوبة ضيف',
+            'beatmap_owner_change' => 'صعوبة الضيف',
             'beatmapset:modding' => 'اقتراحات الخريطة',
+            'channel_mention' => 'ذكر في الدردشة',
             'channel_message' => 'الرسائل الخاصة',
+            'channel_team' => 'دردشة الفريق',
             'comment_new' => 'تعليقات جديدة',
             'forum_topic_reply' => 'رد الموضوع',
             'mail' => 'البريد',
             'mapping' => 'مُنشئ خرائط',
+            'news_post' => 'منشورات الأخبار',
             'push' => 'دفع',
-            'user_achievement_unlock' => 'تم فتح ميدالية المستخدم',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -75,6 +120,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => 'إخفاء تحذيرات للمحتوى الحساس في الخرائط',
         'beatmapset_title_show_original' => 'إظهار بيانات تعريف الخرائط باللغة الأصلية',
         'title' => 'الخيارات',
@@ -83,11 +129,13 @@ return [
             '_' => 'نوع تحميل الخريطة الافتراضي',
             'all' => 'مع الفيديو إذا كان متاحا',
             'direct' => 'فتح في osu!direct',
+            'lazer' => '',
             'no_video' => 'دون الفيديو',
         ],
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'لوحة المفاتيح',
         'mouse' => 'الفأرة',
         'tablet' => 'لوحة وقلم رقمي',
@@ -97,7 +145,9 @@ return [
 
     'privacy' => [
         'friends_only' => 'حظر الرسائل الخاصة من الأشخاص غير المدرجين في قائمة اصدقائك',
+        'friends_only_info' => '',
         'hide_online' => 'إخفاء وجودك على الموقع',
+        'hide_online_info' => 'هذا يرتبط بوضع "الظهور دون اتصال" في osu!lazer',
         'title' => 'الخصوصية',
     ],
 
@@ -116,6 +166,21 @@ return [
 
     'update_password' => [
         'update' => 'تحديث',
+    ],
+
+    'user_totp' => [
+        'title' => 'تطبيق المصادقة',
+        'usage_note' => 'استخدم تطبيق المصادقة بدلًا من البريد الإلكتروني للتحقق. سيظل التحقق عبر البريد الإلكتروني متاحًا كخيار احتياطي.',
+
+        'button' => [
+            'remove' => 'إزالة',
+            'setup' => 'إضافة تطبيق المصادقة',
+        ],
+        'status' => [
+            'label' => 'الحالة',
+            'not_set' => 'لم يتم تكوينه',
+            'set' => 'مُكوَّن',
+        ],
     ],
 
     'verification_completed' => [

@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Yönetici',
         'authorise' => 'Yetki ver',
         'authorising' => 'İzin Veriliyor...',
+        'back' => 'Geri',
         'back_to_previous' => 'Bir önceki pozisyona dön',
         'back_to_top' => 'Yukarıya geri dön',
         'cancel' => 'İptal',
@@ -39,11 +39,13 @@ return [
         'pin' => 'sabitle',
         'post' => 'Gönder',
         'read_more' => 'daha fazlası',
+        'refresh' => 'Yenile',
         'reply' => 'Cevapla',
         'reply_reopen' => 'Cevapla ve Yeniden Aç',
         'reply_resolve' => 'Yanıtla ve Çözümle',
         'reset' => 'Sıfırla',
         'restore' => 'Restore et',
+        'retry' => 'Yeniden dene',
         'save' => 'Kaydet',
         'saving' => 'Kaydediliyor...',
         'search' => 'Arama',
@@ -74,6 +76,7 @@ return [
         'minutes' => ':count_delimited dakika|:count_delimited dakika',
         'months' => ':count_delimited ay|:count_delimited ay',
         'notifications' => ':count_delimited bildirim|:count_delimited bildirim',
+        'player' => ':count_delimited oyuncu|:count_delimited oyuncu',
         'plus_others' => '+ :count_delimited tane daha!|+ :count_delimited tane daha!',
         'post' => ':count_delimited gönderi|:count_delimited gönderi',
         'second_short_unit' => 'sn|sn',
@@ -91,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => ' ay',
+        ],
+        'year' => [
+            'php' => ' yıl',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

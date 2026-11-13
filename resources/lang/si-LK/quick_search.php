@@ -5,17 +5,29 @@
 
 return [
     'mode' => [
+        'artist_track' => '',
         'beatmapset' => '',
         'forum_post' => '',
         'other' => '',
+        'team' => '',
         'user' => '',
         'wiki_page' => '',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
         'more' => '',
         'title' => '',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

@@ -21,8 +21,12 @@ return [
 
     'beatmapset_status' => [
         'approved' => 'jóváhagyott',
-        'loved' => 'szerettve',
+        'loved' => 'kedvelt',
         'qualified' => 'kvalifikált',
         'ranked' => 'rangsorolt',
+    ],
+
+    'value' => [
+        'rank' => ':rank. helyezés',
     ],
 ];

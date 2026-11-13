@@ -4,6 +4,12 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'invalid_ruleset' => '',
+
+    'change_owner' => [
+        'too_many' => '',
+    ],
+
     'discussion-votes' => [
         'update' => [
             'error' => '',
@@ -20,17 +26,21 @@ return [
         'edited' => '',
         'guest' => '',
         'kudosu_denied' => '',
+        'include_replies' => '',
         'message_placeholder_deleted_beatmap' => '',
         'message_placeholder_locked' => '',
         'message_placeholder_silenced' => "",
         'message_type_select' => '',
         'reply_notice' => '',
+        'reply_resolve_notice' => '',
         'reply_placeholder' => '',
         'require-login' => '',
         'resolved' => '',
         'restore' => '',
         'show_deleted' => '',
+        'show_other_replies' => '',
         'title' => '',
+        'unresolved_count' => '',
 
         'collapse' => [
             'all-collapse' => '',
@@ -73,6 +83,19 @@ return [
             'nomination_reset' => '',
             'praise' => '',
             'problem' => '',
+            'problem_warning' => '',
+            'review' => '',
+            'suggestion' => '',
+        ],
+
+        'message_type_title' => [
+            'disqualify' => '',
+            'hype' => '',
+            'mapper_note' => '',
+            'nomination_reset' => '',
+            'praise' => '',
+            'problem' => '',
+            'problem_warning' => '',
             'review' => '',
             'suggestion' => '',
         ],
@@ -109,6 +132,7 @@ return [
                 ],
             ],
             'insert-block' => [
+                'mapper_note' => '',
                 'paragraph' => '',
                 'praise' => '',
                 'problem' => '',
@@ -174,6 +198,8 @@ return [
     ],
 
     'nominations' => [
+        'already_nominated' => '',
+        'cannot_nominate' => '',
         'delete' => '',
         'delete_own_confirm' => '',
         'delete_other_confirm' => '',
@@ -198,6 +224,9 @@ return [
 
         'rank_estimate' => [
             '_' => '',
+            'unresolved_problems' => '',
+            'problems' => '',
+            'on' => '',
             'queue' => '',
             'soon' => '',
         ],
@@ -208,8 +237,9 @@ return [
         ],
 
         'reset_confirm' => [
-            'nomination_reset' => '',
             'disqualify' => '',
+            'nomination_reset' => '',
+            'problem_warning' => '',
         ],
     ],
 
@@ -218,6 +248,7 @@ return [
             'prompt' => '',
             'login_required' => '',
             'options' => '',
+            'rank_filter_note' => '',
             'supporter_filter' => '',
             'not-found' => '',
             'not-found-quote' => '',
@@ -248,6 +279,10 @@ return [
                 '_' => '',
                 'link_text' => '',
             ],
+            'tag_picker' => [
+                'tooltip' => '',
+                'prompt' => '',
+            ],
         ],
     ],
     'general' => [
@@ -255,6 +290,7 @@ return [
         'featured_artists' => '',
         'follows' => '',
         'recommended' => '',
+        'spotlights' => '',
     ],
     'mode' => [
         'all' => '',
@@ -263,6 +299,7 @@ return [
         'taiko' => '',
         'fruits' => '',
         'mania' => '',
+        'undefined' => '',
     ],
     'status' => [
         'any' => '',
@@ -273,6 +310,7 @@ return [
         'loved' => '',
         'mine' => '',
         'pending' => '',
+        'wip' => '',
         'qualified' => '',
         'ranked' => '',
     ],
@@ -291,32 +329,6 @@ return [
         'classical' => '',
         'folk' => '',
         'jazz' => '',
-    ],
-    'mods' => [
-        '4K' => '',
-        '5K' => '',
-        '6K' => '',
-        '7K' => '',
-        '8K' => '',
-        '9K' => '',
-        'AP' => '',
-        'DT' => '',
-        'EZ' => '',
-        'FI' => '',
-        'FL' => '',
-        'HD' => '',
-        'HR' => '',
-        'HT' => '',
-        'MR' => '',
-        'NC' => '',
-        'NF' => '',
-        'NM' => '',
-        'PF' => '',
-        'RX' => '',
-        'SD' => '',
-        'SO' => '',
-        'TD' => '',
-        'V2' => '',
     ],
     'language' => [
         'any' => '',

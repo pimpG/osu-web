@@ -31,6 +31,7 @@ return [
         '_' => '',
         'count' => '',
         'original' => '',
+        'original_badge' => '',
     ],
 
     'tracklist' => [
@@ -38,5 +39,30 @@ return [
         'length' => '',
         'bpm' => '',
         'genre' => '',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => '',
+
+            'exclusive_only' => [
+                'all' => '',
+                'exclusive_only' => '',
+            ],
+
+            'form' => [
+                'advanced' => '',
+                'album' => '',
+                'artist' => '',
+                'bpm_gte' => '',
+                'bpm_lte' => '',
+                'empty' => '',
+                'exclusive_only' => '',
+                'genre' => '',
+                'genre_all' => '',
+                'length_gte' => '',
+                'length_lte' => '',
+            ],
+        ],
     ],
 ];

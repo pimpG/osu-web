@@ -5,27 +5,30 @@
 
 return [
     'landing' => [
-        'download' => '',
-        'online' => '',
-        'peak' => '',
-        'players' => '',
-        'title' => '',
-        'see_more_news' => '',
+        'download' => 'همین حالا دانلود کنید',
+        'online' => '<strong>:players</strong> نفر هم اکنون در <strong>:games</strong> بازی آنلاین هستند',
+        'peak' => 'بالاترین، :count کاربر آنلاین',
+        'players' => '<strong>:count</strong> کاربر ثبت نامی',
+        'title' => 'خوش آمدید',
+        'see_more_news' => 'دیدن خبر های بیشتر',
 
         'slogan' => [
-            'main' => '',
-            'sub' => '',
+            'main' => 'بهترین بازی ریتمی رایگان برای برنده شدن',
+            'sub' => 'ریتم یک کلیک فاصله دارد',
         ],
     ],
 
     'search' => [
-        'advanced_link' => '',
-        'button' => '',
-        'empty_result' => '',
-        'keyword_required' => '',
+        'advanced_link' => 'جستجوی پیشرفته',
+        'button' => 'جستجو',
+        'empty_result' => 'چیزی پیدا نشد!',
+        'keyword_required' => 'یک کلمه کلیدی برای جستجو لازم است',
         'placeholder' => '',
         'title' => '',
 
+        'artist_track' => [
+            'more_simple' => '',
+        ],
         'beatmapset' => [
             'login_required' => '',
             'more' => '',
@@ -43,6 +46,7 @@ return [
             'label' => [
                 'forum' => '',
                 'forum_children' => '',
+                'include_deleted' => '',
                 'topic_id' => '',
                 'username' => '',
             ],
@@ -50,10 +54,17 @@ return [
 
         'mode' => [
             'all' => '',
+            'artist_track' => '',
             'beatmapset' => '',
             'forum_post' => '',
+            'team' => '',
             'user' => '',
             'wiki_page' => '',
+        ],
+
+        'team' => [
+            'login_required' => '',
+            'more_simple' => '',
         ],
 
         'user' => [
@@ -72,8 +83,19 @@ return [
     ],
 
     'download' => [
-        'tagline' => "",
-        'action' => '',
+        'action_lazer_info' => '',
+        'download' => '',
+        'for_os' => '',
+        'macos-fallback' => '',
+        'mirror' => '',
+        'or' => '',
+        'os_version_or_later' => '',
+        'other_os' => '',
+        'quick_start_guide' => '',
+        'stable_text' => '',
+        'tagline_1' => '',
+        'tagline_2' => '',
+        'video-guide' => '',
 
         'help' => [
             '_' => '',
@@ -86,8 +108,6 @@ return [
             'macos' => '',
             'linux' => '',
         ],
-        'mirror' => '',
-        'macos-fallback' => '',
         'steps' => [
             'register' => [
                 'title' => '',
@@ -105,7 +125,6 @@ return [
                 ],
             ],
         ],
-        'video-guide' => '',
     ],
 
     'user' => [
@@ -122,25 +141,24 @@ return [
             ],
         ],
         'beatmaps' => [
+            'daily_challenge' => '',
             'new' => '',
             'popular' => '',
             'by_user' => '',
+            'resets' => '',
         ],
         'buttons' => [
             'download' => '',
             'support' => '',
             'store' => '',
         ],
-    ],
-
-    'support-osu' => [
-        'title' => '',
-        'subtitle' => '',
-        'body' => [
-            'part-1' => '',
-            'part-2' => '',
+        'livestream' => [
+            'title' => '',
         ],
-        'find-out-more' => '',
-        'download-starting' => "",
+        'show' => [
+            'admin' => [
+                'page' => '',
+            ],
+        ],
     ],
 ];

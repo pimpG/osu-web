@@ -13,14 +13,26 @@ return [
     'see_channel' => '前往聊天',
     'verifying' => '請驗證此工作階段以查看通知',
 
-    'filters' => [
+    'action_type' => [
         '_' => '全部',
-        'user' => '個人簡介',
         'beatmapset' => '圖譜',
-        'forum_topic' => '討論區',
-        'news_post' => '最新消息',
         'build' => '版本',
         'channel' => '聊天',
+        'forum_topic' => '論壇',
+        'news_post' => '新聞',
+        'team' => '團隊',
+        'user' => '個人資料',
+    ],
+
+    'filters' => [
+        '_' => '全部',
+        'beatmapset' => '圖譜',
+        'build' => '版本',
+        'channel' => '聊天',
+        'forum_topic' => '討論區',
+        'news_post' => '最新消息',
+        'team' => '團隊',
+        'user' => '個人檔案',
     ],
 
     'item' => [
@@ -37,18 +49,24 @@ return [
                 '_' => '圖譜討論',
                 'beatmapset_discussion_lock' => '已鎖定「:title」的討論',
                 'beatmapset_discussion_lock_compact' => '討論已被鎖定',
-                'beatmapset_discussion_post_new' => ':username 在":title"中發布了新的貼文:":content"',
-                'beatmapset_discussion_post_new_empty' => ':username發布了主題為:title的新貼文',
-                'beatmapset_discussion_post_new_compact' => ':username 的新主題',
+                'beatmapset_discussion_post_new' => ':username 在「:title」中發表了新的貼文：":content"',
+                'beatmapset_discussion_post_new_empty' => ':username發表了主題為:title的新貼文',
+                'beatmapset_discussion_post_new_compact' => ':username 的新主題: 「:content」',
                 'beatmapset_discussion_post_new_compact_empty' => ':username 的新主題',
-                'beatmapset_discussion_review_new' => ':username 在《:title》上發表了新的審閱，问题：:problems，建议：:suggestions，赞：:praises',
-                'beatmapset_discussion_review_new_compact' => ':username 发表了新的审阅，问题：:problems，建议：:suggestions，赞：:praises',
+                'beatmapset_discussion_review_new' => ':username 在「:title」中發表了新的審核，包含:review_counts',
+                'beatmapset_discussion_review_new_compact' => ':username 發表了新的審核，包含:review_counts',
                 'beatmapset_discussion_unlock' => '討論於 ":title" 已解鎖',
                 'beatmapset_discussion_unlock_compact' => '討論已被解鎖',
+
+                'review_count' => [
+                    'praises' => ':count_delimited 個讚',
+                    'problems' => ':count_delimited 個問題',
+                    'suggestions' => ':count_delimited 個建議',
+                ],
             ],
 
             'beatmapset_problem' => [
-                '_' => 'Qualified 圖譜問題',
+                '_' => '合格圖譜問題',
                 'beatmapset_discussion_qualified_problem' => ':username 在「:title」中回報問題：「:content」',
                 'beatmapset_discussion_qualified_problem_empty' => ':username 在「:title」中回報問題',
                 'beatmapset_discussion_qualified_problem_compact' => ':username 回報問題「:content」',
@@ -57,24 +75,24 @@ return [
 
             'beatmapset_state' => [
                 '_' => '圖譜狀態已變更',
-                'beatmapset_disqualify' => '「:title」被取消提名',
+                'beatmapset_disqualify' => '「:title」被取消資格',
                 'beatmapset_disqualify_compact' => '圖譜被取消資格',
-                'beatmapset_love' => '":title" 被提升為 loved',
-                'beatmapset_love_compact' => '圖譜被提升為 loved',
+                'beatmapset_love' => '「:title」被晉升為社群喜愛',
+                'beatmapset_love_compact' => '圖譜晉升為社群喜愛',
                 'beatmapset_nominate' => '「:title」已被提名',
                 'beatmapset_nominate_compact' => '圖譜已被提名',
-                'beatmapset_qualify' => '「:title」已獲得足夠提名并因此進入了上架列隊',
+                'beatmapset_qualify' => '「:title」已獲得足夠的提名，因此進入了上架隊列',
                 'beatmapset_qualify_compact' => '圖譜已進入上架列隊',
                 'beatmapset_rank' => '「:title」已進榜',
                 'beatmapset_rank_compact' => '圖譜已進榜',
-                'beatmapset_remove_from_loved' => '「:title」已從 Loved 中移除',
-                'beatmapset_remove_from_loved_compact' => '圖譜已從 Loved 中移除',
-                'beatmapset_reset_nominations' => '「:title」的提名已被重置',
-                'beatmapset_reset_nominations_compact' => '提名已被重置',
+                'beatmapset_remove_from_loved' => '「:title」已從社群喜愛中移除',
+                'beatmapset_remove_from_loved_compact' => '圖譜已從社群喜愛中移除',
+                'beatmapset_reset_nominations' => '「:title」的提名已被重設',
+                'beatmapset_reset_nominations_compact' => '提名已被重設',
             ],
 
             'comment' => [
-                '_' => '新評論',
+                '_' => '新留言',
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
@@ -86,12 +104,43 @@ return [
         'channel' => [
             '_' => '聊天',
 
+            'announcement' => [
+                '_' => '新增公告',
+
+                'announce' => [
+                    'channel_announcement' => ':username 發表了「:title」',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => ':username 發表的公告',
+                ],
+            ],
+
             'channel' => [
                 '_' => '新訊息',
+
                 'pm' => [
                     'channel_message' => ':username 發表了「:title」',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => '來自 :username',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => '聊天室提及',
+
+                'public' => [
+                    'channel_mention' => ':username 在 :name 提及了您 「:title」',
+                    'channel_mention_compact' => ':username 「:title」',
+                    'channel_mention_group' => '在 :name 中提及',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => '新的團隊訊息',
+
+                'team' => [
+                    'channel_team' => ':username 説 ":title"',
+                    'channel_team_compact' => ':username 説 ":title"',
+                    'channel_team_group' => ':username 說「:title」',
                 ],
             ],
         ],
@@ -100,7 +149,7 @@ return [
             '_' => '更新日誌',
 
             'comment' => [
-                '_' => '新評論',
+                '_' => '新留言',
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
@@ -113,12 +162,19 @@ return [
             '_' => '最新消息',
 
             'comment' => [
-                '_' => '新評論',
+                '_' => '新留言',
 
                 'comment_new' => ':username 在「:title」中評論了 「:content」',
                 'comment_new_compact' => ':username 評論了 「:content」',
                 'comment_reply' => ':username 在「:title」中回覆了「:content」',
                 'comment_reply_compact' => ':username 回覆了「:content」',
+            ],
+
+            'news_post' => [
+                '_' => '新聞（:series）',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
             ],
         ],
 
@@ -132,12 +188,19 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '舊論壇私訊',
+        'team' => [
+            'team_application' => [
+                '_' => '團隊加入請求',
 
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited 則未讀訊息',
+                'team_application_accept' => "你現在是 :title 團隊的成員了",
+                'team_application_accept_compact' => "你現在是 :title 團隊的成員了",
+
+                'team_application_group' => '隊伍邀請紀錄',
+
+                'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
+                'team_application_reject_compact' => '你加入 :title 團隊的請求已被拒絕',
+                'team_application_store' => ':title 想要加入你的團隊',
+                'team_application_store_compact' => ':title 想要加入你的團隊',
             ],
         ],
 
@@ -148,6 +211,9 @@ return [
                 'user_beatmapset_new' => ':username 上傳了標題為 “:title” 的新圖譜',
                 'user_beatmapset_new_compact' => '新圖譜 ":title"',
                 'user_beatmapset_new_group' => ':username 上傳了新圖譜',
+
+                'user_beatmapset_revive' => '「:title」圖譜已被 :username 恢復',
+                'user_beatmapset_revive_compact' => '已恢復「:title」圖譜',
             ],
         ],
 
@@ -164,9 +230,11 @@ return [
     ],
 
     'mail' => [
+        'news' => '新聞',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
-                'beatmap_owner_change' => '您現在是圖譜 ":title" 的客串作者',
+                'beatmap_owner_change' => '您現在是圖譜 ":title" 的客串譜師',
             ],
 
             'beatmapset_discussion' => [
@@ -181,12 +249,12 @@ return [
 
             'beatmapset_state' => [
                 'beatmapset_disqualify' => '「:title」已被取消資格',
-                'beatmapset_love' => '「:title」被提升為 loved',
+                'beatmapset_love' => '「:title」被提升為社群喜愛',
                 'beatmapset_nominate' => '":title" 已被提名',
                 'beatmapset_qualify' => '「:title」已獲得足夠的提名，因此進入了上架隊列',
                 'beatmapset_rank' => '「:title」已進榜',
-                'beatmapset_remove_from_loved' => '「:title」已從 Loved 中移除',
-                'beatmapset_reset_nominations' => '「:title」的提名已被重置',
+                'beatmapset_remove_from_loved' => '「:title」已從社群喜愛中移除',
+                'beatmapset_reset_nominations' => '「:title」的提名已被重設',
             ],
 
             'comment' => [
@@ -195,8 +263,18 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'channel_announcement' => '「:name」有新公告',
+            ],
             'channel' => [
-                'pm' => '您收到了來自 :username 的新訊息',
+                'channel_message' => '你已收到來自 :username 的訊息',
+            ],
+            'channel_mention' => [
+                'channel_mention' => ':username 在 :name 提及了您 「:title」',
+            ],
+
+            'channel_team' => [
+                'channel_team' => '戰隊「:name」有新訊息',
             ],
         ],
 
@@ -218,14 +296,18 @@ return [
             ],
         ],
 
-        'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username 解鎖了新成就，":title"！',
-                'user_achievement_unlock_self' => '您已解鎖了新成就 ":title"！',
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "你現在是 :title 團隊的成員了",
+                'team_application_reject' => '你加入 :title 團隊的請求已被拒絕',
+                'team_application_store' => ':title 請求加入你的團隊',
             ],
+        ],
 
+        'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username 建立了新圖譜',
+                'user_beatmapset_revive' => ':username 復原了圖譜',
             ],
         ],
     ],

@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => ':count_delimited 条回复已隐藏。',
+
     'authorizations' => [
         'update' => [
             'null_user' => '编辑前请先登录。',
@@ -16,6 +18,16 @@ return [
         'empty' => '目前还没有什么事件……呢。',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '已删除',
         'none_found' => '找不到符合条件的讨论内容',
@@ -26,16 +38,17 @@ return [
             'deleted' => '包含已经删除的讨论',
             'mode' => '谱面模式',
             'only_unresolved' => '只显示未解决的讨论',
+            'show_review_embeds' => '显示审阅贴子',
             'types' => '评论类型',
             'username' => '用户名',
 
             'beatmapset_status' => [
                 '_' => '谱面状态',
                 'all' => '所有',
-                'disqualified' => '不合格',
-                'never_qualified' => '从未提名为合格',
-                'qualified' => '合格',
-                'ranked' => '上架',
+                'disqualified' => '下架 (DQ)',
+                'never_qualified' => '从未过审 (Qualified)',
+                'qualified' => '过审 (Qualified)',
+                'ranked' => '上架 (Ranked)',
             ],
 
             'user' => [
@@ -54,7 +67,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
-        'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
+        'notice' => '发表讨论前，请检查 :timestamp 附近 (:existing_timestamps) 已存在的讨论记录。',
         'unsaved' => '此审阅中有 :count',
     ],
 
@@ -63,6 +76,13 @@ return [
         'reset_confirm' => '重置此难度的作者？',
         'user' => '作者',
         'version' => '难度',
+    ],
+
+    'refresh' => [
+        'checking' => '正在检查更新......',
+        'has_updates' => '讨论有更新，点击刷新。',
+        'no_updates' => '没有更新。',
+        'updating' => '更新中...',
     ],
 
     'reply' => [
@@ -83,25 +103,26 @@ return [
             'invalid_document' => '审阅无效',
             'invalid_discussion_type' => '讨论类型无效',
             'minimum_issues' => '审阅时必须指出最少 :count 个问题',
-            'missing_text' => '该版块缺少文本。',
+            'missing_text' => '该版块缺少文本',
             'too_many_blocks' => '审阅只能包含 :count 个段落或问题',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => '被 :user 标记为 “已解决”',
-            'false' => '被 :user 重新打开',
+            'true' => ':user 标记为已解决',
+            'false' => ':user 要求重审',
         ],
     ],
 
     'timestamp_display' => [
-        'general' => '常规',
+        'general' => '常规（当前难度）',
         'general_all' => '常规（所有难度）',
     ],
 
     'user_filter' => [
         'everyone' => '所有人',
         'label' => '按用户筛选',
+        'multiple' => '已选择 :count_delimited 名玩家',
     ],
 ];

@@ -15,6 +15,7 @@ use Laravel\Octane\Events\WorkerStarting;
 use Laravel\Octane\Events\WorkerStopping;
 use Laravel\Octane\Listeners\EnsureUploadedFilesAreValid;
 use Laravel\Octane\Listeners\EnsureUploadedFilesCanBeMoved;
+use Laravel\Octane\Listeners\FlushOnce;
 use Laravel\Octane\Listeners\FlushTemporaryContainerInstances;
 use Laravel\Octane\Listeners\ReportException;
 use Laravel\Octane\Listeners\StopWorkerIfNecessary;
@@ -31,11 +32,11 @@ return [
     | when starting, restarting, or stopping your server via the CLI. You
     | are free to change this to the supported server of your choosing.
     |
-    | Supported: "roadrunner", "swoole"
+    | Supported: "roadrunner", "swoole", "frankenphp"
     |
     */
 
-    'server' => env('OCTANE_SERVER', 'swoole'),
+    'server' => env('OCTANE_SERVER', 'frankenphp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,10 +71,10 @@ return [
         RequestReceived::class => [
             ...Octane::prepareApplicationForNextOperation(),
             ...Octane::prepareApplicationForNextRequest(),
+            OctaneResetLocalCache::class,
         ],
 
         RequestHandled::class => [
-            OctaneResetLocalCache::class,
         ],
 
         RequestTerminated::class => [
@@ -94,6 +95,7 @@ return [
         ],
 
         OperationTerminated::class => [
+            FlushOnce::class,
             FlushTemporaryContainerInstances::class,
             // DisconnectFromDatabases::class,
             // CollectGarbage::class,
@@ -181,9 +183,9 @@ return [
         'composer.lock*',
         'config',
         'database',
-        'public/**/*.php',
         'public/assets/manifest.json*',
-        'resources/**/*.php',
+        'resources/lang',
+        'resources/views',
         'routes',
     ],
 
@@ -213,4 +215,5 @@ return [
 
     'max_execution_time' => 180,
 
+    'state_file' => presence(env('OCTANE_STATE_FILE')) ?? storage_path('logs/octane-server-state.json'),
 ];

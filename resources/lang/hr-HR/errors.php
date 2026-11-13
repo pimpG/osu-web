@@ -4,31 +4,36 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'missing_route' => '',
-    'no_restricted_access' => '',
-    'supporter_only' => '',
-    'unknown' => '',
+    'load_failed' => '',
+    'missing_route' => 'Nepostojeći url ili netočna metoda zahtijeva.',
+    'no_restricted_access' => 'Ne možeš to raditi dok je tvoj račun ograničen.',
+    'param_too_large' => '',
+    'supporter_only' => 'Moraš imati osu!supporter oznaku kako bi koristio/la ovu značajku.',
+    'unknown' => 'Došlo je do nepoznate greške.',
 
     'codes' => [
-        'http-401' => '',
-        'http-403' => '',
-        'http-404' => '',
-        'http-429' => '',
+        'http-401' => 'Molimo da se prijaviš kako bi nastavio/la.',
+        'http-403' => 'Zabranjen pristup.',
+        'http-404' => 'Nije pronađeno.',
+        'http-429' => 'Previše pokušaja. Pokušaj ponovo kasnije.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => '',
+            'generic' => 'Došlo je do pogreške. Pokušaj osvježiti stranicu.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => '',
-        'standard_converts_only' => '',
-    ],
     'checkout' => [
-        'generic' => '',
+        'generic' => 'Došlo je do pogreške pri pripremanju tvoje naplate.',
+    ],
+    'scores' => [
+        'invalid_id' => '',
     ],
     'search' => [
-        'default' => '',
-        'operation_timeout_exception' => '',
+        'default' => 'Nije moguće dobiti nikakve rezultate, pokušaj ponovo kasnije.',
+        'invalid_cursor_exception' => 'Navedeni su neispravni parametri za pokazivač.',
+        'operation_timeout_exception' => 'Pretraga je trenutno zauzetija nego inače, pokušaj ponovo kasnije.',
+    ],
+    'user_report' => [
+        'recently_reported' => "",
     ],
 ];

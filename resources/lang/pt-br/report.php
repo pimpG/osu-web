@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Denunciar',
+        'title' => 'Denunciar beatmap de :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -16,7 +16,7 @@ return [
 
     'comment' => [
         'button' => 'Reportar',
-        'title' => 'Reportar comentário de :username?',
+        'title' => 'Denunciar comentário de :username?',
     ],
 
     'forum_post' => [
@@ -24,9 +24,19 @@ return [
         'title' => 'Denunciar publicação de :username?',
     ],
 
+    'message' => [
+        'button' => 'Informar mensagem',
+        'title' => 'Informar mensagem de :username?',
+    ],
+
     'scores' => [
         'button' => 'Reportar Pontuação',
         'title' => 'Reportar pontuação de :username ?',
+    ],
+
+    'team' => [
+        'button' => 'Denunciar equipe',
+        'title' => 'Denunciar equipe de :username?',
     ],
 
     'user' => [

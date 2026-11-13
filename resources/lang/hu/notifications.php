@@ -5,22 +5,34 @@
 
 return [
     'all_read' => 'Összes értesítés elolvasva!',
-    'delete' => ':type tisztítása',
+    'delete' => ':type Törlése',
     'loading' => 'Olvasatlan értesítések betöltése...',
-    'mark_read' => ':type törlése',
+    'mark_read' => ':type Tisztítása',
     'none' => 'Nincsenek értesítések',
     'see_all' => 'összes értesítés megtekintése',
-    'see_channel' => 'menjen a csevegéshez',
+    'see_channel' => 'chathez ugrás',
     'verifying' => 'Az értesítések megtekintéséhez hitelesítse a munkamenetet',
+
+    'action_type' => [
+        '_' => 'összes',
+        'beatmapset' => 'beatmapek',
+        'build' => 'verziók',
+        'channel' => 'csevegés',
+        'forum_topic' => 'fórum',
+        'news_post' => 'újdonságok',
+        'team' => 'csapat',
+        'user' => 'profil',
+    ],
 
     'filters' => [
         '_' => 'összes',
-        'user' => 'profil',
         'beatmapset' => 'beatmapek',
-        'forum_topic' => 'fórum',
-        'news_post' => 'újdonságok',
         'build' => 'verziók',
         'channel' => 'csevegés',
+        'forum_topic' => 'fórum',
+        'news_post' => 'újdonságok',
+        'team' => 'csapat',
+        'user' => 'profil',
     ],
 
     'item' => [
@@ -39,13 +51,19 @@ return [
                 'beatmapset_discussion_lock_compact' => 'A megbeszélést lezárták',
                 'beatmapset_discussion_post_new' => 'Új poszt a ":title"-on :username:-tol ":content"',
                 'beatmapset_discussion_post_new_empty' => 'Új poszt a ":title"-on :username:-tol',
-                'beatmapset_discussion_post_new_compact' => 'Új poszt :username által: ":content"',
+                'beatmapset_discussion_post_new_compact' => 'Új hozzászólás :username által: ":content"',
                 'beatmapset_discussion_post_new_compact_empty' => 'Új poszt :username által',
                 'beatmapset_discussion_review_new' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által, ezen a beatmapen: ":title"  
 :problems, javaslat :suggestions, dícséret: :praises',
                 'beatmapset_discussion_review_new_compact' => 'Új hozzászolás problémákat tartalmazó tartalomról :username által: :problems, javaslat :suggestions, dícséret: :praises',
                 'beatmapset_discussion_unlock' => 'A beszélgetést feloldották ezen: ":title"',
                 'beatmapset_discussion_unlock_compact' => 'A beszélgetést feloldották',
+
+                'review_count' => [
+                    'praises' => ':count_delimited dicséret|:count_delimited dicséretek',
+                    'problems' => ':count_delimited probléma|:count_delimited problémák',
+                    'suggestions' => ':count_delimited javaslat|:count_delimited javaslatok',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -87,12 +105,43 @@ return [
         'channel' => [
             '_' => 'Csevegés',
 
+            'announcement' => [
+                '_' => 'Új bejelentés',
+
+                'announce' => [
+                    'channel_announcement' => ':username üzeni ":title"',
+                    'channel_announcement_compact' => ':title',
+                    'channel_announcement_group' => 'Bejelentés tőle :username',
+                ],
+            ],
+
             'channel' => [
                 '_' => 'Új üzenet',
+
                 'pm' => [
                     'channel_message' => ':username üzeni ":title"',
                     'channel_message_compact' => ':title',
                     'channel_message_group' => 'tőle: :username',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => 'Chat említés',
+
+                'public' => [
+                    'channel_mention' => ':username megemlített téged itt: :name ":title"',
+                    'channel_mention_compact' => ':username ":title"',
+                    'channel_mention_group' => 'megemlítve itt: :name',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => 'Új csapat üzenet',
+
+                'team' => [
+                    'channel_team' => ':username üzeni ":title"',
+                    'channel_team_compact' => ':username üzeni ":title"',
+                    'channel_team_group' => ':username üzeni ":title"',
                 ],
             ],
         ],
@@ -121,6 +170,13 @@ return [
                 'comment_reply' => ':username ezt válaszolta: ":content" itt: ":title"',
                 'comment_reply_compact' => ':username ezt válaszolta: ":content"',
             ],
+
+            'news_post' => [
+                '_' => 'Hírek (:series)',
+
+                'news_post_new' => ':title',
+                'news_post_new_compact' => ':title',
+            ],
         ],
 
         'forum_topic' => [
@@ -133,12 +189,19 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => 'Hivatalos PM fórum',
+        'team' => [
+            'team_application' => [
+                '_' => 'Csapat csatlakozási kérelem',
 
-            'legacy_pm' => [
-                '_' => '',
-                'legacy_pm' => ':count_delimited olvasatlan üzenet.|:count_delimited olvasatlan üzenet.',
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_accept_compact' => "Mostantól a :title csapat tagja vagy",
+
+                'team_application_group' => 'Csapat csatlakozási kérelem frissítések',
+
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_reject_compact' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_store' => ':title kérelmezte hogy csatlakozhatson a csapatodhoz',
+                'team_application_store_compact' => ':title kérelmezte hogy csatlakozhatson a csapatodhoz',
             ],
         ],
 
@@ -149,6 +212,9 @@ return [
                 'user_beatmapset_new' => 'Új ":title" beatmap :username által',
                 'user_beatmapset_new_compact' => 'Új beatmap: ":title"',
                 'user_beatmapset_new_group' => 'Új beatmapek :username által',
+
+                'user_beatmapset_revive' => '":title" beatmap felélesztve :username által',
+                'user_beatmapset_revive_compact' => '":title" beatmap felélesztve',
             ],
         ],
 
@@ -165,6 +231,8 @@ return [
     ],
 
     'mail' => [
+        'news' => 'Hírek',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => 'Mostantól vendégje vagy ":title" beatmapnek',
@@ -196,8 +264,18 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'channel_announcement' => 'Új hirdetmény van ":name" ',
+            ],
             'channel' => [
-                'pm' => 'Új üzenetet kaptál tőle::username',
+                'channel_message' => 'Új üzenetet kaptál tőle: :username',
+            ],
+            'channel_mention' => [
+                'channel_mention' => ':username megemlített téged itt: :name ":title"',
+            ],
+
+            'channel_team' => [
+                'channel_team' => 'Van egy új üzenet a csapatban ":name"',
             ],
         ],
 
@@ -219,14 +297,18 @@ return [
             ],
         ],
 
-        'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => ':username feloldott egy új medált! ":title"',
-                'user_achievement_unlock_self' => 'Feloldottál egy új medált! ":title"',
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "Mostantól a :title csapat tagja vagy",
+                'team_application_reject' => 'A :title csapatba való jelentkezésedet elutasították',
+                'team_application_store' => ':title kérelmezte hogy csatlakozhatson a csapatodhoz',
             ],
+        ],
 
+        'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => ':username új beatmapeket hozott létre',
+                'user_beatmapset_revive' => ':username újraélesztett beatmepeket',
             ],
         ],
     ],

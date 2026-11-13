@@ -5,22 +5,16 @@
 
 return [
     'admin' => [
-        '_' => 'admin',
-    ],
-    'admin_forum' => [
-        '_' => 'forum của admin',
-    ],
-    'admin_store' => [
         '_' => 'quản trị viên',
     ],
     'error' => [
         'error' => [
             '400' => 'yêu cầu không hợp lệ',
-            '404' => 'còn thiếu',
+            '404' => 'không thấy',
             '403' => 'bị cấm',
             '401' => 'không được phép',
             '401-verification' => 'xác thực tài khoản',
-            '405' => 'còn thiếu',
+            '405' => 'không thấy',
             '422' => 'yêu cầu không hợp lệ',
             '429' => 'quá nhiều yêu cầu',
             '500' => 'có gì dó đã hỏng',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => 'diễn đàn',
-        'topic_watches_controller' => [
-            'index' => 'tổng quan',
+        'topic_logs_controller' => [
+            'index' => 'nhật kí chủ đề',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'tổng quan',
             'verify_link' => 'xác thực tài khoản',
         ],
         'artists_controller' => [
@@ -56,13 +49,11 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'lịch sử beatmap',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'tổng quan',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'góc thảo luận beatmap ',
             'index' => 'danh sách beatmap',
             'show' => 'thông tin beatmap',
+            'versions' => 'lịch sử phiên bản beatmap',
         ],
         'changelog_controller' => [
             '_' => 'nhật ký thay đổi',
@@ -73,14 +64,15 @@ return [
         'comments_controller' => [
             '_' => 'bình luận',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'kết quả đánh giá bài thi',
+        ],
         'contests_controller' => [
             '_' => 'cuộc thi',
+            'judge' => 'đánh giá bài thi',
         ],
-        'follows_controller' => [
-            'index' => 'tổng quan',
-        ],
-        'friends_controller' => [
-            'index' => 'trang chủ',
+        'group_history_controller' => [
+            '_' => 'lịch sử nhóm',
         ],
         'groups_controller' => [
             'show' => 'nhóm',
@@ -90,7 +82,10 @@ return [
             'index' => 'tổng quan',
             'search' => 'tìm kiếm',
             'support_the_game' => 'ủng hộ osu',
-            'testflight' => 'thử nghệm bay',
+            'testflight' => 'testflight',
+        ],
+        'legacy_matches_controller' => [
+            '_' => 'trận đấu',
         ],
         'legal_controller' => [
             '_' => 'thông tin
@@ -98,9 +93,6 @@ return [
         ],
         'livestreams_controller' => [
             '_' => 'nguồn trực tiếp',
-        ],
-        'matches_controller' => [
-            '_' => 'kết quả',
         ],
         'news_controller' => [
             '_' => 'tin tức',
@@ -117,14 +109,28 @@ return [
         'scores_controller' => [
             '_' => 'hiệu suất',
         ],
-        'store_controller' => [
-            '_' => 'cửa hàng',
+        'seasons_controller' => [
+            '_' => 'xếp hạng',
+        ],
+        'teams_controller' => [
+            '_' => 'đội',
+            'create' => 'tạo đội',
+            'edit' => 'cài đặt đội',
+            'leaderboard' => 'bảng xếp hạng đội',
+            'show' => 'thông tin về đội',
         ],
         'tournaments_controller' => [
             '_' => 'giải đấu',
         ],
+        'user_cover_presets_controller' => [
+            '_' => 'ảnh bìa người dùng mặc định',
+        ],
+        'user_totp_controller' => [
+            '_' => 'ứng dụng xác thực',
+        ],
         'users_controller' => [
             '_' => 'thông tin người chơi',
+            'create' => 'tạo tài khoản',
             'disabled' => 'để ý',
         ],
         'wiki_controller' => [
@@ -133,17 +139,21 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'xếp hạng
-',
+            'events' => 'lịch sử phòng',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'uỷ quyền ứng dụng',
         ],
     ],
     'store' => [
         '_' => 'cửa hàng',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'thành viên trong đội',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

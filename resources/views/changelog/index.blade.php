@@ -24,7 +24,7 @@
 @extends('master', compact('titlePrepend'))
 
 @section('content')
-    <div class="js-react--changelog-index osu-layout osu-layout--full"></div>
+    <div class="js-react u-contents" data-react="changelog-index"></div>
 
     <script id="json-index" type="application/json">
         {!! json_encode($indexJson) !!}
@@ -38,5 +38,5 @@
         {!! json_encode($chartConfig) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/changelog-index.js'])
+    @include('layout._react_js', ['src' => 'js/changelog-index.js'])
 @endsection

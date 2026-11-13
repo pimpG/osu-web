@@ -5,9 +5,9 @@
 
 return [
     'play_more' => '为何不先玩几局 osu! 呢？',
-    'require_login' => '登录以继续。',
+    'require_login' => '请先登录以继续。',
     'require_verification' => '请验证以继续。',
-    'restricted' => "账户处于限制模式，无法进行该操作。",
+    'restricted' => "账户受限，无法进行该操作。",
     'silenced' => "账户被禁言，无法进行该操作。",
     'unauthorized' => '拒绝访问。',
 
@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => '无法撤销推荐。',
             'has_reply' => '无法删除有回复的讨论。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次数已达上限，请明天再试。',
@@ -27,14 +28,14 @@ return [
         ],
 
         'store' => [
-            'mapper_note_wrong_user' => '只有谱面作者或谱面管理团队、质量保证团队成员可以发布备注。',
+            'mapper_note_wrong_user' => '只有谱面作者、提名该谱面的谱面审核成员 (BN)、审核评估团队 (NAT) 成员可以在讨论区发送备注。',
         ],
 
         'vote' => [
             'bot' => "不能对机器人的讨论投票",
-            'limit_exceeded' => '在投更多票之前请稍等一会。',
+            'limit_exceeded' => '请稍等后再投票',
             'owner' => "不能为自己的讨论投票！",
-            'wrong_beatmapset_state' => '只能给 pending 谱面的讨论投票。',
+            'wrong_beatmapset_state' => '只能给待定 (Pending) 谱面的讨论投票。',
         ],
     ],
 
@@ -42,23 +43,34 @@ return [
         'destroy' => [
             'not_owner' => '你只能删除你自己的帖子。',
             'resolved' => '你不能删除已解决的讨论帖。',
-            'system_generated' => '自动生成的帖子无法删除。',
+            'system_generated' => '无法删除自动生成的帖子。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '只有作者可以编辑。',
             'resolved' => '你不能编辑已解决讨论里的帖子。',
-            'system_generated' => '无法编辑自动回复。',
-        ],
-
-        'store' => [
-            'beatmapset_locked' => '该谱面因需要探讨而被锁定。',
+            'system_generated' => '无法编辑自动生成的帖子。',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '谱面已上锁，以供讨论。',
+
         'metadata' => [
-            'nominated' => '您不能更改已提名的谱面信息。如果您认为其不正确，请联系谱面管理团队或质量保障团队进行更改。',
+            'nominated' => '您不能自行修改已提名谱面的信息。如果您认为其不正确，请联系谱面审核成员 (BN) 或审核评估团队 (NAT) 更改。',
+        ],
+
+        'rate' => [
+            'owner' => '您不能给您参与制作的谱面评分。',
+            'status' => '您不能给当前状态的谱面评分。',
+        ],
+    ],
+
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '要添加标签，必须先在谱面内留下成绩。',
         ],
     ],
 
@@ -67,17 +79,23 @@ return [
         'friends_only' => '用户拒收了来自陌生人的消息。',
         'moderated' => '该频道现在正在被管制中。',
         'no_access' => '你没有权限访问该频道。',
+        'no_announce' => '您没有发布公告的权限。',
+        'receive_friends_only' => '此用户可能无法回复你，因为你设置了只接受来自好友的消息。',
         'restricted' => '账户被禁言、受限或封禁期间不能发消息。',
         'silenced' => '账户被禁言、受限或封禁期间不能发消息。',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '评论已禁用',
+        ],
         'update' => [
             'deleted' => "无法编辑已删除的回复。",
         ],
     ],
 
     'contest' => [
+        'judging_not_active' => '这场竞赛还没有进入打分环节。',
         'voting_over' => '投票已结束，无法修改投票。',
 
         'entry' => [
@@ -103,12 +121,13 @@ return [
                 'deleted' => '无法编辑已删除的回复。',
                 'locked' => '此回复已被锁定。',
                 'no_forum_access' => '没有权限进入该板块。',
+                'no_permission' => '没有编辑权限。',
                 'not_owner' => '只有作者能编辑此回复。',
                 'topic_locked' => '无法编辑被锁定主题的回复。',
             ],
 
             'store' => [
-                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在 Help 或 中文 版块发帖求助。',
+                'play_more' => '在发帖之前先玩上两局吧！如果你在游戏时遇到问题，请在“Help”或“中文”版块发帖求助。',
                 'too_many_help_posts' => "如果你想发更多的帖子，再多玩几局吧！如果你在游戏时仍遇到问题，请发送邮件至 support@ppy.sh", // FIXME: unhardcode email address.
             ],
         ],
@@ -142,7 +161,7 @@ return [
                 'user' => [
                     'require_login' => '投票前请先登录。',
                     'restricted' => "账户处于限制模式，无法投票。",
-                    'silenced' => "账户被禁言，无法投票。",
+                    'silenced' => "账户禁言中，无法投票。",
                 ],
             ],
 
@@ -166,6 +185,40 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '只有房主可以关闭它。',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'disabled_type' => "无法置顶这类分数",
+            'failed' => "无法置顶未通过的分数。",
+            'not_owner' => '只有获得此成绩的玩家才可以置顶它。',
+            'too_many' => '已置顶的成绩过多',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "你已经是战队成员了。",
+                'already_other_member' => "你已经是其他战队的成员了。",
+                'currently_applying' => '你有待处理的加入战队请求。',
+                'team_closed' => '这个战队暂不接受任何加入战队请求。',
+                'team_full' => "这个战队已满，无法容纳更多成员。",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "队长无法离开战队。",
+            'not_member' => '不是战队成员。',
+        ],
+        'store' => [
+            'require_supporter_tag' => '只有支持者才能创建战队。',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +226,9 @@ return [
                 'not_owner' => '只能编辑自己的个人页面。',
                 'require_supporter_tag' => '需要成为支持者。',
             ],
+        ],
+        'update_email' => [
+            'locked' => '邮箱地址已锁定',
         ],
     ],
 ];

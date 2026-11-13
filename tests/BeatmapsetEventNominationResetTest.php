@@ -63,8 +63,8 @@ class BeatmapsetEventNominationResetTest extends TestCase
     public function testInterOpDisqualify()
     {
         $this->createBeatmapsetWithNominators('qualified');
-        $banchoBotUser = factory(User::class)->create([
-            'user_id' => config('osu.legacy.bancho_bot_user_id'),
+        $banchoBotUser = User::factory()->create([
+            'user_id' => $GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id'],
         ]);
 
         $disqualifyCount = BeatmapsetEvent::disqualifications()->count();
@@ -103,32 +103,27 @@ class BeatmapsetEventNominationResetTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('osu.beatmapset.required_nominations', 2);
+        config_set('osu.beatmapset.required_nominations', 2);
 
         Queue::fake();
 
-        $this->sender = $this->createUserWithGroup('bng');
+        $this->sender = User::factory()->withGroup('bng')->create();
     }
 
     private function createBeatmapsetWithNominators($state)
     {
-        $owner = factory(User::class)->create();
-
-        $this->beatmapset = Beatmapset::factory()->$state()->withDiscussion()->create([
-            'creator' => $owner->username,
-            'user_id' => $owner,
-        ]);
+        $this->beatmapset = Beatmapset::factory()->owner()->$state()->withDiscussion()->create();
 
         $modes = $this->beatmapset->beatmaps->map->mode->all();
-        $nominatorCount = config('osu.beatmapset.required_nominations');
+        $nominatorCount = $GLOBALS['cfg']['osu']['beatmapset']['required_nominations'];
 
         $this->nominators = [];
 
         for ($i = 0; $i < $nominatorCount; $i++) {
-            $this->nominators[] = $nominator = $this->createUserWithGroupPlaymodes('bng', $modes);
+            $this->nominators[] = $nominator = User::factory()->withGroup('bng', $modes)->create();
             BeatmapsetNomination::factory()->create([
-                'beatmapset_id' => $this->beatmapset->getKey(),
-                'user_id' => $nominator->getKey(),
+                'beatmapset_id' => $this->beatmapset,
+                'user_id' => $nominator,
             ]);
         }
     }

@@ -49,7 +49,8 @@ class DocumentProcessor
 
         // The config value should come from route() call which means it's percent encoded
         // but it'll be reused as parameter for another route() call so decode it here.
-        $this->relativeUrlRoot = urldecode($this->config->get('osu_extension/relative_url_root'));
+        $relativeUrlRoot = $this->config->get('osu_extension/relative_url_root');
+        $this->relativeUrlRoot = $relativeUrlRoot === null ? null : urldecode($relativeUrlRoot);
         $fixWikiUrl = $this->config->get('osu_extension/fix_wiki_url');
         $generateToc = $this->config->get('osu_extension/generate_toc');
         $recordFirstImage = $this->config->get('osu_extension/record_first_image');
@@ -147,7 +148,25 @@ class DocumentProcessor
         }
 
         $title = presence($this->getText($this->node));
-        $slug = $this->node->data['attributes']['id'] ?? presence(mb_strtolower(str_replace(' ', '-', $title))) ?? 'page';
+
+        // The characters not escaped by encodeURIComponent won't match
+        // when percent encoded in the id attribute and accessed unescaped.
+        // Doing it the other way works:
+        // - `#!` url with `%21` id doesn't work
+        // - `#%21` url with `!` id works
+        // - `#%21` url with `%21` id works but at least discord normalises
+        //   the url to `#!` so it stops working when linked there
+        // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+        static $percentDecoded = null;
+        if ($percentDecoded === null) {
+            $percentDecoded = [];
+            foreach (['!', '~', "'", '(', ')'] as $char) {
+                $percentDecoded[urlencode($char)] = $char;
+            }
+        }
+        $slug = $this->node->data['attributes']['id']
+            // Turbo can't handle non-percent encoded id.
+            ?? presence(strtr(urlencode(mb_strtolower(strtr($title ?? '', ' ', '-'))), $percentDecoded)) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;
@@ -193,7 +212,7 @@ class DocumentProcessor
             $imageUrl = $image->getUrl();
 
             if (starts_with($imageUrl, route('wiki.show', [], false))) {
-                $imageUrl = config('app.url').$imageUrl;
+                $imageUrl = $GLOBALS['cfg']['app']['url'].$imageUrl;
             }
 
             $imageSize = fast_imagesize($imageUrl);
@@ -233,9 +252,9 @@ class DocumentProcessor
             }
 
             if (OsuWiki::isImage($path)) {
-                $url = route('wiki.image', compact('path'), false);
+                $url = wiki_image_url($path, false);
             } else {
-                $locale ??= $this->wikiLocale ?? config('app.fallback_locale');
+                $locale ??= $this->wikiLocale ?? $GLOBALS['cfg']['app']['fallback_locale'];
                 $url = wiki_url($path, $locale, false, false);
 
                 if (starts_with($url, $this->wikiAbsoluteRootPath)) {

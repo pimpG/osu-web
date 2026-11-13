@@ -10,16 +10,19 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmap-discussions osu-layout osu-layout--full"></div>
+    <div class="js-react u-contents" data-react="beatmap-discussions"></div>
 @endsection
 
 @section ("script")
     @parent
 
-    <script id="json-beatmapset-discussion" type="application/json">
-        {!! json_encode($initialData) !!}
-    </script>
+    @foreach ($initialData as $name => $data)
+        <script id="json-{{ $name }}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
+
 
     @include('beatmapsets._recommended_star_difficulty_all')
-    @include('layout._react_js', ['src' => 'js/react/beatmap-discussions.js'])
+    @include('layout._react_js', ['src' => 'js/beatmap-discussions.js'])
 @endsection

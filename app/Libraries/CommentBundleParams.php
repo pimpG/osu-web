@@ -7,12 +7,14 @@ namespace App\Libraries;
 
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\UserProfileCustomization;
 
 class CommentBundleParams
 {
     const DEFAULT_PAGE = 1;
     const DEFAULT_LIMIT = 50;
 
+    public ?int $after = null;
     public $userId;
     public $commentableId;
     public $commentableType;
@@ -35,7 +37,7 @@ class CommentBundleParams
         $this->cursor = null;
         $this->limit = static::DEFAULT_LIMIT;
         $this->page = static::DEFAULT_PAGE;
-        $this->sort = optional($user)->profileCustomization()->comments_sort ?? null;
+        $this->sort = UserProfileCustomization::forUser($user)['comments_sort'];
 
         $this->setAll($params);
     }
@@ -51,7 +53,7 @@ class CommentBundleParams
         }
 
         if (array_key_exists('limit', $params)) {
-            $this->limit = clamp(get_int($params['limit']), 1, 100);
+            $this->limit = \Number::clamp(get_int($params['limit']) ?? 50, 1, 100);
         }
 
         if (array_key_exists('page', $params)) {
@@ -64,6 +66,7 @@ class CommentBundleParams
         $this->cursorHelper = Comment::makeDbCursorHelper($params['sort'] ?? $this->sort);
         $this->cursor = get_arr($params['cursor'] ?? null);
         $this->sort = $this->cursorHelper->getSortName();
+        $this->after = get_int($params['after'] ?? null);
     }
 
     public function filterByParentId()

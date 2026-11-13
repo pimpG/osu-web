@@ -5,25 +5,30 @@
 
 return [
     'audio' => [
-        'autoplay' => '',
+        'autoplay' => 'پخش قطعه بعدی به صورت خودکار',
     ],
 
     'defaults' => [
-        'page_description' => '',
+        'page_description' => 'osu! - ریتم یک *کلیک* با شما فاصله دارد! با حالت های Ouendan/EBA ، Taiko و اوریجینال، به همراه ویرایشگر مرحله ی کاملا کاربردی.',
     ],
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'سری بیت مپ ها',
+            'beatmapset_covers' => 'کاور سری بیت مپ ها',
             'contest' => '',
             'contests' => '',
             'root' => '',
-            'store_orders' => '',
         ],
 
         'artists' => [
             'index' => '',
+        ],
+
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => '',
-            'multiplayer' => '',
+            'playlists' => '',
+            'ranked-play' => '',
+            'realtime' => '',
             'show' => '',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => '',
-            'kudosu' => '',
         ],
         'store' => [
             '_' => '',
@@ -106,8 +112,10 @@ return [
         ],
         'legal' => [
             '_' => '',
-            'copyright' => '',
+            'copyright' => 'کپی رایت (DMCA)',
+            'jp_sctl' => '',
             'privacy' => '',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',
@@ -168,35 +176,41 @@ return [
 
         'login' => [
             'forgot' => "",
-            'password' => '',
-            'title' => '',
-            'username' => '',
+            'password' => 'کلمه عبور',
+            'title' => 'برای ادامه وارد شوید',
+            'username' => 'نام کاربری',
 
             'error' => [
-                'email' => "",
-                'password' => '',
+                'email' => "نام کاربری یا آدرس ایمیل وجود ندارد",
+                'password' => 'کلمه عبور نادرست است',
             ],
         ],
 
         'register' => [
-            'download' => '',
-            'info' => '',
-            'title' => "",
+            'download' => 'دانلود',
+            'info' => 'برای ساختن حساب کاربری خودتان osu! را دانلود کنید!',
+            'title' => "حساب کاربری ندارید؟",
         ],
     ],
 
     'popup_user' => [
         'links' => [
-            'account-edit' => '',
+            'account-edit' => 'تنظیمات',
+            'create_team' => '',
             'follows' => '',
-            'friends' => '',
-            'logout' => '',
-            'profile' => '',
+            'friends' => 'دوستان',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
+            'logout' => 'خروج',
+            'profile' => 'پروفایل من',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '',
-        'retry' => '',
+        'initial' => 'برای جستجو چیزی بنویسید!',
+        'retry' => 'جستجو شکست خورد. برای تلاش مجدد کلیک کنید.',
     ],
 ];

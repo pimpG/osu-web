@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => '',
+
     'authorizations' => [
         'update' => [
             'null_user' => 'Måste vara inloggad för att kunna redigera.',
@@ -16,17 +18,28 @@ return [
         'empty' => 'Inget har hänt... ännu.',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => 'raderad',
         'none_found' => 'Inga diskussioner som matchar det sökkriteriet hittades.',
-        'title' => 'Beatmap diskussioner',
+        'title' => 'Beatmapdiskussioner',
 
         'form' => [
             '_' => 'Sök',
             'deleted' => 'Inkludera raderade diskussioner',
             'mode' => 'Beatmapläge',
             'only_unresolved' => 'Visa bara olösta diskussioner',
-            'types' => 'Typ av meddelande',
+            'show_review_embeds' => 'Visa recensionsinlägg',
+            'types' => 'Meddelandetyper',
             'username' => 'Användarnamn',
 
             'beatmapset_status' => [
@@ -63,6 +76,13 @@ return [
         'reset_confirm' => 'Återställ ägare för denna svårighetsgrad?',
         'user' => 'Ägare',
         'version' => 'Svårighetsgrad',
+    ],
+
+    'refresh' => [
+        'checking' => 'Letar efter uppdateringar...',
+        'has_updates' => 'Diskussionen har uppdateringar, klicka för att uppdatera.',
+        'no_updates' => 'Inga uppdateringar.',
+        'updating' => 'Uppdaterar...',
     ],
 
     'reply' => [
@@ -103,5 +123,6 @@ return [
     'user_filter' => [
         'everyone' => 'Allihopa',
         'label' => 'Filtrera efter användare',
+        'multiple' => '',
     ],
 ];

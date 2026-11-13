@@ -5,86 +5,70 @@
 
 namespace Tests\Controllers\Solo;
 
-use App\Models\Beatmap;
-use App\Models\Score as LegacyScore;
+use App\Models\Build;
+use App\Models\ScoreToken;
 use App\Models\Solo\Score;
-use App\Models\Solo\ScoreToken;
 use App\Models\User;
+use LaravelRedis;
 use Tests\TestCase;
 
 class ScoresControllerTest extends TestCase
 {
     public function testStore()
     {
-        $user = factory(User::class)->create();
-        $beatmap = Beatmap::factory()->ranked()->create();
-        $scoreToken = ScoreToken::create([
-            'beatmap_id' => $beatmap->getKey(),
-            'ruleset_id' => $beatmap->playmode,
-            'user_id' => $user->getKey(),
-        ]);
-        $legacyScoreClass = LegacyScore\Model::getClass($beatmap->playmode);
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
 
-        $initialScoreCount = Score::count();
-        $initialScoreTokenCount = ScoreToken::count();
-        $initialLegacyScoreCount = $legacyScoreClass::count();
+        $this->expectCountChange(fn () => Score::count(), 1);
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 1);
+        $this->expectCountChange(
+            fn () => \LaravelRedis::llen($GLOBALS['cfg']['osu']['client']['token_queue']),
+            1,
+        );
 
-        $this->actAsScopedUser($user, ['*']);
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
 
         $this->json(
             'PUT',
             route('api.beatmaps.solo.scores.store', [
-                'beatmap' => $beatmap->getKey(),
+                'beatmap' => $scoreToken->beatmap->getKey(),
                 'token' => $scoreToken->getKey(),
             ]),
             [
                 'accuracy' => 1,
                 'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                ],
                 'passed' => true,
                 'rank' => 'A',
                 'statistics' => ['Good' => 1],
                 'total_score' => 10,
             ]
-        )->assertSuccessful();
+        )->assertSuccessful()
+        ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
 
-        $this->assertSame($initialLegacyScoreCount + 1, $legacyScoreClass::count());
-        $this->assertSame($initialScoreCount + 1, Score::count());
-        $this->assertNotNull($scoreToken->fresh()->score);
+        $score = $scoreToken->fresh()->score;
+        $this->assertNotNull($score);
+        $this->assertSame(1, count($score->data->mods));
     }
 
     public function testStoreCompleted()
     {
-        $user = factory(User::class)->create();
-        $beatmap = Beatmap::factory()->ranked()->create();
-        // TODO: create factory
-        $score = Score::createFromJsonOrExplode([
-            'accuracy' => 1,
-            'beatmap_id' => $beatmap->getKey(),
-            'ended_at' => now(),
-            'max_combo' => 10,
-            'mods' => [],
-            'passed' => true,
-            'rank' => 'A',
-            'ruleset_id' => $beatmap->playmode,
-            'statistics' => ['Good' => 1],
-            'total_score' => 10,
-            'user_id' => $user->getKey(),
-        ]);
-        $scoreToken = ScoreToken::create([
-            'beatmap_id' => $score->beatmap_id,
-            'ruleset_id' => $score->ruleset_id,
-            'score_id' => $score->getKey(),
-            'user_id' => $score->user_id,
-        ]);
+        $scoreToken = ScoreToken::factory()->create();
+        $score = Score::factory()->create(['beatmap_id' => $scoreToken->beatmap_id]);
+        $scoreToken->update(['score_id' => $score->getKey()]);
 
-        $initialScoreCount = Score::count();
+        $this->expectCountChange(fn () => Score::count(), 0);
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 0);
 
-        $this->actAsScopedUser($user, ['*']);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
 
         $this->json(
             'PUT',
             route('api.beatmaps.solo.scores.store', [
-                'beatmap' => $beatmap->getKey(),
+                'beatmap' => $scoreToken->beatmap->getKey(),
                 'token' => $scoreToken->getKey(),
             ]),
             [
@@ -98,55 +82,79 @@ class ScoresControllerTest extends TestCase
         )->assertStatus(200);
 
         $this->assertSame($score->getKey(), $scoreToken->fresh()->score_id);
-        $this->assertSame($initialScoreCount, Score::count());
     }
 
     public function testStoreMissingData()
     {
-        $user = factory(User::class)->create();
-        $beatmap = Beatmap::factory()->ranked()->create();
-        $scoreToken = ScoreToken::create([
-            'beatmap_id' => $beatmap->getKey(),
-            'ruleset_id' => $beatmap->playmode,
-            'user_id' => $user->getKey(),
-        ]);
+        $scoreToken = ScoreToken::factory()->create();
 
-        $initialScoreCount = Score::count();
+        $this->expectCountChange(fn () => Score::count(), 0);
 
-        $this->actAsScopedUser($user, ['*']);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
 
         $this->json(
             'PUT',
             route('api.beatmaps.solo.scores.store', [
-                'beatmap' => $beatmap->getKey(),
+                'beatmap' => $scoreToken->beatmap->getKey(),
                 'token' => $scoreToken->getKey(),
             ]),
             [
                 'rank' => 'A',
             ]
         )->assertStatus(422);
+    }
 
-        $this->assertSame($initialScoreCount, Score::count());
+    public function testStoreUpdatedBeatmap()
+    {
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
+        $scoreToken->beatmap->beatmapset->update(['approved_date' => $scoreToken->created_at->addMinutes(5)]);
+
+        $this->expectCountChange(fn () => Score::count(), 0);
+        $this->expectCountChange(fn () => $this->processingQueueCount(), 0);
+        $this->expectCountChange(
+            fn () => \LaravelRedis::llen($GLOBALS['cfg']['osu']['client']['token_queue']),
+            0,
+        );
+
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                ],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 10,
+            ]
+        )->assertStatus(422);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNull($score);
     }
 
     public function testStoreWrongUser()
     {
-        $user = factory(User::class)->create();
-        $otherUser = factory(User::class)->create();
-        $beatmap = Beatmap::factory()->ranked()->create();
-        $scoreToken = ScoreToken::create([
-            'beatmap_id' => $beatmap->getKey(),
-            'ruleset_id' => $beatmap->playmode,
-            'user_id' => $user->getKey(),
-        ]);
-        $initialScoreCount = Score::count();
+        $otherUser = User::factory()->create();
+        $scoreToken = ScoreToken::factory()->create();
+        $this->expectCountChange(fn () => Score::count(), 0);
 
         $this->actAsScopedUser($otherUser, ['*']);
 
         $this->json(
             'PUT',
             route('api.beatmaps.solo.scores.store', [
-                'beatmap' => $beatmap->getKey(),
+                'beatmap' => $scoreToken->beatmap->getKey(),
                 'token' => $scoreToken->getKey(),
             ]),
             [
@@ -158,7 +166,116 @@ class ScoresControllerTest extends TestCase
                 'total_score' => 10,
             ]
         )->assertStatus(404);
+    }
 
-        $this->assertSame($initialScoreCount, Score::count());
+    public function testStoreInvalidModCombination()
+    {
+        $scoreToken = ScoreToken::factory()->create();
+        $this->expectCountChange(fn () => Score::count(), 0);
+
+        $this->actAsScopedUser($scoreToken->user);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                    ['acronym' => 'HT'],
+                ],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 10,
+            ]
+        )->assertStatus(422);
+    }
+
+    public function testTotalScoreWithoutModsIsNotStoredWhenModsNotPresent()
+    {
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
+
+        $this->expectCountChange(fn () => Score::count(), 1);
+
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 1000000,
+                'total_score_without_mods' => 1000000,
+            ]
+        )->assertSuccessful()
+            ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNotNull($score);
+        $this->assertNull($score->data->totalScoreWithoutMods);
+    }
+
+    public function testTotalScoreWithoutModsIsStoredWhenModsPresent()
+    {
+        $build = Build::factory()->create(['allow_ranking' => true]);
+        $scoreToken = ScoreToken::factory()->create(['build_id' => $build]);
+
+        $this->expectCountChange(fn () => Score::count(), 1);
+
+        $this->withHeaders(['x-token' => static::createClientToken($build)]);
+        $this->actAsScopedUser($scoreToken->user, ['*']);
+
+        $this->json(
+            'PUT',
+            route('api.beatmaps.solo.scores.store', [
+                'beatmap' => $scoreToken->beatmap->getKey(),
+                'token' => $scoreToken->getKey(),
+            ]),
+            [
+                'accuracy' => 1,
+                'max_combo' => 10,
+                'mods' => [
+                    ['acronym' => 'DT'],
+                ],
+                'passed' => true,
+                'rank' => 'A',
+                'statistics' => ['Good' => 1],
+                'total_score' => 1230000,
+                'total_score_without_mods' => 1000000,
+            ]
+        )->assertSuccessful()
+            ->assertJsonFragment(['build_id' => $scoreToken->build_id]);
+
+        $score = $scoreToken->fresh()->score;
+        $this->assertNotNull($score);
+        $this->assertSame(1000000, $score->data->totalScoreWithoutMods);
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+
+        static::createApp();
+        LaravelRedis::del($GLOBALS['cfg']['osu']['scores']['processing_queue']);
+    }
+
+    private function processingQueueCount(): int
+    {
+        return LaravelRedis::llen($GLOBALS['cfg']['osu']['scores']['processing_queue']);
     }
 }

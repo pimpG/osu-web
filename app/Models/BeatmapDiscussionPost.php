@@ -25,35 +25,31 @@ use Ds\Set;
  * @property User $user
  * @property int|null $user_id
  */
-class BeatmapDiscussionPost extends Model
+class BeatmapDiscussionPost extends Model implements Traits\ReportableInterface
 {
-    use Validatable, Reportable;
+    use Traits\Reportable;
+    use Validatable;
 
+    const MESSAGE_LIMIT = 16_000; // column limit for 4 bytes utf8
     const MESSAGE_LIMIT_TIMELINE = 750;
 
     protected $touches = ['beatmapDiscussion'];
 
     protected $casts = [
+        'deleted_at' => 'datetime',
         'system' => 'boolean',
     ];
 
-    protected $dates = ['deleted_at'];
-
-    public static function search($rawParams = [])
+    public static function search($rawParams = [], array $extraParams = [])
     {
-        $pagination = pagination($rawParams);
+        [$query, $params] = static::searchQueryAndParams(cursor_from_params($rawParams) ?? $rawParams);
 
-        $params = [
-            'limit' => $pagination['limit'],
-            'page' => $pagination['page'],
-        ];
-
-        $query = static::limit($params['limit'])->offset($pagination['offset']);
-        $isModerator = $rawParams['is_moderator'] ?? false;
+        $extraParams['current_user_id'] ??= null;
+        $extraParams['is_moderator'] ??= false;
 
         if (isset($rawParams['user'])) {
             $params['user'] = $rawParams['user'];
-            $findAll = $isModerator || (($rawParams['current_user_id'] ?? null) === $rawParams['user']);
+            $findAll = $extraParams['is_moderator'] || ($extraParams['current_user_id'] === $rawParams['user']);
             $user = User::lookup($params['user'], null, $findAll);
 
             if ($user === null) {
@@ -97,14 +93,16 @@ class BeatmapDiscussionPost extends Model
             $query->where('beatmap_discussion_id', $params['beatmapset_discussion_id']);
         }
 
-        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+        $params['with_deleted'] = $extraParams['is_moderator']
+            && (get_bool($rawParams['with_deleted'] ?? null) ?? false);
 
         if (!$params['with_deleted']) {
+            // $query->visible() may be slow for listing; calls visibleBeatmapDiscussion which calls more scopes...
             $query->withoutTrashed();
         }
 
         // TODO: normalize with main beatmapset discussion behaviour (needs React-side fixing)
-        if (!isset($params['user']) && !$isModerator) {
+        if (!isset($params['user']) && !$extraParams['is_moderator']) {
             $query->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });
@@ -125,7 +123,7 @@ class BeatmapDiscussionPost extends Model
         ]);
     }
 
-    public static function parseTimestamp($message)
+    public static function parseTimestamp(string $message): ?int
     {
         preg_match('/\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/', $message, $matches);
 
@@ -136,6 +134,8 @@ class BeatmapDiscussionPost extends Model
 
             return ($m * 60 + $s) * 1000 + $ms;
         }
+
+        return null;
     }
 
     public function beatmapset()
@@ -226,15 +226,16 @@ class BeatmapDiscussionPost extends Model
                 $this->validationErrors()->add('message', 'required');
             }
 
-            if (optional($this->beatmapDiscussion)->timestamp !== null && mb_strlen($this->message) > static::MESSAGE_LIMIT_TIMELINE) {
-                $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT_TIMELINE]);
-            }
+            $limit = $this->beatmapDiscussion?->timestamp === null
+                ? static::MESSAGE_LIMIT
+                : static::MESSAGE_LIMIT_TIMELINE;
+            $this->validateDbFieldLength($limit, 'message');
         }
 
         return $this->validationErrors()->isEmpty();
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function validationErrorsTranslationPrefix(): string
     {
         return 'beatmapset_discussion_post';
     }
@@ -244,6 +245,8 @@ class BeatmapDiscussionPost extends Model
         if (!$this->isValid()) {
             return false;
         }
+
+        $origExists = $this->exists;
 
         try {
             return $this->getConnection()->transaction(function () use ($options) {
@@ -260,6 +263,7 @@ class BeatmapDiscussionPost extends Model
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
+            $this->exists = $origExists;
             $this->validationErrors()->merge($this->beatmapDiscussion->validationErrors());
 
             return false;
@@ -358,7 +362,7 @@ class BeatmapDiscussionPost extends Model
         return $this->deleted_at !== null;
     }
 
-    public function timestamp()
+    public function timestamp(): ?int
     {
         return static::parseTimestamp($this->message);
     }

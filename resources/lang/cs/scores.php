@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => 'Toto skóre je označeno pro smazání a brzy zmizí.',
         'title' => ':username na :title [:version]',
 
         'beatmap' => [
@@ -12,8 +13,11 @@ return [
         ],
 
         'player' => [
-            'by' => 'Hráno',
+            'by' => 'Zahrál',
+            'played_on' => 'Odehráno na',
             'submitted_on' => 'Nahráno',
+            'watched' => 'Zhlédnuto',
+            'watched_count' => ':count_delimitedkrát|:count_delimitedkrát|:count_delimitedkrát',
 
             'rank' => [
                 'country' => 'Státní žebříčky',
@@ -24,6 +28,8 @@ return [
 
     'status' => [
         'non_best' => 'Pouze osobní nejlepší skóre ocenění',
+        'no_pp' => 'pp není za toto skóre uděleno',
         'processing' => 'Toto skóre se stále počítá a bude brzy zobrazeno',
+        'no_rank' => 'Toto skóre nemá žádné získané hodnocení, protože je nehodnocené nebo označené pro smazání',
     ],
 ];

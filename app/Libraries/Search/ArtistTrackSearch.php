@@ -11,6 +11,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\ArtistTrack;
+use App\Transformers\ArtistTrackTransformer;
 
 class ArtistTrackSearch extends RecordSearch
 {
@@ -23,18 +24,28 @@ class ArtistTrackSearch extends RecordSearch
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
+    public function getQuery(): BoolQuery
     {
         $query = new BoolQuery();
 
         $this->addQueryStringFilter($query);
         $this->addSimpleFilters($query);
         $this->addTextFilters($query);
+        $this->addExclusiveOnlyFilter($query);
 
         return $query;
+    }
+
+    public function records()
+    {
+        return parent::records()->load(ArtistTrackTransformer::CARD_INCLUDES_PRELOAD);
+    }
+
+    private function addExclusiveOnlyFilter(BoolQuery $query): void
+    {
+        if ($this->params->exclusiveOnly) {
+            $query->filter(['term' => ['exclusive' => true]]);
+        }
     }
 
     private function addQueryStringFilter($query): void
@@ -77,6 +88,7 @@ class ArtistTrackSearch extends RecordSearch
         static $filters = [
             'bpm' => ['field' => 'bpm', 'type' => 'range'],
             'length' => ['field' => 'length', 'type' => 'range'],
+            'genre' => ['field' => 'genre.raw', 'type' => 'term'],
         ];
 
         foreach ($filters as $prop => $options) {
@@ -91,7 +103,6 @@ class ArtistTrackSearch extends RecordSearch
         static $filters = [
             'album' => ['fields' => ['album', 'album_romanized']],
             'artist' => ['fields' => ['artist']],
-            'genre' => ['fields' => ['genre']],
         ];
 
         foreach ($filters as $prop => $filter) {

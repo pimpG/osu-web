@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit',
+        'title' => 'Nahlásit beatmapu uživatele :username?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -20,13 +20,23 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Nahlásit',
+        'title' => 'Nahlásit příspěvek uživatele :username?',
+    ],
+
+    'message' => [
+        'button' => 'Nahlásit Zprávu',
+        'title' => 'Nahlásit zprávu uživatele :username?',
     ],
 
     'scores' => [
         'button' => 'Nahlásit skóre',
         'title' => 'Nahlásit skóre uživatele :username?',
+    ],
+
+    'team' => [
+        'button' => 'Nahlásit tým',
+        'title' => 'Nahlásit tým uživatele :username?',
     ],
 
     'user' => [

@@ -5,8 +5,8 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporter',
+        'title' => 'Rapporter :username sitt beatmap?',
     ],
 
     'beatmapset_discussion_post' => [
@@ -20,13 +20,23 @@ return [
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Rapporter',
+        'title' => 'Rapporter :username sitt innlegg?',
+    ],
+
+    'message' => [
+        'button' => 'Rapporter melding',
+        'title' => 'Rapporter :username sin melding?',
     ],
 
     'scores' => [
         'button' => 'Rapporter Spillresultat',
         'title' => 'Rapporter :username\'s spillresultat?',
+    ],
+
+    'team' => [
+        'button' => '',
+        'title' => '',
     ],
 
     'user' => [

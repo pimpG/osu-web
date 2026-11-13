@@ -4,7 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => '尚未遊玩任何一場 osu!(lazer) 多人遊戲！',
+    'empty' => [
+        'active' => '目前沒有任何進行中的 osu!(lazer) :type_group 遊戲！',
+        'ended' => '不在任何已結束的 osu!(lazer) :type_group 遊戲內！',
+        'playlists' => '歌單',
+        'ranked-play' => '排位模式',
+        'realtime' => '多人遊戲',
+    ],
 
     'room' => [
         'hosted_by' => '房主：:user',
@@ -12,6 +18,14 @@ return [
         'map_count' => ':count_delimited 張圖譜',
         'player_count' => ':count_delimited 位玩家',
         'time_left' => '剩下 :time',
+        'view_history' => '檢視歷史記錄',
+        'view_summary' => '檢視摘要',
+
+        'errors' => [
+            'duration_too_long' => '持續時間過長。',
+            'name_too_long' => '房間名稱過長。',
+            'too_many_playlist_items' => '歌單項目數量過多。',
+        ],
 
         'status' => [
             'active' => '開放',

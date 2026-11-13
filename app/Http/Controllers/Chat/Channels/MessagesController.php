@@ -8,13 +8,23 @@ namespace App\Http\Controllers\Chat\Channels;
 use App\Http\Controllers\Chat\Controller as BaseController;
 use App\Libraries\Chat;
 use App\Models\Chat\Channel;
+use App\Models\Chat\Message;
 use App\Transformers\Chat\MessageTransformer;
+use App\Transformers\UserCompactTransformer;
 
 /**
  * @group Chat
  */
 class MessagesController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('require-scopes:chat.read', ['only' => ['index']]);
+        $this->middleware('require-scopes:chat.write', ['only' => ['store']]);
+
+        parent::__construct();
+    }
+
     /**
      * Get Channel Messages
      *
@@ -36,7 +46,7 @@ class MessagesController extends BaseController
      *     "message_id": 9150005004,
      *     "sender_id": 2,
      *     "channel_id": 5,
-     *     "timestamp": "2018-07-06T06:33:34+00:00",
+     *     "timestamp": "2018-07-06T06:33:34Z",
      *     "content": "i am a lazerface",
      *     "is_action": 0,
      *     "sender": {
@@ -55,7 +65,7 @@ class MessagesController extends BaseController
      *     "message_id": 9150005005,
      *     "sender_id": 102,
      *     "channel_id": 5,
-     *     "timestamp": "2018-07-06T06:33:42+00:00",
+     *     "timestamp": "2018-07-06T06:33:42Z",
      *     "content": "uh ok then",
      *     "is_action": 0,
      *     "sender": {
@@ -74,13 +84,19 @@ class MessagesController extends BaseController
      */
     public function index($channelId)
     {
-        ['limit' => $limit, 'since' => $since, 'until' => $until] = get_params(request()->all(), null, [
+        [
+            'limit' => $limit,
+            'return_object' => $returnObject,
+            'since' => $since,
+            'until' => $until,
+        ] = get_params(request()->all(), null, [
             'limit:int',
+            'return_object:bool',
             'since:int',
             'until:int',
         ], ['null_missing' => true]);
 
-        $limit = clamp($limit ?? 50, 1, 50);
+        $limit = \Number::clamp($limit ?? 50, 1, 50);
         $user = auth()->user();
 
         $channel = Channel::findOrFail($channelId);
@@ -96,8 +112,8 @@ class MessagesController extends BaseController
         }
 
         $messages = $channel
-            ->filteredMessages()
-            ->with('sender')
+            ->messages()
+            ->with(['channel', 'sender' => fn ($q) => $q->select(UserCompactTransformer::DEFAULT_SELECT_FIELDS)])
             ->limit($limit);
 
         if (present($since)) {
@@ -112,11 +128,24 @@ class MessagesController extends BaseController
             $messages = $messages->orderBy('message_id', 'desc')->get()->reverse();
         }
 
-        return json_collection(
-            $messages,
-            new MessageTransformer(),
-            ['sender']
-        );
+        $messages = Message::filter($messages, $channel, $user->getKey());
+
+        if (!$returnObject) {
+            return json_collection(
+                $messages,
+                new MessageTransformer(),
+                ['sender']
+            );
+        }
+
+        return [
+            'messages' => json_collection($messages, new MessageTransformer()),
+            // FIXME: messages with null user should be removed from db...
+            'users' => json_collection(
+                collect($messages)->pluck('sender')->filter()->uniqueStrict('user_id')->values(),
+                new UserCompactTransformer()
+            ),
+        ];
     }
 
     /**
@@ -143,7 +172,7 @@ class MessagesController extends BaseController
      *   "message_id": 9150005004,
      *   "sender_id": 2,
      *   "channel_id": 5,
-     *   "timestamp": "2018-07-06T06:33:34+00:00",
+     *   "timestamp": "2018-07-06T06:33:34Z",
      *   "content": "i am a lazerface",
      *   "is_action": 0,
      *   "sender": {
@@ -164,6 +193,7 @@ class MessagesController extends BaseController
         $params = get_params(request()->all(), null, [
             'is_action:bool',
             'message',
+            'uuid',
         ], ['null_missing' => true]);
 
         $message = Chat::sendMessage(
@@ -171,6 +201,7 @@ class MessagesController extends BaseController
             Channel::findOrFail(get_int($channelId)),
             $params['message'],
             $params['is_action'] ?? false,
+            $params['uuid']
         );
 
         return json_item(

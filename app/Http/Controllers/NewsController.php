@@ -7,12 +7,36 @@ namespace App\Http\Controllers;
 
 use App\Libraries\CommentBundle;
 use App\Models\NewsPost;
+use App\Transformers\NewsPostTransformer;
 
 /**
  * @group News
  */
 class NewsController extends Controller
 {
+    private static function newsPostContentIncludes(?array $formats): array
+    {
+        static $validFormats = [
+            'html' => 'content',
+            'markdown' => 'content_markdown',
+        ];
+
+        if (is_api_request()) {
+            $ret = [];
+            foreach ($formats ?? [] as $format) {
+                if (array_key_exists($format, $validFormats)) {
+                    $ret[$format] ??= $validFormats[$format];
+                }
+            }
+
+            return count($ret) === 0
+                ? [$validFormats['html'], $validFormats['markdown']]
+                : array_values($ret);
+        } else {
+            return [$validFormats['html']];
+        }
+    }
+
     /**
      * Get News Listing
      *
@@ -22,23 +46,23 @@ class NewsController extends Controller
      *
      * ### Response Format
      *
-     * Field                     | Type                    | Notes
-     * --------------------------|-------------------------|------
-     * cursor                    | [Cursor](#cursor)       | |
-     * news_posts                | [NewsPost](#newspost)[] | Includes `preview`.
-     * news_sidebar.current_year | number                  | Year of the first post's publish time, or current year if no posts returned.
-     * news_sidebar.news_posts   | [NewsPost](#newspost)[] | All posts published during `current_year`.
-     * news_sidebar.years        | number[]                | All years during which posts have been published.
-     * search.limit              | number                  | Clamped limit input.
-     * search.sort               | string                  | Always `published_desc`.
+     * Field                     | Type                          | Notes
+     * ------------------------- | ----------------------------- | -----
+     * cursor_string             | [CursorString](#cursorstring) | |
+     * news_posts                | [NewsPost](#newspost)[]       | Includes `preview`.
+     * news_sidebar.current_year | integer                       | Year of the first post's publish time, or current year if no posts returned.
+     * news_sidebar.news_posts   | [NewsPost](#newspost)[]       | All posts published during `current_year`.
+     * news_sidebar.years        | integer[]                     | All years during which posts have been published.
+     * search.limit              | integer                       | Clamped limit input.
+     * search.sort               | string                        | Always `published_desc`.
      *
      * <aside class="notice">
      *   <a href="#newspost">NewsPost</a> collections queried by year will also include posts published in November and December of the previous year if the current date is the same year and before April.
      * </aside>
      *
+     * @usesCursor
      * @queryParam limit integer Maximum number of posts (12 default, 1 minimum, 21 maximum). No-example
      * @queryParam year integer Year to return posts from. No-example
-     * @queryParam cursor [Cursor](#cursor) for pagination. No-example
      * @response {
      *   "news_posts": [
      *     {
@@ -46,8 +70,8 @@ class NewsController extends Controller
      *       "author": "RockRoller",
      *       "edit_url": "https://github.com/ppy/osu-wiki/tree/master/news/2021-05-27-skinning-contest-results.md",
      *       "first_image": "https://i.ppy.sh/d431ff921955d5c8792dc9bae40ac082d4e53131/68747470733a2f2f6f73752e7070792e73682f77696b692f696d616765732f7368617265642f6e6577732f323032312d30352d32372d736b696e6e696e672d636f6e746573742d726573756c74732f736b696e6e696e675f636f6e746573745f62616e6e65722e6a7067",
-     *       "published_at": "2021-05-27T12:00:00+00:00",
-     *       "updated_at": "2021-05-28T17:11:35+00:00",
+     *       "published_at": "2021-05-27T12:00:00Z",
+     *       "updated_at": "2021-05-28T17:11:35Z",
      *       "slug": "2021-05-27-skinning-contest-results",
      *       "title": "Skinning Contest: Results Out",
      *       "preview": "The ship full of skins is now back with your votes. Check out the results for our first-ever official skinning contest right here!"
@@ -62,8 +86,8 @@ class NewsController extends Controller
      *         "author": "RockRoller",
      *         "edit_url": "https://github.com/ppy/osu-wiki/tree/master/news/2021-05-27-skinning-contest-results.md",
      *         "first_image": "https://i.ppy.sh/d431ff921955d5c8792dc9bae40ac082d4e53131/68747470733a2f2f6f73752e7070792e73682f77696b692f696d616765732f7368617265642f6e6577732f323032312d30352d32372d736b696e6e696e672d636f6e746573742d726573756c74732f736b696e6e696e675f636f6e746573745f62616e6e65722e6a7067",
-     *         "published_at": "2021-05-27T12:00:00+00:00",
-     *         "updated_at": "2021-05-28T17:11:35+00:00",
+     *         "published_at": "2021-05-27T12:00:00Z",
+     *         "updated_at": "2021-05-28T17:11:35Z",
      *         "slug": "2021-05-27-skinning-contest-results",
      *         "title": "Skinning Contest: Results Out"
      *       },
@@ -75,10 +99,7 @@ class NewsController extends Controller
      *     "limit": 12,
      *     "sort": "published_desc"
      *   },
-     *   "cursor": {
-     *     "published_at": "2021-05-09T18:00:00.000000Z",
-     *     "id": 953
-     *   }
+     *   "cursor_string": "WyJodHRwczpcL1wvd3d3LnlvdXR1YmUuY29tXC93YXRjaD92PWRRdzR3OVdnWGNRIl0"
      * }
      */
     public function index()
@@ -97,10 +118,10 @@ class NewsController extends Controller
         }
 
         $postsJson = [
-            'cursor' => $hasMore ? $search['cursorHelper']->next($posts) : null,
-            'news_posts' => json_collection($posts, 'NewsPost', ['preview']),
+            'news_posts' => json_collection($posts, new NewsPostTransformer(), ['preview']),
             'news_sidebar' => $this->sidebarMeta($posts[0] ?? null),
             'search' => $search['params'],
+            ...cursor_for_response($search['cursorHelper']->next($posts, $hasMore)),
         ];
 
         if (is_json_request()) {
@@ -119,6 +140,13 @@ class NewsController extends Controller
         }
     }
 
+    public function redirect($tumblrId)
+    {
+        $post = NewsPost::where('tumblr_id', $tumblrId)->firstOrFail();
+
+        return ujs_redirect(route('news.show', $post->slug));
+    }
+
     /**
      * Get News Post
      *
@@ -128,28 +156,30 @@ class NewsController extends Controller
      *
      * ### Response Format
      *
-     * Returns a [NewsPost](#newspost) with `content` and `navigation` included.
+     * Returns a [NewsPost](#newspost) with `content`, `content_markdown`, and `navigation` included.
      *
      * @urlParam news string required News post slug or ID. Example: 2021-04-27-results-a-labour-of-love
+     * @queryParam content_formats[] string `html`, `markdown`. Default to both.
      * @queryParam key string Unset to query by slug, or `id` to query by ID. No-example
      * @response {
      *   "id": 943,
      *   "author": "pishifat",
      *   "edit_url": "https://github.com/ppy/osu-wiki/tree/master/news/2021-04-27-results-a-labour-of-love.md",
      *   "first_image": "https://i.ppy.sh/65c9c2eb2f8d9bc6008b95aba7d0ef45e1414c1e/68747470733a2f2f6f73752e7070792e73682f77696b692f696d616765732f7368617265642f6e6577732f323032302d31312d33302d612d6c61626f75722d6f662d6c6f76652f616c6f6c5f636f7665722e6a7067",
-     *   "published_at": "2021-04-27T20:00:00+00:00",
-     *   "updated_at": "2021-04-27T20:25:57+00:00",
+     *   "published_at": "2021-04-27T20:00:00Z",
+     *   "updated_at": "2021-04-27T20:25:57Z",
      *   "slug": "2021-04-27-results-a-labour-of-love",
      *   "title": "Results - A Labour of Love",
      *   "content": "<div class='osu-md osu-md--news'>...</div>",
+     *   "content_markdown": "...",
      *   "navigation": {
      *     "newer": {
      *       "id": 944,
      *       "author": "pishifat",
      *       "edit_url": "https://github.com/ppy/osu-wiki/tree/master/news/2021-04-28-new-featured-artist-emilles-moonlight-serenade.md",
      *       "first_image": "https://i.ppy.sh/7e22cc5f4755c21574d999d8ce3a2f40a3268e84/68747470733a2f2f6173736574732e7070792e73682f617274697374732f3136302f6865616465722e6a7067",
-     *       "published_at": "2021-04-28T08:00:00+00:00",
-     *       "updated_at": "2021-04-28T09:51:28+00:00",
+     *       "published_at": "2021-04-28T08:00:00Z",
+     *       "updated_at": "2021-04-28T09:51:28Z",
      *       "slug": "2021-04-28-new-featured-artist-emilles-moonlight-serenade",
      *       "title": "New Featured Artist: Emille's Moonlight Serenade"
      *     },
@@ -158,8 +188,8 @@ class NewsController extends Controller
      *       "author": "pishifat",
      *       "edit_url": "https://github.com/ppy/osu-wiki/tree/master/news/2021-04-24-new-featured-artist-grynpyret.md",
      *       "first_image": "https://i.ppy.sh/acdce813b71371b95e8240f9249c916285fdc5a0/68747470733a2f2f6173736574732e7070792e73682f617274697374732f3135392f6865616465722e6a7067",
-     *       "published_at": "2021-04-24T08:00:00+00:00",
-     *       "updated_at": "2021-04-24T10:23:59+00:00",
+     *       "published_at": "2021-04-24T08:00:00Z",
+     *       "updated_at": "2021-04-24T10:23:59Z",
      *       "slug": "2021-04-24-new-featured-artist-grynpyret",
      *       "title": "New Featured Artist: Grynpyret"
      *     }
@@ -184,11 +214,16 @@ class NewsController extends Controller
             abort(404);
         }
 
-        $postJson = json_item($post, 'NewsPost', ['content', 'navigation']);
+        $postJson = json_item($post, new NewsPostTransformer(), [
+            ...static::newsPostContentIncludes(get_arr(request('content_formats'))),
+            'navigation',
+        ]);
 
         if (is_json_request()) {
             return $postJson;
         }
+
+        set_opengraph($post);
 
         return ext_view('news.show', [
             'commentBundle' => CommentBundle::forEmbed($post),
@@ -240,7 +275,7 @@ class NewsController extends Controller
 
                 return [
                     'current_year' => $currentYear,
-                    'news_posts' => json_collection($posts, 'NewsPost'),
+                    'news_posts' => json_collection($posts, new NewsPostTransformer()),
                     'years' => $years,
                 ];
             }

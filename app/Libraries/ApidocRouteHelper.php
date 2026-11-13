@@ -6,6 +6,7 @@
 namespace App\Libraries;
 
 use App\Http\Middleware\RequireScopes;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class ApidocRouteHelper
 {
@@ -15,7 +16,11 @@ class ApidocRouteHelper
     {
         $scopeLower = strtolower($scope);
 
-        return \Html::link("#scope-{$scopeLower}", $scope, ['class' => "badge badge-scope badge-scope-{$scopeLower}"]);
+        return link_to(
+            "#scope-{$scopeLower}",
+            $scope,
+            ['class' => "badge badge-scope badge-scope-{$scopeLower}"],
+        );
     }
 
 
@@ -71,7 +76,7 @@ class ApidocRouteHelper
                 $route['scopes'] = [];
             }
 
-            $route['auth'] = in_array('auth', $route['middlewares'], true);
+            $route['auth'] = in_array(Authenticate::class, $route['middlewares'], true);
 
             $this->routeScopes[static::keyFor($route['methods'], $route['uri'])] = $route;
         }

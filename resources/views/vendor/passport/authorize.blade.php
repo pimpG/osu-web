@@ -2,10 +2,6 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
-@php
-    $user = auth()->user();
-@endphp
-
 @extends('master', [
     'blank' => true,
     'titlePrepend' => $client->name,
@@ -16,7 +12,7 @@
         <div class="dialog-form__dialog">
             <div
                 class="dialog-form__row dialog-form__row--header"
-                style="background-image: url('{{ $user->profileCustomization()->cover()->url() }}')"
+                style="background-image: url('{{ $user->cover()->url() }}')"
             >
                 <div class="dialog-form__header-overlay"></div>
                 <a
@@ -43,6 +39,11 @@
                 <h2 class="dialog-form__client-name">
                     {{ $client->name }}
                 </h2>
+                <p><small>
+                    {!! osu_trans('oauth.authorise.app_owner', [
+                        'owner' => link_to_user($client->user_id, $client->user->username),
+                    ]) !!}
+                </small></p>
                 <p class="dialog-form__client-request">
                     {{ osu_trans('oauth.authorise.request') }}
                 </p>
@@ -69,40 +70,52 @@
             <div class="dialog-form__row dialog-form__row--wrong-user">
                 {!! osu_trans('common.wrong_user._', [
                     'user' => e($user->username),
-                    'logout_link' => link_to_route(
-                        'logout',
+                    'logout_link' => link_to(
+                        route('logout'),
                         osu_trans('common.wrong_user.logout_link'),
-                        [],
                         [
                             'class' => 'dialog-form__extra-link',
                             'data-confirm' => osu_trans('users.logout_confirm'),
                             'data-method' => 'DELETE',
                             'data-reload-on-success' => '1',
                             'data-remote' => '1',
-                        ]
+                        ],
                     ),
                 ]) !!}
             </div>
             <div class="dialog-form__row dialog-form__row--buttons">
-                {!! Form::open([
-                    'url' => '/oauth/authorize',
-                    'method' => 'POST',
-                ]) !!}
+                <form
+                    action="{{ route('oauth.authorizations.authorize') }}"
+                    data-turbo="false"
+                    method="POST"
+                >
+                    @csrf
+                    <input type="hidden" name="state" value="{{ $request->state }}">
+                    <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
+                    <input type="hidden" name="auth_token" value="{{ $authToken }}">
+
                     <button class="dialog-form__button">
                         {{ osu_trans('common.buttons.authorise') }}
                     </button>
-                {!! Form::close() !!}
+                </form>
 
-                {!! Form::open([
-                    'url' => '/oauth/authorize',
-                    'method' => 'DELETE',
-                ]) !!}
+                <form
+                    action="{{ route('oauth.authorizations.authorize') }}"
+                    data-turbo="false"
+                    method="POST"
+                >
+                    @csrf
+                    <input name="_method" value="DELETE" type="hidden" />
+                    <input type="hidden" name="state" value="{{ $request->state }}">
+                    <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
+                    <input type="hidden" name="auth_token" value="{{ $authToken }}">
+
                     <button
                         class="dialog-form__button dialog-form__button--cancel"
                     >
                         {{ osu_trans('common.buttons.cancel') }}
                     </button>
-                {!! Form::close() !!}
+                </form>
             </div>
         </div>
     </div>

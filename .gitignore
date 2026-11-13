@@ -1,6 +1,7 @@
 # Local configuration.
 /.env*
 !/.env*.example
+/.webpack-build-notifier-config.js
 
 # ignore _ide_helper.php
 _ide_helper.php
@@ -8,6 +9,9 @@ _ide_helper.php
 # composer files/dirs
 /vendor
 composer.phar
+
+# docker related local files
+/compose.override.yaml
 
 # OS-specific crud
 .DS_Store
@@ -20,12 +24,10 @@ desktop.ini
 /yarn-error.log
 
 # Compiled/copied assets
+/.scribe
 /public/assets
 /public/docs
 /public/uploads
-/public/uploads-avatar
-/public/uploads-replay
-/resources/docs
 
 # server logs
 /logs/osu/*
@@ -68,8 +70,7 @@ com_crashlytics_export_strings.xml
 
 sftp-settings.json
 
-/resources/assets/js/ziggy.js
-/resources/assets/build/
+/resources/builds/
 
 composer-installer
 
@@ -82,3 +83,6 @@ composer-installer
 /bootstrap/cache/
 /storage/htmlpurifier/
 /storage/paypal_auth.cache
+
+/database/ip2asn/*.idx
+/database/ip2asn/*.tsv

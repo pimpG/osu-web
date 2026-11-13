@@ -5,23 +5,28 @@
 
 return [
     'beatmapset' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username rytmikartta?',
     ],
 
     'beatmapset_discussion_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username viesti?',
     ],
 
     'comment' => [
-        'button' => 'Reportoi',
-        'title' => 'Reportoi :username\'n kommentti?',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username kommentti?',
     ],
 
     'forum_post' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko käyttäjän :username viesti?',
+    ],
+
+    'message' => [
+        'button' => 'Ilmianna Viesti',
+        'title' => 'Ilmianna pelaajan :username viesti?',
     ],
 
     'scores' => [
@@ -29,8 +34,13 @@ return [
         'title' => 'Ilmiannetaanko käyttäjän :username pisteet?',
     ],
 
+    'team' => [
+        'button' => 'Ilmoita tiimistä',
+        'title' => 'Ilmoita käyttäjän :username tiimi?',
+    ],
+
     'user' => [
-        'button' => '',
-        'title' => '',
+        'button' => 'Ilmianna',
+        'title' => 'Ilmiannetaanko :username?',
     ],
 ];

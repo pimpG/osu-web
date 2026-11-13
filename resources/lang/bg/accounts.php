@@ -10,15 +10,25 @@ return [
 
         'avatar' => [
             'title' => 'Аватар',
-            'rules' => 'Моля уверете се, че вашият аватар се придържда към :link.<br/>Това означава, че задължително трябва да бъде <strong>подходящ за всички възрасти</strong>. т.е. няма голота, ругатни или внушаващо съдържание.',
+            'reset' => 'нулиране',
+            'rules' => 'Моля, уверете се, че вашият аватар се придържда към :link.<br/>Това означава, че задължително трябва да бъде <strong>подходящ за всички възрасти</strong>. т.е. няма голота, ругатни или внушаващо съдържание.',
             'rules_link' => 'обществените правила',
         ],
 
         'email' => [
-            'current' => 'текущ имейл',
             'new' => 'нов имейл',
             'new_confirmation' => 'потвърди нов имейл',
             'title' => 'Имейл',
+            'locked' => [
+                '_' => 'Моля, свържете се с :accounts за обновяване не имейл.',
+                'accounts' => 'екипа за поддръжка на профили',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Наследен API',
         ],
 
         'password' => [
@@ -29,7 +39,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'държава',
             'title' => 'Профил',
+
+            'country_change' => [
+                '_' => "Изглежда че държавата на профила не съвпада с текущата ви държава. :update_link.",
+                'update_link' => 'Променете на :country',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,24 +63,53 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Ако сте сътрудник в хранилищата с отворен код на osu!, свързването на вашия GitHub профил ще асоцира приносите ви от списъка с промени към вашия osu! профил. GitHub профилите без история за допринасяне към osu! не могат да бъдат свързани.",
+        'link' => 'Свържете GitHub профил',
+        'title' => 'GitHub',
+        'unlink' => 'Премахнете GitHub профил',
+
+        'error' => [
+            'already_linked' => 'Този GitHub профил е свързан към друг потребител.',
+            'no_contribution' => 'Не може да добавите GitHub профил без никакъв принос в osu! хранилищата.',
+            'unverified_email' => 'Потвърдете основния ви имейл в GitHub, след това опитайте да свържете профила отново.',
+        ],
+    ],
+
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'покажи известие за нов проблем с квалифициран бийтмап от следния режим на игра:',
-        'beatmapset_disqualify' => 'покажи известие, когато бийтмап от следния режим на игра е дисквалифициран:',
-        'comment_reply' => 'покажи известие при отговор на мой коментар',
+        'beatmapset_discussion_reply' => '',
+        'beatmapset_discussion_qualified_problem' => 'показване на известие при нов проблем с квалифициран бийтмап от следните видове игра:',
+        'beatmapset_disqualify' => 'показване на известие, когато бийтмап от следните видове игра е дисквалифициран:',
+        'comment_reply' => 'показване на известие при отговор към мой коментар',
+        'news_post' => '',
         'title' => 'Известия',
-        'topic_auto_subscribe' => 'автоматично включи известията за всяка новосъздадена от мен форумна тема',
+        'topic_auto_subscribe' => 'автоматично активиране на известията за всяка новосъздадена от мен форумна тема',
 
         'options' => [
             '_' => 'опции за доставка',
             'beatmap_owner_change' => 'бийтмап трудност',
             'beatmapset:modding' => 'бийтмап редактор',
+            'channel_mention' => '',
             'channel_message' => 'лично съобщение',
+            'channel_team' => 'отборни съобщения',
             'comment_new' => 'нов коментар',
             'forum_topic_reply' => 'отговор на тема',
             'mail' => 'поща',
             'mapping' => 'бийтмап създател',
+            'news_post' => '',
             'push' => 'сайт',
-            'user_achievement_unlock' => 'нов отключен медал',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -75,19 +120,22 @@ return [
     ],
 
     'options' => [
-        'beatmapset_show_nsfw' => 'скрий предупреждения за бийтмапове с чувствително съдържание (Explicit)',
-        'beatmapset_title_show_original' => 'покажи бийтмап метаданни на оригиналния език',
+        'beatmapset_show_anime_cover' => '',
+        'beatmapset_show_nsfw' => 'скриване на предупрежденията за бийтмапове с Explicit съдържание',
+        'beatmapset_title_show_original' => 'показване на бийтмап метаданните с оригиналния им език',
         'title' => 'Hастройки',
 
         'beatmapset_download' => [
-            '_' => 'бийтмапове да се изтеглят:',
+            '_' => 'бийтмаповете да се изтеглят:',
             'all' => 'с видео при наличност',
-            'direct' => 'отвори в osu!direct',
+            'direct' => 'отваряне в osu!direct',
+            'lazer' => '',
             'no_video' => 'без видео',
         ],
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => 'клавиатура',
         'mouse' => 'мишка',
         'tablet' => 'таблет',
@@ -96,16 +144,18 @@ return [
     ],
 
     'privacy' => [
-        'friends_only' => 'блокиране на лични съобщения от хора с които не съм приятел',
+        'friends_only' => 'блокиране на лични съобщения от хора, които не са ми приятели',
+        'friends_only_info' => '',
         'hide_online' => 'скриване на моето онлайн присъствие',
+        'hide_online_info' => '',
         'title' => 'Поверителност',
     ],
 
     'security' => [
-        'current_session' => 'текущ',
+        'current_session' => 'текуща',
         'end_session' => 'Прекрати сесия',
         'end_session_confirmation' => 'Това незабавно ще прекрати сесията на съответното устройство. Сигурни ли сте?',
-        'last_active' => 'Последно активен:',
+        'last_active' => 'Последна активност:',
         'title' => 'Сигурност',
         'web_sessions' => 'уеб сесии',
     ],
@@ -116,6 +166,21 @@ return [
 
     'update_password' => [
         'update' => 'обнови',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => 'Премахни',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => 'Не конфигурирано',
+            'set' => 'Конфигурирано',
+        ],
     ],
 
     'verification_completed' => [

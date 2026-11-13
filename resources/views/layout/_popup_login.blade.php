@@ -14,16 +14,18 @@
         data-click-menu-id="nav2-login-box"
         data-visibility="hidden"
     >
-        {!! Form::open([
-            'url' => route('login'),
-            'class' => '
+        <form
+            action="{{ route('login') }}"
+            class="
                 login-box__section
                 login-box__section--login
                 js-login-form
                 js-nav-popup--submenu
-            ',
-            'data-remote' => true,
-        ]) !!}
+            "
+            data-remote
+            method="POST"
+        >
+            @csrf
             <h2 class="login-box__row login-box__row--title">{{ osu_trans('layout.popup_login.login.title') }}</h2>
 
             <div class="login-box__row login-box__row--inputs">
@@ -44,9 +46,8 @@
 
             @if (captcha_enabled())
                 <div class="login-box__row">
-                    <div class='js-captcha--container'></div>
+                    @include('objects._captcha', ['params' => []])
                 </div>
-                @include('objects._captcha_script')
             @endif
 
             <div class="login-box__row login-box__row--error js-login-form--error"></div>
@@ -73,7 +74,7 @@
                     </button>
                 </div>
             </div>
-        {!! Form::close() !!}
+        </form>
 
         <div class="login-box__section login-box__section--register">
             <h2 class="login-box__row login-box__row--title">

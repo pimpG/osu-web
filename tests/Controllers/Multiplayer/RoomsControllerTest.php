@@ -9,26 +9,55 @@ use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Chat\UserChannel;
 use App\Models\Multiplayer\PlaylistItem;
+use App\Models\Multiplayer\PlaylistItemUserHighScore;
 use App\Models\Multiplayer\Room;
+use App\Models\Multiplayer\ScoreLink;
+use App\Models\Multiplayer\UserScoreAggregate;
 use App\Models\OAuth\Token;
 use App\Models\User;
+use Illuminate\Support\Arr;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class RoomsControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $room = factory(Room::class)->create();
-        $user = factory(User::class)->create();
+        $room = Room::factory()->create();
+        $user = User::factory()->create();
 
         $this->actAsScopedUser($user, ['*']);
 
         $this->json('GET', route('api.rooms.index'))->assertSuccessful();
     }
 
+    public function testShow()
+    {
+        $room = Room::factory()->create();
+        $user = User::factory()->create();
+        $playlistItem = PlaylistItem::factory()->create(['room_id' => $room]);
+        $scoreLink = ScoreLink
+            ::factory()
+            ->state([
+                'playlist_item_id' => $playlistItem,
+                'user_id' => $user,
+            ])->completed([], ['passed' => true, 'total_score' => 20])
+            ->create();
+        PlaylistItemUserHighScore::new($scoreLink->user_id, $scoreLink->playlist_item_id)->update(['attempts' => 1]);
+        UserScoreAggregate::lookupOrDefault($scoreLink->user, $scoreLink->playlistItem->room)->recalculate();
+
+        $this->actAsScopedUser($user, ['*']);
+
+        $this
+            ->json('GET', route('api.rooms.show', $room))
+            ->assertSuccessful()
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.attempts', 1)
+            ->assertJsonPath('current_user_score.playlist_item_attempts.0.id', $playlistItem->getKey());
+    }
+
     public function testStore()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -37,23 +66,100 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['ends_at' => now()->addHour()],
+                ['ends_at' => now()->addHours()],
             ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
         $this->assertSame($playlistItemsCountInitial + 1, PlaylistItem::count());
     }
 
+    #[DataProvider('dataProviderForTestStoreWithInvalidPlayableMods')]
+    public function testStoreWithInvalidPlayableMods(string $type, string $modType): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), 0);
+
+        $params = array_merge($this->createBasicStoreParams(), [
+            'ends_at' => now()->addHours(),
+            'type' => $type,
+        ]);
+
+        $params['playlist'][0]['allowed_mods'] = [];
+        $params['playlist'][0]['required_mods'] = [];
+        $params['playlist'][0]["{$modType}_mods"][] = ['acronym' => 'AT', 'settings' => []];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus(422);
+
+        $responseJson = json_decode($response->getContent(), true);
+        $this->assertSame("mod cannot be set as {$modType}: AT", $responseJson['error']);
+    }
+
+    #[DataProvider('dataProviderForTestStoreWithInvalidRealtimeAllowedMods')]
+    public function testStoreWithInvalidRealtimeAllowedMods(string $type, bool $ok): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
+
+        $params = array_merge($this->createBasicStoreParams(), [
+            'ends_at' => now()->addHours(),
+            'type' => $type,
+        ]);
+        $params['playlist'][0]['required_mods'] = [];
+        $params['playlist'][0]['allowed_mods'] = [['acronym' => 'DT', 'settings' => []]];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus($ok ? 200 : 422);
+
+        if (!$ok) {
+            $response->assertJson(['error' => 'mod cannot be set as allowed: DT']);
+        }
+    }
+
+    #[DataProvider('dataProviderForTestStoreWithInvalidRealtimeMods')]
+    public function testStoreWithInvalidRealtimeMods(string $type, bool $ok): void
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+
+        $this->expectCountChange(fn () => Room::count(), $ok ? 1 : 0);
+        $this->expectCountChange(fn () => PlaylistItem::count(), $ok ? 1 : 0);
+
+        // explicit ruleset required because AS isn't available for all modes
+        $params = array_merge($this->createBasicStoreParams('osu'), [
+            'ends_at' => now()->addHours(),
+            'type' => $type,
+        ]);
+        $params['playlist'][0]['allowed_mods'] = [];
+        $params['playlist'][0]['required_mods'] = [['acronym' => 'AS', 'settings' => []]];
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), $params)
+            ->assertStatus($ok ? 200 : 422);
+
+        if (!$ok) {
+            $response->assertJson(['error' => 'mod cannot be set as required: AS']);
+        }
+    }
+
     public function testStoreWithPassword()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
 
         $response = $this
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
                 [
-                    'ends_at' => now()->addHour(),
+                    'ends_at' => now()->addHours(),
                     'password' => 'hunter2',
                 ],
             ))->assertSuccessful();
@@ -64,8 +170,8 @@ class RoomsControllerTest extends TestCase
 
     public function testStoreRealtime()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $type = array_rand_val(Room::REALTIME_TYPES);
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $type = array_rand_val(Room::REALTIME_STANDARD_TYPES);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -88,12 +194,13 @@ class RoomsControllerTest extends TestCase
         $this->assertNotNull($room);
         $this->assertTrue($room->isRealtime());
         $this->assertSame($type, $room->type);
+        $this->assertSame($token->user->getKey(), $room->playlist()->first()->owner_id);
     }
 
     public function testStoreRealtimeByType()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
-        $type = array_rand_val(Room::REALTIME_TYPES);
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $type = array_rand_val(Room::REALTIME_STANDARD_TYPES);
 
         $response = $this
             ->actingWithToken($token)
@@ -109,10 +216,32 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($type, $room->type);
     }
 
+    public function testStoreRealtimeByQueueMode()
+    {
+        $token = Token::factory()->create(['scopes' => ['*']]);
+        $queueMode = array_rand_val(Room::REALTIME_QUEUE_MODES);
+
+        $response = $this
+            ->actingWithToken($token)
+            ->post(route('api.rooms.store'), array_merge(
+                $this->createBasicStoreParams(),
+                [
+                    'type' => Room::REALTIME_DEFAULT_TYPE,
+                    'queue_mode' => $queueMode,
+                ],
+            ))->assertSuccessful();
+
+        $responseJson = json_decode($response->getContent(), true);
+        $room = Room::find($responseJson['id']);
+        $this->assertNotNull($room);
+        $this->assertTrue($room->isRealtime());
+        $this->assertSame($queueMode, $room->queue_mode);
+    }
+
     // TODO: remove once client sends type instead of category
     public function testStoreRealtimeByCategory()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
 
         $response = $this
             ->actingWithToken($token)
@@ -130,7 +259,7 @@ class RoomsControllerTest extends TestCase
 
     public function testStoreRealtimeWithPassword()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
         $password = 'hunter2';
 
         $response = $this
@@ -139,7 +268,7 @@ class RoomsControllerTest extends TestCase
                 $this->createBasicStoreParams(),
                 [
                     'password' => $password,
-                    'type' => array_rand_val(Room::REALTIME_TYPES),
+                    'type' => array_rand_val(Room::REALTIME_STANDARD_TYPES),
                 ],
             ))->assertSuccessful();
 
@@ -149,7 +278,7 @@ class RoomsControllerTest extends TestCase
 
     public function testStoreRealtimeFailWithTwoPlaylistItems()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
         $beatmapset = Beatmapset::factory()->create();
         $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset]);
 
@@ -161,7 +290,7 @@ class RoomsControllerTest extends TestCase
             'beatmap_id' => $beatmap->getKey(),
             'ruleset_id' => $beatmap->playmode,
         ];
-        $params['type'] = array_rand_val(Room::REALTIME_TYPES);
+        $params['type'] = array_rand_val(Room::REALTIME_STANDARD_TYPES);
 
         $this
             ->actingWithToken($token)
@@ -174,11 +303,11 @@ class RoomsControllerTest extends TestCase
 
     public function testStorePlaylistsAllowance()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
         $user = $token->user;
 
-        for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
-            factory(Room::class)->create(['user_id' => $user]);
+        for ($i = 0; $i < $user->maxPlaylists(); $i++) {
+            Room::factory()->create(['user_id' => $user]);
         }
 
         $roomsCountInitial = Room::count();
@@ -188,7 +317,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['ends_at' => now()->addHour()],
+                ['ends_at' => now()->addHours()],
             ))->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
@@ -197,9 +326,9 @@ class RoomsControllerTest extends TestCase
 
     public function testStorePlaylistsAllowanceSeparateFromRealtime()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
         $user = $token->user;
-        factory(Room::class)->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
+        Room::factory()->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -208,7 +337,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['ends_at' => now()->addHour()],
+                ['ends_at' => now()->addHours()],
             ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
@@ -217,11 +346,11 @@ class RoomsControllerTest extends TestCase
 
     public function testStoreRealtimeAllowance()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
 
         $user = $token->user;
 
-        factory(Room::class)->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
+        Room::factory()->create(['user_id' => $user, 'type' => Room::REALTIME_DEFAULT_TYPE]);
 
         $roomsCountInitial = Room::count();
         $playlistItemsCountInitial = PlaylistItem::count();
@@ -230,7 +359,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['type' => array_rand_val(Room::REALTIME_TYPES)],
+                ['type' => array_rand_val(Room::REALTIME_STANDARD_TYPES)],
             ))->assertStatus(422);
 
         $this->assertSame($roomsCountInitial, Room::count());
@@ -239,12 +368,12 @@ class RoomsControllerTest extends TestCase
 
     public function testStoreRealtimeAllowanceSeparateFromPlaylists()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
 
         $user = $token->user;
 
-        for ($i = 0; $i < $user->maxMultiplayerRooms(); $i++) {
-            factory(Room::class)->create(['user_id' => $user]);
+        for ($i = 0; $i < $user->maxPlaylists(); $i++) {
+            Room::factory()->create(['user_id' => $user]);
         }
 
         $roomsCountInitial = Room::count();
@@ -254,7 +383,7 @@ class RoomsControllerTest extends TestCase
             ->actingWithToken($token)
             ->post(route('api.rooms.store'), array_merge(
                 $this->createBasicStoreParams(),
-                ['type' => array_rand_val(Room::REALTIME_TYPES)],
+                ['type' => array_rand_val(Room::REALTIME_STANDARD_TYPES)],
             ))->assertSuccessful();
 
         $this->assertSame($roomsCountInitial + 1, Room::count());
@@ -263,9 +392,9 @@ class RoomsControllerTest extends TestCase
 
     public function testJoinWithPassword()
     {
-        $token = factory(Token::class)->create(['scopes' => ['*']]);
+        $token = Token::factory()->create(['scopes' => ['*']]);
         $password = 'hunter2';
-        $room = factory(Room::class)->create(compact('password'));
+        $room = Room::factory()->create(compact('password'));
 
         $initialUserChannelCount = UserChannel::count();
         $url = route('api.rooms.join', ['room' => $room, 'user' => $token->user]);
@@ -295,20 +424,152 @@ class RoomsControllerTest extends TestCase
         $this->assertSame($initialUserChannelCount + 1, UserChannel::count());
     }
 
+    public function testDestroy()
+    {
+        $start = now();
+        $end = $start->clone()->addMinutes(60);
+        $room = Room::factory()->create([
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::PLAYLIST_TYPE,
+        ]);
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
+        $url = route('api.rooms.destroy', ['room' => $room]);
+
+        $this->actAsScopedUser($room->host);
+        $this
+            ->delete($url)
+            ->assertSuccessful();
+
+        $room->refresh();
+        $this->assertLessThan($end, $room->ends_at);
+    }
+
+    public function testDestroyCannotBeCalledOnRealtimeRoom()
+    {
+        $start = now();
+        $end = $start->clone()->addMinutes(60);
+        $room = Room::factory()->create([
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::REALTIME_DEFAULT_TYPE,
+        ]);
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
+        $url = route('api.rooms.destroy', ['room' => $room]);
+
+        $this->actAsScopedUser($room->host);
+        $this
+            ->delete($url)
+            ->assertStatus(422);
+
+        $room->refresh();
+        $this->assertEquals($end, $room->ends_at);
+    }
+
+    public function testDestroyCannotBeCalledByAnotherUser()
+    {
+        $requester = User::factory()->create();
+        $owner = User::factory()->create();
+        $start = now();
+        $end = $start->clone()->addMinutes(60);
+        $room = Room::factory()->create([
+            'user_id' => $owner->getKey(),
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::PLAYLIST_TYPE,
+        ]);
+        $url = route('api.rooms.destroy', ['room' => $room]);
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
+
+        $this->actAsScopedUser($requester);
+        $this
+            ->delete($url)
+            ->assertStatus(403);
+
+        $room->refresh();
+        $this->assertEquals($end, $room->ends_at);
+    }
+
+    public function testDestroyCannotBeCalledAfterGracePeriod()
+    {
+        $start = now();
+        $end = $start->clone()->addMinutes(60);
+        $room = Room::factory()->create([
+            'starts_at' => $start,
+            'ends_at' => $end,
+            'type' => Room::PLAYLIST_TYPE,
+        ]);
+        $url = route('api.rooms.destroy', ['room' => $room]);
+        $end = $room->ends_at; // assignment truncates fractional second part, so refetch here
+
+        $this->actAsScopedUser($room->host);
+        $this->travelTo($start->addMinutes(6));
+        $this
+            ->delete($url)
+            ->assertStatus(422);
+
+        $room->refresh();
+        $this->assertEquals($end, $room->ends_at);
+    }
+
+    public static function dataProviderForTestStoreWithInvalidPlayableMods(): array
+    {
+        $ret = [];
+        foreach ([Arr::random(Room::REALTIME_STANDARD_TYPES), Room::PLAYLIST_TYPE] as $type) {
+            foreach (['allowed', 'required'] as $modType) {
+                $ret[] = [$type, $modType];
+            }
+        }
+
+        return $ret;
+    }
+
+    public static function dataProviderForTestStoreWithInvalidRealtimeAllowedMods(): array
+    {
+        return [
+            [Arr::random(Room::REALTIME_STANDARD_TYPES), false],
+            [Room::PLAYLIST_TYPE, true],
+        ];
+    }
+
+    public static function dataProviderForTestStoreWithInvalidRealtimeMods(): array
+    {
+        return [
+            [Arr::random(Room::REALTIME_STANDARD_TYPES), false],
+            [Room::PLAYLIST_TYPE, true],
+        ];
+    }
+
     /**
      * If making playlist, add `ends_at`.
      * If making realtime, add `type`.
      */
-    private function createBasicStoreParams()
+    private function createBasicStoreParams($ruleset = null)
     {
         $beatmapset = Beatmapset::factory()->create();
-        $beatmap = Beatmap::factory()->create(['beatmapset_id' => $beatmapset]);
+        $beatmapParams = ['beatmapset_id' => $beatmapset];
+        if ($ruleset !== null) {
+            $beatmapParams['playmode'] = Beatmap::MODES[$ruleset];
+        }
+        $beatmap = Beatmap::factory()->create($beatmapParams);
 
         return [
             'name' => 'test room '.rand(),
             'playlist' => [
                 [
+                    'allowed_mods' => [
+                        [
+                            'acronym' => 'PF',
+                            'settings' => [],
+                        ],
+                    ],
                     'beatmap_id' => $beatmap->getKey(),
+                    'required_mods' => [
+                        [
+                            'acronym' => 'DT',
+                            'settings' => [],
+                        ],
+                    ],
                     'ruleset_id' => $beatmap->playmode,
                 ],
             ],

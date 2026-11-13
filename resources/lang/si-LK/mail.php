@@ -15,6 +15,7 @@ return [
         'closing' => '',
         'hello' => '',
         'report' => '',
+        'ignore' => '',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => '',
         'features' => '',
         'gifted' => '',
+        'gift_message' => '',
         'subject' => '',
     ],
 

@@ -10,14 +10,24 @@ return [
 
         'avatar' => [
             'title' => '',
+            'reset' => '',
             'rules' => '',
             'rules_link' => '',
         ],
 
         'email' => [
-            'current' => '',
             'new' => '',
             'new_confirmation' => '',
+            'title' => '',
+            'locked' => [
+                '_' => '',
+                'accounts' => '',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => '',
+            'irc' => '',
             'title' => '',
         ],
 
@@ -29,7 +39,13 @@ return [
         ],
 
         'profile' => [
+            'country' => '',
             'title' => '',
+
+            'country_change' => [
+                '_' => "",
+                'update_link' => '',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,10 +63,25 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "",
+        'link' => '',
+        'title' => '',
+        'unlink' => '',
+
+        'error' => [
+            'already_linked' => '',
+            'no_contribution' => '',
+            'unverified_email' => '',
+        ],
+    ],
+
     'notifications' => [
+        'beatmapset_discussion_reply' => '',
         'beatmapset_discussion_qualified_problem' => '',
         'beatmapset_disqualify' => '',
         'comment_reply' => '',
+        'news_post' => '',
         'title' => '',
         'topic_auto_subscribe' => '',
 
@@ -58,13 +89,27 @@ return [
             '_' => '',
             'beatmap_owner_change' => '',
             'beatmapset:modding' => '',
+            'channel_mention' => '',
             'channel_message' => '',
+            'channel_team' => '',
             'comment_new' => '',
             'forum_topic_reply' => '',
             'mail' => '',
             'mapping' => '',
+            'news_post' => '',
             'push' => '',
-            'user_achievement_unlock' => '',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => '',
+            'beatmapset:modding' => '',
+            'channel_mention' => '',
+            'channel_message' => '',
+            'channel_team' => '',
+            'comment_new' => '',
+            'forum_topic_reply' => '',
+            'mapping' => '',
+            'news_post' => '',
         ],
     ],
 
@@ -75,6 +120,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => '',
         'beatmapset_show_nsfw' => '',
         'beatmapset_title_show_original' => '',
         'title' => '',
@@ -83,11 +129,13 @@ return [
             '_' => '',
             'all' => '',
             'direct' => '',
+            'lazer' => '',
             'no_video' => '',
         ],
     ],
 
     'playstyles' => [
+        'default_ruleset' => '',
         'keyboard' => '',
         'mouse' => '',
         'tablet' => '',
@@ -97,7 +145,9 @@ return [
 
     'privacy' => [
         'friends_only' => '',
+        'friends_only_info' => '',
         'hide_online' => '',
+        'hide_online_info' => '',
         'title' => '',
     ],
 
@@ -116,6 +166,21 @@ return [
 
     'update_password' => [
         'update' => '',
+    ],
+
+    'user_totp' => [
+        'title' => '',
+        'usage_note' => '',
+
+        'button' => [
+            'remove' => '',
+            'setup' => '',
+        ],
+        'status' => [
+            'label' => '',
+            'not_set' => '',
+            'set' => '',
+        ],
     ],
 
     'verification_completed' => [

@@ -6,13 +6,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Contest;
+use App\Models\ContestJudgeVote;
 use App\Models\DeletedUser;
 use App\Models\UserContestEntry;
-use GuzzleHttp;
+use App\Transformers\UserContestEntryTransformer;
 use ZipStream\ZipStream;
 
 class ContestsController extends Controller
 {
+    public function calculate($contestId)
+    {
+        Contest::findOrFail($contestId)->calculateScoresStd();
+
+        \Session::flash('popup', 'Standardised scores calculated.');
+
+        return response()->noContent();
+    }
+
     public function index()
     {
         return ext_view('admin.contests.index', [
@@ -22,15 +32,27 @@ class ContestsController extends Controller
 
     public function show($id)
     {
-        $contest = Contest::findOrFail($id);
+        $contest = Contest::with('judges')
+            ->withCount('entries')
+            ->findOrFail($id);
+
         $entries = UserContestEntry::withTrashed()
             ->where('contest_id', $id)
             ->with('user')
             ->get();
 
+        if ($contest->isJudged()) {
+            $judgeVoteCounts = ContestJudgeVote::whereIn('contest_entry_id', $contest->entries()->pluck('id'))
+                ->groupBy('user_id')
+                ->selectRaw('COUNT(*) as judge_vote_count, user_id')
+                ->get()
+                ->keyBy('user_id');
+        }
+
         return ext_view('admin.contests.show', [
             'contest' => $contest,
-            'entries' => json_collection($entries, 'UserContestEntry', ['user']),
+            'entries' => json_collection($entries, new UserContestEntryTransformer(), ['user']),
+            'judgeVoteCounts' => $judgeVoteCounts ?? null,
         ]);
     }
 
@@ -47,14 +69,11 @@ class ContestsController extends Controller
         return response()->streamDownload(function () use ($entries) {
             $zip = new ZipStream();
 
-            $client = new GuzzleHttp\Client();
-
             $deletedUser = new DeletedUser();
             foreach ($entries as $entry) {
                 $targetDir = ($entry->user ?? $deletedUser)->username." ({$entry->user_id})";
                 $filename = sanitize_filename($entry->original_filename);
-                $file = $client->get($entry->fileUrl())->getBody();
-                $zip->addFileFromPsr7Stream("$targetDir/{$filename}", $file);
+                $zip->addFile("$targetDir/{$filename}", $entry->file()->get());
             }
 
             $zip->finish();

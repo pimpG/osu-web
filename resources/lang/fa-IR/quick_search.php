@@ -5,17 +5,29 @@
 
 return [
     'mode' => [
-        'beatmapset' => '',
-        'forum_post' => '',
-        'other' => '',
-        'user' => '',
-        'wiki_page' => '',
+        'artist_track' => '',
+        'beatmapset' => 'بیت مپ',
+        'forum_post' => 'انجمن',
+        'other' => 'دیگر',
+        'team' => '',
+        'user' => 'بازیکن',
+        'wiki_page' => 'ویکی',
     ],
 
     'result' => [
-        'empty' => '',
-        'empty_for' => '',
-        'more' => '',
-        'title' => '',
+        'more' => 'نتایج جستجو :mode بیشتر',
+        'title' => 'نتایج جستجو :mode',
+
+        'no_results' => [
+            '_' => '',
+
+            'artist_track' => '',
+            'beatmapset' => '',
+            'forum_post' => '',
+            'other' => '',
+            'team' => '',
+            'user' => '',
+            'wiki_page' => '',
+        ],
     ],
 ];

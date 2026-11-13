@@ -15,14 +15,33 @@ return [
     'top' => '',
     'username' => '',
 
+    'artist_tracks' => [
+        'album' => '',
+        'artist' => '',
+        'bpm' => '',
+        'genre' => '',
+        'length' => '',
+        'relevance' => '',
+        'title' => '',
+        'update' => '',
+    ],
+
     'forum_posts' => [
         'created' => '',
         'relevance' => '',
     ],
 
     'forum_topics' => [
+        'created' => '',
         'feature_votes' => '',
         'new' => '',
+    ],
+
+    'teams' => [
+        'created' => '',
+        'relevance' => '',
+        'name' => '',
+        'short-name' => '',
     ],
 
     'users' => [

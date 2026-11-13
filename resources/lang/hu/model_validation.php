@@ -8,6 +8,7 @@ return [
     'not_negative' => ':attribute nem lehet negatív.',
     'required' => ':attribute kötelező.',
     'too_long' => ':attribute elérte a maximális hosszt - csak :limit karakter hosszú lehet.',
+    'url' => 'Kérjük adjon meg egy helyes URL-t.',
     'wrong_confirmation' => 'A megerősítés nem egyezik.',
 
     'beatmapset_discussion' => [
@@ -108,6 +109,16 @@ return [
         ],
     ],
 
+    'legacy_api_key' => [
+        'exists' => 'Jelenleg csak egy API kulcs jár felhasználóként.',
+
+        'attributes' => [
+            'api_key' => 'api kulcs',
+            'app_name' => 'alkalmazás neve',
+            'app_url' => 'alkalmazás url',
+        ],
+    ],
+
     'oauth' => [
         'client' => [
             'too_many' => 'Elérted a maximum OAuth applikációk számát.',
@@ -117,6 +128,20 @@ return [
                 'name' => 'Alkalmazás neve',
                 'redirect' => 'Alkalmazás Visszahívási URL',
             ],
+        ],
+    ],
+
+    'team' => [
+        'invalid_characters' => 'Ez a(z) :attribute érvénytelen karaktereket tartalmaz.',
+        'used' => 'Ez a(z) :attribute választás már használva volt.',
+        'word_not_allowed' => 'Ez a(z) :attribute választás nem engedélyezett.',
+
+        'attributes' => [
+            'default_ruleset_id' => 'Alapértmezett ruleset',
+            'is_open' => 'Csapat jelentkezés',
+            'name' => 'Név',
+            'short_name' => 'Rövid név',
+            'url' => 'Webcím',
         ],
     ],
 
@@ -164,6 +189,8 @@ return [
 
     'user_report' => [
         'no_ranked_beatmapset' => 'Rangsorolt beatmapokat nem lehet jelenteni',
+        'not_in_channel' => 'Nem vagy ebben a csatornában.',
+        'in_team' => 'A csapat tagja vagy.',
         'reason_not_valid' => 'ez a jelentés nem megfelelő, ehhez a jelentés fajtához.:reason.',
         'self' => "Nem jelentheted magadat!",
     ],

@@ -20,9 +20,13 @@ return [
     'username_change' => '',
 
     'beatmapset_status' => [
-        'approved' => '',
-        'loved' => '',
-        'qualified' => '',
-        'ranked' => '',
+        'approved' => 'odobreno',
+        'loved' => 'voljeno',
+        'qualified' => 'kvalificiran/a',
+        'ranked' => 'rangirano',
+    ],
+
+    'value' => [
+        'rank' => '',
     ],
 ];

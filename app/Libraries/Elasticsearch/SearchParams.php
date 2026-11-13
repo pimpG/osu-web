@@ -10,6 +10,10 @@ abstract class SearchParams
     /** @var int */
     public $from = 0;
 
+    public ?string $queryString = null;
+
+    // FIXME: some of the assignments to these variables have have the wrong type.
+
     /** @var int */
     public $size = 50;
 
@@ -58,14 +62,12 @@ abstract class SearchParams
 
     public function blockedUserIds()
     {
-        $user = auth()->user();
-
-        return $user !== null ? $user->blockedUserIds()->toArray() : [];
+        return \Auth::user()?->blockedUserIds()->toArray() ?? [];
     }
 
     public function isQueryStringTooShort()
     {
-        return mb_strlen($this->queryString) < config('osu.search.minimum_length');
+        return mb_strlen($this->queryString) < $GLOBALS['cfg']['osu']['search']['minimum_length'];
     }
 
     public function isLoginRequired(): bool

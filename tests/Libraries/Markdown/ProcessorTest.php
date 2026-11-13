@@ -6,13 +6,12 @@
 namespace Tests\Libraries\Markdown;
 
 use App\Libraries\Markdown\OsuMarkdown;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ProcessorTest extends TestCase
 {
-    /**
-     * @dataProvider htmlExamples
-     */
+    #[DataProvider('htmlExamples')]
     public function testHtml($name, $path)
     {
         [$osuMarkdown, $expectedOutput] = $this->loadOutputTest($name, $path, 'html');
@@ -23,14 +22,21 @@ class ProcessorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider indexableExamples
-     */
+    #[DataProvider('indexableExamples')]
     public function testIndexable($name, $path)
     {
         [$osuMarkdown, $expectedOutput] = $this->loadOutputTest($name, $path, 'txt');
 
         $this->assertSame($expectedOutput, $osuMarkdown->toIndexable());
+    }
+
+    public function testTocId()
+    {
+        $parser = new OsuMarkdown('default', osuExtensionConfig: ['attributes_allowed' => ['id'], 'generate_toc' => true]);
+
+        $parsed = $parser->load('## some header {#headerid}')->toArray();
+
+        $this->assertTrue(isset($parsed['toc']['headerid']));
     }
 
     public function testTocImage()
@@ -43,14 +49,14 @@ class ProcessorTest extends TestCase
         $this->assertSame('some header', $parsed['toc']['some-header']['title']);
     }
 
-    public function htmlExamples()
+    public static function htmlExamples()
     {
-        return $this->fileList(__DIR__.'/html_markdown_examples', '.md');
+        return static::fileList(__DIR__.'/html_markdown_examples', '.md');
     }
 
-    public function indexableExamples()
+    public static function indexableExamples()
     {
-        return $this->fileList(__DIR__.'/indexable_markdown_examples', '.md');
+        return static::fileList(__DIR__.'/indexable_markdown_examples', '.md');
     }
 
     private function loadOutputTest(string $name, string $path, string $extension)
@@ -61,10 +67,21 @@ class ProcessorTest extends TestCase
         return [
             (new OsuMarkdown(
                 'default',
-                osuExtensionConfig: ['style_block_allowed_classes' => ['class-name']],
+                osuExtensionConfig: [
+                    'attributes_allowed' => ['id'],
+                    'custom_container_attributes_allowed' => ['flag', 'user'],
+                    'custom_container_inline' => true,
+                    'style_block_allowed_classes' => [
+                        'alert-caution',
+                        'alert-note',
+                        'alert-notice',
+                        'alert-tip',
+                        'alert-warning',
+                        'class-name',
+                    ],
+                ],
                 osuMarkdownConfig: [
                     'enable_footnote' => true,
-                    'parse_attribute_id' => true,
                 ],
             ))->load(file_get_contents($mdFilePath)),
             file_get_contents($textFilePath),

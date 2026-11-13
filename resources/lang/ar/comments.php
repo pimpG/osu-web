@@ -11,6 +11,7 @@ return [
     'edited' => 'تم التعديل :timeago بواسطة :user',
     'pinned' => 'مُثَبَت',
     'empty' => 'لا تعليقات بعد.',
+    'empty_other' => 'لا تعليقات بعد.',
     'load_replies' => 'تحميل الردود',
     'replies_count' => ':count_delimited رد|:count_delimited ردود',
     'title' => 'التعليقات',
@@ -40,6 +41,10 @@ return [
         'nav_comments' => 'التعليقات',
         'nav_title' => 'القائمة',
         'no_comments' => 'لا توجد تعليقات...',
+    ],
+
+    'ogp' => [
+        'title' => 'تعليق بواسطة :user',
     ],
 
     'placeholder' => [

@@ -5,44 +5,43 @@
 
 return [
     'index' => [
-        'description' => '',
-        'nav_title' => '',
-        'title' => '',
+        'description' => 'Unaprijed zapakirane zbirke beatmapa temeljenih na zajedničkoj temi.',
+        'empty' => 'Dolazi uskoro!',
+        'nav_title' => 'popis',
+        'title' => 'Paketi beatmapa',
 
         'blurb' => [
-            'important' => '',
-            'instruction' => [
-                '_' => "",
-                'scary' => '',
-            ],
-            'note' => [
-                '_' => '',
-                'scary' => '',
-            ],
+            'important' => 'PROČITAJ OVO PRIJE PREUZIMANJA',
+            'install_instruction' => 'Instalacija: Nakon što je paket preuzet, raspakiraj sadržaj paketa u svoju osu! Songs mapu i osu! će učiniti ostalo.',
         ],
     ],
 
     'show' => [
-        'download' => '',
+        'created_by' => 'od :author',
+        'download' => 'Preuzmi',
+        'no_diff_reduction_badge' => '',
         'item' => [
-            'cleared' => '',
-            'not_cleared' => '',
+            'cleared' => 'očišćeno',
+            'not_cleared' => 'nije očišćeno',
         ],
         'no_diff_reduction' => [
-            '_' => '',
-            'link' => '',
+            '_' => ':link se ne smije se koristiti za čišćenje ovog paketa.',
+            'link' => 'Modovi za smanjivanje težine',
         ],
     ],
 
     'mode' => [
-        'artist' => '',
-        'chart' => '',
-        'standard' => '',
-        'theme' => '',
+        'artist' => 'Izvođač/Album',
+        'chart' => 'Istaknuto',
+        'featured' => 'Istaknuti Izvođač',
+        'loved' => 'Projekt Loved',
+        'standard' => 'Standardni',
+        'theme' => 'Tema',
+        'tournament' => 'Turnir',
     ],
 
     'require_login' => [
-        '_' => '',
-        'link_text' => '',
+        '_' => 'Moraš biti :link za preuzimanje',
+        'link_text' => 'prijavljen',
     ],
 ];

@@ -1,20 +1,34 @@
 {
   "compilerOptions": {
-    "baseUrl": "./resources/assets/lib",
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "es2020"],
     "module": "es2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "paths": {
+      "*": ["./resources/js/*"]
+    },
+    "resolveJsonModule": true,
     "sourceMap": true,
+    "strictBindCallApply": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "es2015",
-    "useDefineForClassFields": true
+    "types": [
+      "cloudflare-turnstile",
+      "jquery.fileupload",
+      "jquery.scrollto",
+      "jqueryui",
+      "timeago"
+    ],
+    "useDefineForClassFields": true,
+
   },
   "include": [
-    "resources/assets/lib"
+    "resources/js",
+    "resources/builds/ziggy.d.ts"
   ]
 }

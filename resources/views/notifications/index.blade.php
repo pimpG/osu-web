@@ -5,7 +5,7 @@
 @extends('master')
 
 @section('content')
-    <div class="js-react--notifications-index osu-layout osu-layout--full"></div>
+    <div class="js-react u-contents" data-react="notifications-index"></div>
 @endsection
 
 @section("script")
@@ -15,5 +15,5 @@
         {!! json_encode($bundleJson) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/notifications-index.js'])
+    @include('layout._react_js', ['src' => 'js/notifications-index.js'])
 @endsection

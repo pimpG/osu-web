@@ -9,6 +9,17 @@ return [
         'title' => 'Land',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Svårighetsgrad',
+        'theme' => '',
+        'top_10p' => 'Topp 10% resultat',
+        'top_50p' => 'Topp 50% resultat',
+        'unavailable' => [
+            'future' => 'Ingen daglig utmaning på angivet datum ännu!',
+            'past' => 'Ingen daglig utmaning på angivet datum!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Visa',
 
@@ -17,12 +28,60 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Tjänat',
+        'available' => 'Tillgängligt',
+        'used' => 'Spenderat',
+    ],
+
+    'matchmaking' => [
+        'plays' => 'Spelningar',
+        'points' => 'Poäng',
+        'provisional' => 'Inte tillräckligt med matcher som spelas för att exakt bestämma betyg',
+        'rating' => 'Betyg',
+        'wins' => 'Vinster',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Rumsnamn ',
+    ],
+
+    'performance' => [
+        'insufficient_history' => 'Denna spelare har mindre än 30 dagar av nylig rankinghistorik.',
+    ],
+
+    'top_plays' => [
+        'empty' => 'Data beräknas...',
+        'last_updated' => 'Senast uppdaterat',
+    ],
+
+    'playlists' => [
+        'charts' => 'spotlights (gammal)',
+        'featured' => 'utvald',
+        'season_room' => 'säsongsrum',
+        'seasons' => 'säsonger',
+    ],
+
     'type' => [
-        'charts' => 'I rampljuset',
-        'country' => 'Land',
-        'multiplayer' => 'flerspelarläge',
-        'performance' => 'prestation',
-        'score' => 'Poäng',
+        'country' => 'land',
+        'daily_challenge' => 'daglig utmaning',
+        'global' => 'global ',
+        'kudosu' => 'kudosu',
+        'matchmaking' => 'snabbspel',
+        'playlists' => 'spellistor',
+        'team' => 'lag',
+        'top_plays' => 'topp spelningar',
+    ],
+
+    'seasons' => [
+        'empty' => 'Det finns inga rum i denna säsong ännu.',
+        'ongoing' => 'Denna säsong pågår fortfarande (det kommer läggas till fler spellistor).',
+        'room_count' => 'Antal spellistor',
+        'summary' => 'Sammanfattning av säsong',
+        'url' => 'Visa mer information om den säsongen.',
+        'validation' => [
+            'not_enough_factors' => 'det finns inte tillräckligt med poängfaktorer för korrekt beräkning',
+        ],
     ],
 
     'spotlight' => [
@@ -36,6 +95,8 @@ return [
         'accuracy' => 'Träffsäkerhet',
         'active_users' => 'Aktiva Användare',
         'country' => 'Land',
+        'division' => 'Division',
+        'members' => 'Medlemmar ',
         'play_count' => 'Antal gånger spelat',
         'performance' => 'Prestation',
         'total_score' => 'Total Poäng',

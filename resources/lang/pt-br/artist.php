@@ -13,7 +13,7 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Baixar modelo de beatmap',
+        'download' => 'baixar modelo de beatmap',
         'download-na' => 'Modelo de beatmap indisponível',
     ],
 
@@ -22,7 +22,7 @@ return [
     ],
 
     'links' => [
-        'beatmaps' => '',
+        'beatmaps' => 'Beatmaps do osu!',
         'osu' => 'perfil do osu!',
         'site' => 'Site oficial',
     ],
@@ -30,7 +30,8 @@ return [
     'songs' => [
         '_' => 'Músicas',
         'count' => ':count música|:count músicas',
-        'original' => '',
+        'original' => 'Original do osu!',
+        'original_badge' => 'ORIGINAL',
     ],
 
     'tracklist' => [
@@ -38,5 +39,30 @@ return [
         'length' => 'duração',
         'bpm' => 'bpm',
         'genre' => 'gênero',
+    ],
+
+    'tracks' => [
+        'index' => [
+            '_' => 'pesquisa de faixas',
+
+            'exclusive_only' => [
+                'all' => 'Tudo',
+                'exclusive_only' => 'Original do osu!',
+            ],
+
+            'form' => [
+                'advanced' => 'Pesquisa avançada',
+                'album' => 'Álbum',
+                'artist' => 'Artista',
+                'bpm_gte' => 'BPM mínimo',
+                'bpm_lte' => 'BPM máximo',
+                'empty' => 'Não foram encontradas músicas dentro do critério específico.',
+                'exclusive_only' => 'Tipo',
+                'genre' => 'Gênero',
+                'genre_all' => 'Todos',
+                'length_gte' => 'Duração mínima',
+                'length_lte' => 'Duração máxima',
+            ],
+        ],
     ],
 ];

@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Admin',
         'authorise' => 'Cho phép',
         'authorising' => 'Cho phép...',
+        'back' => 'Quay lại',
         'back_to_previous' => 'Trở về vị trí trước',
         'back_to_top' => 'Quay lại đầu trang',
         'cancel' => 'Hủy',
@@ -40,14 +40,16 @@ return [
         'pin' => 'ghim',
         'post' => 'Đăng',
         'read_more' => 'hiển thị thêm',
+        'refresh' => 'Làm mới',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
         'reply_resolve' => 'Trả lời và giải quyết',
         'reset' => 'Reset',
         'restore' => 'Khôi phục',
+        'retry' => 'Thử lại',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
-        'search' => 'Tìm Kiếm',
+        'search' => 'Tìm kiếm',
         'see_more' => 'xem thêm',
         'show' => 'hiện',
         'show_deleted' => 'Hiển thị bình luận đã xóa',
@@ -66,23 +68,24 @@ return [
     ],
 
     'count' => [
-        'badges' => ':count huy hiệu',
-        'days' => ':count ngày',
+        'badges' => ':count_delimited đơn vị|:count_delimited đơn vị',
+        'days' => ':count_delimited ngày|:count_delimited ngày',
         'hour_short_unit' => 'giờ',
-        'hours' => ':count giờ',
-        'item' => ':count đơn vị',
+        'hours' => ':count_delimited giờ|:count_delimited giờ',
+        'item' => ':count_delimited đơn vị|:count_delimited đơn vị',
         'minute_short_unit' => 'phút',
-        'minutes' => ':count phút',
-        'months' => ':count tháng',
+        'minutes' => ':count_delimited phút|:count_delimited phút',
+        'months' => ':count_delimited tháng|:count_delimited tháng',
         'notifications' => ':count_delimited thông báo|:count_delimited thông báo',
-        'plus_others' => '+ :count_delimited khác!',
-        'post' => ':count_delimited bài viết',
+        'player' => ':count_delimited người chơi|:count_delimited người chơi',
+        'plus_others' => '+ :count_delimited khác!|+ :count_delimited khác!',
+        'post' => ':count_delimited bài đăng|:count_delimited bài đăng',
         'second_short_unit' => 'giây',
         'star_priority' => ':count_delimited ưu tiên sao|:count_delimited
 ưu tiên sao',
-        'update' => ':count_delimited cập nhật',
-        'view' => ':count_delimited lượt xem',
-        'years' => ':count năm',
+        'update' => ':count_delimited cập nhật|:count_delimited cập nhật',
+        'view' => ':count_delimited lượt xem|:count_delimited lượt xem',
+        'years' => ':count_delimited năm trước|:count_delimited năm trước',
     ],
 
     'countdown' => [
@@ -93,6 +96,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'tháng',
+        ],
+        'year' => [
+            'php' => 'năm',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -147,8 +156,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count ngày trước',
-        'hours_ago' => ':count giờ trước',
+        'days_ago' => ':count_delimited ngày trước|:count_delimited ngày trước',
+        'hours_ago' => ':count_delimited giờ trước|:count_delimited giờ trước',
         'now' => 'bây giờ',
         'remaining' => 'Thời Gian Còn Lại',
     ],

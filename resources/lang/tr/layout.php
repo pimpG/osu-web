@@ -19,11 +19,16 @@ return [
             'contest' => 'yarışma',
             'contests' => 'yarışmalar',
             'root' => 'konsol',
-            'store_orders' => 'mağaza yöneticisi',
         ],
 
         'artists' => [
             'index' => 'katalog',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'bilgi',
+            'discussions' => 'tartışma',
+            'versions' => 'sürüm geçmişi',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'modlama',
-            'multiplayer' => 'çok oyunculu',
+            'playlists' => 'oynatma listeleri',
+            'ranked-play' => 'ranked play',
+            'realtime' => 'çok oyunculu',
             'show' => 'bilgi',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'sıralama',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'mağaza',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => 'Yasal & Durum',
             'copyright' => 'Telif Hakkı (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Gizlilik',
+            'rules' => 'Kurallar',
             'server_status' => 'Sunucu Durumu',
             'source_code' => 'Kaynak Kodu',
             'terms' => 'Koşullar',
@@ -188,10 +196,16 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ayarlar',
+            'create_team' => 'Takım Oluştur',
             'follows' => 'İzleme listeleri',
             'friends' => 'Arkadaşlar',
+            'legacy_score_only_toggle' => 'Lazer modu',
+            'legacy_score_only_toggle_tooltip' => 'Lazer modu yeni bir puanlama algoritmasıyla lazerden belirnenen skorları gösterir',
             'logout' => 'Çıkış Yap',
             'profile' => 'Profilim',
+            'scoring_mode_toggle' => 'Klasik skorlama',
+            'scoring_mode_toggle_tooltip' => 'Skorları klasik sınırsız skorlamaya benzeyecek şekilde ayarla',
+            'team' => 'Takımım',
         ],
     ],
 

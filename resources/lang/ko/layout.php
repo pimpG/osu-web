@@ -19,11 +19,16 @@ return [
             'contest' => '콘테스트',
             'contests' => '콘테스트',
             'root' => '콘솔',
-            'store_orders' => '상점 관리자',
         ],
 
         'artists' => [
             'index' => '목록',
+        ],
+
+        'beatmapsets' => [
+            'show' => '정보',
+            'discussions' => '토론',
+            'versions' => '버전 이력',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => '모딩',
-            'multiplayer' => '멀티플레이',
+            'playlists' => '플레이리스트',
+            'ranked-play' => '랭크 플레이',
+            'realtime' => '멀티플레이어',
             'show' => '정보',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => '순위',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => '상점',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
+            'jp_sctl' => '특정상거래법',
             'privacy' => '개인 정보 보호 정책',
+            'rules' => '규칙',
             'server_status' => '서버 상태 확인',
             'source_code' => '소스 코드',
             'terms' => '서비스 이용약관',
@@ -121,7 +129,7 @@ return [
         ],
         '404' => [
             'error' => '페이지를 찾을 수 없음',
-            'description' => "죄송하지만, 저희는 요청하신 페이지를 갖고있질 않네요!",
+            'description' => "죄송하지만, 요청하신 페이지는 여기에 없어요!",
         ],
         '403' => [
             'error' => "여기 계시면 안됩니다.",
@@ -133,7 +141,7 @@ return [
         ],
         '405' => [
             'error' => '페이지를 찾을 수 없음',
-            'description' => "죄송하지만, 저희는 요청하신 페이지를 갖고있질 않네요!",
+            'description' => "죄송하지만, 요청하신 페이지는 여기에 없어요!",
         ],
         '422' => [
             'error' => '요청 매개변수가 올바르지 않습니다.',
@@ -170,10 +178,10 @@ return [
             'forgot' => "계정 정보를 잊어버렸어요.",
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
-            'username' => '사용자 이름',
+            'username' => '아이디',
 
             'error' => [
-                'email' => "존재하지 않는 유저이름 또는 이메일입니다.",
+                'email' => "존재하지 않는 아이디 또는 이메일입니다.",
                 'password' => '잘못된 비밀번호입니다.',
             ],
         ],
@@ -188,15 +196,21 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '설정',
+            'create_team' => '팀 만들기',
             'follows' => '관심 목록',
             'friends' => '친구',
+            'legacy_score_only_toggle' => 'Lazer 모드',
+            'legacy_score_only_toggle_tooltip' => 'Lazer 모드는 osu!lazer에서 새로운 점수 알고리즘으로 등록한 점수를 표시합니다',
             'logout' => '로그아웃',
             'profile' => '내 프로필',
+            'scoring_mode_toggle' => '클래식 점수',
+            'scoring_mode_toggle_tooltip' => '점숫값을 한계치가 없는 예전 클래식 점수처럼 느껴지도록 조정합니다.',
+            'team' => '내 팀',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '검색어를 입력해주세요!',
+        'initial' => '검색어를 입력하세요!',
         'retry' => '검색에 실패했습니다. 다시 시도하려면 클릭해주세요.',
     ],
 ];

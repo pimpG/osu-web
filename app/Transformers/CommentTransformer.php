@@ -9,11 +9,11 @@ use App\Models\Comment;
 
 class CommentTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
         'user',
     ];
 
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
         'deleted_by_id',
         'message',
         'message_html',
@@ -40,12 +40,12 @@ class CommentTransformer extends TransformerAbstract
 
             'legacy_name' => $comment->legacyName(),
 
-            'created_at' => json_time($comment->created_at),
-            'updated_at' => json_time($comment->updated_at),
+            'created_at' => $comment->getJsonTime('created_at'),
+            'updated_at' => $comment->getJsonTime('updated_at'),
 
-            'deleted_at' => json_time($comment->deleted_at),
+            'deleted_at' => $comment->getJsonTime('deleted_at'),
 
-            'edited_at' => json_time($comment->edited_at),
+            'edited_at' => $comment->getJsonTime('edited_at'),
             'edited_by_id' => $comment->edited_by_id,
         ];
     }
@@ -62,7 +62,7 @@ class CommentTransformer extends TransformerAbstract
 
     public function includeMessageHtml(Comment $comment)
     {
-        return $this->primitive(markdown($comment->message, 'comment'));
+        return $this->primitive($comment->message_html);
     }
 
     public function includeUser(Comment $comment)

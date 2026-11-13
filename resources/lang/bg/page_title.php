@@ -7,19 +7,13 @@ return [
     'admin' => [
         '_' => 'админ',
     ],
-    'admin_forum' => [
-        '_' => 'админ',
-    ],
-    'admin_store' => [
-        '_' => 'админ',
-    ],
     'error' => [
         'error' => [
             '400' => 'невалидна заявка',
             '404' => 'липсва',
             '403' => 'забранен',
-            '401' => 'неоторизиран',
-            '401-verification' => 'потвърждение на акаунта',
+            '401' => 'неупълномощен',
+            '401-verification' => 'потвърждаване на профил',
             '405' => 'липсва',
             '422' => 'невалидна заявка',
             '429' => 'твърде много заявки',
@@ -29,14 +23,13 @@ return [
     ],
     'forum' => [
         '_' => 'форум',
-        'topic_watches_controller' => [
-            'index' => 'главно табло',
+        'topic_logs_controller' => [
+            'index' => 'дневници',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'главно табло',
-            'verify_link' => 'потвърждение на акаунт',
+            'verify_link' => 'потвърждаване на профил',
         ],
         'artists_controller' => [
             '_' => 'представени автори',
@@ -56,13 +49,11 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'бийтмап история',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'главно табло',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'бийтмап дискусия',
             'index' => 'списък с бийтмапове',
             'show' => 'бийтмап инфо',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'списък с промени',
@@ -73,14 +64,15 @@ return [
         'comments_controller' => [
             '_' => 'коментари',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'резултати от журито на конкурса',
+        ],
         'contests_controller' => [
             '_' => 'конкурси',
+            'judge' => 'жури на конкурса',
         ],
-        'follows_controller' => [
-            'index' => 'главно табло',
-        ],
-        'friends_controller' => [
-            'index' => 'главно табло',
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'групи',
@@ -92,14 +84,14 @@ return [
             'support_the_game' => 'подкрепи играта',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => 'мачове',
+        ],
         'legal_controller' => [
             '_' => 'информация',
         ],
         'livestreams_controller' => [
             '_' => 'игри на живо',
-        ],
-        'matches_controller' => [
-            '_' => 'състезания',
         ],
         'news_controller' => [
             '_' => 'новини',
@@ -116,14 +108,28 @@ return [
         'scores_controller' => [
             '_' => 'представяне',
         ],
-        'store_controller' => [
-            '_' => 'магазин',
+        'seasons_controller' => [
+            '_' => 'класации',
+        ],
+        'teams_controller' => [
+            '_' => 'отбори',
+            'create' => 'създаване на отбор',
+            'edit' => 'настройки на отбора',
+            'leaderboard' => 'класации на отбора',
+            'show' => 'инфо за отбор',
         ],
         'tournaments_controller' => [
             '_' => 'турнири',
         ],
+        'user_cover_presets_controller' => [
+            '_' => 'предстройки на корицата',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'инфо за играч',
+            'create' => 'създаване на профил',
             'disabled' => 'известие',
         ],
         'wiki_controller' => [
@@ -132,16 +138,21 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'класиране',
+            'events' => 'история на стаите',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'упълномощаване на приложение',
         ],
     ],
     'store' => [
         '_' => 'магазин',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'членове на отбора',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

@@ -9,20 +9,79 @@ return [
         'title' => 'Quốc gia',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => 'Độ khó',
+        'theme' => 'Chủ đề',
+        'top_10p' => 'Điểm thuộc top 10%',
+        'top_50p' => 'Điểm thuộc top 50%',
+        'unavailable' => [
+            'future' => 'Chưa có thử thách hàng ngày vào ngày cụ thể!',
+            'past' => 'Chưa có thử thách hàng ngày vào ngày cụ thể!',
+        ],
+    ],
+
     'filter' => [
         'title' => 'Hiển thị',
 
         'variant' => [
-            'title' => '',
+            'title' => 'Biến thể',
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Đã nhận',
+        'available' => 'Đang có',
+        'used' => 'Đã dùng',
+    ],
+
+    'matchmaking' => [
+        'plays' => 'Lượt chơi',
+        'points' => 'Điểm',
+        'provisional' => 'Chưa đủ lần chơi để quyết định hạng chính xác',
+        'rating' => 'Đánh giá',
+        'wins' => 'Số lần thắng',
+    ],
+
+    'multiplayer' => [
+        'room_name' => 'Tên phòng',
+    ],
+
+    'performance' => [
+        'insufficient_history' => 'Người dùng này có lịch sử xếp hạng ít hơn 30 ngày.',
+    ],
+
+    'top_plays' => [
+        'empty' => 'Đang tính toán dữ liệu...',
+        'last_updated' => 'Cập nhật lần cuối',
+    ],
+
+    'playlists' => [
+        'charts' => 'nổi bật (cũ)',
+        'featured' => 'nổi bật',
+        'season_room' => 'phòng mùa giải',
+        'seasons' => 'mùa',
+    ],
+
     'type' => [
-        'charts' => 'Tiêu điểm',
-        'country' => 'Quốc gia',
-        'multiplayer' => '',
-        'performance' => 'Performance',
-        'score' => 'Điểm',
+        'country' => 'quốc gia',
+        'daily_challenge' => 'thử thách hằng ngày',
+        'global' => 'toàn cầu',
+        'kudosu' => 'kudosu',
+        'matchmaking' => 'chơi nhanh',
+        'playlists' => 'danh sách phát',
+        'team' => 'đội',
+        'top_plays' => 'lần chơi tốt nhất',
+    ],
+
+    'seasons' => [
+        'empty' => 'Hiện tại chưa có phòng nào ở mùa này.',
+        'ongoing' => 'Mùa đang diễn ra (sẽ có nhiều danh sách phát được thêm vào).',
+        'room_count' => 'Số danh sách phát',
+        'summary' => 'Xem tổng kết mùa',
+        'url' => 'Hiện thêm thông tin về mùa đó.',
+        'validation' => [
+            'not_enough_factors' => 'không có đủ các hệ số điểm để tính toán một cách bình thường',
+        ],
     ],
 
     'spotlight' => [
@@ -36,12 +95,14 @@ return [
         'accuracy' => 'Độ chính xác',
         'active_users' => 'Số người đang hoạt động',
         'country' => 'Quốc gia',
+        'division' => 'Phân hạng',
+        'members' => 'Thành viên',
         'play_count' => 'Số lần chơi',
-        'performance' => 'Performance',
+        'performance' => 'Thành tích',
         'total_score' => 'Tổng số điểm',
         'ranked_score' => 'Điểm được xếp hạng',
         'average_score' => 'Điểm trung bình',
-        'average_performance' => 'pp Trung Bình',
+        'average_performance' => 'Thành tích trung bình',
         'ss' => '',
         's' => '',
         'a' => '',

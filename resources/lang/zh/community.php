@@ -55,12 +55,12 @@ return [
             ],
 
             'country_ranking' => [
-                'title' => '国内/区内排名',
+                'title' => '地区排名',
                 'description' => '在征服世界前，先征服你所在的地方吧。',
             ],
 
             'mod_filtering' => [
-                'title' => '按 Mod 筛选',
+                'title' => '按模组筛选',
                 'description' => '只和玩 HDHR 的玩家打？没问题！',
             ],
 
@@ -71,7 +71,7 @@ return [
 
             'upload_more' => [
                 'title' => '上传更多谱面',
-                'description' => 'Pending 谱面位上限增加到 10 张。',
+                'description' => '额外的待定 (Pending) 谱面位上限增加到 10 张（由玩家的上架 (Ranked) 谱面数量决定）。',
             ],
 
             'early_access' => [
@@ -101,7 +101,7 @@ return [
 
             'change_username' => [
                 'title' => '修改用户名',
-                'description' => '你能得到一次免费修改用户名的机会。',
+                'description' => '首次购买支持者标签时，将包含一次免费修改用户名的机会。',
             ],
 
             'skinnables' => [
@@ -116,7 +116,7 @@ return [
 
             'sort_options' => [
                 'title' => '更多排行榜',
-                'description' => '可查看国家或地区、好友、所选MOD排行榜。',
+                'description' => '可查看国家或地区、好友、所选 Mod 排行榜。',
             ],
 
             'more_favourites' => [
@@ -129,7 +129,7 @@ return [
             ],
             'more_beatmaps' => [
                 'title' => '上传更多谱面',
-                'description' => '同一时间你能上传的 Pending/WIP 谱面位数量由一个基础值和额外奖励组成。<br/><br/>普通玩家的 Pending/WIP 谱面位数量上限为 :base 张，支持玩家为 :supporter_base 张，并且每拥有 1 张 Ranked 谱面，能提升 :bonus 张上限，普通玩家额外最多提升 :bonus_max 张，支持玩家额外最多提升 :supporter_bonus_max 张。',
+                'description' => '同一时间你能上传的待定/制作中 (Pending/WIP) 谱面位数量由一个基础值和额外奖励组成。<br/><br/>普通玩家的待定/制作中 (Pending/WIP) 谱面位数量上限为 :base 张，支持玩家为 :supporter_base 张，并且，玩家每拥有 1 张上架 (Ranked) 谱面，能提升 :bonus 张谱面位上限，普通玩家额外最多提升 :bonus_max 张，支持玩家额外最多提升 :supporter_bonus_max 张。',
             ],
             'friend_filtering' => [
                 'title' => '好友排行榜',
@@ -138,11 +138,15 @@ return [
 
         ],
         'supporter_status' => [
-            'contribution' => '感谢您一直以来的支持！您已经捐赠了 :dollars 并购买了 :tags 次支持者标签！',
-            'gifted' => "您已经捐赠了 :giftedTags 次支持者标签（花费了 :giftedDollars ），真慷慨啊！",
+            'contribution_with_duration' => '感谢您一直以来的支持！截止目前，你已经赞助了 :dollars，累计获得了 :duration 的“支持者”标签。',
             'not_yet' => "您还没有支持者标签 :(",
             'valid_until' => '您的支持者标签将在 :date 到期',
             'was_valid_until' => '您的支持者标签已于 :date 到期',
+
+            'gifted' => [
+                '_' => '在你的账号之外，你已经向 :users 赠送了价值 :dollars，时长 :duration 的支持者标签。真慷慨啊！',
+                'users' => '还有 :count_delimited 人',
+            ],
         ],
     ],
 ];

@@ -3,14 +3,15 @@
     See the LICENCE file in the repository root for full licence text.
 --}}
 @extends('master', [
-    'titlePrepend' => blade_safe(str_replace(' ', '&nbsp;', e($user->username))),
+    'currentHue' => $user->user_style,
     'pageDescription' => page_description($user->username),
+    'titlePrepend' => App\Libraries\Opengraph\UserOpengraph::escapeForTitle($user->username),
 ])
 
 @section('content')
     @include('users._restricted_banner', compact('user'))
 
-    <div class="js-react--user-multiplayer-index osu-layout osu-layout--full"></div>
+    <div class="js-react u-contents" data-react="user-multiplayer-index"></div>
 @endsection
 
 @section ("script")
@@ -24,5 +25,5 @@
         {!! json_encode($jsonUser) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/user-multiplayer-index.js'])
+    @include('layout._react_js', ['src' => 'js/user-multiplayer-index.js'])
 @endsection

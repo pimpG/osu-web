@@ -14,13 +14,6 @@ return [
         ],
         'show' => [
             'covers' => 'Manage Beatmap Covers',
-            'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
-            ],
         ],
     ],
 
@@ -60,15 +53,11 @@ return [
                 'beatmapsets' => 'Beatmaps',
                 'forum' => 'Forum',
                 'general' => 'General',
-                'store' => 'Store',
-            ],
-        ],
-    ],
 
-    'store' => [
-        'orders' => [
-            'index' => [
-                'title' => 'Order Listing',
+                'users' => [
+                    'header' => 'User',
+                    'cover_presets' => 'Profile Cover Presets',
+                ],
             ],
         ],
     ],

@@ -5,11 +5,11 @@
 @extends('master', ['titlePrepend' => osu_trans('follows.comment.page_title')])
 
 @section('content')
-    <div class="js-react--follows-comment osu-layout osu-layout--full"></div>
+    <div class="js-react u-contents" data-react="follows-comment"></div>
 
     <script id="json-follows-comment" type="application/json">
         {!! json_encode($followsJson) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/follows-comment.js'])
+    @include('layout._react_js', ['src' => 'js/follows-comment.js'])
 @endsection

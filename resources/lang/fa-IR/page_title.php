@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => '',
     ],
-    'admin_forum' => [
-        '_' => '',
-    ],
-    'admin_store' => [
-        '_' => '',
-    ],
     'error' => [
         'error' => [
             '400' => '',
@@ -29,13 +23,12 @@ return [
     ],
     'forum' => [
         '_' => '',
-        'topic_watches_controller' => [
+        'topic_logs_controller' => [
             'index' => '',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => '',
             'verify_link' => '',
         ],
         'artists_controller' => [
@@ -56,13 +49,11 @@ return [
         'beatmapset_events_controller' => [
             '_' => '',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => '',
-        ],
         'beatmapsets_controller' => [
             'discussion' => '',
             'index' => '',
             'show' => '',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => '',
@@ -73,14 +64,15 @@ return [
         'comments_controller' => [
             '_' => '',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => '',
+        ],
         'contests_controller' => [
             '_' => '',
+            'judge' => '',
         ],
-        'follows_controller' => [
-            'index' => '',
-        ],
-        'friends_controller' => [
-            'index' => '',
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => '',
@@ -92,13 +84,13 @@ return [
             'support_the_game' => '',
             'testflight' => '',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => '',
         ],
         'livestreams_controller' => [
-            '_' => '',
-        ],
-        'matches_controller' => [
             '_' => '',
         ],
         'news_controller' => [
@@ -116,14 +108,28 @@ return [
         'scores_controller' => [
             '_' => '',
         ],
-        'store_controller' => [
+        'seasons_controller' => [
             '_' => '',
+        ],
+        'teams_controller' => [
+            '_' => '',
+            'create' => '',
+            'edit' => '',
+            'leaderboard' => '',
+            'show' => '',
         ],
         'tournaments_controller' => [
             '_' => '',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => '',
+            'create' => '',
             'disabled' => '',
         ],
         'wiki_controller' => [
@@ -132,7 +138,7 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => '',
+            'events' => '',
         ],
     ],
     'passport' => [
@@ -142,6 +148,11 @@ return [
     ],
     'store' => [
         '_' => '',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

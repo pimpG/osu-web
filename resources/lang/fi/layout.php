@@ -14,16 +14,21 @@ return [
 
     'header' => [
         'admin' => [
-            'beatmapset' => '',
-            'beatmapset_covers' => '',
+            'beatmapset' => 'rytmikarttasetti',
+            'beatmapset_covers' => 'beatmapsettien kannet',
             'contest' => 'kilpailu',
             'contests' => 'kilpailuja',
             'root' => 'konsoli',
-            'store_orders' => 'kaupan ylläpitäjä',
         ],
 
         'artists' => [
             'index' => 'listaus',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'tiedot',
+            'discussions' => 'keskustelut',
+            'versions' => 'versiohistoria',
         ],
 
         'changelog' => [
@@ -32,7 +37,7 @@ return [
 
         'help' => [
             'index' => 'indeksi',
-            'sitemap' => 'Sivukartta',
+            'sitemap' => 'Sivustokartta',
         ],
 
         'store' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'modaus',
-            'multiplayer' => 'moninpeli',
+            'playlists' => 'soittolistat',
+            'ranked-play' => 'kilpailullinen',
+            'realtime' => 'moninpeli',
             'show' => 'tiedot',
         ],
     ],
@@ -55,7 +62,7 @@ return [
     'gallery' => [
         'close' => 'Sulje (Esc)',
         'fullscreen' => 'Vaihda kokoruututila',
-        'zoom' => 'Zoomaa sisään/ulos',
+        'zoom' => 'Lähennä/loitonna',
         'previous' => 'Edellinen (nuoli vasemmalla)',
         'next' => 'Seuraava (nuoli oikealla)',
     ],
@@ -70,8 +77,8 @@ return [
         ],
         'help' => [
             '_' => 'apua',
-            'getAbuse' => 'ilmoita väärinkäyttöstä',
-            'getFaq' => 'ukk',
+            'getAbuse' => 'ilmoita väärinkäytöstä',
+            'getFaq' => 'usein kysytyt',
             'getRules' => 'säännöt',
             'getSupport' => 'tarvitsen siis oikeasti apua!',
         ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'tilastot',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'kauppa',
@@ -93,7 +99,7 @@ return [
             '_' => 'Yleiset',
             'home' => 'Etusivu',
             'changelog-index' => 'Muutosloki',
-            'beatmaps' => 'Beatmapit',
+            'beatmaps' => 'Rytmikarttojen listaus',
             'download' => 'Lataa osu!',
         ],
         'help' => [
@@ -106,9 +112,11 @@ return [
         ],
         'legal' => [
             '_' => 'Lakiasiat ja tilanne',
-            'copyright' => 'Copyright (DMCA)',
+            'copyright' => 'Tekijänoikeudet (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Yksityisyys',
-            'server_status' => 'Palvelimen tila',
+            'rules' => 'Säännöt',
+            'server_status' => 'Palvelimen tilanne',
             'source_code' => 'Lähdekoodi',
             'terms' => 'Käyttöehdot',
         ],
@@ -140,7 +148,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Pyyntöraja ylitetty',
             'description' => '',
         ],
         '500' => [
@@ -167,7 +175,7 @@ return [
         'button' => 'kirjaudu sisään / rekisteröidy',
 
         'login' => [
-            'forgot' => "Olen unohtanut tietoni",
+            'forgot' => "Olen unohtanut kirjatutumistietoni",
             'password' => 'salasana',
             'title' => 'Kirjaudu sisään jatkaaksesi',
             'username' => 'käyttäjänimi',
@@ -180,7 +188,7 @@ return [
 
         'register' => [
             'download' => 'Lataa',
-            'info' => 'Tarvitset käyttäjän hyvä mies. Miksei sinulla ole jo sellaista?',
+            'info' => 'Lataa osu! luodaksesi oman käyttäjätunnuksen!',
             'title' => "Eikö sinulla ole vielä käyttäjää?",
         ],
     ],
@@ -188,15 +196,21 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Asetukset',
+            'create_team' => 'Luo Tiimi',
             'follows' => 'Seurantalistat',
             'friends' => 'Kaverit',
+            'legacy_score_only_toggle' => 'Lazer-tila',
+            'legacy_score_only_toggle_tooltip' => 'Lazer-tila näyttää uuden pisteytysalgoritmin avulla saadut tulokset',
             'logout' => 'Kirjaudu ulos',
-            'profile' => 'Profiilini',
+            'profile' => 'Oma profiili',
+            'scoring_mode_toggle' => 'Klassinen pisteytys',
+            'scoring_mode_toggle_tooltip' => 'Säädä pistemäärät tuntumaan enemmän klassiselta rajoittamattomalta pisteytykseltä',
+            'team' => 'Minun tiimini',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Kirjoita etsiäksesi!',
+        'initial' => 'Kirjoita hakeaksesi!',
         'retry' => 'Haku epäonnistui. Yritä uudelleen napsauttamalla.',
     ],
 ];

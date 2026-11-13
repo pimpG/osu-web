@@ -14,8 +14,6 @@
     @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
     <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
-            <h3>{{ osu_trans('beatmap_discussions.index.title') }}</h3>
-
             <form class="simple-form simple-form--search-box">
                 <h2 class="simple-form__row simple-form__row--title">
                     {{ osu_trans('beatmap_discussions.index.form._') }}
@@ -100,6 +98,17 @@
                 <div class="simple-form__row simple-form__row--no-label">
                     <label class="simple-form__checkbox">
                         @include('objects._switch', ['locals' => [
+                            'checked' => $search['show_review_embeds'],
+                            'defaultValue' => '0',
+                            'name' => 'show_review_embeds',
+                        ]])
+                        {{ osu_trans('beatmap_discussions.index.form.show_review_embeds') }}
+                    </label>
+                </div>
+
+                <div class="simple-form__row simple-form__row--no-label">
+                    <label class="simple-form__checkbox">
+                        @include('objects._switch', ['locals' => [
                             'checked' => $search['only_unresolved'],
                             'name' => 'only_unresolved',
                         ]])
@@ -133,7 +142,7 @@
                 </div>
             </form>
 
-            <div class="js-react--beatmap-discussions-history">
+            <div class="js-react" data-react="beatmap-discussions-history">
                 <div class="beatmapset-activities__spinner">{!! spinner() !!}</div>
             </div>
 
@@ -149,5 +158,5 @@
         {!! json_encode($json) !!}
     </script>
 
-    @include('layout._react_js', ['src' => 'js/react/beatmap-discussions-history.js'])
+    @include('layout._react_js', ['src' => 'js/beatmap-discussions-history.js'])
 @endsection

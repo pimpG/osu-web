@@ -11,7 +11,7 @@ return [
 
         'table' => [
             'latest_comment_empty' => '没有评论',
-            'latest_comment_value' => ':username 于 :time 发出',
+            'latest_comment_value' => ':username 在 :time 发出',
         ],
     ],
 
@@ -34,5 +34,9 @@ return [
 
     'modding' => [
         'title' => '谱面讨论',
+    ],
+
+    'store' => [
+        'too_many' => '关注数量达到最大限制。',
     ],
 ];

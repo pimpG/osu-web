@@ -4,39 +4,51 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'all_read' => '',
-    'delete' => '',
-    'loading' => '',
-    'mark_read' => '',
-    'none' => '',
-    'see_all' => '',
-    'see_channel' => '',
-    'verifying' => '',
+    'all_read' => 'همه اعلانات خوانده شده اند!',
+    'delete' => 'حذف اعلانات :type',
+    'loading' => 'در حال بارگیری اعلانات خوانده نشده...',
+    'mark_read' => 'پاکسازی :type',
+    'none' => 'اعلانی موجود نیست',
+    'see_all' => 'نمایش همه اعلان‌ها',
+    'see_channel' => 'رفتن به چت',
+    'verifying' => 'لطفا برای دیدن اعلانات نشست خود را تصدیق کنید',
 
-    'filters' => [
+    'action_type' => [
         '_' => '',
-        'user' => '',
         'beatmapset' => '',
-        'forum_topic' => '',
-        'news_post' => '',
         'build' => '',
         'channel' => '',
+        'forum_topic' => '',
+        'news_post' => '',
+        'team' => '',
+        'user' => '',
+    ],
+
+    'filters' => [
+        '_' => 'همه',
+        'beatmapset' => 'بیت مپ ها',
+        'build' => '',
+        'channel' => 'چت',
+        'forum_topic' => 'انجمن',
+        'news_post' => 'اخبار',
+        'team' => '',
+        'user' => 'پروفایل',
     ],
 
     'item' => [
         'beatmapset' => [
-            '_' => '',
+            '_' => 'بیت مپ',
 
             'beatmap_owner_change' => [
-                '_' => '',
-                'beatmap_owner_change' => '',
-                'beatmap_owner_change_compact' => '',
+                '_' => 'درجه سختی میهمان',
+                'beatmap_owner_change' => 'شما هم اکنون صاحب درجه سختی :beatmap از بیت مپ :title هستید',
+                'beatmap_owner_change_compact' => 'شما هم اکنون صاحب درجه سختی :beatmap هستید',
             ],
 
             'beatmapset_discussion' => [
-                '_' => '',
-                'beatmapset_discussion_lock' => '',
-                'beatmapset_discussion_lock_compact' => '',
+                '_' => 'بحث در مورد بیت مپ',
+                'beatmapset_discussion_lock' => 'بحث و گفت و گو برای :title قفل شده است',
+                'beatmapset_discussion_lock_compact' => 'بحث قفل شده است',
                 'beatmapset_discussion_post_new' => '',
                 'beatmapset_discussion_post_new_empty' => '',
                 'beatmapset_discussion_post_new_compact' => '',
@@ -45,6 +57,12 @@ return [
                 'beatmapset_discussion_review_new_compact' => '',
                 'beatmapset_discussion_unlock' => '',
                 'beatmapset_discussion_unlock_compact' => '',
+
+                'review_count' => [
+                    'praises' => '',
+                    'problems' => '',
+                    'suggestions' => '',
+                ],
             ],
 
             'beatmapset_problem' => [
@@ -86,12 +104,43 @@ return [
         'channel' => [
             '_' => '',
 
+            'announcement' => [
+                '_' => '',
+
+                'announce' => [
+                    'channel_announcement' => '',
+                    'channel_announcement_compact' => '',
+                    'channel_announcement_group' => '',
+                ],
+            ],
+
             'channel' => [
                 '_' => '',
+
                 'pm' => [
                     'channel_message' => '',
                     'channel_message_compact' => '',
                     'channel_message_group' => '',
+                ],
+            ],
+
+            'channel_mention' => [
+                '_' => '',
+
+                'public' => [
+                    'channel_mention' => '',
+                    'channel_mention_compact' => '',
+                    'channel_mention_group' => '',
+                ],
+            ],
+
+            'channel_team' => [
+                '_' => '',
+
+                'team' => [
+                    'channel_team' => '',
+                    'channel_team_compact' => '',
+                    'channel_team_group' => '',
                 ],
             ],
         ],
@@ -120,6 +169,13 @@ return [
                 'comment_reply' => '',
                 'comment_reply_compact' => '',
             ],
+
+            'news_post' => [
+                '_' => '',
+
+                'news_post_new' => '',
+                'news_post_new_compact' => '',
+            ],
         ],
 
         'forum_topic' => [
@@ -132,12 +188,19 @@ return [
             ],
         ],
 
-        'legacy_pm' => [
-            '_' => '',
-
-            'legacy_pm' => [
+        'team' => [
+            'team_application' => [
                 '_' => '',
-                'legacy_pm' => '',
+
+                'team_application_accept' => "",
+                'team_application_accept_compact' => "",
+
+                'team_application_group' => '',
+
+                'team_application_reject' => '',
+                'team_application_reject_compact' => '',
+                'team_application_store' => '',
+                'team_application_store_compact' => '',
             ],
         ],
 
@@ -148,6 +211,9 @@ return [
                 'user_beatmapset_new' => '',
                 'user_beatmapset_new_compact' => '',
                 'user_beatmapset_new_group' => '',
+
+                'user_beatmapset_revive' => '',
+                'user_beatmapset_revive_compact' => '',
             ],
         ],
 
@@ -164,6 +230,8 @@ return [
     ],
 
     'mail' => [
+        'news' => '',
+
         'beatmapset' => [
             'beatmap_owner_change' => [
                 'beatmap_owner_change' => '',
@@ -195,8 +263,18 @@ return [
         ],
 
         'channel' => [
+            'announcement' => [
+                'channel_announcement' => '',
+            ],
             'channel' => [
-                'pm' => '',
+                'channel_message' => '',
+            ],
+            'channel_mention' => [
+                'channel_mention' => '',
+            ],
+
+            'channel_team' => [
+                'channel_team' => '',
             ],
         ],
 
@@ -218,14 +296,18 @@ return [
             ],
         ],
 
-        'user' => [
-            'user_achievement_unlock' => [
-                'user_achievement_unlock' => '',
-                'user_achievement_unlock_self' => '',
+        'team' => [
+            'team_application' => [
+                'team_application_accept' => "",
+                'team_application_reject' => '',
+                'team_application_store' => '',
             ],
+        ],
 
+        'user' => [
             'user_beatmapset_new' => [
                 'user_beatmapset_new' => '',
+                'user_beatmapset_revive' => '',
             ],
         ],
     ],

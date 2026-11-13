@@ -7,12 +7,6 @@
 
 The browser-facing portion of [osu!](https://osu.ppy.sh/home).
 
-## Requirements
-
-- A PHP 8.0+ environment
-- MySQL 8.0+
-- Elasticsearch
-
 ## Getting Started
 
 See the [setup guide](SETUP.md) for a rundown on how to get a development environment up.
@@ -27,7 +21,7 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information about the code sta
 
 While we have standards in place, nothing is set in stone. If you have an issue with the way code is structured; with any libraries we are using; with any processes involved with contributing, *please* bring it up. We welcome all feedback so we can make contributing to this project as pain-free as possible.
 
-For those interested, we love to reward quality contributions via [bounties](https://docs.google.com/spreadsheets/d/1jNXfj_S3Pb5PErA-czDdC9DUu4IgUbe1Lt8E7CYUJuE/view?&rm=minimal#gid=523803337), paid out via paypal or osu! supporter tags. Don't hesitate to [request a bounty](https://docs.google.com/forms/d/e/1FAIpQLSet_8iFAgPMG526pBZ2Kic6HSh7XPM3fE8xPcnWNkMzINDdYg/viewform) for your work on this project.
+Our team believes in **human contributions**. Any contribution – be it an issue report or a pull request – which is created by, documented by, or aided by AI/LLM usage will typically be **closed and locked without further discussion**.
 
 ## Seeking Help
 

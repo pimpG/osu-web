@@ -4,6 +4,8 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'hidden_replies' => ':count_delimited件の返信が非表示です。|:count_delimited件の返信が非表示です。',
+
     'authorizations' => [
         'update' => [
             'null_user' => '編集するにはログインが必要です。',
@@ -16,6 +18,16 @@ return [
         'empty' => 'まだ何もありません。',
     ],
 
+    'formatting' => [
+        'blockquote' => '',
+        'bold' => '',
+        'code_block' => '',
+        'code_inline' => '',
+        'image' => '',
+        'italic' => '',
+        'link' => '',
+    ],
+
     'index' => [
         'deleted_beatmap' => '削除済み',
         'none_found' => '検索条件に一致するディスカッションは見つかりませんでした。',
@@ -26,6 +38,7 @@ return [
             'deleted' => '削除されたディスカッションを含める',
             'mode' => 'ビートマップモード',
             'only_unresolved' => '未解決のディスカッションのみ表示',
+            'show_review_embeds' => 'レビューの投稿を表示',
             'types' => 'メッセージの種類',
             'username' => 'ユーザー名',
 
@@ -63,6 +76,13 @@ return [
         'reset_confirm' => 'この難易度の所有者をリセットしますか？',
         'user' => '所有者',
         'version' => '難易度',
+    ],
+
+    'refresh' => [
+        'checking' => 'アップデートの確認中...',
+        'has_updates' => 'ディスカッションの更新があります。クリックして更新してください。',
+        'no_updates' => '更新はありません。',
+        'updating' => '更新中…',
     ],
 
     'reply' => [
@@ -103,5 +123,6 @@ return [
     'user_filter' => [
         'everyone' => '全てのユーザー',
         'label' => 'ユーザーで絞り込む',
+        'multiple' => ':count_delimited人のユーザーを選択中|:count_delimited人のユーザーを選択中',
     ],
 ];

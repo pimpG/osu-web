@@ -15,6 +15,7 @@ return [
         'closing' => 'Hälsningar,',
         'hello' => 'Hej :user,',
         'report' => 'Vänligen svara på detta e-postmeddelande OMEDELBART om du inte begärde denna ändring.',
+        'ignore' => 'Om du inte har begärt detta kan du ignorera detta e-postmeddelande.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => 'Tack vare dem har du tillgång till osu!direct och andra osu!supporter-fördelar för de kommande :duration.',
         'features' => 'Du kan läsa mer om dessa funktioner här:',
         'gifted' => 'Någon har precis gett dig en osu!supporter-tagg!',
+        'gift_message' => 'Personen som gav dig den här taggen lämnade dig ett meddelande:',
         'subject' => 'Du har fått en osu!supporter-tagg!',
     ],
 

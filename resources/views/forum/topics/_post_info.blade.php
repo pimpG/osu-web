@@ -2,6 +2,9 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    use App\Libraries\User\UserForumTitles;
+@endphp
 <div class="forum-post-info">
     @if ($user->hasProfileVisible())
         @if ($user->user_avatar)
@@ -41,6 +44,10 @@
                     {{ $user->title() }}
                 </div>
             @endif
+        @else
+            <div class="forum-post-info__row forum-post-info__row--title">
+                {{ UserForumTitles::get($user) }}
+            </div>
         @endif
     @else
         <span class="forum-post-info__row forum-post-info__row--username">
@@ -71,6 +78,17 @@
         </div>
     @endif
 
+    @if (($team = $user->team) !== null)
+        <div class="forum-post-info__row forum-post-info__row--flag">
+            <a
+                class="u-contents"
+                href="{{ route('teams.show', $team) }}"
+            >
+                @include('objects._flag_team', compact('team'))
+            </a>
+        </div>
+    @endif
+
     @if ($user->country !== null)
         <div class="forum-post-info__row forum-post-info__row--flag">
             <a href="{{route('rankings', [
@@ -78,11 +96,7 @@
                 'type' => 'performance',
                 'country' => $user->country->getKey(),
             ])}}">
-                @include('objects._flag_country', [
-                    'countryCode' => $user->country->getKey(),
-                    'countryName' => $user->country->name,
-                    'modifiers' => ['medium'],
-                ])
+                @include('objects._flag_country', ['country' => $user->country])
             </a>
         </div>
     @endif

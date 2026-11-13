@@ -5,7 +5,6 @@
 
 return [
     'button' => [
-        'cancel' => 'අවලංගු කරන්න',
         'resend' => '',
         'set' => '',
         'start' => '',
@@ -17,8 +16,10 @@ return [
         'invalid' => '',
         'is_privileged' => '',
         'missing_key' => '',
+        'too_many_requests' => '',
         'too_many_tries' => '',
         'user_not_found' => '',
+        'wait_resend' => '',
         'wrong_key' => '',
     ],
 
@@ -37,6 +38,9 @@ return [
     'starting' => [
         'username' => '',
 
+        'reason' => [
+            'inactive_different_country' => "",
+        ],
         'support' => [
             '_' => '',
             'button' => '',

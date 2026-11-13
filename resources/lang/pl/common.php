@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Administrator',
         'authorise' => 'Autoryzuj',
         'authorising' => 'Autoryzowanie...',
+        'back' => 'Wróć',
         'back_to_previous' => 'Powrót do poprzedniej pozycji',
         'back_to_top' => 'Powrót na górę',
         'cancel' => 'Anuluj',
@@ -39,11 +39,13 @@ return [
         'pin' => 'przypnij',
         'post' => 'Opublikuj',
         'read_more' => 'czytaj więcej',
+        'refresh' => 'Odśwież',
         'reply' => 'Odpowiedz',
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
         'reply_resolve' => 'Odpowiedz i rozwiąż',
         'reset' => 'Zresetuj',
         'restore' => 'Przywróć',
+        'retry' => 'Ponów',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
         'search' => 'Szukaj',
@@ -74,6 +76,7 @@ return [
         'minutes' => ':count_delimited minuta|:count_delimited minuty|:count_delimited minut',
         'months' => ':count_delimited miesiąc|:count_delimited miesiące|:count_delimited miesięcy',
         'notifications' => ':count_delimited powiadomienie|:count_delimited powiadomienia|:count_delimited powiadomień',
+        'player' => ':count_delimited gracz|:count_delimited gracze|:count_delimited graczy',
         'plus_others' => '+ jeszcze :count_delimited!',
         'post' => ':count_delimited post|:count_delimited posty|:count_delimited postów',
         'second_short_unit' => 's|s|s',
@@ -91,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'm',
+        ],
+        'year' => [
+            'php' => 'y',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
@@ -102,7 +111,7 @@ return [
 
     'device' => [
         'keyboard' => 'klawiatury',
-        'mouse' => 'myszki',
+        'mouse' => 'myszy',
         'tablet' => 'tabletu',
         'touch' => 'ekranu dotykowego',
     ],

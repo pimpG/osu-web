@@ -7,11 +7,13 @@
 ])
 
 @section('content')
-    {!! Form::open([
-        'url' => route('login'),
-        'class' => 'dialog-form js-login-form',
-        'data-remote' => true,
-    ]) !!}
+    <form
+        action="{{ route('login') }}"
+        class="dialog-form js-login-form"
+        data-remote
+        method="POST"
+    >
+        @csrf
         <div class="dialog-form__dialog">
             <div class="dialog-form__row dialog-form__row--header"></div>
 
@@ -46,9 +48,8 @@
 
             @if (captcha_enabled())
                 <div class="dialog-form__row">
-                    <div class="js-captcha--container"></div>
+                    @include('objects._captcha', ['params' => []])
                 </div>
-                @include('objects._captcha_script')
             @endif
 
             <div class="dialog-form__row dialog-form__row--error js-login-form--error">
@@ -83,5 +84,5 @@
                 </a>
             </div>
         </div>
-    {!! Form::close() !!}
+    </form>
 @endsection

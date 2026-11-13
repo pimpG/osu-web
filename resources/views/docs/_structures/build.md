@@ -6,7 +6,7 @@
   "version": "20210520.2",
   "display_version": "20210520.2",
   "users": 22059,
-  "created_at": "2021-05-20T14:28:04+00:00",
+  "created_at": "2021-05-20T14:28:04Z",
   "update_stream": {
     "id": 5,
     "name": "stable40",
@@ -20,10 +20,11 @@ Field           | Type
 ----------------|-----
 created_at      | [Timestamp](#timestamp)
 display_version | string
-id              | number
+id              | integer
 update_stream   | [UpdateStream](#updatestream)?
-users           | number
+users           | integer
 version         | string?
+youtube_id      | string?
 
 ### Optional Attributes
 

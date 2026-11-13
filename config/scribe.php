@@ -1,9 +1,12 @@
 <?php
 
+use Knuckles\Scribe\Config;
+use Knuckles\Scribe\Extracting\Strategies;
+
 return [
 
     /*
-     * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
+     * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from $GLOBALS['cfg']['app']['name'].
      */
     'title' => null,
 
@@ -34,11 +37,6 @@ return [
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
                 'prefixes' => ['api/v2/*'],
-
-                /*
-                 * [Dingo router only] Match only routes registered under this version. Wildcards are not supported.
-                 */
-                'versions' => ['v1'],
             ],
 
             /*
@@ -55,72 +53,6 @@ return [
              */
             'exclude' => [
                 // '/health', 'admin.*'
-            ],
-
-            /*
-             * Settings to be applied to all the matched routes in this group when generating documentation
-             */
-            'apply' => [
-                /*
-                 * Additional headers to be added to the example requests
-                 */
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-
-                /*
-                 * If no @response or @transformer declarations are found for the route,
-                 * Scribe will try to get a sample response by attempting an API call.
-                 * Configure the settings for the API call here.
-                 */
-                'response_calls' => [
-                    /*
-                     * API calls will be made only for routes in this group matching these HTTP methods (GET, POST, etc).
-                     * List the methods here or use '*' to mean all methods. Leave empty to disable API calls.
-                     */
-                    'methods' => ['GET'],
-
-                    /*
-                     * Laravel config variables which should be set for the API call.
-                     * This is a good place to ensure that notifications, emails and other external services
-                     * are not triggered during the documentation API calls.
-                     * You can also create a `.env.docs` file and run the generate command with `--env docs`.
-                     */
-                    'config' => [
-                        'app.env' => 'documentation',
-                        'app.debug' => false,
-                    ],
-
-                    /*
-                     * Query parameters which should be sent with the API call.
-                     */
-                    'queryParams' => [
-                        // 'key' => 'value',
-                    ],
-
-                    /*
-                     * Body parameters which should be sent with the API call.
-                     */
-                    'bodyParams' => [
-                        // 'key' => 'value',
-                    ],
-
-                    /*
-                     * Files which should be sent with the API call.
-                     * Each value should be a valid path (absolute or relative to your project directory) to a file on this machine (but not in the project root).
-                     */
-                    'fileParams' => [
-                        // 'key' => 'storage/app/image.png',
-                    ],
-
-                    /*
-                     * Cookies which should be sent with the API call.
-                     */
-                    'cookies' => [
-                        // 'name' => 'value'
-                    ],
-                ],
             ],
         ],
     ],
@@ -163,13 +95,13 @@ return [
          * Middleware to attach to the docs endpoint (if `add_routes` is true).
          */
         'middleware' => [],
+        /*
+         * Directory within `public` in which to store CSS and JS assets.
+         * By default, assets are stored in `public/vendor/scribe`.
+         * If set, assets will be stored in `public/{{assets_directory}}`
+         */
+        'assets_directory' => null,
     ],
-
-    /**
-     * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
-     * Don't forget to enable CORS headers for your endpoints.
-     */
-    'interactive' => false,
 
     /*
      * How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
@@ -214,7 +146,7 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
+        'extra_info' => null,
     ],
 
     /*
@@ -240,7 +172,7 @@ INTRO
     ],
 
     /*
-     * The base URL to be used in examples. If this is empty, Scribe will use the value of config('app.url').
+     * The base URL to be used in examples. If this is empty, Scribe will use the value of $GLOBALS['cfg']['app']['url'].
      */
     'base_url' => null,
 
@@ -279,11 +211,6 @@ INTRO
     ],
 
     /*
-     * Name for the group of endpoints which do not have a @group set.
-     */
-    'default_group' => 'Undocumented',
-
-    /*
      * Custom logo path. This will be used as the value of the src attribute for the <img> tag,
      * so make sure it points to a public URL or path accessible from your web server. For best results, the image width should be 230px.
      * Set this to false to not use a logo.
@@ -293,18 +220,8 @@ INTRO
      * - 'logo' => 'img/logo.png' // for `laravel` type
      *
      */
-    'logo' => 'https://osu.ppy.sh/images/layout/osu-logo-white.svg',
-
-    /*
-     * The router your API is using (Laravel or Dingo).
-     */
-    'router' => 'laravel',
-
-    /*
-     * If you would like the package to generate the same example values for parameters on each run,
-     * set this to any number (eg. 1234)
-     */
-    'faker_seed' => null,
+    // for osu theme it's specified directly in the css instead
+    'logo' => null,
 
     /**
      * The strategies Scribe will use to extract information about your routes at each stage.
@@ -312,33 +229,33 @@ INTRO
      */
     'strategies' => [
         'metadata' => [
-            \Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromDocBlocks::class,
+            ...Config\Defaults::METADATA_STRATEGIES,
         ],
         'urlParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLaravelAPI::class,
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLumenAPI::class,
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamTag::class,
+            ...Config\Defaults::URL_PARAMETERS_STRATEGIES,
         ],
         'queryParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamTag::class,
+            ...Config\Defaults::QUERY_PARAMETERS_STRATEGIES,
+            App\Docs\Strategies\UsesCursor::class,
         ],
         'headers' => [
-            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromRouteRules::class,
-            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderTag::class,
+            ...Config\Defaults::HEADERS_STRATEGIES,
+            Strategies\StaticData::withSettings(data: [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]),
         ],
         'bodyParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromFormRequest::class,
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
+            ...Config\Defaults::BODY_PARAMETERS_STRATEGIES,
         ],
         'responses' => [
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseTransformerTags::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseApiResourceTags::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls::class,
+            // Limit to explicitly documented responses
+            Strategies\Responses\UseResponseAttributes::class,
+            Strategies\Responses\UseResponseTag::class,
+            Strategies\Responses\UseResponseFileTag::class,
         ],
         'responseFields' => [
-            \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag::class,
+            ...Config\Defaults::RESPONSE_FIELDS_STRATEGIES,
         ],
     ],
 
@@ -360,15 +277,68 @@ INTRO
     'routeMatcher' => \Knuckles\Scribe\Matching\RouteMatcher::class,
 
     /**
-     * [Advanced] If one of your app's database drivers does not support transactions,
-     * docs generation (instantiating Eloquent models and making response calls) will likely fail.
-     * To avoid that, you can add the driver class name here. Be warned: that means all database changes will persist.
-     */
-    'continue_without_database_transactions' => [],
-
-    /**
      * For response calls, api resource responses and transformer responses, Scribe will try to start database transactions, so no changes are persisted to your database.
      * Tell Scribe which connections should be transacted here. If you only use the default db connection, you can leave this as is.
      */
-    'database_connections_to_transact' => [config('database.default')],
+    'database_connections_to_transact' => [],
+    'theme' => 'osu',
+    'try_it_out' => [
+        /**
+         * Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
+         * Don't forget to enable CORS headers for your endpoints.
+         */
+        'enabled' => false,
+        /**
+         * The base URL for the API tester to use (for example, you can set this to your staging URL).
+         * Leave as null to use the current app URL (config(app.url)).
+         */
+        'base_url' => null,
+        /**
+         * Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header. Needed if you're using Laravel Sanctum.
+         */
+        'use_csrf' => false,
+        /**
+         * The URL to fetch the CSRF token from (if `use_csrf` is true).
+         */
+        'csrf_url' => '/sanctum/csrf-cookie',
+    ],
+    'groups' => [
+        /*
+         * Endpoints which don't have a @group will be placed in this default group.
+         */
+        'default' => 'Undocumented',
+        /*
+         * By default, Scribe will sort groups alphabetically, and endpoints in the order their routes are defined.
+         * You can override this by listing the groups, subgroups and endpoints here in the order you want them.
+         *
+         * Any groups, subgroups or endpoints you don't list here will be added as usual after the ones here.
+         * If an endpoint/subgroup is listed under a group it doesn't belong in, it will be ignored.
+         * Note: you must include the initial '/' when writing an endpoint.
+         */
+        'order' => [],
+    ],
+    /**
+     * Customize the "Last updated" value displayed in the docs by specifying tokens and formats.
+     * Examples:
+     * - {date:F j Y} => March 28, 2022
+     * - {git:short} => Short hash of the last Git commit
+     *
+     * Available tokens are `{date:<format>}` and `{git:<format>}`.
+     * The format you pass to `date` will be passed to PhP's `date()` function.
+     * The format you pass to `git` can be either "short" or "long".
+     */
+    'last_updated' => 'Last updated: {date:F j, Y}',
+    'examples' => [
+        /*
+         * If you would like the package to generate the same example values for parameters on each run,
+         * set this to any number (eg. 1234)
+         */
+        'faker_seed' => null,
+        /*
+         * With API resources and transformers, Scribe tries to generate example models to use in your API responses.
+         * By default, Scribe will try the model's factory, and if that fails, try fetching the first from the database.
+         * You can reorder or remove strategies here.
+         */
+        'models_source' => ['factoryCreate', 'factoryMake', 'databaseFirst'],
+    ],
 ];

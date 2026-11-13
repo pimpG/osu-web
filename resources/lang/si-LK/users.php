@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => '',
+        'comment_text' => '',
         'blocked_count' => '',
         'hide_profile' => '',
+        'hide_comment' => '',
+        'forum_post_text' => '',
         'not_blocked' => '',
         'show_profile' => '',
+        'show_comment' => '',
         'too_many' => '',
         'button' => [
             'block' => '',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => '',
         'loading' => '',
         'send_message' => '',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => '',
+            'password_confirmation' => '',
+            'submit' => '',
+            'user_email' => '',
+            'user_email_confirmation' => '',
+            'username' => '',
+
+            'tos_notice' => [
+                '_' => '',
+                'link' => '',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -76,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "",
             'inactive_different_country' => "",
         ],
     ],
@@ -99,6 +121,24 @@ return [
         'beta' => [
             'main' => '',
             'small' => '',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => '',
+        'modding_description_empty' => '',
+
+        'description' => [
+            '_' => '',
+            'country' => '',
+            'global' => '',
         ],
     ],
 
@@ -126,19 +166,30 @@ return [
             'cancel' => '',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => '',
-            'multiple_accounts' => '',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => '',
             'insults' => '',
-            'spam' => '',
-            'unwanted_content' => '',
+            'multiple_accounts' => '',
             'nonsense' => '',
             'other' => '',
+            'spam' => '',
+            'unwanted_content' => '',
         ],
     ],
     'restricted_banner' => [
         'title' => '',
         'message' => '',
+        'message_link' => '',
     ],
     'show' => [
         'age' => '',
@@ -153,16 +204,50 @@ return [
         'origin_country' => '',
         'previous_usernames' => '',
         'plays_with' => '',
-        'title' => "",
+
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
 
         'comments_count' => [
             '_' => '',
             'count' => '',
         ],
+        'cover' => [
+            'to_0' => '',
+            'to_1' => '',
+        ],
+        'daily_challenge' => [
+            'daily' => '',
+            'daily_streak_best' => '',
+            'daily_streak_current' => '',
+            'playcount' => '',
+            'title' => '',
+            'top_10p_placements' => '',
+            'top_50p_placements' => '',
+            'weekly' => '',
+            'weekly_streak_best' => '',
+            'weekly_streak_current' => '',
+
+            'unit' => [
+                'day' => '',
+                'week' => '',
+            ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => '',
                 'defaults_info' => '',
+                'holdover_remove_confirm' => "",
+                'title' => '',
+
                 'upload' => [
                     'broken_file' => '',
                     'button' => '',
@@ -182,6 +267,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => '',
                 'set' => '',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => '',
+                'title' => '',
+
+                'supporter' => [
+                    '_' => '',
+                    'link' => '',
+                ],
             ],
         ],
 
@@ -204,7 +299,13 @@ return [
                 'graveyard' => [
                     'title' => '',
                 ],
+                'guest' => [
+                    'title' => '',
+                ],
                 'loved' => [
+                    'title' => '',
+                ],
+                'nominated' => [
                     'title' => '',
                 ],
                 'pending' => [
@@ -242,6 +343,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => '',
                     'count_label' => '',
+                ],
+                'score_replay_stats' => [
+                    'title' => '',
                 ],
             ],
             'kudosu' => [
@@ -301,7 +405,7 @@ return [
                 'recent' => '',
                 'title' => '',
             ],
-            'multiplayer' => [
+            'playlists' => [
                 'title' => '',
             ],
             'posts' => [
@@ -309,7 +413,13 @@ return [
                 'title_longer' => '',
                 'show_more' => '',
             ],
+            'ranked-play' => [
+                'title' => '',
+            ],
             'recent_activity' => [
+                'title' => '',
+            ],
+            'realtime' => [
                 'title' => '',
             ],
             'top_ranks' => [
@@ -323,6 +433,15 @@ return [
                     'title' => '',
                 ],
                 'first' => [
+                    'title' => '',
+                ],
+                'pin' => [
+                    'to_0' => '',
+                    'to_0_done' => '',
+                    'to_1' => '',
+                    'to_1_done' => '',
+                ],
+                'pinned' => [
                     'title' => '',
                 ],
             ],
@@ -343,13 +462,14 @@ return [
                     'date' => '',
                     'action' => '',
                     'length' => '',
-                    'length_permanent' => '',
+                    'length_indefinite' => '',
                     'description' => '',
                     'actor' => '',
 
                     'actions' => [
                         'restriction' => '',
                         'silence' => '',
+                        'tournament_ban' => '',
                         'note' => '',
                     ],
                 ],
@@ -364,6 +484,19 @@ return [
             'twitter' => '',
             'website' => '',
         ],
+
+        'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'recent_history_provisional' => '',
+            'tier' => '',
+            'title' => '',
+            'wins' => '',
+        ],
+
         'not_found' => [
             'reason_1' => '',
             'reason_2' => '',
@@ -391,9 +524,26 @@ return [
             'country_simple' => '',
             'global' => '',
             'global_simple' => '',
+            'highest' => '',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => '',
+            'label' => '',
+            'total_score' => '',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => '',
+            'hits_per_play' => '',
             'level' => '',
             'level_progress' => '',
             'maximum_combo' => '',
@@ -407,7 +557,9 @@ return [
             'total_score' => '',
             // modding stats
             'graveyard_beatmapset_count' => '',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => '',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => '',
             'ranked_beatmapset_count' => '',
         ],
@@ -423,7 +575,15 @@ return [
         'online' => '',
         'offline' => '',
     ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
+    ],
     'store' => [
+        'from_client' => '',
+        'from_web' => '',
         'saved' => '',
     ],
     'verify' => [

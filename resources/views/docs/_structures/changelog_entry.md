@@ -12,7 +12,7 @@
   "title": "Spring is here!",
   "message_html": "<div class='changelog-md'><p class=\"changelog-md__paragraph\">New seasonal backgrounds ahoy! Amazing work by the artists.</p>\n</div>",
   "major": true,
-  "created_at": "2021-05-20T10:56:49+00:00"
+  "created_at": "2021-05-20T10:56:49Z"
 }
 ```
 
@@ -20,9 +20,9 @@ Field                  | Type
 -----------------------|-----
 category               | string
 created_at             | [Timestamp](#timestamp)?
-github_pull_request_id | number?
+github_pull_request_id | integer?
 github_url             | string?
-id                     | number?
+id                     | integer?
 major                  | boolean
 repository             | string?
 title                  | string?

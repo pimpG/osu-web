@@ -6,11 +6,10 @@
 namespace App\Models\Score;
 
 use App\Exceptions\ClassNotFoundException;
-use App\Libraries\ModsHelper;
 use App\Models\Beatmap;
 use App\Models\Model as BaseModel;
+use App\Models\Traits\Scoreable;
 use App\Models\User;
-use App\Traits\Scoreable;
 
 /**
  * @property Beatmap $beatmap
@@ -22,113 +21,63 @@ abstract class Model extends BaseModel
 
     public $timestamps = false;
 
-    protected $primaryKey = 'score_id';
-
     protected $casts = [
+        'date' => 'datetime',
         'pass' => 'bool',
         'perfect' => 'bool',
-        'replay' => 'bool',
+        'replay' => 'bool', // for best model
     ];
-    protected $dates = ['date'];
+    protected $primaryKey = 'score_id';
+    protected $table = 'nonexistent';
 
-    public static function getClass($modeInt)
+    public static function getClass(string $ruleset): string
     {
-        $modeStr = Beatmap::modeStr($modeInt);
-
-        if ($modeStr !== null) {
-            return static::getClassByString($modeStr);
-        }
-    }
-
-    public static function getClassByString(string $mode)
-    {
-        if (!Beatmap::isModeValid($mode)) {
+        if (!Beatmap::isModeValid($ruleset)) {
             throw new ClassNotFoundException();
         }
 
-        return get_class_namespace(static::class).'\\'.studly_case($mode);
+        return get_class_namespace(static::class).'\\'.studly_case($ruleset);
     }
 
-    public static function getMode(): string
+    public function getAttribute($key)
+    {
+        return match ($key) {
+            'beatmap_id',
+            'beatmapset_id',
+            'count100',
+            'count300',
+            'count50',
+            'countgeki',
+            'countkatu',
+            'countmiss',
+            'high_score_id',
+            'maxcombo',
+            'rank',
+            'score',
+            'score_id',
+            'scorechecksum',
+            'user_id' => $this->getRawAttribute($key),
+
+            'hidden',
+            'pass',
+            'perfect' => (bool) $this->getRawAttribute($key),
+
+            'date' => $this->getTimeFast($key),
+
+            'enabled_mods' => $this->getEnabledModsAttribute($this->getRawAttribute('enabled_mods')),
+
+            'best_id' => $this->getRawAttribute('high_score_id'),
+            'replay' => $this->best?->replay,
+            'pp' => $this->best?->pp,
+
+            'beatmap',
+            'best',
+            'user' => $this->getRelationValue($key),
+        };
+    }
+
+    public function getMode(): string
     {
         return snake_case(get_class_basename(static::class));
-    }
-
-    public function scopeDefault($query)
-    {
-        return $query
-            ->whereHas('beatmap')
-            ->orderBy('score_id', 'desc');
-    }
-
-    public function scopeForUser($query, User $user)
-    {
-        return $query->where('user_id', $user->user_id);
-    }
-
-    public function scopeIncludeFails($query, bool $include)
-    {
-        if ($include) {
-            return $query;
-        }
-
-        return $query->where('pass', true);
-    }
-
-    public function scopeVisibleUsers($query)
-    {
-        return $query->whereHas('user', function ($userQuery) {
-            $userQuery->default();
-        });
-    }
-
-    public function scopeWithMods($query, $modsArray)
-    {
-        return $query->where(function ($q) use ($modsArray) {
-            $bitset = ModsHelper::toBitset($modsArray);
-            $preferenceMask = ~ModsHelper::PREFERENCE_MODS_BITSET;
-
-            if (in_array('NM', $modsArray, true)) {
-                $q->orWhereRaw('enabled_mods & ? = 0', [$preferenceMask]);
-            }
-
-            if ($bitset > 0) {
-                $q->orWhereRaw('enabled_mods & ? = ?', [$preferenceMask | $bitset, $bitset]);
-            }
-        });
-    }
-
-    public function scopeWithoutMods($query, $modsArray)
-    {
-        $bitset = ModsHelper::toBitset($modsArray);
-
-        return $query->whereRaw('enabled_mods & ? = 0', $bitset);
-    }
-
-    public function beatmap()
-    {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
-    }
-
-    public function best()
-    {
-        $basename = get_class_basename(static::class);
-
-        return $this->belongsTo("App\\Models\\Score\\Best\\{$basename}", 'high_score_id', 'score_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function getBestIdAttribute()
-    {
-        return $this->high_score_id;
-    }
-
-    public function url()
-    {
-        return route('scores.show', ['mode' => static::getMode(), 'score' => $this->getKey()]);
     }
 }

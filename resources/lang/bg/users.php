@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Вие блокирахте този потребител.',
+        'comment_text' => 'Този коментар е скрит.',
         'blocked_count' => 'блокирани потребители (:count)',
         'hide_profile' => 'Скрий профил',
+        'hide_comment' => 'скрий',
+        'forum_post_text' => 'Тази публикация е скрита.',
         'not_blocked' => 'Този потребител не е блокиран.',
         'show_profile' => 'Покажи профил',
+        'show_comment' => 'покажи',
         'too_many' => 'Достигнат е лимита за блокиране.',
         'button' => [
             'block' => 'Блокиране',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Подари osu!supporter',
         'loading' => 'Зареждане...',
         'send_message' => 'изпрати съобщение',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'парола',
+            'password_confirmation' => 'потвърди парола',
+            'submit' => 'създаване на профил',
+            'user_email' => 'имейл',
+            'user_email_confirmation' => 'потвърди имейл',
+            'username' => 'потребителско име',
+
+            'tos_notice' => [
+                '_' => 'чрез създаването на профил се съгласявате с :link',
+                'link' => 'условията за ползване',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -76,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "В профилът ви не е влизано от доста време.",
             'inactive_different_country' => "Вашият акаунт не е ползван от дълго време.",
         ],
     ],
@@ -99,6 +121,24 @@ return [
         'beta' => [
             'main' => 'Ранният достъп е ограничен само за привилегировани потребители.',
             'small' => '(osu!supporter ще има достъп скоро)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => '',
+            'ended' => '',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Бийтмапове: :counts',
+        'modding_description_empty' => 'Потребителят няма бийтмапове...',
+
+        'description' => [
+            '_' => 'Ранг (:ruleset): :global | :country',
+            'country' => 'Държава :rank',
+            'global' => 'Световен :rank',
         ],
     ],
 
@@ -126,19 +166,30 @@ return [
             'cancel' => 'Отмени',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => '',
+                'policy' => '',
+            ],
+            'message_2' => '',
+        ],
+
         'options' => [
             'cheating' => 'Нечестна игра / Измама',
-            'multiple_accounts' => 'Използва няколко профила',
+            'copyright_infringement' => '',
+            'inappropriate_chat' => 'Неприлично поведение в чат',
             'insults' => 'Обижда мен / друг',
-            'spam' => 'Спам',
-            'unwanted_content' => 'Изпраща неприлично съдържание',
+            'multiple_accounts' => 'Използва няколко профила',
             'nonsense' => 'Безсмислици',
             'other' => 'Друго (посочете по-долу)',
+            'spam' => 'Спам',
+            'unwanted_content' => 'Изпраща неприлично съдържание',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Вашият профил е ограничен!',
-        'message' => 'Докато сте ограничени, няма да може да общувате с други играчи и вашите резултати ще са видими само за вас. Това често е резултат от системата ни за автоматично засичане на измамници и статутът ще бъде премахнат до 24 часа. Ако желаете да обжалвате ограничението, свържете се с<a href="mailto:accounts@ppy.sh"> поддръжка</a>.',
+        'message' => 'Докато имате ограничение, ще сте неспособни да общувате с други играчи и вашите резултати ще са видими само за вас. Това често е резултат от системата ни за автоматично засичане на измамници и статутът ще бъде премахнат до 24 часа. :link',
+        'message_link' => 'Посетете тази страница за да научите повече.',
     ],
     'show' => [
         'age' => 'на :age години',
@@ -147,22 +198,56 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Потребител от :date',
-        'lastvisit' => 'Последно видян :date',
+        'lastvisit' => 'Последно видяни на :date',
         'lastvisit_online' => 'В момента онлайн',
         'missingtext' => 'Вероятно сте допуснали правописна грешка! (или потребителят е бил баннат)',
         'origin_country' => 'От :country',
         'previous_usernames' => 'някога известен като',
         'plays_with' => 'Играе с :devices',
-        'title' => "профила на :username",
+
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
 
         'comments_count' => [
             '_' => 'Публикувани :link',
             'count' => ':count_delimited коментар|:count_delimited коментара',
         ],
+        'cover' => [
+            'to_0' => 'скриване на корицата',
+            'to_1' => 'показване на корицата',
+        ],
+        'daily_challenge' => [
+            'daily' => 'Ежедневна серия',
+            'daily_streak_best' => 'Най-добра ежедневна серия ',
+            'daily_streak_current' => 'Сегашна ежедневна серия ',
+            'playcount' => 'Общо участия',
+            'title' => 'Дневно\nПредизвикателство',
+            'top_10p_placements' => 'Топ 10% резултати ',
+            'top_50p_placements' => 'Топ 50% резултати',
+            'weekly' => 'Седмична поредица',
+            'weekly_streak_best' => 'Най-добра седмична поредица',
+            'weekly_streak_current' => 'Текуща седмична поредица',
+
+            'unit' => [
+                'day' => ':valueд',
+                'week' => ':valueседм',
+            ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Промяна на профилната корица',
                 'defaults_info' => 'Повече опции за корици ще бъдат налични в бъдеще',
+                'holdover_remove_confirm' => "Предишно избраната корица не е достъпна вече. Не може да бъде върната обратно след като я промените. Да продължим ли?",
+                'title' => 'Корица',
+
                 'upload' => [
                     'broken_file' => 'Неуспешна обработка на изображението. Проверете каченото изображение и опитайте отново.',
                     'button' => 'Качи изображение',
@@ -183,6 +268,16 @@ return [
                 'is_default_tooltip' => 'стандартен режим на игра',
                 'set' => 'задай :mode като стандартен режим на игра',
             ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Възстановяване на оригиналния цвят? Ще е нужен Supporter етикет за промяна в различен цвят.',
+                'title' => 'Цвят',
+
+                'supporter' => [
+                    '_' => 'Цветните теми са налични само за :link',
+                    'link' => 'osu!supporters',
+                ],
+            ],
         ],
 
         'extra' => [
@@ -195,7 +290,7 @@ return [
                 'title' => 'Постижения',
             ],
             'beatmaps' => [
-                'by_artist' => 'по :artist',
+                'by_artist' => 'от :artist',
                 'title' => 'Бийтмапове',
 
                 'favourite' => [
@@ -204,8 +299,14 @@ return [
                 'graveyard' => [
                     'title' => 'Изоставени бийтмапове',
                 ],
+                'guest' => [
+                    'title' => 'Предложени трудности към бийтмапове',
+                ],
                 'loved' => [
                     'title' => 'Обичани бийтмапове',
+                ],
+                'nominated' => [
+                    'title' => 'Номинирани бийтмапове с класация',
                 ],
                 'pending' => [
                     'title' => 'Чакащи класиране бийтмапове',
@@ -232,7 +333,7 @@ return [
                     'count_label' => 'Игри',
                 ],
                 'most_played' => [
-                    'count' => 'пъти изиграно',
+                    'count' => 'пъти изигран',
                     'title' => 'Най-играните бийтмапове',
                 ],
                 'recent_plays' => [
@@ -242,6 +343,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'История на гледани повторения от останалите',
                     'count_label' => 'Гледани повторения',
+                ],
+                'score_replay_stats' => [
+                    'title' => '',
                 ],
             ],
             'kudosu' => [
@@ -289,7 +393,7 @@ return [
                 ],
 
                 'total_info' => [
-                    '_' => 'Основано на колко е допринесъл даден потребител за редактиране на бийтмапове. Виж :link за повече информация.',
+                    '_' => 'Въз основа на това колко този потребител е помогнал с редактирането на бийтмапове. Вижте :link за повече информация.',
                     'link' => 'тази страница',
                 ],
             ],
@@ -301,16 +405,22 @@ return [
                 'recent' => 'Най-новите',
                 'title' => 'Медали',
             ],
-            'multiplayer' => [
-                'title' => 'Игри в Мултиплейър',
+            'playlists' => [
+                'title' => 'Плейлист игри',
             ],
             'posts' => [
                 'title' => 'Публикации',
                 'title_longer' => 'Скорошни публикации',
                 'show_more' => 'виж повече публикации',
             ],
+            'ranked-play' => [
+                'title' => '',
+            ],
             'recent_activity' => [
                 'title' => 'Скорошна активност',
+            ],
+            'realtime' => [
+                'title' => 'Мултиплейър игри',
             ],
             'top_ranks' => [
                 'download_replay' => 'Изтегли повторение',
@@ -324,6 +434,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Класации на първо място',
+                ],
+                'pin' => [
+                    'to_0' => 'Откачане',
+                    'to_0_done' => 'Откачен резултат',
+                    'to_1' => 'Закачане',
+                    'to_1_done' => 'Закачен резултат',
+                ],
+                'pinned' => [
+                    'title' => 'Закачени резултати',
                 ],
             ],
             'votes' => [
@@ -343,13 +462,14 @@ return [
                     'date' => 'дата',
                     'action' => 'действие',
                     'length' => 'продължителност',
-                    'length_permanent' => 'Завинаги',
+                    'length_indefinite' => 'Неопределен',
                     'description' => 'описание',
                     'actor' => 'от :username',
 
                     'actions' => [
                         'restriction' => 'Бан',
                         'silence' => 'Заглушен',
+                        'tournament_ban' => 'Турнирна забрана',
                         'note' => 'Бележка',
                     ],
                 ],
@@ -364,6 +484,19 @@ return [
             'twitter' => '',
             'website' => 'Уебсайт',
         ],
+
+        'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'recent_history_provisional' => '',
+            'tier' => '',
+            'title' => '',
+            'wins' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'Този потребител вероятно си е променил името.',
             'reason_2' => 'Акаунтът вероятно е недостъпен по причини за сигурност или злоупотреба.',
@@ -391,9 +524,26 @@ return [
             'country_simple' => 'Държавно класиране',
             'global' => 'Световна класация за :mode',
             'global_simple' => 'Глобално класиране',
+            'highest' => 'Най-висок ранг: :rank на :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
+        ],
+        'score_processing' => [
+            'title' => '',
+            'title_link' => '',
+            'message' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => 'Топ :value',
+            'label' => '',
+            'total_score' => 'Общ резултат',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Прецизност на ударите',
+            'hits_per_play' => 'Удари при игра',
             'level' => 'Ниво :level',
             'level_progress' => 'Прогрес до следващо ниво',
             'maximum_combo' => 'Максимално комбо',
@@ -407,7 +557,9 @@ return [
             'total_score' => 'Общ брой точки',
             // modding stats
             'graveyard_beatmapset_count' => 'Изоставени бийтмапове',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Обичани бийтмапове',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Чакащи класиране бийтмапове',
             'ranked_beatmapset_count' => 'Класирани и одобрени бийтмапове',
         ],
@@ -423,7 +575,15 @@ return [
         'online' => 'Онлайн',
         'offline' => 'Офлайн',
     ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
+    ],
     'store' => [
+        'from_client' => 'Моля, регистрирайте се от клиента за игра!',
+        'from_web' => 'моля, завършете регистрацията от уебсайта на osu!',
         'saved' => 'Потребител създаден',
     ],
     'verify' => [

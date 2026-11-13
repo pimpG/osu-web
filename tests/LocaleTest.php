@@ -5,6 +5,10 @@
 
 namespace Tests;
 
+use App;
+use App\Models\User;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 class LocaleTest extends TestCase
 {
     public function testAll()
@@ -66,26 +70,83 @@ class LocaleTest extends TestCase
         $this->assertSame('', osu_trans('key_1.empty_missing'));
     }
 
-    /**
-     * @dataProvider availableLocalesProvider
-     */
+    #[DataProvider('availableLocalesProvider')]
     public function testCorrespondingLocaleFile($locale)
     {
         $this->assertNotNull(unmix("js/locales/{$locale}.js"));
     }
 
-    /**
-     * @dataProvider availableLocalesProvider
-     */
+    #[DataProvider('availableLocalesProvider')]
     public function testCorrespondingMomentLocaleFile($locale)
     {
         $this->assertNotNull(unmix('js/moment-locales/'.locale_meta($locale)->moment().'.js'));
     }
 
-    public function availableLocalesProvider()
+    public function testLocaleApiWithAcceptHeader()
     {
-        return array_map(function ($locale) {
-            return [$locale];
-        }, config('app.available_locales'));
+        $this
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get(route('api.changelog.index'));
+
+        $this->assertSame('es', App::getLocale());
+    }
+
+    public function testLocaleApiWithAcceptHeaderMagicRespectsUserLang()
+    {
+        $this->actAsScopedUser(User::factory()->create(['user_lang' => 'de']));
+
+        $this
+            ->withHeaders(['accept-language' => '*'])
+            ->get(route('api.changelog.index'));
+
+        $this->assertSame('de', App::getLocale());
+    }
+
+    public function testLocaleApiWithAcceptHeaderOverridesUserLang()
+    {
+        $this->actAsScopedUser(User::factory()->create(['user_lang' => 'de']));
+
+        $this
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get(route('api.changelog.index'));
+
+        $this->assertSame('es', App::getLocale());
+    }
+
+    public function testLocaleWebWithAcceptHeader()
+    {
+        $this
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get('/');
+
+        $this->assertSame('es', App::getLocale());
+    }
+
+    public function testLocaleWebWithAcceptHeaderAndGuestCookie()
+    {
+        $this
+            ->withUnencryptedCookie('locale', 'ja')
+            ->withHeaders(['accept-language' => 'id;q=0.6,pt,en-US;q=0.8'])
+            ->get('/');
+
+        $this->assertSame('ja', App::getLocale());
+    }
+
+    public function testLocaleWebWithAcceptHeaderAndUserLang()
+    {
+        $this
+            ->actingAs(User::factory()->create(['user_lang' => 'fr']))
+            ->withHeaders(['accept-language' => 'ja;q=0.6,es,en-US;q=0.8'])
+            ->get('/');
+
+        $this->assertSame('fr', App::getLocale());
+    }
+
+    public static function availableLocalesProvider()
+    {
+        return array_map(
+            fn ($locale) => [$locale],
+            (require __DIR__.'/../config/app.php')['available_locales'],
+        );
     }
 }

@@ -7,17 +7,15 @@ namespace Tests\Models;
 
 use App\Models\Changelog;
 use App\Models\ChangelogEntry;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChangelogEntryTest extends TestCase
 {
-    /**
-     * @dataProvider dataForPublicMessageHtmlVisibility
-     */
-    public function testPublicMessageHtmlVisibility($message, $html)
+    #[DataProvider('dataForGetDisplayMessage')]
+    public function testGetDisplayMessage($message, $html)
     {
-        $entry = new ChangelogEntry(compact('message'));
-        $this->assertSame($html, $entry->publicMessageHtml());
+        $this->assertSame($html, ChangelogEntry::getDisplayMessage($message));
     }
 
     public function testConvertLegacyChangelogWithTitle()
@@ -26,7 +24,7 @@ class ChangelogEntryTest extends TestCase
         $legacy = new Changelog(['message' => $title]);
         $converted = ChangelogEntry::convertLegacy($legacy);
         $this->assertSame($title, $converted->title);
-        $this->assertNull($converted->publicMessageHtml());
+        $this->assertNull($converted->messageHtml());
     }
 
     public function testConvertLegacyChangelogWithTitleAndMessage()
@@ -36,7 +34,7 @@ class ChangelogEntryTest extends TestCase
         $legacy = new Changelog(['message' => "{$title}\n\n---\n{$message}"]);
         $converted = ChangelogEntry::convertLegacy($legacy);
         $this->assertSame($title, $converted->title);
-        $this->assertSame("<div class='changelog-md'><p class=\"changelog-md__paragraph\">{$message}</p>\n</div>", $converted->publicMessageHtml());
+        $this->assertSame("<div class='changelog-md'><p class=\"changelog-md__paragraph\">{$message}</p>\n</div>", $converted->messageHtml());
     }
 
     public function testConvertLegacyChangelogWithMessage()
@@ -45,7 +43,7 @@ class ChangelogEntryTest extends TestCase
         $legacy = new Changelog(['message' => "---\n{$message}"]);
         $converted = ChangelogEntry::convertLegacy($legacy);
         $this->assertSame($message, $converted->title);
-        $this->assertNull($converted->publicMessageHtml());
+        $this->assertNull($converted->messageHtml());
     }
 
     public function testGuessCategoryCapitalise()
@@ -131,17 +129,17 @@ class ChangelogEntryTest extends TestCase
         $this->assertTrue(ChangelogEntry::isPrivate($data));
     }
 
-    public function dataForPublicMessageHtmlVisibility()
+    public static function dataForGetDisplayMessage()
     {
         return [
-            ['Hidden', null],
-            ["---\nVisible", "<div class='changelog-md'><p class=\"changelog-md__paragraph\">Visible</p>\n</div>"],
-            ["Hidden\n---", null],
-            ["Hidden\n\n---", null],
-            ["Hidden\n\n---Still hidden", null],
-            ["Hidden\n---\n\nStill hidden", null],
-            ["Hidden\n---\nStill hidden", null],
-            ["Hidden\n\n---\nVisible", "<div class='changelog-md'><p class=\"changelog-md__paragraph\">Visible</p>\n</div>"],
+            ['Hidden', ''],
+            ["Visible\n\n---", 'Visible'],
+            ["---\nHidden", ''],
+            ['---Hidden', ''],
+            ['Still hidden---', ''],
+            ["Hidden\n---\n\nStill hidden", ''],
+            ["Hidden\n---\nStill hidden", ''],
+            ["Visible\n\n---\nHidden", 'Visible'],
         ];
     }
 }

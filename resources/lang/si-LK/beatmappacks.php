@@ -6,24 +6,20 @@
 return [
     'index' => [
         'description' => '',
+        'empty' => '',
         'nav_title' => '',
         'title' => '',
 
         'blurb' => [
             'important' => '',
-            'instruction' => [
-                '_' => "",
-                'scary' => '',
-            ],
-            'note' => [
-                '_' => '',
-                'scary' => '',
-            ],
+            'install_instruction' => '',
         ],
     ],
 
     'show' => [
+        'created_by' => '',
         'download' => '',
+        'no_diff_reduction_badge' => '',
         'item' => [
             'cleared' => '',
             'not_cleared' => '',
@@ -37,8 +33,11 @@ return [
     'mode' => [
         'artist' => '',
         'chart' => '',
+        'featured' => '',
+        'loved' => '',
         'standard' => '',
         'theme' => '',
+        'tournament' => '',
     ],
 
     'require_login' => [

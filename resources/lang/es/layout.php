@@ -19,11 +19,16 @@ return [
             'contest' => 'concurso',
             'contests' => 'concursos',
             'root' => 'consola',
-            'store_orders' => 'administrador de tienda',
         ],
 
         'artists' => [
             'index' => 'listado',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'información',
+            'discussions' => 'discusión',
+            'versions' => 'historial de versiones',
         ],
 
         'changelog' => [
@@ -47,15 +52,17 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'multijugador',
+            'playlists' => 'listas de juego',
+            'ranked-play' => 'partidas clasificatorias',
+            'realtime' => 'multijugador',
             'show' => 'información',
         ],
     ],
 
     'gallery' => [
         'close' => 'Cerrar (Esc)',
-        'fullscreen' => 'Activar o desactivar pantalla completa',
-        'zoom' => 'Zoom Acercar/Alejar',
+        'fullscreen' => 'Alternar pantalla completa',
+        'zoom' => 'Acercar/Alejar',
         'previous' => 'Anterior (flecha izquierda)',
         'next' => 'Siguiente (flecha derecha)',
     ],
@@ -70,7 +77,7 @@ return [
         ],
         'help' => [
             '_' => 'ayuda',
-            'getAbuse' => 'notificar abuso',
+            'getAbuse' => 'reportar abuso',
             'getFaq' => 'preguntas frecuentes',
             'getRules' => 'reglas',
             'getSupport' => 'no, en serio, ¡necesito ayuda!',
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'clasificaciones',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'tienda',
@@ -101,13 +107,15 @@ return [
             'faq' => 'Preguntas frecuentes',
             'forum' => 'Foros de la comunidad',
             'livestreams' => 'Transmisiones en vivo',
-            'report' => 'Informar de un problema',
+            'report' => 'Reportar un problema',
             'wiki' => 'Wiki',
         ],
         'legal' => [
             '_' => 'Legal y estado',
             'copyright' => 'Derechos de autor (DMCA)',
+            'jp_sctl' => 'SCTL',
             'privacy' => 'Privacidad',
+            'rules' => 'Reglas',
             'server_status' => 'Estado del servidor',
             'source_code' => 'Código fuente',
             'terms' => 'Términos',
@@ -164,23 +172,23 @@ return [
     ],
 
     'popup_login' => [
-        'button' => 'iniciar sesión / registrarse',
+        'button' => 'iniciar sesión / registrarme',
 
         'login' => [
             'forgot' => "He olvidado mis datos",
             'password' => 'contraseña',
-            'title' => 'Iniciar sesión para continuar',
+            'title' => 'Inicia sesión para continuar',
             'username' => 'nombre de usuario',
 
             'error' => [
-                'email' => "El nombre de usuario o correo electrónico no existe",
+                'email' => "El nombre de usuario o correo no existe",
                 'password' => 'Contraseña incorrecta',
             ],
         ],
 
         'register' => [
             'download' => 'Descargar',
-            'info' => '¡Descargue osu! para crear su propia cuenta!',
+            'info' => '¡Descarga osu! para crear tu propia cuenta!',
             'title' => "¿No tienes una cuenta?",
         ],
     ],
@@ -188,15 +196,21 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configuración',
+            'create_team' => 'Crear equipo',
             'follows' => 'Listas de seguimiento',
             'friends' => 'Amigos',
+            'legacy_score_only_toggle' => 'Modo lazer',
+            'legacy_score_only_toggle_tooltip' => 'El modo lazer muestra las puntuaciones enviadas desde lazer con un nuevo algoritmo de puntuación',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',
+            'scoring_mode_toggle' => 'Puntuación clásica',
+            'scoring_mode_toggle_tooltip' => 'Ajusta los valores de las puntuaciones para que se parezcan más a las puntuaciones clásicas sin límite',
+            'team' => 'Mi equipo',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '¡Escriba para buscar!',
+        'initial' => '¡Escribe para buscar!',
         'retry' => 'Búsqueda fallida. Haz clic aquí para reintentar.',
     ],
 ];

@@ -10,15 +10,25 @@ return [
 
         'avatar' => [
             'title' => 'Avatar',
+            'reset' => 'sıfırla',
             'rules' => 'Lütfen avatarınızın :link uyduğundan emin olun.<br/>Bu, avatarın <strong>her yaş grubuna uygun olması</strong> gerektiği anlamına gelir. Yani çıplaklık, küfür veya müstehcen içerik bulunmamalıdır.',
             'rules_link' => 'topluluk kurallarına',
         ],
 
         'email' => [
-            'current' => 'mevcut e-posta',
             'new' => 'yeni e-posta',
             'new_confirmation' => 'e-posta onayı',
             'title' => 'E-posta',
+            'locked' => [
+                '_' => 'E-postanızı güncellemeniz gerekiyorsa lütfen :accounts ile iletişime geçin.',
+                'accounts' => 'hesap destek birimi',
+            ],
+        ],
+
+        'legacy_api' => [
+            'api' => 'api',
+            'irc' => 'irc',
+            'title' => 'Eski API',
         ],
 
         'password' => [
@@ -29,7 +39,13 @@ return [
         ],
 
         'profile' => [
+            'country' => 'ülke',
             'title' => 'Profil',
+
+            'country_change' => [
+                '_' => "Görünüşe göre hesabınızın ülkesi ikamet ettiğiniz ülkeyle eşleşmiyor.  :update_link.",
+                'update_link' => ':country olarak güncelle',
+            ],
 
             'user' => [
                 'user_discord' => '',
@@ -47,10 +63,25 @@ return [
         ],
     ],
 
+    'github_user' => [
+        'info' => "Eğer osu!'nun açık kaynaklı repository'lerinde katkılıysanız, GitHub hesabınızı bağlamanız sizin değişim günlüğü girişleriniz, osu! profilinizle ilişkilendirilecektir. osu! repository'lerinde katkı geçmişi olmayan GitHub hesapları bağlanamaz.",
+        'link' => 'GitHub Hesabını Bağla',
+        'title' => 'GitHub',
+        'unlink' => 'GitHub Hesabının bağlantısını Kaldır',
+
+        'error' => [
+            'already_linked' => 'Bu GitHub hesabı zaten başka bir kullanıcıya bağlı.',
+            'no_contribution' => 'osu! repository\'lerinde katkı geçmişi olmayan GitHub hesabı bağlanamaz.',
+            'unverified_email' => 'Lütfen GitHub\'daki ana e-postanızı doğrulayın, sonra hesabınızı tekrar bağlamayı deneyin.',
+        ],
+    ],
+
     'notifications' => [
-        'beatmapset_discussion_qualified_problem' => 'belirtilen modlardaki nitelikli maplerin yeni sorunlarında bildirim al ',
+        'beatmapset_discussion_reply' => 'katılımcısı olduğun beatmap tartışmasında yeni bir yanıt olduğunda bildirimler al',
+        'beatmapset_discussion_qualified_problem' => 'Doğrulanmış beatmapler\'in belirtilen modlardaki yeni sorunlarının bildirimlerini al',
         'beatmapset_disqualify' => 'belirtilen modların beatmapleri diskalifiye edildiğinde bildirim al',
         'comment_reply' => 'yorumlarına yapılan yanıtlar için bildirim al',
+        'news_post' => 'Yeni haber gönderileri için bildirim al',
         'title' => 'Bildirimler',
         'topic_auto_subscribe' => 'oluşturduğunuz yeni forum başlıklarında bildirimleri otomatik olarak etkinleştir',
 
@@ -58,13 +89,27 @@ return [
             '_' => 'bildirim seçenekleri',
             'beatmap_owner_change' => 'konuk zorluk',
             'beatmapset:modding' => 'beatmap modlama',
+            'channel_mention' => 'sohbet etiketlenmesi',
             'channel_message' => 'özel sohbet mesajları',
+            'channel_team' => 'takım sohbet mesajları',
             'comment_new' => 'yeni yorumlar',
             'forum_topic_reply' => 'konu yanıtı',
             'mail' => 'posta',
             'mapping' => 'beatmap mapper',
+            'news_post' => 'haber paylaşımları',
             'push' => 'anlık',
-            'user_achievement_unlock' => 'kullanıcı madalyası açıldı',
+        ],
+
+        'tooltips' => [
+            'beatmap_owner_change' => 'bir beatmap zorluğunda konuk mapper olarak eklendiğinde',
+            'beatmapset:modding' => 'izlediğin beatmap tartışmaları güncellemeler aldığında veya sahip olduğun bir beatmapte bir problem veya öneri olduğunda.',
+            'channel_mention' => 'açık bir kanalda bahsedildiğinde',
+            'channel_message' => 'yeni özel mesaj aldığında',
+            'channel_team' => 'takım sohbeti kanalında yeni mesaj olduğunda',
+            'comment_new' => 'takip ettiğin bir öğede yeni bir yorum olduğunda',
+            'forum_topic_reply' => 'izlediğin forum konularında yeni yanıtlar olduğunda',
+            'mapping' => 'takip ettiğin mapper bir beatmap yüklediğinde',
+            'news_post' => 'yeni haber gönderileri olduğunda',
         ],
     ],
 
@@ -75,6 +120,7 @@ return [
     ],
 
     'options' => [
+        'beatmapset_show_anime_cover' => 'Anime tarzı beatmap kapaklarını göster',
         'beatmapset_show_nsfw' => 'beatmaplerdeki müstehcen içerikler için uyarıları gizle',
         'beatmapset_title_show_original' => 'beatmap metaverisini orijinal dilinde göster',
         'title' => 'Seçenekler',
@@ -83,11 +129,13 @@ return [
             '_' => 'varsayılan beatmap indirme tipi',
             'all' => 'eğer varsa video ile beraber',
             'direct' => 'osu!direct\'de aç',
+            'lazer' => '',
             'no_video' => 'video olmadan',
         ],
     ],
 
     'playstyles' => [
+        'default_ruleset' => 'varsayılan oyun modu',
         'keyboard' => 'klavye',
         'mouse' => 'fare',
         'tablet' => 'tablet',
@@ -97,7 +145,9 @@ return [
 
     'privacy' => [
         'friends_only' => 'arkadaş listende olmayan kişilerden gelen mesajları engelle',
+        'friends_only_info' => '',
         'hide_online' => 'çevrimiçi durumunu gizle',
+        'hide_online_info' => 'bu osu!lazer\'de "çevrimdışı olarak görün" modunu atayacak',
         'title' => 'Gizlilik',
     ],
 
@@ -116,6 +166,21 @@ return [
 
     'update_password' => [
         'update' => 'güncelle',
+    ],
+
+    'user_totp' => [
+        'title' => 'Doğrulayıcı uygulama',
+        'usage_note' => 'Doğrulama için e-posta yerine doğrulayıcı uygulama kullan. E-posta doğrulaması yedek olarak hala mevcut olacak.',
+
+        'button' => [
+            'remove' => 'Kaldır',
+            'setup' => 'Doğrulayıcı uygulama ekle',
+        ],
+        'status' => [
+            'label' => 'durum',
+            'not_set' => 'Yapılandırılmamış',
+            'set' => 'Yapılandırılmış',
+        ],
     ],
 
     'verification_completed' => [

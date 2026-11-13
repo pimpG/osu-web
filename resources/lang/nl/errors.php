@@ -4,8 +4,10 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'load_failed' => 'Laden van gegevens mislukt.',
     'missing_route' => 'Ongeldige Url of onjuiste aanvraagmethode.',
-    'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
+    'no_restricted_access' => 'Je mag dit niet doen terwijl je account beperkt is.',
+    'param_too_large' => ':name parameter heeft een maximum van :count_delimited item|:name parameter heeft een maximum :count_delimited items',
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'unknown' => 'Een onbekende fout trad op.',
 
@@ -20,15 +22,18 @@ return [
             'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
         ],
     ],
-    'beatmaps' => [
-        'invalid_mode' => 'Invalide mode opgegeven.',
-        'standard_converts_only' => 'Er zijn geen scores beschikbaar voor de gevraagde mode voor deze beatmap difficulty.',
-    ],
     'checkout' => [
         'generic' => 'Er is een fout opgetreden tijdens het voorbereiden voor het afrekenen.',
     ],
+    'scores' => [
+        'invalid_id' => 'Ongeldige score id.',
+    ],
     'search' => [
         'default' => 'Kan geen resultaten krijgen, probeer het later opnieuw.',
+        'invalid_cursor_exception' => 'Ongeldige cursorwaarde opgegeven.',
         'operation_timeout_exception' => 'Zoeken is momenteel drukker dan gebruikelijk, probeer het later opnieuw.',
+    ],
+    'user_report' => [
+        'recently_reported' => "Je hebt dit onlangs al gerapporteerd.",
     ],
 ];

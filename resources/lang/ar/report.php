@@ -6,7 +6,7 @@
 return [
     'beatmapset' => [
         'button' => 'إبلاغ',
-        'title' => '',
+        'title' => 'الإبلاع عن خريطة :username؟',
     ],
 
     'beatmapset_discussion_post' => [
@@ -24,9 +24,19 @@ return [
         'title' => 'الاِبلاغ عن منشور :username؟',
     ],
 
+    'message' => [
+        'button' => 'تبليغ',
+        'title' => 'هل تريد التبليغ عن رسالة :username؟',
+    ],
+
     'scores' => [
         'button' => 'الاِبلاغ عن النتيجة',
         'title' => 'الاِبلاغ عن نتيجة :username ؟',
+    ],
+
+    'team' => [
+        'button' => 'الإبلاغ عن فريق',
+        'title' => 'هل تريد الإبلاغ عن فريق :username؟',
     ],
 
     'user' => [

@@ -2,10 +2,15 @@
     Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
     See the LICENCE file in the repository root for full licence text.
 --}}
+@php
+    $user = Auth::user();
+    $isSilenced = $user->isSilenced();
+@endphp
+
 @extends('master', ['titlePrepend' => osu_trans('accounts.edit.title_compact')])
 
 @section('content')
-    @if (Auth::user()->isSilenced() && !Auth::user()->isRestricted())
+    @if ($isSilenced && !$user->isRestricted())
         @include('objects._notification_banner', [
             'type' => 'alert',
             'title' => osu_trans('users.silenced_banner.title'),
@@ -15,7 +20,7 @@
 
     @include('home._user_header_default', ['themeOverride' => 'settings'])
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--account-edit">
         <div class="account-edit account-edit--first">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
@@ -30,7 +35,7 @@
                             {{ osu_trans('accounts.edit.username') }}
                         </div>
                         <div class="account-edit-entry__input">
-                            {{ Auth::user()->username }}
+                            {{ $user->username }}
                         </div>
 
                         <div class="account-edit-entry__button">
@@ -47,6 +52,7 @@
                             </a>
                         </div>
                     </div>
+                    @include('accounts._edit_country')
                 </div>
                 <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_from'])
@@ -60,10 +66,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page" id="avatar">
-        <div class="account-edit">
+        <div class="account-edit" id="avatar">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ osu_trans('accounts.edit.avatar.title') }}
@@ -72,9 +76,9 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    <div class="account-edit-entry account-edit-entry--avatar js-account-edit-avatar">
+                    <div class="account-edit-entry account-edit-entry--block js-account-edit-avatar">
                         <div class="account-edit-entry__avatar">
-                            <div class="avatar avatar--full-rounded js-current-user-avatar"></div>
+                            <div class="avatar avatar--full-rounded u-current-user-avatar"></div>
 
                             <div class="account-edit-entry__drop-overlay">
                                 <span>
@@ -83,41 +87,67 @@
                             </div>
 
                             <div class="account-edit-entry__overlay-spinner">
-                                @include('objects._spinner')
+                                {!! spinner() !!}
                             </div>
                         </div>
 
-                        <label
-                            class="btn-osu-big btn-osu-big--account-edit"
-                            @if (Auth::user()->isSilenced())
-                                disabled
-                            @endif
-                        >
-                            <div class="btn-osu-big__content">
-                                <div class="btn-osu-big__left">
-                                    {{ osu_trans('common.buttons.upload_image') }}
-                                </div>
-
-                                <div class="btn-osu-big__icon">
-                                    <i class="far fa-arrow-alt-circle-up"></i>
-                                </div>
-                            </div>
-
-                            <input
-                                class="js-account-edit-avatar__button fileupload"
-                                type="file"
-                                name="avatar_file"
-                                data-url="{{ route('account.avatar') }}"
-                                @if (Auth::user()->isSilenced())
+                        <p>
+                            <label
+                                class="btn-osu-big btn-osu-big--account-edit"
+                                @if ($isSilenced)
                                     disabled
                                 @endif
                             >
-                        </label>
+                                <span class="btn-osu-big__content">
+                                    <span class="btn-osu-big__left">
+                                        {{ osu_trans('common.buttons.upload_image') }}
+                                    </span>
+
+                                    <span class="btn-osu-big__icon">
+                                        <i class="far fa-arrow-alt-circle-up"></i>
+                                    </span>
+                                </span>
+
+                                <input
+                                    class="js-account-edit-avatar__button fileupload"
+                                    type="file"
+                                    name="avatar_file"
+                                    data-url="{{ route('account.avatar') }}"
+                                    @if ($isSilenced)
+                                        disabled
+                                    @endif
+                                >
+                            </label>
+                        </p>
+
+                        <p>
+                            <button
+                                class="btn-osu-big btn-osu-big--account-edit js-account-edit-avatar--reset"
+                                type="button"
+                                data-url="{{ route('account.avatar') }}"
+                                data-method="POST"
+                                data-remote
+                                data-confirm="{{ osu_trans('common.confirmation') }}"
+                                @if ($isSilenced)
+                                    disabled
+                                @endif
+                            >
+                                <span class="btn-osu-big__content">
+                                    <span class="btn-osu-big__left">
+                                        {{ osu_trans('accounts.edit.avatar.reset') }}
+                                    </span>
+
+                                    <span class="btn-osu-big__icon">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                </span>
+                            </button>
+                        </p>
 
                         <div class="account-edit-entry__rules">
                             {!! osu_trans('accounts.edit.avatar.rules', [
                                 'link' => link_to(
-                                    wiki_url('Rules'),
+                                    wiki_url('Rules/Visual_content_considerations'),
                                     osu_trans('accounts.edit.avatar.rules_link')
                                 )
                             ]) !!}
@@ -126,42 +156,32 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_signature')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_playstyles')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_privacy')
-    </div>
 
-    <div class="osu-page" id="notifications">
         @include('accounts._edit_notifications')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_options')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_password')
-    </div>
 
-    <div class="osu-page">
         @include('accounts._edit_email')
-    </div>
 
-    <div class="osu-page">
+        @include('accounts._edit_user_totp')
+
         @include('accounts._edit_sessions')
-    </div>
 
-    <div class="osu-page" id="oauth">
         @include('accounts._edit_oauth')
+
+        @if (\App\Models\GithubUser::canAuthenticate())
+            @include('accounts._edit_github_user')
+        @endif
+
+        @include('accounts._edit_legacy_api')
     </div>
 @endsection
 
@@ -174,5 +194,5 @@
     {!! json_encode($ownClients) !!}
   </script>
 
-  @include('layout._react_js', ['src' => 'js/react/account-edit.js'])
+  @include('layout._react_js', ['src' => 'js/account-edit.js'])
 @endsection

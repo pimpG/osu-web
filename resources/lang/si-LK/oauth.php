@@ -7,6 +7,7 @@ return [
     'cancel' => '',
 
     'authorise' => [
+        'app_owner' => '',
         'request' => '',
         'scopes_title' => '',
         'title' => '',
@@ -56,6 +57,12 @@ return [
         'revoked' => [
             'false' => '',
             'true' => '',
+        ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
         ],
     ],
 ];

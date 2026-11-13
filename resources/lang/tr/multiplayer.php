@@ -4,7 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Henüz osu!(lazer)\'da çok oyunculu bir oyun oynamamış!',
+    'empty' => [
+        'active' => 'Şu anda devam eden hiçbir osu!(lazer) :type_group oyununun içinde değilsin!',
+        'ended' => 'Henüz tamamlanmış hiçbir osu!(lazer) :type_group oyunun yok!',
+        'playlists' => 'oynama listesi',
+        'ranked-play' => 'dereceli oyun',
+        'realtime' => 'çok oyunculu',
+    ],
 
     'room' => [
         'hosted_by' => 'oda sahibi: :user',
@@ -12,6 +18,14 @@ return [
         'map_count' => ':count_delimited map|:count_delimited map',
         'player_count' => ':count_delimited oyuncu|:count_delimited oyuncu',
         'time_left' => 'kalan süre: :time',
+        'view_history' => 'Geçmişi Görüntüle',
+        'view_summary' => 'Özeti Göster',
+
+        'errors' => [
+            'duration_too_long' => 'Süre aşırı uzun.',
+            'name_too_long' => 'Oda ismi çok uzun.',
+            'too_many_playlist_items' => 'Çok fazla playlist öğesi var.',
+        ],
 
         'status' => [
             'active' => 'aktif',

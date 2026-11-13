@@ -7,7 +7,7 @@
 {{-- FIXME: move to user modding history --}}
 @section('content')
     @include('layout._page_header_v4', ['params' => ['theme' => 'beatmapsets']])
-    <div class="osu-layout__row osu-layout__row--page">
+    <div class="osu-page osu-page--generic">
         <div class="beatmapset-activities">
             @if (isset($user))
                 <h2>{{ osu_trans('users.beatmapset_activities.title', ['user' => $user->username]) }}</h2>
@@ -107,7 +107,7 @@
                 </div>
             </form>
 
-            <div class="js-react--beatmap-discussion-events" id="events"></div>
+            <div class="js-react" data-react="beatmap-discussion-events" id="events"></div>
             @include('objects._pagination_v2', ['object' => $paginator->fragment('events')])
         </div>
     </div>

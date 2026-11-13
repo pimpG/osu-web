@@ -4,32 +4,67 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'talking_in' => '',
-    'talking_with' => '',
-    'title_compact' => '',
+    'loading_users' => 'učitavanje korisnika...',
+    'searching_users' => '',
+    'talking_in' => 'razgovaranje u :channel',
+    'talking_with' => 'razgovaranje sa :name',
+    'title_compact' => 'razgovor',
+    'unread_messages' => 'nepročitane poruke',
 
     'cannot_send' => [
-        'channel' => '',
-        'user' => '',
-        'reasons' => [
-            'blocked' => '',
-            'channel_moderated' => '',
-            'friends_only' => '',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => '',
-            'silenced' => '',
-            'target_restricted' => '',
+        'channel' => 'Trenutno ne možeš slati poruke u ovom kanalu.',
+        'user' => 'Trenutno ne možeš slati poruke ovom korisniku.',
+    ],
+
+    'channels' => [
+        'confirm_part' => 'Želiš li sakriti ovaj kanal? I dalje ćeš primati poruke iz ovog kanala.',
+        'create' => 'napravi obavijest',
+        'join' => 'uđi u kanal',
+        'none' => 'nema kanala',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => 'Obaveštenja',
+                'GROUP' => 'Grupe',
+                'PM' => 'Direktne Poruke',
+                'PUBLIC' => 'Kanali',
+                'TEAM' => 'Tim',
+            ],
         ],
     ],
-    'input' => [
-        'disabled' => '',
-        'placeholder' => '',
-        'send' => '',
+
+    'form' => [
+        'title' => [
+            'announcement' => 'Napravi novu obavijest',
+        ],
+
+        'labels' => [
+            'description' => 'opis',
+            'message' => 'poruka',
+            'name' => 'ime sobe',
+            'users' => 'igrači za dodavanje',
+        ],
     ],
-    'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => '',
+
+    'not_found' => [
+        'message' => 'Ovdje nema ničega, možda si napustio kanal ili ne postoji...',
+        'title' => 'kanal nije pronađen',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
+    'input' => [
+        'create' => 'Stvori',
+        'disabled' => 'nije moguće poslati poruku...',
+        'disconnected' => 'Odspojeno',
+        'placeholder' => 'upišite poruku...',
+        'send' => 'Pošalji',
+    ],
+
+    'join_channels' => [
+        'loading' => 'Učitavanje lista kanala...',
     ],
 ];

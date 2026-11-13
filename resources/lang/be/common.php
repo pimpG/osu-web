@@ -19,9 +19,9 @@ return [
     ],
 
     'buttons' => [
-        'admin' => 'Кіраўнік',
         'authorise' => 'Аўтарызацыя',
         'authorising' => 'Аўтарызіруемся...',
+        'back' => 'Назад',
         'back_to_previous' => 'Вярнуцца ў папярэднюю пазіцыю',
         'back_to_top' => 'Вярнуцца ў пачатак',
         'cancel' => 'Скасаваць',
@@ -39,11 +39,13 @@ return [
         'pin' => 'замацаваць',
         'post' => 'Размясціць',
         'read_more' => 'чытаць далей',
+        'refresh' => 'Абнавіць',
         'reply' => 'Адказаць',
         'reply_reopen' => 'Адказаць і пераадкрыць',
         'reply_resolve' => 'Адказаць і вырашыць',
         'reset' => 'Скінуць',
         'restore' => 'Аднавіць',
+        'retry' => 'Паўтарыць',
         'save' => 'Захаваць',
         'saving' => 'Захаванне...',
         'search' => 'Пошук',
@@ -74,6 +76,7 @@ return [
         'minutes' => ':count хвіліна|:count хвіліны |:count хвілін',
         'months' => ':count месяц|:count месяцаў',
         'notifications' => ':count_delimited апавяшчэнне|:count_delimited апавяшчэнняў',
+        'player' => '',
         'plus_others' => '+ :count_delimited іншый|+ :count_delimited іншыя!',
         'post' => ':count_delimited пост|:count_delimited пастоў',
         'second_short_unit' => 'сек',
@@ -91,6 +94,12 @@ return [
     ],
 
     'datetime' => [
+        'month' => [
+            'php' => 'мес',
+        ],
+        'year' => [
+            'php' => 'г',
+        ],
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',

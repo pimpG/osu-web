@@ -5,20 +5,21 @@
 
 return [
     'button' => [
-        'cancel' => 'Peruuta',
         'resend' => 'Lähetä vahvistussähköposti uudelleen',
         'set' => 'Aseta salasana',
         'start' => 'Aloita',
     ],
 
     'error' => [
-        'contact_support' => 'Ota yhteyttä tukeen palauttaakesi käyttäjä.',
+        'contact_support' => 'Ota yhteyttä tukeen palauttaaksesi käyttäjäsi.',
         'expired' => 'Vahvistuskoodi on vanhentunut.',
         'invalid' => 'Odottamaton virhe vahvistuskoodissa.',
-        'is_privileged' => 'Ota yhteyttä peppyyn ebin :-D',
+        'is_privileged' => 'Ota yhteyttä ylemmän tason ylläpitäjään tilisi palauttamista varten.',
         'missing_key' => 'Vaaditaan.',
+        'too_many_requests' => 'Salasanan nollauspyyntöjen raja on saavutettu. Ota yhteyttä tukeen tilin palauttamiseksi.',
         'too_many_tries' => 'Liian monta epäonnistunutta yritystä.',
         'user_not_found' => 'Käyttäjää ei ole olemassa.',
+        'wait_resend' => 'Odota hetki.',
         'wrong_key' => 'Virheellinen koodi.',
     ],
 
@@ -37,6 +38,9 @@ return [
     'starting' => [
         'username' => 'Anna sähköposti tai käyttäjänimi',
 
+        'reason' => [
+            'inactive_different_country' => "Tiliäsi ei ole käytetty pitkään aikaan. Varmistaaksesi tilisi turvallisuuden, ole hyvä ja nollaa salasanasi.",
+        ],
         'support' => [
             '_' => 'Tarvitsetko lisäapua? Ota yhteyttä meihin: :button.',
             'button' => 'tukijärjestelmä',

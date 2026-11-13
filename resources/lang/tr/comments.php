@@ -11,6 +11,7 @@ return [
     'edited' => ':user tarafından düzenlendi: :timeago',
     'pinned' => 'sabitlenmiş',
     'empty' => 'Henüz yorum yok.',
+    'empty_other' => 'Henüz başka yorum yok.',
     'load_replies' => 'yanıtları yükle',
     'replies_count' => ':count_delimited yanıt|:count_delimited yanıt',
     'title' => 'Yorumlar',
@@ -40,6 +41,10 @@ return [
         'nav_comments' => 'yorumlar',
         'nav_title' => 'katalog',
         'no_comments' => 'hiçbir yorum bulunamadı...',
+    ],
+
+    'ogp' => [
+        'title' => ':user tarafından yorum',
     ],
 
     'placeholder' => [

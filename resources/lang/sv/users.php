@@ -33,10 +33,14 @@ return [
 
     'blocks' => [
         'banner_text' => 'Du har blockerat denna användare.',
+        'comment_text' => 'Denna kommentar är dold.',
         'blocked_count' => 'blockerade användare (:count)',
         'hide_profile' => 'dölj profil',
+        'hide_comment' => 'dölj',
+        'forum_post_text' => 'Denna kommentar är dold.',
         'not_blocked' => 'Användaren är inte blockerad.',
         'show_profile' => 'visa profil',
+        'show_comment' => 'visa',
         'too_many' => 'Du har nått gränsen för blockeringar.',
         'button' => [
             'block' => 'Blockera',
@@ -45,8 +49,25 @@ return [
     ],
 
     'card' => [
+        'gift_supporter' => 'Ge supporter-tag',
         'loading' => 'Laddar...',
         'send_message' => 'skicka meddelande',
+    ],
+
+    'create' => [
+        'form' => [
+            'password' => 'lösenord',
+            'password_confirmation' => 'lösenordsbekräftelse',
+            'submit' => 'skapa konto',
+            'user_email' => 'email',
+            'user_email_confirmation' => 'e-postbekräftelse',
+            'username' => 'användarnamn',
+
+            'tos_notice' => [
+                '_' => 'genom att skapa konto godkänner du :link',
+                'link' => 'användarvillkor',
+            ],
+        ],
     ],
 
     'disabled' => [
@@ -76,6 +97,7 @@ return [
 
     'force_reactivation' => [
         'reason' => [
+            'inactive' => "Din konto har inte använts på länge.",
             'inactive_different_country' => "Ditt konto har inte använts på länge.",
         ],
     ],
@@ -99,6 +121,24 @@ return [
         'beta' => [
             'main' => 'Beta-åtkomst är för nuvarande begränsad till privilegierade användare.',
             'small' => '(osu!supportrar kommer att komma in snart)',
+        ],
+    ],
+
+    'multiplayer' => [
+        'index' => [
+            'active' => 'Aktiv',
+            'ended' => 'Avslutad',
+        ],
+    ],
+
+    'ogp' => [
+        'modding_description' => 'Beatmaps: :counts',
+        'modding_description_empty' => 'Användare har inga beatmaps...',
+
+        'description' => [
+            '_' => 'Rank (:regelset): :global | :land',
+            'country' => 'Land :rank',
+            'global' => 'Global :rank',
         ],
     ],
 
@@ -126,19 +166,30 @@ return [
             'cancel' => 'Avbryt',
         ],
 
+        'dmca' => [
+            'message_1' => [
+                '_' => 'Vänligen rapportera intrång i upphovsrätten genom ett DMCA-anspråk på :mail enligt :policy.',
+                'policy' => 'osu! copyright policy',
+            ],
+            'message_2' => 'Detta gäller för fall där ljudspår, visuellt innehåll eller innehåll på beatmapnivå används utan rätt tillstånd.',
+        ],
+
         'options' => [
             'cheating' => 'Fusk',
-            'multiple_accounts' => 'Använder flera konton',
+            'copyright_infringement' => 'Upphovsrättsintrång',
+            'inappropriate_chat' => 'Olämpligt chattbeteende',
             'insults' => 'Förolämpar mig / andra',
-            'spam' => 'Spammning',
-            'unwanted_content' => 'Länkar olämpligt innehåll',
+            'multiple_accounts' => 'Använder flera konton',
             'nonsense' => 'Dumheter',
             'other' => 'Andra (skriv nedan)',
+            'spam' => 'Spammning',
+            'unwanted_content' => 'Länkar olämpligt innehåll',
         ],
     ],
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',
+        'message_link' => 'Kolla in den här sidan för att lära dig mer.',
     ],
     'show' => [
         'age' => ':age år gammal',
@@ -147,22 +198,56 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Gick med :date',
-        'lastvisit' => 'Senast sedd :date',
+        'lastvisit' => 'Senast sett :date',
         'lastvisit_online' => 'Online just nu',
         'missingtext' => 'Du kanske har stavat fel! (eller så är användaren bannlyst)',
         'origin_country' => 'Från :country',
         'previous_usernames' => 'tidigare känd som',
         'plays_with' => 'Spelar med :devices',
-        'title' => ":usernames profil",
+
+        'badge' => [
+            'pin' => [
+                'to_0' => '',
+                'to_1' => '',
+            ],
+        ],
 
         'comments_count' => [
             '_' => 'Upplagd :link',
             'count' => ':count_delimited kommentar|:count_delimited kommentarer',
         ],
+        'cover' => [
+            'to_0' => 'Dölj omslagsbild',
+            'to_1' => 'Visa omslagsbild',
+        ],
+        'daily_challenge' => [
+            'daily' => 'Daglig Streak',
+            'daily_streak_best' => 'Bästa Dagliga Streak',
+            'daily_streak_current' => 'Nuvarande Dagliga Streak',
+            'playcount' => 'Totalt deltagande',
+            'title' => 'Daglig\nUtmaning',
+            'top_10p_placements' => 'Topp 10% Placeringar',
+            'top_50p_placements' => 'Topp 50% Placeringar',
+            'weekly' => 'Vecko Streak',
+            'weekly_streak_best' => 'Bästa Vecko Streak',
+            'weekly_streak_current' => 'Nuvarande Vecko Streak',
+
+            'unit' => [
+                'day' => ':valued',
+                'week' => ':valuew',
+            ],
+        ],
+        'detail_switch' => [
+            'to_v1' => '',
+            'to_v2' => '',
+        ],
         'edit' => [
             'cover' => [
                 'button' => 'Ändra Profilomslag',
                 'defaults_info' => 'Fler omslagsalternativ kommer finnas i framtiden',
+                'holdover_remove_confirm' => "Det tidigare valda omslaget kan inte längre väljas. Du kan inte välja tillbaka det efter att du har bytt till ett annat omslag. Vill du fortsätta?",
+                'title' => 'Omslag',
+
                 'upload' => [
                     'broken_file' => 'Misslyckades med att processa bilden. Verifiera uppladdad bild och försök igen.',
                     'button' => 'Ladda upp bild',
@@ -182,6 +267,16 @@ return [
             'default_playmode' => [
                 'is_default_tooltip' => 'standardspelläge',
                 'set' => 'sätt :mode som profilens förvalda spelläge',
+            ],
+
+            'hue' => [
+                'reset_no_supporter' => 'Återställ färger till standard? En supporter tagg behövs för att byta till en annan färg.',
+                'title' => 'Färg',
+
+                'supporter' => [
+                    '_' => 'Anpassade färgteman endast tillgängliga för :link',
+                    'link' => 'osu!supportrar',
+                ],
             ],
         ],
 
@@ -204,8 +299,14 @@ return [
                 'graveyard' => [
                     'title' => 'Beatmaps på kyrkogården',
                 ],
+                'guest' => [
+                    'title' => 'Gästdeltagande Beatmaps',
+                ],
                 'loved' => [
                     'title' => 'Älskade beatmaps',
+                ],
+                'nominated' => [
+                    'title' => 'Nominerade rankade beatmaps',
                 ],
                 'pending' => [
                     'title' => 'Väntande beatmaps',
@@ -242,6 +343,9 @@ return [
                 'replays_watched_counts' => [
                     'title' => 'Repriser sedda av andra',
                     'count_label' => 'Repriser sedda',
+                ],
+                'score_replay_stats' => [
+                    'title' => 'Mest sedda repriser',
                 ],
             ],
             'kudosu' => [
@@ -301,16 +405,22 @@ return [
                 'recent' => 'Senaste',
                 'title' => 'Medaljer',
             ],
-            'multiplayer' => [
-                'title' => 'Flerspelarspel',
+            'playlists' => [
+                'title' => 'Spelspellista',
             ],
             'posts' => [
                 'title' => 'Inlägg',
                 'title_longer' => 'Senaste Inläggen',
                 'show_more' => 'se fler inlägg',
             ],
+            'ranked-play' => [
+                'title' => 'Rankade spelmatcher',
+            ],
             'recent_activity' => [
                 'title' => 'Senaste',
+            ],
+            'realtime' => [
+                'title' => 'Multiplayerspel',
             ],
             'top_ranks' => [
                 'download_replay' => 'Ladda ner Repris',
@@ -324,6 +434,15 @@ return [
                 ],
                 'first' => [
                     'title' => 'Förstaplats-ranker',
+                ],
+                'pin' => [
+                    'to_0' => 'Lossa',
+                    'to_0_done' => 'Ej fäst resultat',
+                    'to_1' => 'Fäst',
+                    'to_1_done' => 'Fäst resultat',
+                ],
+                'pinned' => [
+                    'title' => 'Fästa resultat',
                 ],
             ],
             'votes' => [
@@ -343,13 +462,14 @@ return [
                     'date' => 'datum',
                     'action' => 'åtgärd',
                     'length' => 'längd',
-                    'length_permanent' => 'Permanent',
+                    'length_indefinite' => 'Obestämd',
                     'description' => 'beskrivning',
                     'actor' => 'efter :användarnamn',
 
                     'actions' => [
                         'restriction' => 'Bannlys',
                         'silence' => 'Tystad',
+                        'tournament_ban' => 'Turneringsförbud',
                         'note' => 'Anteckning',
                     ],
                 ],
@@ -364,6 +484,19 @@ return [
             'twitter' => '',
             'website' => 'Hemsida',
         ],
+
+        'matchmaking' => [
+            'losses' => '',
+            'plays' => '',
+            'rank' => '',
+            'rating' => '',
+            'recent_history' => '',
+            'recent_history_provisional' => '',
+            'tier' => '',
+            'title' => 'Snabbspel',
+            'wins' => '',
+        ],
+
         'not_found' => [
             'reason_1' => 'De kan ha ändrat sitt användarnamn.',
             'reason_2' => 'Kontot kan för tillfället vara otillgängligt på grund av säkerhets- eller missbruksproblem.',
@@ -384,30 +517,49 @@ return [
         ],
         'post_count' => [
             '_' => 'Bidragit med :link',
-            'count' => ':count foruminlägg|:count foruminlägg',
+            'count' => ':count_delimited foruminlägg|:count_delimited foruminlägg',
         ],
         'rank' => [
             'country' => 'Nationell rankning för :mode',
             'country_simple' => 'Nationell rankning',
             'global' => 'Global rank för :mode',
             'global_simple' => 'Global rankning',
+            'highest' => 'Högsta rank: :rank den :date',
+            'kudosu_outside_top_1000' => '',
+            'kudosu_simple' => '',
+        ],
+        'score_processing' => [
+            'title' => 'En ny Star Rating / PP algoritm är :link.',
+            'title_link' => '',
+            'message' => '',
+        ],
+        'season_stats' => [
+            'division_top_percentage' => 'Topp :value',
+            'label' => '',
+            'total_score' => 'Totalpoäng',
+        ],
+        'solo' => [
+            'title' => '',
         ],
         'stats' => [
             'hit_accuracy' => 'Träffsäkerhet',
+            'hits_per_play' => 'Träffar per spel',
             'level' => 'Nivå :level',
             'level_progress' => 'Framsteg till nästa nivå',
-            'maximum_combo' => 'Maximal Kombo',
+            'maximum_combo' => 'Högsta kombo',
             'medals' => 'Medaljer',
             'play_count' => 'Antal gånger spelat',
             'play_time' => 'Total speltid',
-            'ranked_score' => 'Rankad Poäng',
+            'ranked_score' => 'Rankad poäng',
             'replays_watched_by_others' => 'Repriser sedda av andra',
             'score_ranks' => 'Poängranker',
             'total_hits' => 'Totala träffar',
             'total_score' => 'Total poäng',
             // modding stats
             'graveyard_beatmapset_count' => 'Beatmaps på kyrkogården',
+            'guest_beatmapset_count' => '',
             'loved_beatmapset_count' => 'Älskade beatmaps',
+            'nominated_beatmapset_count' => '',
             'pending_beatmapset_count' => 'Väntande beatmaps',
             'ranked_beatmapset_count' => 'Rankade & godkända beatmaps',
         ],
@@ -423,7 +575,15 @@ return [
         'online' => 'Online',
         'offline' => 'Offline',
     ],
+    'relationship' => [
+        'title' => '',
+        'all' => '',
+        'mutual' => '',
+        'non_mutual' => '',
+    ],
     'store' => [
+        'from_client' => 'vänligen registrera dig via spelklienten istället!',
+        'from_web' => 'var snäll och slutför registreringen med hjälp av osu! webbplatsen',
         'saved' => 'Användare skapad',
     ],
     'verify' => [

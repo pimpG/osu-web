@@ -7,12 +7,6 @@ return [
     'admin' => [
         '_' => 'beheerder',
     ],
-    'admin_forum' => [
-        '_' => 'beheerder',
-    ],
-    'admin_store' => [
-        '_' => 'beheerder',
-    ],
     'error' => [
         'error' => [
             '400' => 'ongeldige aanvraag',
@@ -29,17 +23,16 @@ return [
     ],
     'forum' => [
         '_' => 'forum',
-        'topic_watches_controller' => [
-            'index' => 'dashboard',
+        'topic_logs_controller' => [
+            'index' => 'onderwerp logs',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'dashboard',
             'verify_link' => 'account verificatie',
         ],
         'artists_controller' => [
-            '_' => 'aanbevolen artiesten',
+            '_' => 'uitgelichte artiesten',
         ],
         'beatmap_discussion_posts_controller' => [
             '_' => 'beatmap discussie berichten',
@@ -48,7 +41,7 @@ return [
             '_' => 'beatmap discussies',
         ],
         'beatmap_packs_controller' => [
-            '_' => 'beatmap pakketten',
+            '_' => 'beatmap packs',
         ],
         'beatmapset_discussion_votes_controller' => [
             '_' => 'beatmap discussie stemmen',
@@ -56,13 +49,11 @@ return [
         'beatmapset_events_controller' => [
             '_' => 'beatmap geschiedenis',
         ],
-        'beatmapset_watches_controller' => [
-            'index' => 'dashboard',
-        ],
         'beatmapsets_controller' => [
             'discussion' => 'beatmap discussie',
             'index' => 'beatmap listing',
             'show' => 'beatmap info',
+            'versions' => '',
         ],
         'changelog_controller' => [
             '_' => 'wijzigingslogboek',
@@ -73,14 +64,15 @@ return [
         'comments_controller' => [
             '_' => 'opmerkingen',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'wedstrijd beoordelingsresultaten',
+        ],
         'contests_controller' => [
             '_' => 'wedstrijden',
+            'judge' => 'wedstrijd beoordeling',
         ],
-        'follows_controller' => [
-            'index' => 'dashboard',
-        ],
-        'friends_controller' => [
-            'index' => 'dashboard',
+        'group_history_controller' => [
+            '_' => '',
         ],
         'groups_controller' => [
             'show' => 'groepen',
@@ -92,14 +84,14 @@ return [
             'support_the_game' => 'ondersteun het spel',
             'testflight' => 'testflight',
         ],
+        'legacy_matches_controller' => [
+            '_' => '',
+        ],
         'legal_controller' => [
             '_' => 'informatie',
         ],
         'livestreams_controller' => [
             '_' => 'live streams',
-        ],
-        'matches_controller' => [
-            '_' => 'matches',
         ],
         'news_controller' => [
             '_' => 'nieuws',
@@ -116,14 +108,28 @@ return [
         'scores_controller' => [
             '_' => 'prestatie',
         ],
-        'store_controller' => [
-            '_' => 'winkel',
+        'seasons_controller' => [
+            '_' => 'ranglijsten',
+        ],
+        'teams_controller' => [
+            '_' => 'teams',
+            'create' => 'team aanmaken',
+            'edit' => 'team instellingen',
+            'leaderboard' => 'team leaderboard',
+            'show' => 'team info',
         ],
         'tournaments_controller' => [
             '_' => 'toernooien',
         ],
+        'user_cover_presets_controller' => [
+            '_' => '',
+        ],
+        'user_totp_controller' => [
+            '_' => '',
+        ],
         'users_controller' => [
             '_' => 'speler info',
+            'create' => 'account aanmaken',
             'disabled' => 'waarschuwing',
         ],
         'wiki_controller' => [
@@ -132,16 +138,21 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'ranglijst',
+            'events' => '',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'app machtigen',
         ],
     ],
     'store' => [
         '_' => 'winkel',
+    ],
+    'teams' => [
+        'members_controller' => [
+            'index' => '',
+        ],
     ],
     'users' => [
         'modding_history_controller' => [

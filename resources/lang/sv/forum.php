@@ -25,6 +25,7 @@ return [
     ],
 
     'forums' => [
+        'forums' => 'Forum',
         'latest_post' => 'Senaste inlägg',
 
         'index' => [
@@ -47,7 +48,7 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa inlägget?',
         'edited' => 'Senast redigerad av :user :when, redigerad :count_delimited gånger totalt.|Senast redigerad av :user :when, redigerad :count_delimited gånger totalt.',
         'posted_at' => 'upplagd :when',
-        'posted_by' => 'upplagd av :username',
+        'posted_by_in' => 'inlagd av :username i :forum',
 
         'actions' => [
             'destroy' => 'Radera inlägg',
@@ -79,6 +80,7 @@ return [
         'confirm_restore' => 'Vill du verkligen återställa ämnet?',
         'deleted' => 'raderat ämne',
         'go_to_latest' => 'visa senaste inlägg',
+        'go_to_unread' => 'se första olästa inlägg',
         'has_replied' => 'Du har svarat på detta ämne',
         'in_forum' => 'i :forum',
         'latest_post' => ':when av :user',
@@ -125,6 +127,55 @@ return [
             'last' => 'gå till sista inlägget',
             'next' => 'hoppa över nästa 10 inlägg',
             'previous' => 'gå bakåt 10 inlägg',
+        ],
+
+        'logs' => [
+            '_' => 'Ämneslogg',
+            'button' => 'Bläddra bland ämnesloggar',
+
+            'columns' => [
+                'action' => 'Åtgärd',
+                'date' => 'Datum',
+                'user' => 'Användare',
+            ],
+
+            'data' => [
+                'add_tag' => 'la till taggen ":tag"',
+                'announcement' => 'fäst ämne och markerat som meddelande',
+                'edit_topic' => 'till :title',
+                'fork' => 'från :topic',
+                'pin' => 'fäst ämne',
+                'post_operation' => 'upplagd av :username',
+                'remove_tag' => 'tog bort taggen ":tag"',
+                'source_forum_operation' => 'från :forum',
+                'unpin' => 'icke-fäst ämne',
+            ],
+
+            'no_results' => 'inga loggar hittade...',
+
+            'operations' => [
+                'delete_post' => 'Tog bort inlägg',
+                'delete_topic' => 'Tog bort ämne',
+                'edit_topic' => 'Ändrade ämnestitel',
+                'edit_poll' => 'Redigerade ämnesenkät',
+                'fork' => 'Kopierade ämne',
+                'issue_tag' => 'Utfärdade tagg',
+                'lock' => 'Låste ämne',
+                'merge' => 'Sammanfogade inlägg till detta ämne',
+                'move' => 'Flyttade ämne',
+                'pin' => 'Fäste ämne',
+                'post_edited' => 'Redigerade inlägg',
+                'restore_post' => 'Återställde inlägg',
+                'restore_topic' => 'Återställt ämne',
+                'split_destination' => 'Flyttade delade inlägg',
+                'split_source' => 'Dela inlägg',
+                'topic_type' => 'Ange ämnestyp',
+                'topic_type_changed' => 'Ändrade ämnestyp',
+                'unlock' => 'Låste upp ämne',
+                'unpin' => 'Avfäste ämnet',
+                'user_lock' => 'Låste eget ämne',
+                'user_unlock' => 'Låste upp eget ämne',
+            ],
         ],
 
         'post_edit' => [
@@ -188,7 +239,7 @@ return [
                 'options_info' => 'Skriv varje val på en ny rad. Du kan skriva upp till 10 val.',
                 'title' => 'Fråga',
                 'vote_change' => 'Tillåt ändring av röst.',
-                'vote_change_info' => 'Om aktiverad, så kan användare ändra sina röster.',
+                'vote_change_info' => 'Om aktiverat så kan användare ändra sina röster.',
             ],
         ],
 
@@ -200,48 +251,6 @@ return [
             'feature_votes' => 'stjärnprioritet',
             'replies' => 'svar',
             'views' => 'visningar',
-        ],
-
-        'issue_tag_added' => [
-            'to_0' => 'Ta bort "tillagd”-tagg',
-            'to_0_done' => 'Tog bort "tillagd"-tagg',
-            'to_1' => 'Lägg till "tillagd"-tagg',
-            'to_1_done' => 'La till "tillagd"-tagg',
-        ],
-
-        'issue_tag_assigned' => [
-            'to_0' => 'Ta bort "tilldelad"-tagg',
-            'to_0_done' => 'Tog bort "tilldelad"-tagg',
-            'to_1' => 'Lägg till "tilldelad"-tagg',
-            'to_1_done' => 'La till "tilldelad"-tagg',
-        ],
-
-        'issue_tag_confirmed' => [
-            'to_0' => 'Ta bort "bekräftad"-tagg',
-            'to_0_done' => 'Tog bort "bekräftad"-tagg',
-            'to_1' => 'Lägg till "bekräftad"-tagg',
-            'to_1_done' => 'La till "bekräftad"-tagg',
-        ],
-
-        'issue_tag_duplicate' => [
-            'to_0' => 'Ta bort "duplikat"-tagg',
-            'to_0_done' => 'Tog bort "duplikat"-tagg',
-            'to_1' => 'Lägg till "duplikat"-tagg',
-            'to_1_done' => 'La till "duplikat" tagg',
-        ],
-
-        'issue_tag_invalid' => [
-            'to_0' => 'Ta bort "ogiltlig" tagg',
-            'to_0_done' => 'Tog bort "ogiltlig" tagg',
-            'to_1' => 'Lägg till "ogiltlig" tagg',
-            'to_1_done' => 'La till "ogiltlig" tagg',
-        ],
-
-        'issue_tag_resolved' => [
-            'to_0' => 'Ta bort "löst" tagg',
-            'to_0_done' => 'Tog bort "löst" tagg',
-            'to_1' => 'Lägg till "löst" tagg',
-            'to_1_done' => 'La till "löst" tagg',
         ],
 
         'lock' => [
@@ -278,6 +287,7 @@ return [
         'show' => [
             'deleted-posts' => 'Raderade Inlägg',
             'total_posts' => 'Totala Inlägg',
+            'total_watches' => 'Totala Antal Prenumeranter',
 
             'feature_vote' => [
                 'current' => 'Nuvarande Prioritet: +:count',

@@ -8,9 +8,11 @@ namespace App\Http\Controllers\InterOp;
 use App\Http\Controllers\Controller;
 use App\Jobs\BeatmapsetDelete;
 use App\Jobs\Notifications\UserBeatmapsetNew;
+use App\Jobs\Notifications\UserBeatmapsetRevive;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
+use App\Models\Event;
 use App\Models\User;
 
 class BeatmapsetsController extends Controller
@@ -21,23 +23,50 @@ class BeatmapsetsController extends Controller
 
         (new UserBeatmapsetNew($beatmapset))->dispatch();
 
-        return response(null, 204);
+        if (request()->boolean('create_event')) {
+            Event::generate('beatmapsetUpload', ['beatmapset' => $beatmapset]);
+        }
+
+        return response()->noContent();
+    }
+
+    public function broadcastRevive($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        (new UserBeatmapsetRevive($beatmapset))->dispatch();
+
+        if (request()->boolean('create_event')) {
+            Event::generate('beatmapsetRevive', ['beatmapset' => $beatmapset]);
+        }
+
+        return response()->noContent();
+    }
+
+    public function broadcastUpdate($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $user = User::findOrFail(request()->integer('user_id'));
+
+        Event::generate('beatmapsetUpdate', ['beatmapset' => $beatmapset, 'user' => $user]);
+
+        return response()->noContent();
     }
 
     public function destroy($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
-        $user = User::findOrFail(config('osu.legacy.bancho_bot_user_id'));
+        $user = User::findOrFail($GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id']);
 
         (new BeatmapsetDelete($beatmapset, $user))->handle();
 
-        return response(null, 204);
+        return response()->noContent();
     }
 
     public function disqualify($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
-        $user = User::findOrFail(config('osu.legacy.bancho_bot_user_id'));
+        $user = User::findOrFail($GLOBALS['cfg']['osu']['legacy']['bancho_bot_user_id']);
 
         $message = request('message') ?? null;
 

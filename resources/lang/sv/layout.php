@@ -19,11 +19,16 @@ return [
             'contest' => 'tävling',
             'contests' => 'tävlingar',
             'root' => 'konsol',
-            'store_orders' => 'butiksadmin',
         ],
 
         'artists' => [
             'index' => 'listning',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskussion',
+            'versions' => 'versionshistorik',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => 'flerspelarläge',
+            'playlists' => 'spellistor',
+            'ranked-play' => 'rankadespel',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -73,7 +80,7 @@ return [
             'getAbuse' => 'rapportera missbruk',
             'getFaq' => 'faq',
             'getRules' => 'regler',
-            'getSupport' => 'nej, på riktigt, jag behöver hjälp!',
+            'getSupport' => 'hjälpcenter',
         ],
         'home' => [
             '_' => 'hem',
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rankning',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'butik',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => 'Juridik & status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Sekretess',
+            'rules' => 'Regler',
             'server_status' => 'Serverstatus',
             'source_code' => 'Källkod',
             'terms' => 'Användarvillkor',
@@ -188,10 +196,16 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Inställningar',
+            'create_team' => 'Skapa team',
             'follows' => 'Bevakningslistor',
             'friends' => 'Vänner',
+            'legacy_score_only_toggle' => 'Lazer läge',
+            'legacy_score_only_toggle_tooltip' => 'Lazer läget visar resultat som är satta i lazer med den nya poängalgoritmen',
             'logout' => 'Logga ut',
             'profile' => 'Min profil',
+            'scoring_mode_toggle' => 'Klassiskt resultat',
+            'scoring_mode_toggle_tooltip' => 'Justera poängvärden för att kännas mer som klassisk poängsättning utan tak',
+            'team' => 'Mitt Lag',
         ],
     ],
 

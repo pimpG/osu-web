@@ -16,19 +16,19 @@ use App\Libraries\OsuWiki;
 use App\Libraries\Search\BasicSearch;
 use App\Libraries\Wiki\MainPageRenderer;
 use App\Libraries\Wiki\MarkdownRenderer;
-use App\Models\Elasticsearch\WikiPageTrait;
+use App\Models\Traits;
 use App\Traits\Memoizes;
 use Carbon\Carbon;
 use Ds\Set;
 use Exception;
-use Log;
 
 class Page implements WikiObject
 {
-    use Memoizes, WikiPageTrait;
+    use Memoizes;
+    use Traits\Es\WikiPageSearch;
 
     const CACHE_DURATION = 5 * 60 * 60;
-    const VERSION = 9;
+    const VERSION = 10;
 
     const TEMPLATES = [
         'markdown_page' => 'wiki.show',
@@ -41,6 +41,7 @@ class Page implements WikiObject
     ];
 
     public $locale;
+    public \Closure $logger;
     public $path;
     public $requestedLocale;
 
@@ -87,7 +88,7 @@ class Page implements WikiObject
         $page = static::lookup($path, $locale)->sync();
 
         if (!$page->isVisible() && $page->isTranslation()) {
-            $page = static::lookup($path, config('app.fallback_locale'), $locale)->sync();
+            $page = static::lookup($path, $GLOBALS['cfg']['app']['fallback_locale'], $locale)->sync();
         }
 
         return $page;
@@ -122,7 +123,7 @@ class Page implements WikiObject
             ['constant_score' => [
                 'filter' => [
                     'match' => [
-                        'locale' => config('app.fallback_locale'),
+                        'locale' => $GLOBALS['cfg']['app']['fallback_locale'],
                     ],
                 ],
             ]];
@@ -207,7 +208,6 @@ class Page implements WikiObject
             'client' => ['ignore' => 404],
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'type' => '_doc',
         ]);
     }
 
@@ -223,14 +223,13 @@ class Page implements WikiObject
             'body' => $this->source,
             'id' => $this->pagePath(),
             'index' => $options['index'] ?? static::esIndexName(),
-            'type' => '_doc',
         ]);
     }
 
     public function esFetch()
     {
         $response = (new BasicSearch(static::esIndexName(), 'wiki_page_lookup'))
-            ->source(['markdown', 'page', 'indexed_at', 'version'])
+            ->source(['markdown', 'page', 'page_text', 'indexed_at', 'version'])
             ->query([
                 'term' => [
                     '_id' => $this->pagePath(),
@@ -251,6 +250,11 @@ class Page implements WikiObject
     public function getMarkdown()
     {
         return $this->source['markdown'] ?? null;
+    }
+
+    public function getTextPreview()
+    {
+        return html_excerpt($this->source['page_text']);
     }
 
     public function hasParent()
@@ -295,6 +299,12 @@ class Page implements WikiObject
         return $this->page['header']['outdated'] ?? false;
     }
 
+    public function isOutdatedTranslation(): bool
+    {
+        return $this->isTranslation()
+            && ($this->page['header']['outdated_translation'] ?? false);
+    }
+
     public function isStub(): bool
     {
         return $this->page['header']['stub'] ?? false;
@@ -302,7 +312,7 @@ class Page implements WikiObject
 
     public function isTranslation(): bool
     {
-        return $this->locale !== config('app.fallback_locale');
+        return $this->locale !== $GLOBALS['cfg']['app']['fallback_locale'];
     }
 
     public function isVisible()
@@ -402,7 +412,7 @@ class Page implements WikiObject
             $layout = OsuMarkdown::parseYamlHeader($content)['header']['layout'] ?? null;
             $layout = $this->layout($layout);
             $rendererClass = static::RENDERERS[$layout];
-            $contentRenderer = (new $rendererClass($this, $content));
+            $contentRenderer = new $rendererClass($this, $content);
 
             $this->page = $contentRenderer->render();
             $pageIndex = $contentRenderer->renderIndexable();
@@ -450,6 +460,12 @@ class Page implements WikiObject
 
     private function log($action)
     {
-        Log::info("wiki ({$action}): {$this->pagePath()}");
+        $message = "wiki ({$action}): {$this->pagePath()}";
+
+        if (isset($this->logger)) {
+            ($this->logger)($message);
+        } else {
+            \Log::info($message);
+        }
     }
 }

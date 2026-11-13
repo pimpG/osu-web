@@ -19,11 +19,16 @@ return [
             'contest' => '',
             'contests' => '',
             'root' => '',
-            'store_orders' => '',
         ],
 
         'artists' => [
             'index' => '',
+        ],
+
+        'beatmapsets' => [
+            'show' => '',
+            'discussions' => '',
+            'versions' => '',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => '',
-            'multiplayer' => '',
+            'playlists' => '',
+            'ranked-play' => '',
+            'realtime' => '',
             'show' => '',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => '',
-            'kudosu' => '',
         ],
         'store' => [
             '_' => '',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => '',
             'copyright' => '',
+            'jp_sctl' => '',
             'privacy' => '',
+            'rules' => '',
             'server_status' => '',
             'source_code' => '',
             'terms' => '',
@@ -188,10 +196,16 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => '',
+            'create_team' => '',
             'follows' => '',
             'friends' => '',
+            'legacy_score_only_toggle' => '',
+            'legacy_score_only_toggle_tooltip' => '',
             'logout' => '',
             'profile' => '',
+            'scoring_mode_toggle' => '',
+            'scoring_mode_toggle_tooltip' => '',
+            'team' => '',
         ],
     ],
 

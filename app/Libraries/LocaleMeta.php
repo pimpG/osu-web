@@ -9,6 +9,19 @@ namespace App\Libraries;
 
 class LocaleMeta
 {
+    /**
+     * Keys must be a superset of app.available_locales. Additional locales are
+     * available for use only in wiki articles
+     *
+     * php (IntlDateFormatter etc) isn't mapped at the moment.
+     *
+     * Check respective packages for supported list of languages:
+     * carbon: vendor/nesbot/carbon/src/Carbon/Lang/
+     * html: lang attribute in html tag. Mainly for uppercasing country code if used.
+     * jsPlural: node_modules/lang.js/src/lang.js
+     * laravelPlural: vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
+     * moment: node_modules/moment/locale/
+     */
     const MAPPINGS = [
         'ar' => [
             'flag' => 'SA',
@@ -16,19 +29,23 @@ class LocaleMeta
         ],
         'be' => [
             'flag' => 'BY',
-            'name' => 'Беларуская мова',
+            'name' => 'беларуская мова',
         ],
         'bg' => [
             'flag' => 'BG',
-            'name' => 'Български',
+            'name' => 'български',
+        ],
+        'ca' => [
+            'flag' => 'AD', // ES-CA in crowdin
+            'name' => 'català',
         ],
         'cs' => [
             'flag' => 'CZ',
-            'name' => 'Česky',
+            'name' => 'česky',
         ],
         'da' => [
             'flag' => 'DK',
-            'name' => 'Dansk',
+            'name' => 'dansk',
         ],
         'de' => [
             'flag' => 'DE',
@@ -36,7 +53,7 @@ class LocaleMeta
         ],
         'el' => [
             'flag' => 'GR',
-            'name' => 'Ελληνικά',
+            'name' => 'ελληνικά',
         ],
         'en' => [
             'flag' => 'GB',
@@ -47,25 +64,40 @@ class LocaleMeta
             'flag' => 'ES',
             'name' => 'español',
         ],
+        'es-419' => [
+            'flag' => 'MX',
+            'jsPlural' => 'es',
+            'laravelPlural' => 'es_MX',
+            'moment' => 'es-mx',
+            'name' => 'español (Latinoamérica)',
+        ],
         'fi' => [
             'flag' => 'FI',
-            'name' => 'Suomi',
+            'name' => 'suomi',
+        ],
+        'fil' => [
+            'flag' => 'PH',
+            'name' => 'wikang Filipino',
         ],
         'fr' => [
             'flag' => 'FR',
             'name' => 'français',
         ],
+        'he' => [
+            'flag' => 'IL',
+            'name' => 'עִבְרִית‎',
+        ],
         'hu' => [
             'flag' => 'HU',
-            'name' => 'Magyar',
+            'name' => 'magyar',
         ],
         'id' => [
             'flag' => 'ID',
-            'name' => 'Bahasa Indonesia',
+            'name' => 'bahasa Indonesia',
         ],
         'it' => [
             'flag' => 'IT',
-            'name' => 'Italiano',
+            'name' => 'italiano',
         ],
         'ja' => [
             'flag' => 'JP',
@@ -75,6 +107,18 @@ class LocaleMeta
             'flag' => 'KR',
             'name' => '한국어',
         ],
+        'lt' => [
+            'flag' => 'LT',
+            'name' => 'lietuvių kalba',
+        ],
+        'lv' => [
+            'flag' => 'LV',
+            'name' => 'latviešu valoda',
+        ],
+        'ms' => [
+            'flag' => 'MY',
+            'name' => 'bahasa Melayu',
+        ],
         'nl' => [
             'flag' => 'NL',
             'name' => 'Nederlands',
@@ -82,7 +126,7 @@ class LocaleMeta
         'no' => [
             'flag' => 'NO',
             'moment' => 'nb',
-            'name' => 'Norsk',
+            'name' => 'norsk',
         ],
         'pl' => [
             'flag' => 'PL',
@@ -90,37 +134,44 @@ class LocaleMeta
         ],
         'pt' => [
             'flag' => 'PT',
-            'name' => 'Português',
+            'name' => 'português',
         ],
         'pt-br' => [
             'flag' => 'BR',
             'html' => 'pt-BR',
+            'jsPlural' => 'pt',
             'laravelPlural' => 'pt_BR',
-            'name' => 'Português (Brasil)',
+            'name' => 'português brasileiro',
         ],
         'ro' => [
             'flag' => 'RO',
-            'name' => 'Română',
+            'name' => 'română',
         ],
         'ru' => [
             'flag' => 'RU',
-            'name' => 'Русский',
+            'name' => 'русский',
         ],
         'sk' => [
             'flag' => 'SK',
-            'name' => 'Slovenčina',
+            'name' => 'slovenčina',
+        ],
+        'sl' => [
+            'flag' => 'SI',
+            'name' => 'slovenščina',
+        ],
+        'sr' => [
+            'carbon' => 'sr_Cyrl',
+            'flag' => 'RS',
+            'moment' => 'sr-cyrl',
+            'name' => 'српски',
         ],
         'sv' => [
             'flag' => 'SE',
-            'name' => 'Svenska',
+            'name' => 'svenska',
         ],
         'th' => [
             'flag' => 'TH',
             'name' => 'ไทย',
-        ],
-        'tl' => [
-            'flag' => 'PH',
-            'name' => 'Tagalog',
         ],
         'tr' => [
             'flag' => 'TR',
@@ -128,22 +179,16 @@ class LocaleMeta
         ],
         'uk' => [
             'flag' => 'UA',
-            'name' => 'Українська мова',
+            'name' => 'українська мова',
         ],
         'vi' => [
             'flag' => 'VN',
-            'name' => 'Tiếng Việt',
+            'name' => 'tiếng Việt',
         ],
         'zh' => [
             'flag' => 'CN',
             'moment' => 'zh-cn',
             'name' => '简体中文',
-        ],
-        'zh-hk' => [
-            'flag' => 'HK',
-            'html' => 'zh-HK',
-            'laravelPlural' => 'zh_HK',
-            'name' => '繁體中文（香港）',
         ],
         'zh-tw' => [
             'flag' => 'TW',
@@ -153,8 +198,14 @@ class LocaleMeta
         ],
     ];
 
+    private static array $instances = [];
+
     private array $data;
-    private string $locale;
+
+    public function __construct(private string $locale)
+    {
+        $this->data = static::MAPPINGS[$locale];
+    }
 
     /**
      * Return cached instance of specified locale.
@@ -164,9 +215,7 @@ class LocaleMeta
      */
     public static function find(string $locale): self
     {
-        static $instances = [];
-
-        return $instances[$locale] ??= new static($locale);
+        return static::$instances[$locale] ??= new static($locale);
     }
 
     public static function isValid(?string $locale): bool
@@ -174,6 +223,21 @@ class LocaleMeta
         return isset(static::MAPPINGS[$locale]);
     }
 
+    public static function jsPluralMap(): string
+    {
+        static $ret;
+        if (!isset($ret)) {
+            $map = [];
+            foreach (static::MAPPINGS as $locale => $data) {
+                if (isset($data['jsPlural'])) {
+                    $map[$locale] = $data['jsPlural'];
+                }
+            }
+            $ret = json_encode($map);
+        }
+
+        return $ret;
+    }
     public static function sanitizeCode(?string $locale): ?string
     {
         if ($locale === null) {
@@ -185,10 +249,9 @@ class LocaleMeta
         return static::isValid($ret) ? $ret : null;
     }
 
-    public function __construct($locale)
+    public function carbon(): string
     {
-        $this->locale = $locale;
-        $this->data = static::MAPPINGS[$locale];
+        return $this->data['carbon'] ?? $this->locale;
     }
 
     public function flag(): string

@@ -5,6 +5,7 @@
 
 return [
     'show' => [
+        'non_preserved' => '',
         'title' => '',
 
         'beatmap' => [
@@ -13,7 +14,10 @@ return [
 
         'player' => [
             'by' => '',
+            'played_on' => '',
             'submitted_on' => '',
+            'watched' => '',
+            'watched_count' => '',
 
             'rank' => [
                 'country' => '',
@@ -24,6 +28,8 @@ return [
 
     'status' => [
         'non_best' => '',
+        'no_pp' => '',
         'processing' => '',
+        'no_rank' => '',
     ],
 ];

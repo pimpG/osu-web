@@ -5,13 +5,8 @@
 
 namespace App\Libraries\Search;
 
-use App\Libraries\Elasticsearch\SearchParams;
-
-class WikiSuggestionsParams extends SearchParams
+class WikiSuggestionsParams extends WikiSearchParams
 {
-    /** @var string|null */
-    public $queryString = null;
-
     public $size = 10;
 
     /**

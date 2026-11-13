@@ -7,15 +7,9 @@ return [
     'admin' => [
         '_' => 'admin',
     ],
-    'admin_forum' => [
-        '_' => 'admin',
-    ],
-    'admin_store' => [
-        '_' => 'admin',
-    ],
     'error' => [
         'error' => [
-            '400' => '',
+            '400' => 'neplatný požadavek',
             '404' => 'chybějící',
             '403' => 'zakázano',
             '401' => 'neoprávněný',
@@ -29,58 +23,56 @@ return [
     ],
     'forum' => [
         '_' => 'fórum',
-        'topic_watches_controller' => [
-            'index' => 'nástěnka',
+        'topic_logs_controller' => [
+            'index' => 'záznamy téma',
         ],
     ],
     'main' => [
         'account_controller' => [
-            'edit' => 'nástěnka',
             'verify_link' => 'ověření účtu',
         ],
         'artists_controller' => [
-            '_' => '',
+            '_' => 'oficiální umělci',
         ],
         'beatmap_discussion_posts_controller' => [
-            '_' => '',
+            '_' => 'příspěvky diskuze o beatmapě',
         ],
         'beatmap_discussions_controller' => [
-            '_' => '',
+            '_' => 'diskuze o beatmapě',
         ],
         'beatmap_packs_controller' => [
             '_' => 'balíčky beatmap',
         ],
         'beatmapset_discussion_votes_controller' => [
-            '_' => '',
+            '_' => 'diskuzní hlasy beatmapy',
         ],
         'beatmapset_events_controller' => [
-            '_' => '',
-        ],
-        'beatmapset_watches_controller' => [
-            'index' => 'nástěnka',
+            '_' => 'historie beatmap',
         ],
         'beatmapsets_controller' => [
-            'discussion' => '',
+            'discussion' => 'diskuze o beatmapě',
             'index' => 'seznam beatmap',
-            'show' => '',
+            'show' => 'info o beatmapě',
+            'versions' => 'historie verzí beatmapy',
         ],
         'changelog_controller' => [
             '_' => 'seznam změn',
         ],
         'chat_controller' => [
-            '_' => '',
+            '_' => 'chat',
         ],
         'comments_controller' => [
             '_' => 'komentáře',
         ],
+        'contest_entries_controller' => [
+            'judge_results' => 'výsledky hodnocení soutěže',
+        ],
         'contests_controller' => [
             '_' => 'soutěže',
+            'judge' => 'hodnocení soutěže',
         ],
-        'follows_controller' => [
-            'index' => 'nástěnka',
-        ],
-        'friends_controller' => [
-            'index' => 'nástěnka',
+        'group_history_controller' => [
+            '_' => 'historie skupin',
         ],
         'groups_controller' => [
             'show' => 'skupiny',
@@ -90,16 +82,16 @@ return [
             'index' => 'nástěnka',
             'search' => 'hledat',
             'support_the_game' => 'podpoř hru',
-            'testflight' => '',
+            'testflight' => 'testflight',
+        ],
+        'legacy_matches_controller' => [
+            '_' => 'zápasy',
         ],
         'legal_controller' => [
             '_' => 'informace',
         ],
         'livestreams_controller' => [
             '_' => 'živá vysílání',
-        ],
-        'matches_controller' => [
-            '_' => '',
         ],
         'news_controller' => [
             '_' => 'novinky',
@@ -116,14 +108,28 @@ return [
         'scores_controller' => [
             '_' => 'výkon',
         ],
-        'store_controller' => [
-            '_' => 'obchod',
+        'seasons_controller' => [
+            '_' => 'hodnocení',
+        ],
+        'teams_controller' => [
+            '_' => 'týmy',
+            'create' => 'vytvořit tým',
+            'edit' => 'nastavení týmu',
+            'leaderboard' => 'žebříček týmu',
+            'show' => 'informace o týmu',
         ],
         'tournaments_controller' => [
             '_' => 'turnaje',
         ],
+        'user_cover_presets_controller' => [
+            '_' => 'přednastavení uživatelského záhlaví',
+        ],
+        'user_totp_controller' => [
+            '_' => 'ověřovací aplikace',
+        ],
         'users_controller' => [
             '_' => 'informace o hráči',
+            'create' => 'vytvořit účet',
             'disabled' => 'oznámení',
         ],
         'wiki_controller' => [
@@ -132,23 +138,28 @@ return [
     ],
     'multiplayer' => [
         'rooms_controller' => [
-            '_' => 'žebříček',
+            'events' => 'historie místnosti',
         ],
     ],
     'passport' => [
         'authorization_controller' => [
-            '_' => '',
+            '_' => 'autorizovat aplikaci',
         ],
     ],
     'store' => [
         '_' => 'obchod',
     ],
+    'teams' => [
+        'members_controller' => [
+            'index' => 'členové týmu',
+        ],
+    ],
     'users' => [
         'modding_history_controller' => [
-            '_' => '',
+            '_' => 'modder info',
         ],
         'multiplayer_controller' => [
-            '_' => '',
+            '_' => 'historie her více hráčů',
         ],
     ],
 ];

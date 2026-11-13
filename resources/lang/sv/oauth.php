@@ -7,6 +7,7 @@ return [
     'cancel' => 'Avbryt',
 
     'authorise' => [
+        'app_owner' => 'en app av :owner',
         'request' => 'begär behörighet att komma åt ditt konto.',
         'scopes_title' => 'Denna applikation kommer att kunna:',
         'title' => 'Auktoriseringsbegäran.',
@@ -56,6 +57,12 @@ return [
         'revoked' => [
             'false' => 'Radera',
             'true' => 'Raderad',
+        ],
+
+        'secret' => [
+            'copy' => '',
+            'generate_new' => '',
+            'visible_once' => '',
         ],
     ],
 ];

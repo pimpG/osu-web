@@ -9,6 +9,17 @@ return [
         'title' => '',
     ],
 
+    'daily_challenge' => [
+        'beatmap' => '',
+        'theme' => '',
+        'top_10p' => '',
+        'top_50p' => '',
+        'unavailable' => [
+            'future' => '',
+            'past' => '',
+        ],
+    ],
+
     'filter' => [
         'title' => '',
 
@@ -17,12 +28,60 @@ return [
         ],
     ],
 
-    'type' => [
+    'kudosu' => [
+        'total' => '',
+        'available' => '',
+        'used' => '',
+    ],
+
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
+    'performance' => [
+        'insufficient_history' => '',
+    ],
+
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
         'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
+    'type' => [
         'country' => '',
-        'multiplayer' => '',
-        'performance' => '',
-        'score' => '',
+        'daily_challenge' => '',
+        'global' => '',
+        'kudosu' => '',
+        'matchmaking' => '',
+        'playlists' => '',
+        'team' => '',
+        'top_plays' => '',
+    ],
+
+    'seasons' => [
+        'empty' => '',
+        'ongoing' => '',
+        'room_count' => '',
+        'summary' => '',
+        'url' => '',
+        'validation' => [
+            'not_enough_factors' => '',
+        ],
     ],
 
     'spotlight' => [
@@ -36,6 +95,8 @@ return [
         'accuracy' => '',
         'active_users' => '',
         'country' => '',
+        'division' => '',
+        'members' => '',
         'play_count' => '',
         'performance' => '',
         'total_score' => '',

@@ -4,32 +4,67 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
+    'loading_users' => '',
+    'searching_users' => '',
     'talking_in' => '',
     'talking_with' => '',
     'title_compact' => '',
+    'unread_messages' => '',
 
     'cannot_send' => [
         'channel' => '',
         'user' => '',
-        'reasons' => [
-            'blocked' => '',
-            'channel_moderated' => '',
-            'friends_only' => '',
-            'not_enough_plays' => '',
-            'not_verified' => '',
-            'restricted' => '',
-            'silenced' => '',
-            'target_restricted' => '',
+    ],
+
+    'channels' => [
+        'confirm_part' => '',
+        'create' => '',
+        'join' => '',
+        'none' => '',
+
+        'list' => [
+            'title' => [
+                'ANNOUNCE' => '',
+                'GROUP' => '',
+                'PM' => '',
+                'PUBLIC' => '',
+                'TEAM' => '',
+            ],
         ],
     ],
+
+    'form' => [
+        'title' => [
+            'announcement' => '',
+        ],
+
+        'labels' => [
+            'description' => '',
+            'message' => '',
+            'name' => '',
+            'users' => '',
+        ],
+    ],
+
+    'not_found' => [
+        'message' => '',
+        'title' => '',
+    ],
+
+    'not_joined' => [
+        'message' => '',
+        'join' => '',
+    ],
+
     'input' => [
+        'create' => '',
         'disabled' => '',
+        'disconnected' => '',
         'placeholder' => '',
         'send' => '',
     ],
-    'no-conversations' => [
-        'howto' => "",
-        'lazer' => '',
-        'title' => '',
+
+    'join_channels' => [
+        'loading' => '',
     ],
 ];

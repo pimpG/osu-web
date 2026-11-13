@@ -10,6 +10,9 @@ use App\Libraries\GithubImporter;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\UpdateStream;
+use App\Transformers\BuildHistoryChartTransformer;
+use App\Transformers\BuildTransformer;
+use App\Transformers\UpdateStreamTransformer;
 use Cache;
 
 /**
@@ -17,6 +20,7 @@ use Cache;
  */
 class ChangelogController extends Controller
 {
+    private const CACHE_VERSION = 'v4';
     private $updateStreams = null;
 
     private static function changelogEntryMessageIncludes(?array $formats): array
@@ -55,8 +59,8 @@ class ChangelogController extends Controller
      * --------------|---------------------------------|------
      * builds        | [Build](#build)[]               | Includes `changelog_entries`, `changelog_entries.github_user`, and changelog entry message in requested formats.
      * search.from   | string?                         | `from` input.
-     * search.limit  | number                          | Always `21`.
-     * search.max_id | number?                         | `max_id` input.
+     * search.limit  | integer                         | Always `21`.
+     * search.max_id | integer?                        | `max_id` input.
      * search.stream | string?                         | `stream` input.
      * search.to     | string?                         | `to` input.
      * streams       | [UpdateStream](#updatestream)[] | Always contains all available streams. Includes `latest_build` and `user_count`.
@@ -78,7 +82,7 @@ class ChangelogController extends Controller
      *         "version": "20210520.2",
      *         "display_version": "20210520.2",
      *         "users": 23683,
-     *         "created_at": "2021-05-20T14:28:04+00:00",
+     *         "created_at": "2021-05-20T14:28:04Z",
      *         "update_stream": {
      *           "id": 5,
      *           "name": "stable40",
@@ -96,7 +100,7 @@ class ChangelogController extends Controller
      *       "version": "2021.619.1",
      *       "display_version": "2021.619.1",
      *       "users": 0,
-     *       "created_at": "2021-06-19T08:30:45+00:00",
+     *       "created_at": "2021-06-19T08:30:45Z",
      *       "update_stream": {
      *         "id": 7,
      *         "name": "lazer",
@@ -115,11 +119,12 @@ class ChangelogController extends Controller
      *           "title": "Fix game crashes due to attempting localisation load for unsupported locales",
      *           "message_html": null,
      *           "major": true,
-     *           "created_at": "2021-06-19T08:09:39+00:00",
+     *           "created_at": "2021-06-19T08:09:39Z",
      *           "github_user": {
-     *             "id": 218,
      *             "display_name": "bdach",
      *             "github_url": "https://github.com/bdach",
+     *             "github_username": "bdach",
+     *             "id": 218,
      *             "osu_username": null,
      *             "user_id": null,
      *             "user_url": null
@@ -177,7 +182,7 @@ class ChangelogController extends Controller
             'changelog_entries.github_user',
             ...static::changelogEntryMessageIncludes($params['message_formats']),
         ];
-        $buildsJson = json_collection($builds, 'Build', $buildJsonIncludes);
+        $buildsJson = json_collection($builds, new BuildTransformer(), $buildJsonIncludes);
 
         $indexJson = [
             'streams' => $updateStreams,
@@ -189,8 +194,8 @@ class ChangelogController extends Controller
             return $indexJson;
         } else {
             $chartConfig = Cache::remember(
-                'chart_config_global',
-                config('osu.changelog.build_history_interval'),
+                'chart_config_global:'.static::CACHE_VERSION,
+                $GLOBALS['cfg']['osu']['changelog']['build_history_interval'],
                 function () {
                     return $this->chartConfig(null);
                 }
@@ -202,9 +207,9 @@ class ChangelogController extends Controller
 
     public function github()
     {
-        $token = config('osu.changelog.github_token');
+        $token = $GLOBALS['cfg']['osu']['changelog']['github_token'];
 
-        $signatureHeader = explode('=', request()->header('X-Hub-Signature'));
+        $signatureHeader = explode('=', request()->header('X-Hub-Signature') ?? '');
 
         if (count($signatureHeader) !== 2) {
             abort(422, 'invalid signature header');
@@ -297,7 +302,7 @@ class ChangelogController extends Controller
      *   "version": "20210520.2",
      *   "display_version": "20210520.2",
      *   "users": 22093,
-     *   "created_at": "2021-05-20T14:28:04+00:00",
+     *   "created_at": "2021-05-20T14:28:04Z",
      *   "update_stream": {
      *     "id": 5,
      *     "name": "stable40",
@@ -316,11 +321,12 @@ class ChangelogController extends Controller
      *       "title": "Spring is here!",
      *       "message_html": "<div class='changelog-md'><p class=\"changelog-md__paragraph\">New seasonal backgrounds ahoy! Amazing work by the artists.</p>\n</div>",
      *       "major": true,
-     *       "created_at": "2021-05-20T10:56:49+00:00",
+     *       "created_at": "2021-05-20T10:56:49Z",
      *       "github_user": {
-     *         "id": null,
      *         "display_name": "peppy",
      *         "github_url": null,
+     *         "github_username": null,
+     *         "id": null,
      *         "osu_username": "peppy",
      *         "user_id": 2,
      *         "user_url": "https://osu.ppy.sh/users/2"
@@ -333,7 +339,7 @@ class ChangelogController extends Controller
      *       "version": "20210519.3",
      *       "display_version": "20210519.3",
      *       "users": 10,
-     *       "created_at": "2021-05-19T11:51:48+00:00",
+     *       "created_at": "2021-05-19T11:51:48Z",
      *       "update_stream": {
      *         "id": 5,
      *         "name": "stable40",
@@ -368,8 +374,8 @@ class ChangelogController extends Controller
         $commentBundle = CommentBundle::forEmbed($build);
 
         $chartConfig = Cache::remember(
-            "chart_config:v2:{$build->updateStream->getKey()}",
-            config('osu.changelog.build_history_interval'),
+            'chart_config:'.static::CACHE_VERSION.':'.$build->updateStream->getKey(),
+            $GLOBALS['cfg']['osu']['changelog']['build_history_interval'],
             function () use ($build) {
                 return $this->chartConfig($build->updateStream);
             }
@@ -386,7 +392,7 @@ class ChangelogController extends Controller
 
     private function buildJson(Build $build): array
     {
-        return json_item($build, 'Build', [
+        return json_item($build, new BuildTransformer(), [
             'changelog_entries',
             'changelog_entries.github_user',
             ...static::changelogEntryMessageIncludes(get_arr(request('message_formats'))),
@@ -396,35 +402,48 @@ class ChangelogController extends Controller
 
     private function getUpdateStreams()
     {
-        return $this->updateStreams ??= json_collection(
-            UpdateStream::whereHasBuilds()
-                ->orderByField('stream_id', config('osu.changelog.update_streams'))
-                ->find(config('osu.changelog.update_streams'))
-                ->sortBy(function ($i) {
-                    return $i->isFeatured() ? 0 : 1;
-                }),
-            'UpdateStream',
-            ['latest_build', 'user_count']
-        );
+        if ($this->updateStreams === null) {
+            $streams = UpdateStream::whereHasBuilds()
+                ->withLatestBuild()
+                ->withUserCount()
+                ->orderByField('stream_id', $GLOBALS['cfg']['osu']['changelog']['update_streams'])
+                ->find($GLOBALS['cfg']['osu']['changelog']['update_streams'])
+                ->sortBy(fn ($i) => $i->isFeatured() ? 0 : 1);
+            foreach ($streams as $stream) {
+                $stream->latestBuild->setRelation('updateStream', $stream);
+            }
+
+            $this->updateStreams = json_collection(
+                $streams,
+                new UpdateStreamTransformer(),
+                ['latest_build', 'user_count']
+            );
+        }
+
+        return $this->updateStreams;
     }
 
     private function chartConfig($stream)
     {
-        $history = BuildPropagationHistory::changelog(optional($stream)->getKey(), config('osu.changelog.chart_days'))->get();
+        $history = BuildPropagationHistory::changelog(optional($stream)->getKey(), $GLOBALS['cfg']['osu']['changelog']['chart_days'])->get();
 
         if ($stream === null) {
-            $chartOrder = array_map(function ($b) {
-                return $b['display_name'];
-            }, $this->getUpdateStreams());
+            $streams = [];
+            foreach ($this->getUpdateStreams() as $updateStream) {
+                // mapping from label (for id and css class) to pretty name (for tooltip label)
+                $streams[$updateStream['name']] = $updateStream['display_name'];
+            }
+            $chartOrder = array_keys($streams);
         } else {
             $chartOrder = $this->buildChartOrder($history);
-            $streamName = kebab_case($stream->pretty_name);
+            $streamName = $stream->name;
         }
 
         return [
-            'build_history' => json_collection($history, 'BuildHistoryChart'),
+            'build_history' => json_collection($history, new BuildHistoryChartTransformer()),
             'order' => $chartOrder,
             'stream_name' => $streamName ?? null,
+            'streams' => $streams ?? null,
         ];
     }
 

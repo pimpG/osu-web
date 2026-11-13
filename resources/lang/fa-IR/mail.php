@@ -15,6 +15,7 @@ return [
         'closing' => '',
         'hello' => '',
         'report' => '',
+        'ignore' => 'اگر این درخواست را شما انجام نداده اید، می توانید با خیال راحت این ایمیل را نادیده بگیرید.',
     ],
 
     'donation_thanks' => [
@@ -66,6 +67,7 @@ return [
         'duration' => '',
         'features' => '',
         'gifted' => '',
+        'gift_message' => '',
         'subject' => '',
     ],
 

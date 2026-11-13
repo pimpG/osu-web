@@ -16,7 +16,7 @@ class DbCursorHelper
     public function __construct($sorts, $defaultSort, $requestedSort = null)
     {
         $this->sortName = $requestedSort;
-        $this->sort = $sorts[$requestedSort] ?? null;
+        $this->sort = $sorts[$requestedSort ?? ''] ?? null;
 
         if ($this->sort === null) {
             $this->sort = $sorts[$defaultSort];
@@ -75,8 +75,12 @@ class DbCursorHelper
         return $ret;
     }
 
-    public function next($items)
+    public function next($items, bool $hasMore = true)
     {
+        if (!$hasMore) {
+            return null;
+        }
+
         if (is_array($items)) {
             $lastItem = array_last($items);
         } elseif ($items instanceof Collection) {

@@ -15,6 +15,7 @@ return [
         'destroy' => [
             'is_hype' => '',
             'has_reply' => '',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
         'nominate' => [
             'exhausted' => '',
@@ -43,22 +44,33 @@ return [
             'not_owner' => '',
             'resolved' => '',
             'system_generated' => '',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
 
         'edit' => [
             'not_owner' => '',
             'resolved' => '',
             'system_generated' => '',
-        ],
-
-        'store' => [
-            'beatmapset_locked' => '',
+            'caused_disqualify_or_nomination_reset' => '',
         ],
     ],
 
     'beatmapset' => [
+        'discussion_locked' => '',
+
         'metadata' => [
             'nominated' => '',
+        ],
+
+        'rate' => [
+            'owner' => '',
+            'status' => '',
+        ],
+    ],
+
+    'beatmap_tag' => [
+        'store' => [
+            'no_score' => '',
         ],
     ],
 
@@ -67,17 +79,23 @@ return [
         'friends_only' => '',
         'moderated' => '',
         'no_access' => '',
+        'no_announce' => '',
+        'receive_friends_only' => '',
         'restricted' => '',
         'silenced' => '',
     ],
 
     'comment' => [
+        'store' => [
+            'disabled' => '',
+        ],
         'update' => [
             'deleted' => "",
         ],
     ],
 
     'contest' => [
+        'judging_not_active' => '',
         'voting_over' => '',
 
         'entry' => [
@@ -103,6 +121,7 @@ return [
                 'deleted' => '',
                 'locked' => '',
                 'no_forum_access' => '',
+                'no_permission' => '',
                 'not_owner' => '',
                 'topic_locked' => '',
             ],
@@ -166,6 +185,40 @@ return [
         ],
     ],
 
+    'room' => [
+        'destroy' => [
+            'not_owner' => '',
+        ],
+    ],
+
+    'score' => [
+        'pin' => [
+            'disabled_type' => "",
+            'failed' => "",
+            'not_owner' => '',
+            'too_many' => '',
+        ],
+    ],
+
+    'team' => [
+        'application' => [
+            'store' => [
+                'already_member' => "",
+                'already_other_member' => "",
+                'currently_applying' => '',
+                'team_closed' => '',
+                'team_full' => "",
+            ],
+        ],
+        'part' => [
+            'is_leader' => "",
+            'not_member' => '',
+        ],
+        'store' => [
+            'require_supporter_tag' => '',
+        ],
+    ],
+
     'user' => [
         'page' => [
             'edit' => [
@@ -173,6 +226,9 @@ return [
                 'not_owner' => '',
                 'require_supporter_tag' => '',
             ],
+        ],
+        'update_email' => [
+            'locked' => '',
         ],
     ],
 ];

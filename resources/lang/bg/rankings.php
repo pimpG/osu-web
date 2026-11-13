@@ -6,7 +6,18 @@
 return [
     'countries' => [
         'all' => 'Всички',
-        'title' => 'Държава',
+        'title' => 'Държавно',
+    ],
+
+    'daily_challenge' => [
+        'beatmap' => 'Трудност',
+        'theme' => '',
+        'top_10p' => 'Топ 10% резултати ',
+        'top_50p' => 'Топ 50% резултати ',
+        'unavailable' => [
+            'future' => 'Все още няма дневно предизвикателство на посочената дата!',
+            'past' => 'Няма дневно предизвикателство на посочената дата!',
+        ],
     ],
 
     'filter' => [
@@ -17,12 +28,60 @@ return [
         ],
     ],
 
+    'kudosu' => [
+        'total' => 'Спечелени',
+        'available' => 'Налични',
+        'used' => 'Похарчени',
+    ],
+
+    'matchmaking' => [
+        'plays' => '',
+        'points' => '',
+        'provisional' => '',
+        'rating' => '',
+        'wins' => '',
+    ],
+
+    'multiplayer' => [
+        'room_name' => '',
+    ],
+
+    'performance' => [
+        'insufficient_history' => 'Потребителят има по-малко от 30 дни скорошна история в класирането.',
+    ],
+
+    'top_plays' => [
+        'empty' => '',
+        'last_updated' => '',
+    ],
+
+    'playlists' => [
+        'charts' => '',
+        'featured' => '',
+        'season_room' => '',
+        'seasons' => '',
+    ],
+
     'type' => [
-        'charts' => 'под прожекторите',
         'country' => 'държава',
-        'multiplayer' => 'мултиплейър',
-        'performance' => 'представяне',
-        'score' => 'резултат',
+        'daily_challenge' => 'предизвикателство',
+        'global' => 'Глобално',
+        'kudosu' => 'kudosu',
+        'matchmaking' => '',
+        'playlists' => '',
+        'team' => 'отбор',
+        'top_plays' => '',
+    ],
+
+    'seasons' => [
+        'empty' => 'Все още няма плейлисти за този сезон.',
+        'ongoing' => 'Сезонът все още продължава (ще има повече плейлисти).',
+        'room_count' => 'Брой плейлисти',
+        'summary' => '',
+        'url' => 'Повече информация за текущия сезон.',
+        'validation' => [
+            'not_enough_factors' => 'няма достатъчно фактори за оценка за правилно изчисление',
+        ],
     ],
 
     'spotlight' => [
@@ -36,12 +95,14 @@ return [
         'accuracy' => 'Прецизност',
         'active_users' => 'Активни потребители',
         'country' => 'Държава',
+        'division' => 'Дивизия',
+        'members' => 'Членове',
         'play_count' => 'Брой игри',
         'performance' => 'Представяне',
         'total_score' => 'Резултат',
         'ranked_score' => 'Класиран резултат',
-        'average_score' => 'Ср. Резултат',
-        'average_performance' => 'Ср. Представяне',
+        'average_score' => 'Ср. резултат',
+        'average_performance' => 'Ср. представяне',
         'ss' => '',
         's' => '',
         'a' => '',

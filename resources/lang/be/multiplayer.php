@@ -4,7 +4,13 @@
 // See the LICENCE file in the repository root for full licence text.
 
 return [
-    'empty' => 'Пакуль яшчэ няма гульняў osu!(Лазер)!',
+    'empty' => [
+        'active' => '',
+        'ended' => '',
+        'playlists' => 'плэйліст',
+        'ranked-play' => '',
+        'realtime' => 'мультыплэер',
+    ],
 
     'room' => [
         'hosted_by' => ':user хост',
@@ -12,6 +18,14 @@ return [
         'map_count' => ':count_delimited бітмапа|:count_delimited бітмап',
         'player_count' => ':count_delimited гулец|:count_delimited гульцоў',
         'time_left' => ':time засталася',
+        'view_history' => 'Праглядзець гісторыю',
+        'view_summary' => 'Праглядзець справаздачу',
+
+        'errors' => [
+            'duration_too_long' => 'Вельмі вялікая працягласць.',
+            'name_too_long' => 'Занадта доўгая назва пакоя.',
+            'too_many_playlist_items' => '',
+        ],
 
         'status' => [
             'active' => 'актыўны',

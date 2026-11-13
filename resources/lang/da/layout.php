@@ -19,11 +19,16 @@ return [
             'contest' => 'konkurrence',
             'contests' => 'konkurrencer',
             'root' => 'konsol',
-            'store_orders' => 'butik admin',
         ],
 
         'artists' => [
             'index' => 'katalog',
+        ],
+
+        'beatmapsets' => [
+            'show' => 'info',
+            'discussions' => 'diskussion',
+            'versions' => 'versionshistorik',
         ],
 
         'changelog' => [
@@ -47,7 +52,9 @@ return [
 
         'users' => [
             'modding' => 'modding',
-            'multiplayer' => '',
+            'playlists' => 'playlister',
+            'ranked-play' => 'rangeret spil',
+            'realtime' => 'multiplayer',
             'show' => 'info',
         ],
     ],
@@ -81,7 +88,6 @@ return [
         ],
         'rankings' => [
             '_' => 'rangering',
-            'kudosu' => 'kudosu',
         ],
         'store' => [
             '_' => 'butik',
@@ -107,7 +113,9 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
+            'jp_sctl' => '',
             'privacy' => 'Privatliv',
+            'rules' => 'Regler',
             'server_status' => 'Server Status',
             'source_code' => 'Kildekode',
             'terms' => 'Betingelser for Brug',
@@ -140,7 +148,7 @@ return [
             'description' => '',
         ],
         '429' => [
-            'error' => '',
+            'error' => 'Grænsen er overskredet',
             'description' => '',
         ],
         '500' => [
@@ -188,10 +196,16 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Indstillinger',
+            'create_team' => '',
             'follows' => 'Overvågningsliste',
             'friends' => 'Venner',
+            'legacy_score_only_toggle' => 'Lazer tilstand',
+            'legacy_score_only_toggle_tooltip' => 'Lazer tilstand viser scores sat fra lazer med en ny scoringsalgoritme',
             'logout' => 'Log ud',
             'profile' => 'Min Profil',
+            'scoring_mode_toggle' => 'Klassisk scoring',
+            'scoring_mode_toggle_tooltip' => 'Justér scoreværdier til at føles mere som klassisk scoring med uden begrænsning',
+            'team' => 'Mit Hold',
         ],
     ],
 
